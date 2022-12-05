@@ -1,0 +1,145 @@
+﻿<Window x:Class="microcosm.ShortCutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:microcosm"
+        mc:Ignorable="d"
+        Title="ショートカット設定" Height="440" Width="600" Closing="Window_Closing">
+    <Grid>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="40">Ctrl+H</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlH" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+J</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlJ" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+K</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlK" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+L</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlL" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+N</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlN" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+M</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlM" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+,</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlComma" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+.</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlDot" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+[</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlOpenBracket" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+]</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlCloseBracket" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="10, 0, 0, 0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="40">Ctrl+0</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl0" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+1</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl1" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+2</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl2" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+3</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl3" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+4</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl4" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+5</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl5" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+6</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl6" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+7</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl7" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+8</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl8" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+9</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrl9" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="10, 0, 0, 0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="40">F1</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f1" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">F2</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f2" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">F3</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f3" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">F4</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f4" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">F5</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f5" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">F6</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f6" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">F7</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f7" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">F8</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f8" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">F9</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f9" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">F10</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="f10" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="0, 20, 0, 0">
+                <Button x:Name="Submit" Content="保存" Width="100" HorizontalAlignment="Right" Click="Submit_Click"></Button>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>

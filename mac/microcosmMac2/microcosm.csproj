@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D91747B-89FC-4661-8B02-F764DC421B99}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>microcosmMac2</RootNamespace>
+    <AssemblyName>microcosm</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <ReleaseVersion>1.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>true</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>true</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <LinkMode>None</LinkMode>
+    <AOTMode>None</AOTMode>
+    <CodeSignProvision></CodeSignProvision>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+    <XamMacArch>x86_64</XamMacArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>true</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>true</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
+    <LinkMode>SdkOnly</LinkMode>
+    <AOTMode>None</AOTMode>
+    <CodesigningKey>Mac Developer: Created via API (8VD72DF66D)</CodesigningKey>
+    <CodesignProvision></CodesignProvision>
+    <PackageSigningKey>Developer ID Installer</PackageSigningKey>
+    <ProductDefinition>/Users/ogata/Projects/microcosm-common/mac/microcosmMac2/Info.plist</ProductDefinition>
+    <XamMacArch>x86_64</XamMacArch>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="SkiaSharp">
+      <HintPath>..\packages\SkiaSharp.2.88.3\lib\xamarinmac2.0\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Mac">
+      <HintPath>..\packages\SkiaSharp.Views.2.88.3\lib\xamarinmac2.0\SkiaSharp.Views.Mac.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="SwissEphNet">
+      <HintPath>..\packages\SwissEphNet.2.8.0.2\lib\netstandard1.0\SwissEphNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web">
+      <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json">
+      <HintPath>..\packages\System.Text.Json.6.0.6\lib\netstandard2.0\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="CsvHelper">
+      <HintPath>..\packages\CsvHelper.30.0.0\lib\netstandard2.1\CsvHelper.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\.DS_Store" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon1024.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon256-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon32-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon64.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon512-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon128.png" />
+    <ImageAsset Include="Assets.xcassets\cardinal.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\cardinal.imageset\C-1.png" />
+    <ImageAsset Include="Assets.xcassets\cardinal.imageset\C-2.png" />
+    <ImageAsset Include="Assets.xcassets\cardinal.imageset\C.png" />
+    <ImageAsset Include="Assets.xcassets\mutable.imageset\M.png" />
+    <ImageAsset Include="Assets.xcassets\mutable.imageset\M-1.png" />
+    <ImageAsset Include="Assets.xcassets\mutable.imageset\M-2.png" />
+    <ImageAsset Include="Assets.xcassets\mutable.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fixed.imageset\F-1.png" />
+    <ImageAsset Include="Assets.xcassets\fixed.imageset\F-2.png" />
+    <ImageAsset Include="Assets.xcassets\fixed.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\fixed.imageset\F.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Common\" />
+    <Folder Include="Views\" />
+    <Folder Include="Models\" />
+    <Folder Include="Config\" />
+    <Folder Include="User\" />
+    <Folder Include="Calc\" />
+    <Folder Include="system\" />
+    <Folder Include="Views\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+    <None Include=".DS_Store" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\CommonInstance.cs" />
+    <Compile Include="Views\CanvasView.cs" />
+    <Compile Include="Common\Position.cs" />
+    <Compile Include="Common\CommonData.cs" />
+    <Compile Include="Models\AspectInfo.cs" />
+    <Compile Include="Config\ConfigData.cs" />
+    <Compile Include="Config\SettingData.cs" />
+    <Compile Include="User\UserData.cs" />
+    <Compile Include="Models\PlanetData.cs" />
+    <Compile Include="Common\Util.cs" />
+    <Compile Include="Models\Calculation.cs" />
+    <Compile Include="Calc\AstroCalc.cs" />
+    <Compile Include="Views\Setting1View.cs" />
+    <Compile Include="Views\Setting1ViewController.cs" />
+    <Compile Include="Views\Setting1View.designer.cs">
+      <DependentUpon>Setting1View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting1ViewController.designer.cs">
+      <DependentUpon>Setting1ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\SettingJson.cs" />
+    <Compile Include="AppDelegate.designer.cs">
+      <DependentUpon>AppDelegate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\TestClass.cs" />
+    <Compile Include="Views\DataSources\SettingName.cs" />
+    <Compile Include="Views\DataSources\SettingDataSource.cs" />
+    <Compile Include="Views\DataSources\SettingDataDelegate.cs" />
+    <Compile Include="Views\ConfigView.cs" />
+    <Compile Include="Views\ConfigViewController.cs" />
+    <Compile Include="Views\ConfigView.designer.cs">
+      <DependentUpon>ConfigView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfigViewController.designer.cs">
+      <DependentUpon>ConfigViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\TempSetting.cs" />
+    <Compile Include="Views\SpanView.cs" />
+    <Compile Include="Views\SpanViewController.cs" />
+    <Compile Include="Views\SpanView.designer.cs">
+      <DependentUpon>SpanView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SpanViewController.designer.cs">
+      <DependentUpon>SpanViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimeSetView.cs" />
+    <Compile Include="Views\TimeSetViewController.cs" />
+    <Compile Include="Views\TimeSetView.designer.cs">
+      <DependentUpon>TimeSetView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimeSetViewController.designer.cs">
+      <DependentUpon>TimeSetViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DatabaseView.cs" />
+    <Compile Include="Views\DatabaseViewController.cs" />
+    <Compile Include="Views\DatabaseView.designer.cs">
+      <DependentUpon>DatabaseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DatabaseViewController.designer.cs">
+      <DependentUpon>DatabaseViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataSources\FilesDataSource.cs" />
+    <Compile Include="Views\DataSources\FileName.cs" />
+    <Compile Include="Views\DataSources\FilesDelegate.cs" />
+    <Compile Include="Views\DataSources\EventData.cs" />
+    <Compile Include="User\UserEvent.cs" />
+    <Compile Include="Views\DataSources\EventDataSource.cs" />
+    <Compile Include="Views\DataSources\EventDelegate.cs" />
+    <Compile Include="User\UserJson.cs" />
+    <Compile Include="Views\UserAddView.cs" />
+    <Compile Include="Views\UserAddViewController.cs" />
+    <Compile Include="Views\UserAddView.designer.cs">
+      <DependentUpon>UserAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserAddViewController.designer.cs">
+      <DependentUpon>UserAddViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataSources\Addr.cs" />
+    <Compile Include="Views\DataSources\AddrDataSource.cs" />
+    <Compile Include="Views\DataSources\AddrDelegate.cs" />
+    <Compile Include="Views\DataSources\AddrCsv.cs" />
+    <Compile Include="Views\UserEditView.cs" />
+    <Compile Include="Views\UserEditViewController.cs" />
+    <Compile Include="Views\UserEditView.designer.cs">
+      <DependentUpon>UserEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserEditViewController.designer.cs">
+      <DependentUpon>UserEditViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventAddView.cs" />
+    <Compile Include="Views\EventAddViewController.cs" />
+    <Compile Include="Views\EventAddView.designer.cs">
+      <DependentUpon>EventAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventAddViewController.designer.cs">
+      <DependentUpon>EventAddViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventEditView.cs" />
+    <Compile Include="Views\EventEditViewController.cs" />
+    <Compile Include="Views\EventEditView.designer.cs">
+      <DependentUpon>EventEditView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventEditViewController.designer.cs">
+      <DependentUpon>EventEditViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EclipseView.cs" />
+    <Compile Include="Views\EclipseViewController.cs" />
+    <Compile Include="Views\EclipseView.designer.cs">
+      <DependentUpon>EclipseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EclipseViewController.designer.cs">
+      <DependentUpon>EclipseViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calc\EclipseCalc.cs" />
+    <Compile Include="Calc\AspectCalc.cs" />
+    <Compile Include="Views\DataSources\SignTable.cs" />
+    <Compile Include="Views\DataSources\SignTableDataSource.cs" />
+    <Compile Include="Views\DataSources\SignTableDelegate.cs" />
+    <Compile Include="Models\EventKeyCode.cs" />
+    <Compile Include="Common\Julian.cs" />
+    <Compile Include="Models\Sabian.cs" />
+    <Compile Include="Views\ShortcutView.cs" />
+    <Compile Include="Views\ShortcutViewController.cs" />
+    <Compile Include="Views\ShortcutView.designer.cs">
+      <DependentUpon>ShortcutView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShortcutViewController.designer.cs">
+      <DependentUpon>ShortcutViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShortCut.cs" />
+    <Compile Include="Models\MouseIn.cs" />
+    <Compile Include="Config\TestJson.cs" />
+    <Compile Include="User\UserJsonList.cs" />
+    <Compile Include="Views\DirListView.cs" />
+    <Compile Include="Views\DirListViewController.cs" />
+    <Compile Include="Views\DirListView.designer.cs">
+      <DependentUpon>DirListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DirListViewController.designer.cs">
+      <DependentUpon>DirListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataSources\DirData.cs" />
+    <Compile Include="Views\DataSources\DirDataSource.cs" />
+    <Compile Include="Views\DataSources\DirDataDelegate.cs" />
+    <Compile Include="Views\DIrAddView.cs" />
+    <Compile Include="Views\DIrAddViewController.cs" />
+    <Compile Include="Views\DIrAddView.designer.cs">
+      <DependentUpon>DIrAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DIrAddViewController.designer.cs">
+      <DependentUpon>DIrAddViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DirMoveView.cs" />
+    <Compile Include="Views\DirMoveViewController.cs" />
+    <Compile Include="Views\DirMoveView.designer.cs">
+      <DependentUpon>DirMoveView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DirMoveViewController.designer.cs">
+      <DependentUpon>DirMoveViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AmateruCsv.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Views\Setting1View.xib" />
+    <InterfaceDefinition Include="Views\ConfigView.xib" />
+    <InterfaceDefinition Include="Views\SpanView.xib" />
+    <InterfaceDefinition Include="Views\TimeSetView.xib" />
+    <InterfaceDefinition Include="Views\DatabaseView.xib" />
+    <InterfaceDefinition Include="Views\UserAddView.xib" />
+    <InterfaceDefinition Include="Views\UserEditView.xib" />
+    <InterfaceDefinition Include="Views\EventAddView.xib" />
+    <InterfaceDefinition Include="Views\EventEditView.xib" />
+    <InterfaceDefinition Include="Views\EclipseView.xib" />
+    <InterfaceDefinition Include="Views\ShortcutView.xib" />
+    <InterfaceDefinition Include="Views\DirListView.xib" />
+    <InterfaceDefinition Include="Views\DIrAddView.xib" />
+    <InterfaceDefinition Include="Views\DirMoveView.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="system\settings0.json" />
+    <BundleResource Include="system\settings1.json" />
+    <BundleResource Include="system\settings2.json" />
+    <BundleResource Include="system\settings3.json" />
+    <BundleResource Include="system\settings4.json" />
+    <BundleResource Include="system\settings7.json" />
+    <BundleResource Include="system\settings8.json" />
+    <BundleResource Include="system\settings9.json" />
+    <BundleResource Include="system\settings6.json" />
+    <BundleResource Include="system\settings5.json" />
+    <BundleResource Include="system\config.json" />
+    <BundleResource Include="system\addr.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="system\microcosm.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="system\microcosm-aspects.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ephe\sedeltat.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\swe_deltat.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\sepl_18.se1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\semo_18.se1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\seleapsec.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\seas_18.se1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\se90377s.se1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\s136472s.se1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\s136199s.se1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\s136108s.se1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="system\sabian.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="license\csvhelper.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="license\license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="license\agpl-3.0.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="license\agpl-3.0_ja.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+  <Import Project="..\packages\SkiaSharp.NativeAssets.macOS.2.88.3\build\xamarinmac2.0\SkiaSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\SkiaSharp.NativeAssets.macOS.2.88.3\build\xamarinmac2.0\SkiaSharp.NativeAssets.macOS.targets')" />
+  <Import Project="..\packages\System.Text.Json.6.0.6\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.6\build\System.Text.Json.targets')" />
+</Project>

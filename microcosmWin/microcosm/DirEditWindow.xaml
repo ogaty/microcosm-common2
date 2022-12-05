@@ -1,0 +1,21 @@
+﻿<Window x:Class="microcosm.DirEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:microcosm"
+        mc:Ignorable="d"
+        Title="ディレクトリ移動" Height="150" Width="230" Closing="Window_Closing">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="200" Margin="10">
+                <TextBlock Text="ディレクトリ名" Margin="0, 10, 0, 0"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="fileName" Width="150"></TextBox>
+                </StackPanel>
+                <Button x:Name="SubmitBtn" Content="保存" Width="100" Margin="0, 20, 0, 0" HorizontalAlignment="Right" Click="SubmitBtn_Click"></Button>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>

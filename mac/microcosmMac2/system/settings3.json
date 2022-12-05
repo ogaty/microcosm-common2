@@ -1,0 +1,27 @@
+﻿{
+  "name": "設定3",
+  "orbSunMoon": [
+    10,
+    8
+  ],
+  "orb1st": [
+    6,
+    4
+  ],
+  "orb2nd": [
+    3,
+    1
+  ],
+  "dispAspectConjunction": 1,
+  "dispAspectOpposition": 1,
+  "dispAspectTrine": 1,
+  "dispAspectSquare": 1,
+  "dispAspectSextile": 1,
+  "dispAspectInconjunct": 1,
+  "dispAspectSesquiQuadrate": 1,
+  "dispAspectSemiSquare": 1,
+  "dispAspectSemiSextile": 1,
+  "dispAspectQuintile": 1,
+  "dispAspectNovile": 1,
+  "dispAspectBiQuintile": 1
+}

@@ -1,0 +1,108 @@
+﻿<Window x:Class="microcosm.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:microcosm"
+        mc:Ignorable="d"
+        Title="共通設定" Height="360" Width="830" Closing="Window_Closing">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="150">
+                <StackPanel Margin="10,0">
+                    <GroupBox Header="centric">
+                        <StackPanel>
+                            <RadioButton x:Name="geoCentric" Content="GeoCentric" IsChecked="True" />
+                            <RadioButton x:Name="helioCentric" Content="HelioCentric" />
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="春分点計算">
+                        <StackPanel>
+                            <RadioButton x:Name="tropical" Content="Tropical" IsChecked="True" />
+                            <RadioButton x:Name="sidereal" Content="SideReal"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="ヘッド計算">
+                        <StackPanel>
+                            <RadioButton x:Name="trueHead" Content="TRUE" IsChecked="True" />
+                            <RadioButton x:Name="meanHead" Content="MEAN"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="リリス計算">
+                        <StackPanel>
+                            <RadioButton x:Name="oscuApogee" Content="TRUE" IsChecked="True" />
+                            <RadioButton x:Name="meanApogee" Content="MEAN"/>
+                        </StackPanel>
+                    </GroupBox>
+
+                </StackPanel>
+                </StackPanel>
+                <StackPanel Width="250">
+                <StackPanel>
+                    <GroupBox Header="プログレス計算">
+                        <StackPanel>
+                            <RadioButton x:Name="secondaryProgression" Content="一日一年法(Secondary Progression)" IsChecked="True"></RadioButton>
+                            <RadioButton x:Name="primaryProgression" Content="一度一年法(Primary Progression)"></RadioButton>
+                            <RadioButton x:Name="solarArcProgression" Content="ソーラーアーク法(SolarArc Progression)"></RadioButton>
+                            <RadioButton x:Name="compositProgression" Content="CPS(Composit Progression)"></RadioButton>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="小数点以下表示">
+                        <StackPanel>
+                            <RadioButton x:Name="degreeDisp" Content="60進数(15.59°)" IsChecked="True"></RadioButton>
+                            <RadioButton x:Name="decimalDisp" Content="100進数(15.99)"></RadioButton>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="天体表示">
+                        <StackPanel>
+                            <RadioButton x:Name="fullDisp" Content="フル　　  (☉29°♈59'℞)" IsChecked="True"></RadioButton>
+                            <RadioButton x:Name="miniDisp" Content="シンプル　(☉29°)"></RadioButton>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="10, 0, 0, 0">
+                    <StackPanel>
+                        <GroupBox Header="ハウス計算">
+                            <StackPanel>
+                                <RadioButton x:Name="placidus" Content="Placidus" IsChecked="True"></RadioButton>
+                                <RadioButton x:Name="koch" Content="Koch"></RadioButton>
+                                <RadioButton x:Name="campanus" Content="Campanus"></RadioButton>
+                                <RadioButton x:Name="equal" Content="Equal"></RadioButton>
+                                <RadioButton x:Name="zeroaries" Content="Zero Aries"></RadioButton>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="10, 5, 0, 0">
+                    <TextBlock Text="デフォルトタイムゾーン"></TextBlock>
+                    <ComboBox x:Name="defaultTimezone" ItemsSource="{Binding timezone}">
+                    </ComboBox>
+                    <TextBlock Text="デフォルト地名"></TextBlock>
+                    <TextBox x:Name="defaultPlace"></TextBox>
+                    <TextBlock Text="デフォルト緯度・経度" Margin="0, 10, 0, 0"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
+                        <TextBlock Text="緯度"></TextBlock>
+                        <TextBox x:Name="defaultLat" Width="100"></TextBox>
+                        <TextBlock Text="経度"></TextBlock>
+                        <TextBox x:Name="defaultLng" Width="100"></TextBox>
+                    </StackPanel>
+                    <ListView x:Name="latlngList" Height="140" Margin="0, 10, 0, 0" ItemsSource="{Binding list}" SelectionChanged="latlngList_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="地名" DisplayMemberBinding="{Binding name}"></GridViewColumn>
+                                <GridViewColumn Header="緯度" DisplayMemberBinding="{Binding lat}"></GridViewColumn>
+                                <GridViewColumn Header="経度" DisplayMemberBinding="{Binding lng}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="決定" Margin="0,0,10,0" Click="OkClick"/>
+                <Button Content="キャンセル" Click="CancelClick" Margin="0,0,10,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

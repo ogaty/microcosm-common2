@@ -1,0 +1,133 @@
+﻿<Window x:Class="microcosm.DatabaseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:microcosm"
+        mc:Ignorable="d"
+        Title="データベース" Height="620" Width="1000" Closing="Window_Closing">
+    <Grid>
+        <DockPanel>
+            <Grid>
+                <StackPanel Orientation="Horizontal" Margin="15">
+                    <StackPanel>
+                        <GroupBox Header="Directories" Background="Gainsboro" BorderBrush="Gray">
+                            <StackPanel>
+                                <StackPanel Grid.Row="0" Grid.Column="0">
+                                    <StackPanel Margin="10, 10, 10, 10" Orientation="Horizontal">
+                                        <Button x:Name="newDir" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Click="newDir_Click"></Button>
+                                        <Button x:Name="editDir" Content="&#xED63;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Margin="10, 0, 0, 0" Click="editDir_Click" IsEnabled="False"></Button>
+                                        <Button x:Name="deleteDir" Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Margin="10, 0, 0, 0" Click="deleteDir_Click" IsEnabled="False"></Button>
+                                    </StackPanel>
+                                </StackPanel>
+                                <ListView x:Name="DirList" Height="120" ItemsSource="{Binding dirList}" MouseDoubleClick="DirList_MouseDoubleClick" SelectionChanged="DirList_SelectionChanged">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding fileName}"></TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Files" Background="Gainsboro" BorderBrush="Gray">
+                            <StackPanel>
+                                <StackPanel Margin="0, 10, 10, 10" Orientation="Horizontal">
+                                    <Button x:Name="newFile" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Click="newFile_Click"></Button>
+                                    <Button x:Name="editFile" Content="&#xED63;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Margin="10, 0, 0, 0" Click="editFile_Click"></Button>
+                                    <Button x:Name="deleteFile" Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Margin="10, 0, 0, 0" Click="deleteFile_Click"></Button>
+                                </StackPanel>
+                                <ListView x:Name="UserList" Height="260" Margin="0, 10, 0, 0" ItemsSource="{Binding fileList}" SelectionChanged="UserList_SelectionChanged">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding fileName}"></TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel Margin="10, 0, 10, 0">
+                        <GroupBox Header="Event" Background="Gainsboro" BorderBrush="Gray">
+                            <StackPanel>
+                                <StackPanel Margin="10, 10, 10, 10" Orientation="Horizontal">
+                                    <Button x:Name="newEventFile" Content="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Click="newEventFile_Click"></Button>
+                                    <Button x:Name="editEventFile" Content="&#xED63;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Margin="10, 0, 0, 0" Click="editEventFile_Click"></Button>
+                                    <Button x:Name="deleteEventFile" Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Margin="10, 0, 0, 0" Click="deleteEventFile_Click"></Button>
+                                    <Button x:Name="eclipseFile" Content="&#xF738;" FontFamily="Segoe MDL2 Assets" FontSize="16" Width="40" Height="40" Margin="10, 0, 0, 0" Click="eclipseFile_Click"></Button>
+
+                                </StackPanel>
+
+                                <ListView x:Name="EventList" Height="200" ItemsSource="{Binding userEventList}" Margin="0, 0, 10, 0" SelectionChanged="EventList_SelectionChanged">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="" Width="20" DisplayMemberBinding="{Binding index}"></GridViewColumn>
+                                            <GridViewColumn Header="名前" Width="100" DisplayMemberBinding="{Binding eventName}"></GridViewColumn>
+                                            <GridViewColumn Header="時刻" Width="120" DisplayMemberBinding="{Binding eventBirth}"></GridViewColumn>
+                                            <GridViewColumn Header="timezone" Width="60" DisplayMemberBinding="{Binding eventTimezone}"></GridViewColumn>
+                                            <GridViewColumn Header="場所" Width="100" DisplayMemberBinding="{Binding eventPlace}"></GridViewColumn>
+                                            <GridViewColumn Header="緯度" Width="100" DisplayMemberBinding="{Binding eventLat}"></GridViewColumn>
+                                            <GridViewColumn Header="経度" Width="100" DisplayMemberBinding="{Binding eventLng}"></GridViewColumn>
+                                            <GridViewColumn Header="メモ" Width="100" DisplayMemberBinding="{Binding eventMemo}"></GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="0, 10, 0, 0">
+                            <TextBlock x:Name="memo" Height="50"></TextBlock>
+
+                        </Border>
+
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 10, 10, 0">
+                            <Button x:Name="data1Button" Content="出生データ1に設定" Margin="0,0,0,0" Width="110" HorizontalAlignment="Right" Click="data1Button_Click"></Button>
+                            <Button x:Name="data2Button" Content="出生データ2に設定" Margin="15,0,0,0" Width="110" HorizontalAlignment="Right" Click="data2Button_Click"></Button>
+                            <Button x:Name="data3Button" Content="イベントデータ1に設定" Margin="15,0,0,0" Width="110" HorizontalAlignment="Right" Click="data3Button_Click"></Button>
+                            <Button x:Name="data4Button" Content="イベントデータ2に設定" Margin="15,0,0,0" Width="110" HorizontalAlignment="Right" Click="data4Button_Click"></Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 10, 10, 0">
+                            <StackPanel Width="110">
+                                <TextBlock x:Name="user1Name" Text="name"></TextBlock>
+                                <TextBlock x:Name="user1DateTime" Text="datetime"></TextBlock>
+                                <TextBlock x:Name="user1LatLng" Text="latlng"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Width="110" Margin="20, 0, 0, 0">
+                                <TextBlock x:Name="user2Name" Text="name"></TextBlock>
+                                <TextBlock x:Name="user2DateTime" Text="datetime"></TextBlock>
+                                <TextBlock x:Name="user2LatLng" Text="latlng"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Width="110" Margin="20, 0, 0, 0">
+                                <TextBlock x:Name="event1Name" Text="name"></TextBlock>
+                                <TextBlock x:Name="event1DateTime" Text="datetime"></TextBlock>
+                                <TextBlock x:Name="event1LatLng" Text="latlng"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Width="110" Margin="20, 0, 0, 0">
+                                <TextBlock x:Name="event2Name" Text="name"></TextBlock>
+                                <TextBlock x:Name="event2DateTime" Text="datetime"></TextBlock>
+                                <TextBlock x:Name="event2LatLng" Text="latlng"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="0, 30, 0, 0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <ComboBox Name="importCombo" Margin="20,10,1,0" Width="150" >
+                                    <ComboBoxItem Content="AMATERU(*.csv)" IsSelected="True"></ComboBoxItem>
+                                    <ComboBoxItem Content="Ｓtargazer"></ComboBoxItem>
+                                    <ComboBoxItem Content="Zet(*.zbs)"></ComboBoxItem>
+                                </ComboBox>
+                                <Button x:Name="Import" Content="インポート" Margin="10,10,1,0" Width="100" Click="Import_Click"></Button>
+                                <Button x:Name="SubmitBtn" Content="終了" Margin="20,10,1,0" Width="100" HorizontalAlignment="Right" Click="Submit_Click"></Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

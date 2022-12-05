@@ -1,0 +1,116 @@
+body {
+    color: #777;
+    margin: 0;
+}
+
+main {
+}
+
+section {
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 85px;
+}
+
+section.top {
+    background: #59A3FC;
+    background: url("standing-woman.jpg") no-repeat center;
+    background-size: cover;
+    color: #fff;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+section.top img {
+	width: 100%;
+	height: auto;
+}
+section.top .over {
+    padding-top: 75px;
+    padding-bottom: 120px;
+    background-color: rgba(21, 21, 21, 0.8);
+}
+section.light {
+    background: #f2f6fa;
+}
+
+.inner {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Noto Serif JP', serif
+}
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+h3 {
+    font-size: 20px;
+    text-align: center;
+}
+
+a, a:visited {
+    color: #77c;
+}
+
+.top {
+}
+.dl a, .dl a:visited {
+    color: #fff;
+}
+.dl {
+    text-align: center;
+}
+.dl-btn {
+    display: inline-block;
+    width: 200px;
+    border: 1px solid #fff;
+    margin-top: 10px;
+    padding: 15px;
+}
+.dl-btn:hover {
+    border: 1px solid #f44;
+}
+.dl a:hover {
+    color: #f44;
+}
+
+.text {
+    text-align: center;
+}
+
+dt {
+    font-size: 20px;
+}
+dd {
+    margin-bottom: 30px;
+}
+
+.badge-field {
+    text-align: center;
+}
+.msbadge {
+    width: 120px;
+}
+.splide__slide {
+    text-align: center;
+}
+.splide__slide img {
+	max-width: 800px;
+	height: auto;
+}
+
+@media (max-width: 600px) {
+    .dotnet {
+        width: 100%;
+    }
+
+    .splide__slide img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+

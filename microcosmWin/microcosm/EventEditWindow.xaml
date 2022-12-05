@@ -1,0 +1,57 @@
+﻿<Window x:Class="microcosm.EventEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:microcosm"
+        mc:Ignorable="d"
+        Title="イベント編集" Height="450" Width="800" Closing="Window_Closing">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="200" Margin="10">
+                <TextBlock Text="名前" Margin="0, 10, 0, 0"></TextBlock>
+                <TextBox x:Name="name"></TextBox>
+                <TextBlock Text="日付" Margin="0, 10, 0, 0"></TextBlock>
+                <DatePicker Name="event_date"></DatePicker>
+                <TextBlock Text="時刻" Margin="0, 10, 0, 0"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="hour" Width="30"></TextBox>
+                    <TextBlock Text=":" Margin="10, 0, 10, 0"></TextBlock>
+                    <TextBox x:Name="minute" Width="30"></TextBox>
+                    <TextBlock Text=":" Margin="10, 0, 10, 0"></TextBlock>
+                    <TextBox x:Name="second" Width="30"></TextBox>
+                </StackPanel>
+                <TextBlock Text="タイムゾーン" Margin="0, 10, 0, 0"></TextBlock>
+                <ComboBox x:Name="birth_timezone" ItemsSource="{Binding timezone}">
+                </ComboBox>
+
+                <TextBlock Text="メモ" Margin="0, 10, 0, 0"></TextBlock>
+                <TextBox x:Name="memo" TextWrapping="Wrap" AcceptsReturn="True" Height="50"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="10" Width="400">
+                <TextBlock Text="場所" Margin="0, 10, 0, 0"></TextBlock>
+                <TextBox x:Name="place"></TextBox>
+                <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <TextBlock Text="緯度" Width="100"></TextBlock>
+                    <TextBox x:Name="lat" Width="200"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <TextBlock Text="経度" Width="100"></TextBlock>
+                    <TextBox x:Name="lng" Width="200"></TextBox>
+                </StackPanel>
+
+                <ListView x:Name="latlngList" Height="200" Margin="0, 10, 0, 0" ItemsSource="{Binding list}" SelectionChanged="latlngList_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="地名" DisplayMemberBinding="{Binding name}"></GridViewColumn>
+                            <GridViewColumn Header="緯度" DisplayMemberBinding="{Binding lat}"></GridViewColumn>
+                            <GridViewColumn Header="経度" DisplayMemberBinding="{Binding lng}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button x:Name="SubmitBtn" Content="保存" Width="100" Margin="0, 20, 0, 0" HorizontalAlignment="Right" Click="SubmitBtn_Click"></Button>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>

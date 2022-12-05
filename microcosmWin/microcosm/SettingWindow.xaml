@@ -1,0 +1,288 @@
+﻿<Window x:Class="microcosm.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:microcosm"
+        mc:Ignorable="d"
+        Title="設定管理" Height="450" Width="800" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="10">
+            <ListView x:Name="SettingDispNameList" ItemsSource="{Binding SettingDispNameList}" Height="320" SelectionChanged="SettingDispNameList_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding dispName}" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TabControl SelectionChanged="TabControl_SelectionChanged">
+                <TabItem Header="表示名">
+                    <StackPanel>
+                        <Label Content="表示名" Margin="5, 20, 5, 0">
+                        </Label>
+                        <TextBox x:Name="dispName" Margin="5, 0, 5, 20"></TextBox>
+                        <Label Content=" " x:Name="saveDispNameLabel"></Label>
+                        <Button x:Name="saveDispName" Content="保存" Width="100" Margin="10" Click="saveDispName_Click" HorizontalAlignment="Right"></Button>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="天体表示">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="10, 10, 10, 10">
+                                <ToggleButton x:Name="dispPlanetSun" Width="100">
+                                    Sun
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetMoon" Margin="0, 10, 0, 0" Width="100">
+                                    Moon
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetMercury" Margin="0, 10, 0, 0" Width="100">
+                                    Mercury
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetVenus" Margin="0, 10, 0, 0" Width="100">
+                                    Venus
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetMars" Margin="0, 10, 0, 0" Width="100">
+                                    Mars
+                                </ToggleButton>
+                            </StackPanel>
+                            <StackPanel Margin="10, 10, 10, 10">
+                                <ToggleButton x:Name="dispPlanetJupiter" Width="100">
+                                    Jupiter
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetSaturn" Margin="0, 10, 0, 0" Width="100">
+                                    Saturn
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetUranus" Margin="0, 10, 0, 0" Width="100">
+                                    Uranus
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetNeptune" Margin="0, 10, 0, 0" Width="100">
+                                    Neptune
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetPluto" Margin="0, 10, 0, 0" Width="100">
+                                    Pluto
+                                </ToggleButton>
+                            </StackPanel>
+                            <StackPanel Margin="10, 10, 10, 10">
+                                <ToggleButton x:Name="dispPlanetAsc" Width="100">
+                                    Asc
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetMc" Margin="0, 10, 0, 0" Width="100">
+                                    Mc
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetChiron" Margin="0, 10, 0, 0" Width="100">
+                                    Chiron
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetDH" Margin="0, 10, 0, 0" Width="100">
+                                    DragonH
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetDT" Margin="0, 10, 0, 0" Width="100">
+                                    DragonT
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetLilith" Margin="0, 10, 0, 0" Width="100">
+                                    Lilith
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetEarth" Margin="0, 10, 0, 0" Width="100">
+                                    Earth
+                                </ToggleButton>
+                            </StackPanel>
+                            <StackPanel Margin="10, 10, 10, 10">
+                                <ToggleButton x:Name="dispPlanetCeres" Width="100">
+                                    Ceres
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetPallas" Margin="0, 10, 0, 0" Width="100">
+                                    Pallas
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetJuno" Margin="0, 10, 0, 0" Width="100">
+                                    Juno
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispPlanetVesta" Margin="0, 10, 0, 0" Width="100">
+                                    Vesta
+                                </ToggleButton>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <Label Content=" " x:Name="SavePlanetLabel"></Label>
+                            <Button x:Name="SavePlanet" Content="保存" Width="100" HorizontalAlignment="Right" Click="SavePlanet_Click"></Button>
+                        </StackPanel>
+                    </StackPanel>
+
+                </TabItem>
+                <TabItem Header="アスペクト表示">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="10, 10, 10, 10">
+                                <ToggleButton x:Name="dispAspectSun" Width="100">
+                                    Sun
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectMoon" Margin="0, 10, 0, 0" Width="100">
+                                    Moon
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectMercury" Margin="0, 10, 0, 0" Width="100">
+                                    Mercury
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectVenus" Margin="0, 10, 0, 0" Width="100">
+                                    Venus
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectMars" Margin="0, 10, 0, 0" Width="100">
+                                    Mars
+                                </ToggleButton>
+                            </StackPanel>
+                            <StackPanel Margin="10, 10, 10, 10">
+                                <ToggleButton x:Name="dispAspectJupiter" Width="100">
+                                    Jupiter
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectSaturn" Margin="0, 10, 0, 0" Width="100">
+                                    Saturn
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectUranus" Margin="0, 10, 0, 0" Width="100">
+                                    Uranus
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectNeptune" Margin="0, 10, 0, 0" Width="100">
+                                    Neptune
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectPluto" Margin="0, 10, 0, 0" Width="100">
+                                    Pluto
+                                </ToggleButton>
+                            </StackPanel>
+                            <StackPanel Margin="10, 10, 10, 10">
+                                <ToggleButton x:Name="dispAspectAsc" Width="100">
+                                    Asc
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectMc" Margin="0, 10, 0, 0" Width="100">
+                                    Mc
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectChiron" Margin="0, 10, 0, 0" Width="100">
+                                    Chiron
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectDH" Margin="0, 10, 0, 0" Width="100">
+                                    DragonH
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectDT" Margin="0, 10, 0, 0" Width="100">
+                                    DragonT
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectLilith" Margin="0, 10, 0, 0" Width="100">
+                                    Lilith
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectEarth" Margin="0, 10, 0, 0" Width="100">
+                                    Earth
+                                </ToggleButton>
+                            </StackPanel>
+                            <StackPanel Margin="10, 10, 10, 10">
+                                <ToggleButton x:Name="dispAspectCeres" Width="100">
+                                    Ceres
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectPallas" Margin="0, 10, 0, 0" Width="100">
+                                    Pallas
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectJuno" Margin="0, 10, 0, 0" Width="100">
+                                    Juno
+                                </ToggleButton>
+                                <ToggleButton x:Name="dispAspectVesta" Margin="0, 10, 0, 0" Width="100">
+                                    Vesta
+                                </ToggleButton>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="10">
+                            <Label Content=" " x:Name="SaveAspectLabel"></Label>
+                            <Button x:Name="SaveAspectPlanet" Content="保存" Width="100" HorizontalAlignment="Right" Click="SaveAspectPlanet_Click"></Button>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="アスペクト種別">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="10, 10, 10, 10" Width="150">
+                                <ToggleButton x:Name="aspectConjunction" Width="120" IsChecked="True">
+                                    Conjunction
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectOpposition" Width="120" Margin="0, 20, 0, 0" IsChecked="True">
+                                    Opposition
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectTrine" Width="120" Margin="0, 20, 0, 0" IsChecked="True">
+                                    Trine
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectSquare" Width="120" Margin="0, 20, 0, 0" IsChecked="True">
+                                    Square
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectSextile" Width="120" Margin="0, 20, 0, 0" IsChecked="True">
+                                    Sextile
+                                </ToggleButton>
+                            </StackPanel>
+                            <StackPanel Margin="10, 10, 10, 10" Width="150">
+                                <ToggleButton x:Name="aspectInconjunct" Width="120">
+                                    Inconjunct
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectSesquiQuadrate" Width="120" Margin="0, 20, 0, 0">
+                                    SesquiQuadrate
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectSemiSquare" Width="120" Margin="0, 20, 0, 0">
+                                    SemiSquare
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectSemiSextile" Width="120" Margin="0, 20, 0, 0">
+                                    SemiSextile
+                                </ToggleButton>
+                            </StackPanel>
+                            <StackPanel Margin="10, 10, 10, 10" Width="150">
+                                <ToggleButton x:Name="aspectQuintile" Width="120">
+                                    Quintile
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectNovile" Width="120" Margin="0, 20, 0, 0">
+                                    Novile
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectBiQuintile" Width="120" Margin="0, 20, 0, 0">
+                                    BiQuintile
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectSemiQuintile" Width="120" Margin="0, 20, 0, 0">
+                                    SemiQuintile
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectSeptile" Width="120" Margin="0, 20, 0, 0">
+                                    Septile
+                                </ToggleButton>
+                                <ToggleButton x:Name="aspectQuindecile" Width="120" Margin="0, 20, 0, 0">
+                                    Quindecile
+                                </ToggleButton>
+                            </StackPanel>
+                        </StackPanel>
+                        <Label Content=" " x:Name="SaveAspectKindLabel"></Label>
+                        <Button x:Name="SaveAspectKind" Content="保存" Margin="10" Width="120" HorizontalAlignment="Right" Click="SaveAspectKind_Click"></Button>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="オーブ設定">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="" Width="100"/>
+                            <Label Content="太陽・月" Width="90" Margin="0, 0, 0, 0"/>
+                            <Label Content="第1種" Width="90" Margin="10, 0, 0, 0"/>
+                            <Label Content="第2種・第3種" Width="90" Margin="10, 0, 0, 0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Soft" Width="100"></Label>
+                            <TextBox x:Name="orbSunMoonSoft" Width="90"/>
+                            <TextBox x:Name="orb1stSoft" Width="90" Margin="10, 0, 0, 0"/>
+                            <TextBox x:Name="orb2ndSoft" Width="90" Margin="10, 0, 0, 0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Hard" Width="100"></Label>
+                            <TextBox x:Name="orbSunMoonHard" Width="90" Margin="0, 0, 0, 0"/>
+                            <TextBox x:Name="orb1stHard" Width="90" Margin="10, 0, 0, 0"/>
+                            <TextBox x:Name="orb2ndHard" Width="90" Margin="10, 0, 0, 0"/>
+                        </StackPanel>
+                        <Label Content=" " x:Name="SaveOrbsLabel"></Label>
+                        <Button x:Name="SaveOrbs" Content="保存" Margin="10" Width="100" HorizontalAlignment="Right" Click="SaveOrbs_Click"/>
+                    </StackPanel>
+
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

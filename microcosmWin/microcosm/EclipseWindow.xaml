@@ -1,0 +1,41 @@
+﻿<Window x:Class="microcosm.EclipseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:microcosm"
+        mc:Ignorable="d"
+        Title="回帰計算" Height="230" Width="300" Closing="Window_Closing">
+    <Grid>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="140">
+                    <TextBlock Text="対象時刻"></TextBlock>
+                    <TextBlock Text="2022/10/1 12:00:00" Name="targetDate"></TextBlock>
+                    <TextBlock Text="対象度数" Margin="0, 10, 0, 0"></TextBlock>
+                    <TextBlock Text="200.0" Name="targetDegree"></TextBlock>
+                    <TextBlock Text="過去・未来" Margin="0, 10, 0, 0"></TextBlock>
+                    <RadioButton GroupName="nextprev" Content="未来" IsChecked="True" Name="next"></RadioButton>
+                    <RadioButton GroupName="nextprev" Content="過去" Name="prev"></RadioButton>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="対象天体"></TextBlock>
+                    <ComboBox x:Name="planetList" SelectionChanged="planetList_SelectionChanged">
+                        <ComboBoxItem Content="sun" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="moon"></ComboBoxItem>
+                        <!--
+                        <ComboBoxItem Content="mercury"></ComboBoxItem>
+                        <ComboBoxItem Content="venus"></ComboBoxItem>
+                        <ComboBoxItem Content="mars"></ComboBoxItem>
+                        <ComboBoxItem Content="jupiter"></ComboBoxItem>
+                        <ComboBoxItem Content="saturn"></ComboBoxItem>
+                        -->
+                    </ComboBox>
+                </StackPanel>
+
+            </StackPanel>
+
+            <Button x:Name="submitButton" Content="決定" Margin="0, 10, 0, 0" Click="submitButton_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

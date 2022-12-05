@@ -1,0 +1,23 @@
+﻿{
+  "ephepath": null,
+  "centric": 0,
+  "sidereal": 0,
+  "defaultPlace": "東京都",
+  "defaultTimezone": 9.0,
+  "defaultTimezoneStr": "Asia/Tokyo (9.0)",
+  "lat": 39,
+  "lng": 139,
+  "nodeCalc": 0,
+  "lilithCalc": 0,
+  "progression": 1,
+  "defaultBands": 0,
+  "houseCalc": 0,
+  "zodiacOuterWidth": 0,
+  "zodiacWidth": 0,
+  "zodiacCenter": 0,
+  "decimalDisp": 1,
+  "dispPattern": 0,
+  "dispPattern2": 0,
+  "color29": 0,
+  "colorChange": 0
+}
