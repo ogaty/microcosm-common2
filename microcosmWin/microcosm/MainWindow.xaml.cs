@@ -925,7 +925,7 @@ namespace microcosm
         {
             var proc = new System.Diagnostics.Process();
 
-            proc.StartInfo.FileName = "https://github.com/ogaty/microcosm-common";
+            proc.StartInfo.FileName = "https://github.com/ogaty/microcosm-common2";
             proc.StartInfo.UseShellExecute = true;
             proc.Start();
         }
