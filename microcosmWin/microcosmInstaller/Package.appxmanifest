@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="1e0ca6b8-eb5d-4c56-a79c-4ac7c11a7b64"
-    Publisher="CN=ogatism"
-    Version="1.0.0.0" />
+    Name="30056ogatism.49446E90E6664"
+    Publisher="CN=6F20220C-28DE-463D-BB80-DA20742BFC90"
+    Version="1.1.1.0" />
 
   <Properties>
-    <DisplayName>microcosm</DisplayName>
-    <PublisherDisplayName>ogatism / Yuji Ogata</PublisherDisplayName>
+    <DisplayName>microcosm horoscope</DisplayName>
+    <PublisherDisplayName>ogatism</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -43,7 +43,6 @@
   </Applications>
 
   <Capabilities>
-    <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
 </Package>

@@ -57,13 +57,13 @@
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <NoWarn>$(NoWarn);NU1702</NoWarn>
     <EntryPointProjectUniqueName>..\microcosm\microcosm.csproj</EntryPointProjectUniqueName>
-    <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
-    <AppInstallerUri>C:\home\tea\src\microcosm-common\microcosmWin\microcosmInstaller\AppPackages\</AppInstallerUri>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <AppInstallerUri>https://microcosm.ogatism.net/release/</AppInstallerUri>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <PackageCertificateThumbprint>3A54D87AB7CA3D51D98CF5D1D816AF565054275C</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>8D7FAC083E02E8B2E945C47EC47603912D94A7B6</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
