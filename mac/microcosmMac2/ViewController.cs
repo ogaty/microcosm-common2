@@ -398,7 +398,7 @@ namespace microcosmMac2
                         Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
                         WriteIndented = true
                     });
-                using (FileStream fs = new FileStream(filename, FileMode.Create))
+                using (FileStream fs = new FileStream(shortcutFile, FileMode.Create))
                 {
                     StreamWriter sw = new StreamWriter(fs);
                     sw.WriteLine(shortcutStr);
@@ -1124,7 +1124,7 @@ namespace microcosmMac2
 
                 int index = (int)(planet.absolute_position / 5);
 
-                BoxInit(ref box, ref index, planet.absolute_position);
+                BoxInit(ref box, ref index);
 
                 // 天体そのもの
                 planetOffset = GetPlanetOffset(1);
@@ -1171,7 +1171,7 @@ namespace microcosmMac2
 
                     int index2 = (int)(planet2.absolute_position / 5);
 
-                    BoxInit(ref box2, ref index2, planet2.absolute_position);
+                    BoxInit(ref box2, ref index2);
 
                     // 天体そのもの
                     planetOffset2 = GetPlanetOffset(2);
@@ -1199,7 +1199,7 @@ namespace microcosmMac2
 
                     int index3 = (int)(planet3.absolute_position / 5);
 
-                    BoxInit(ref box3, ref index3, planet3.absolute_position);
+                    BoxInit(ref box3, ref index3);
 
                     // 天体そのもの
                     planetOffset3 = GetPlanetOffset(3);
@@ -1809,8 +1809,13 @@ namespace microcosmMac2
             }
         }
 
-        public void BoxInit(ref int[] box, ref int index, double absolute_position)
+        public void BoxInit(ref int[] box, ref int index)
         {
+            if (box.Length < index || index < 0)
+            {
+                Debug.WriteLine("BoxInitError:" + index);
+                return;
+            }
             // 重ならないようにずらしを入れる
             // 1サインに6度単位5個までデータが入る
             if (box[index] == 1)
@@ -2151,72 +2156,86 @@ namespace microcosmMac2
             return timesetterChangeButton.SelectedItem.Title;
         }
 
+        /// <summary>
+        /// ">"ボタン
+        /// </summary>
+        /// <param name="sender"></param>
         partial void TimeSetRightClicked(Foundation.NSObject sender)
         {
             string currentTime = GetTimeSet();
             DateTime now = udata1.GetDateTime();
-            if (currentTime == "User1")
+            if (appDelegate.currentSpanType == SpanType.UNIT)
             {
-                now = udata1.GetDateTime().AddSeconds(plusUnit);
-                udata1.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(0, udata1);
-            }
-            else if (currentTime == "User2")
-            {
-                now = udata2.GetDateTime().AddSeconds(plusUnit);
-                udata2.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(1, udata2);
-            }
-            else if (currentTime == "Event1")
-            {
-                now = edata1.GetDateTime().AddSeconds(plusUnit);
-                edata1.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(0, edata1);
-            }
-            else if (currentTime == "Event2")
-            {
-                now = edata2.GetDateTime().AddSeconds(plusUnit);
-                edata2.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(1, edata2);
+                if (currentTime == "User1")
+                {
+                    now = udata1.GetDateTime().AddSeconds(plusUnit);
+                    udata1.SetDateTime(now);
+                    ReCalc();
+                    RefreshUserBox(0, udata1);
+                }
+                else if (currentTime == "User2")
+                {
+                    now = udata2.GetDateTime().AddSeconds(plusUnit);
+                    udata2.SetDateTime(now);
+                    ReCalc();
+                    RefreshUserBox(1, udata2);
+                }
+                else if (currentTime == "Event1")
+                {
+                    now = edata1.GetDateTime().AddSeconds(plusUnit);
+                    edata1.SetDateTime(now);
+                    ReCalc();
+                    RefreshEventBox(0, edata1);
+                }
+                else if (currentTime == "Event2")
+                {
+                    now = edata2.GetDateTime().AddSeconds(plusUnit);
+                    edata2.SetDateTime(now);
+                    ReCalc();
+                    RefreshEventBox(1, edata2);
+                }
             }
             ReRender();
         }
 
+        /// <summary>
+        /// "<"ボタン
+        /// </summary>
+        /// <param name="sender"></param>
         partial void TimeSetLeftClicked(Foundation.NSObject sender)
         {
             string currentTime = GetTimeSet();
             DateTime now = udata1.GetDateTime();
-            if (currentTime == "User1")
+            if (appDelegate.currentSpanType == SpanType.UNIT)
             {
-                now = udata1.GetDateTime().AddSeconds(-1 * plusUnit);
-                udata1.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(0, udata1);
-            }
-            else if (currentTime == "User2")
-            {
-                now = udata2.GetDateTime().AddSeconds(-1 * plusUnit);
-                udata2.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(1, udata2);
-            }
-            else if (currentTime == "Event1")
-            {
-                now = edata1.GetDateTime().AddSeconds(-1 * plusUnit);
-                edata1.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(0, edata1);
-            }
-            else if (currentTime == "Event2")
-            {
-                now = edata2.GetDateTime().AddSeconds(-1 * plusUnit);
-                edata2.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(1, edata2);
+                if (currentTime == "User1")
+                {
+                    now = udata1.GetDateTime().AddSeconds(-1 * plusUnit);
+                    udata1.SetDateTime(now);
+                    ReCalc();
+                    RefreshUserBox(0, udata1);
+                }
+                else if (currentTime == "User2")
+                {
+                    now = udata2.GetDateTime().AddSeconds(-1 * plusUnit);
+                    udata2.SetDateTime(now);
+                    ReCalc();
+                    RefreshUserBox(1, udata2);
+                }
+                else if (currentTime == "Event1")
+                {
+                    now = edata1.GetDateTime().AddSeconds(-1 * plusUnit);
+                    edata1.SetDateTime(now);
+                    ReCalc();
+                    RefreshEventBox(0, edata1);
+                }
+                else if (currentTime == "Event2")
+                {
+                    now = edata2.GetDateTime().AddSeconds(-1 * plusUnit);
+                    edata2.SetDateTime(now);
+                    ReCalc();
+                    RefreshEventBox(1, edata2);
+                }
             }
             ReRender();
         }

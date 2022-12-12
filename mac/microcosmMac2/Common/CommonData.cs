@@ -35,6 +35,15 @@ namespace microcosmMac2.Common
         EVENT2 = 3,
     }
 
+    public enum SpanType
+    {
+        UNIT = 0,
+        NEWMOON = 1,
+        FULLMOON = 2,
+        INGRESS = 3,
+        SOLARRETURN = 4,
+    }
+
     public static class CommonData
     {
         // AstroCalcで回すループ番号

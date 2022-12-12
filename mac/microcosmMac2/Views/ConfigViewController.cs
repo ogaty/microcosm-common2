@@ -104,11 +104,19 @@ namespace microcosmMac2.Views
             {
                 sidereal.State = NSCellStateValue.On;
                 tropical.State = NSCellStateValue.Off;
+                Draconic.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.config.sidereal == Esidereal.TROPICAL)
+            {
+                sidereal.State = NSCellStateValue.Off;
+                tropical.State = NSCellStateValue.On;
+                Draconic.State = NSCellStateValue.Off;
             }
             else
             {
                 sidereal.State = NSCellStateValue.Off;
-                tropical.State = NSCellStateValue.On;
+                tropical.State = NSCellStateValue.Off;
+                Draconic.State = NSCellStateValue.On;
             }
 
 
@@ -293,6 +301,7 @@ namespace microcosmMac2.Views
             if (btn.State == NSCellStateValue.On)
             {
                 tropical.State = NSCellStateValue.Off;
+                Draconic.State = NSCellStateValue.Off;
             }
         }
 
@@ -302,6 +311,17 @@ namespace microcosmMac2.Views
             if (btn.State == NSCellStateValue.On)
             {
                 sidereal.State = NSCellStateValue.Off;
+                Draconic.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void DraconicClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                sidereal.State = NSCellStateValue.Off;
+                tropical.State = NSCellStateValue.Off;
             }
         }
 
@@ -517,9 +537,13 @@ namespace microcosmMac2.Views
             {
                 appDelegate.config.sidereal = Config.Esidereal.SIDEREAL;
             }
-            else
+            else if (tropical.State == NSCellStateValue.On)
             {
                 appDelegate.config.sidereal = Config.Esidereal.TROPICAL;
+            }
+            else
+            {
+                appDelegate.config.sidereal = Config.Esidereal.DRACONIC;
             }
 
             if (truenode.State == NSCellStateValue.On)
