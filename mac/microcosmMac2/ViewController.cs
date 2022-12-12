@@ -398,7 +398,7 @@ namespace microcosmMac2
                         Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
                         WriteIndented = true
                     });
-                using (FileStream fs = new FileStream(filename, FileMode.Create))
+                using (FileStream fs = new FileStream(shortcutFile, FileMode.Create))
                 {
                     StreamWriter sw = new StreamWriter(fs);
                     sw.WriteLine(shortcutStr);
