@@ -34,7 +34,8 @@ namespace microcosm.config
     public enum Esidereal
     {
         TROPICAL = 0,
-        SIDEREAL = 1
+        SIDEREAL = 1,
+        DRACONIC = 2,
     }
     public enum EDecimalDisp
     {

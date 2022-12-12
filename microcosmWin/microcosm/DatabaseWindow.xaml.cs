@@ -34,20 +34,15 @@ namespace microcosm
         public DatabaseWindowUserEventListViewModel userEventVM;
         public DatabaseWindowDirViewModel dirVm;
 
-        public UserAddWindow userAddWindow;
-        public UserEditWindow userEditWindow;
-        public EventAddWindow eventAddWindow;
-        public EventEditWindow eventEditWindow;
-        public EclipseWindow eclipseWindow;
-        public DirAddWindow dirAddWindow;
-        public DirEditWindow dirEditWindow;
+        public UserAddWindow? userAddWindow;
+        public UserEditWindow? userEditWindow;
+        public EventAddWindow? eventAddWindow;
+        public EventEditWindow? eventEditWindow;
+        public EclipseWindow? eclipseWindow;
+        public DirAddWindow? dirAddWindow;
+        public DirEditWindow? dirEditWindow;
 
         public string currentFullPath = "";
-
-        public DatabaseWindow()
-        {
-            InitializeComponent();
-        }
 
         public DatabaseWindow(MainWindow mainWindow)
         {
@@ -97,7 +92,6 @@ namespace microcosm
             {
                 return;
             }
-            UserData udata = null;
 
             user1Name.Text = userJsonList.list[EventList.SelectedIndex].name;
             user1DateTime.Text = userJsonList.list[EventList.SelectedIndex].GetBirthDateTime().ToString("yyyy/MM/dd HH:mm:ss");
@@ -127,7 +121,6 @@ namespace microcosm
             {
                 return;
             }
-            UserData udata = null;
 
             user2Name.Text = userJsonList.list[EventList.SelectedIndex].name;
             user2DateTime.Text = userJsonList.list[EventList.SelectedIndex].GetBirthDateTime().ToString("yyyy/MM/dd HH:mm:ss");
@@ -157,7 +150,6 @@ namespace microcosm
             {
                 return;
             }
-            UserData udata = null;
 
             event1Name.Text = userJsonList.list[EventList.SelectedIndex].name;
             event1DateTime.Text = userJsonList.list[EventList.SelectedIndex].GetBirthDateTime().ToString("yyyy/MM/dd HH:mm:ss");
@@ -187,7 +179,6 @@ namespace microcosm
             {
                 return;
             }
-            UserData udata = null;
 
             event2Name.Text = userJsonList.list[EventList.SelectedIndex].name;
             event2DateTime.Text = userJsonList.list[EventList.SelectedIndex].GetBirthDateTime().ToString("yyyy/MM/dd HH:mm:ss");
@@ -212,13 +203,13 @@ namespace microcosm
             this.Visibility = Visibility.Collapsed;
         }
 
-        private UserJsonList GetUserJsonList()
+        private UserJsonList? GetUserJsonList()
         {
             if (UserList.SelectedItem == null)
             {
                 return null;
             }
-            UserJsonList userJsonList = null;
+            UserJsonList? userJsonList = null;
             string fileName = ((UserFileListData)UserList.SelectedItem).fileNameFullPath;
             using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {
