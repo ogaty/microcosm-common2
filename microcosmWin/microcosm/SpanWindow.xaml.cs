@@ -31,11 +31,6 @@ namespace microcosm
         private KindEnum kindValue;
 
 
-        public SpanWindow()
-        {
-            InitializeComponent();
-        }
-
         public SpanWindow(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -84,8 +79,38 @@ namespace microcosm
                 plusUnit = unitValue * 86400;
             }
 
-            main.ChangeSpanButton.Content = unit.Text + kind;
-            main.plusUnit = plusUnit;
+            if (RadioUnit.IsChecked == true)
+            {
+                main.ChangeSpanButton.Content = unit.Text + kind;
+                main.plusUnit = plusUnit;
+                main.currentSpanType = common.SpanType.UNIT;
+            }
+            else if (RadioNewMoon.IsChecked == true)
+            {
+                main.ChangeSpanButton.Content = "NewMoon";
+                main.currentSpanType = common.SpanType.NEWMOON;
+            }
+            else if (RadioFullMoon.IsChecked == true)
+            {
+                main.ChangeSpanButton.Content = "FullMoon";
+                main.currentSpanType = common.SpanType.FULLMOON;
+            }
+            else if (RadioSolarReturn.IsChecked == true)
+            {
+                main.ChangeSpanButton.Content = "SolarReturn";
+                main.currentSpanType = common.SpanType.SOLARRETURN;
+            }
+            else if (RadioIngress.IsChecked == true && (string)((ComboBoxItem)IngressCombo.SelectedItem).Content == "sun")
+            {
+                main.ChangeSpanButton.Content = "Sun Ing.";
+                main.currentSpanType = common.SpanType.SOLARINGRESS;
+            }
+            else if (RadioIngress.IsChecked == true && (string)((ComboBoxItem)IngressCombo.SelectedItem).Content == "moon")
+            {
+                main.ChangeSpanButton.Content = "Moon Ing.";
+                main.currentSpanType = common.SpanType.MOONINGRESS;
+            }
+
 
             this.Visibility = Visibility.Hidden;
         }

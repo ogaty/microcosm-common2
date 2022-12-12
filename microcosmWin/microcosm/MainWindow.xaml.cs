@@ -93,6 +93,8 @@ namespace microcosm
         public bool aspect23disp = true;
         public bool aspect33disp = true;
 
+        public SpanType currentSpanType = SpanType.UNIT;
+
         public int plusUnit = 86400;
 
         public MainWindow(BaseData baseData)

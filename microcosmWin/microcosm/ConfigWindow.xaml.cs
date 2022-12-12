@@ -170,8 +170,7 @@ namespace microcosm
             {
                 return;
             }
-            bool? geoCentricIsChecked = geoCentric.IsChecked;
-            if (geoCentricIsChecked == true)
+            if (geoCentric.IsChecked == true)
             {
                 main.configData.centric = config.ECentric.GEO_CENTRIC;
             } else
@@ -179,13 +178,11 @@ namespace microcosm
                 main.configData.centric = config.ECentric.HELIO_CENTRIC;
             }
 
-            bool? sideRealIsChecked = sidereal.IsChecked;
-            bool? draconicIsChecked = draconic.IsChecked;
-            if (sideRealIsChecked == true)
+            if (sidereal.IsChecked == true)
             {
                 main.configData.sidereal = config.Esidereal.SIDEREAL;
             }
-            else if (draconicIsChecked == true)
+            else if (draconic.IsChecked == true)
             {
                 main.configData.sidereal = config.Esidereal.DRACONIC;
             }
@@ -194,8 +191,7 @@ namespace microcosm
                 main.configData.sidereal = config.Esidereal.TROPICAL;
             }
 
-            bool? decimalDispIsChecked = decimalDisp.IsChecked;
-            if (decimalDispIsChecked == true)
+            if (decimalDisp.IsChecked == true)
             {
                 main.configData.decimalDisp = config.EDecimalDisp.DECIMAL;
             }
@@ -204,8 +200,7 @@ namespace microcosm
                 main.configData.decimalDisp = config.EDecimalDisp.DEGREE;
             }
 
-            bool? fullDispIsChecked = fullDisp.IsChecked;
-            if (fullDispIsChecked == true)
+            if (fullDisp.IsChecked == true)
             {
                 main.configData.dispPattern = config.EDispPetern.FULL;
             }
@@ -252,20 +247,20 @@ namespace microcosm
                 main.configData.houseCalc = config.EHouseCalc.ZEROARIES;
             }
 
-            if ((bool)trueHead.IsChecked)
+            if (trueHead.IsChecked == true)
             {
                 main.configData.nodeCalc = config.ENodeCalc.TRUE;
             }
-            else if ((bool)meanHead.IsChecked)
+            else if (meanHead.IsChecked == true)
             {
                 main.configData.nodeCalc = config.ENodeCalc.MEAN;
             }
 
-            if ((bool)oscuApogee.IsChecked)
+            if (oscuApogee.IsChecked == true)
             {
                 main.configData.lilithCalc = config.ELilithCalc.OSCU;
             }
-            else if ((bool)meanApogee.IsChecked)
+            else if (meanApogee.IsChecked == true)
             {
                 main.configData.lilithCalc = config.ELilithCalc.MEAN;
             }
