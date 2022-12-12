@@ -978,9 +978,9 @@ namespace microcosm
                 int absolute_position = getNewAbsPosition(planet);
                 int index = boxSet(absolute_position);
 
-                point = CommonData.rotate(rcanvasVM.outerWidth / 4, 0, 5 * index - startdegree);
+                point = CommonData.rotate(rcanvasVM.outerWidth / 4 + 20, 0, 5 * index - startdegree);
                 point = getNewPoint(point);
-                pointDegree = CommonData.rotate((rcanvasVM.outerWidth / 4) - 15, 0, 5 * index - startdegree);
+                pointDegree = CommonData.rotate((rcanvasVM.outerWidth / 4), 0, 5 * index - startdegree);
                 pointDegree.Y -= 8;
                 pointDegree = getNewPoint(pointDegree);
 

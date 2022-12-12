@@ -27,18 +27,16 @@ namespace microcosm
     public partial class ConfigWindow : Window
     {
         public MainWindow main;
-        public LatLngCsvViewModel vm;
-        public TimeZoneViewModel timezoneVM;
-        public ConfigWindow()
-        {
-            InitializeComponent();
-        }
+        public LatLngCsvViewModel? vm;
+        public TimeZoneViewModel? timezoneVM;
 
         public ConfigWindow(MainWindow main)
         {
             this.main = main;
             InitializeComponent();
 
+            vm = null;
+            timezoneVM = null;
             ReSet();
         }
 
@@ -57,9 +55,13 @@ namespace microcosm
             {
                 tropical.IsChecked = true;
             }
+            else if (main.configData.sidereal == config.Esidereal.SIDEREAL)
+            {
+                tropical.IsChecked = true;
+            }
             else
             {
-                sidereal.IsChecked = true;
+                draconic.IsChecked = true;
             }
 
             if (main.configData.progression == config.EProgression.SECONDARY)
@@ -164,7 +166,12 @@ namespace microcosm
 
         private void OkClick(object sender, RoutedEventArgs e)
         {
-            if ((bool)geoCentric.IsChecked)
+            if (geoCentric == null)
+            {
+                return;
+            }
+            bool? geoCentricIsChecked = geoCentric.IsChecked;
+            if (geoCentricIsChecked == true)
             {
                 main.configData.centric = config.ECentric.GEO_CENTRIC;
             } else
@@ -172,16 +179,23 @@ namespace microcosm
                 main.configData.centric = config.ECentric.HELIO_CENTRIC;
             }
 
-            if ((bool)sidereal.IsChecked)
+            bool? sideRealIsChecked = sidereal.IsChecked;
+            bool? draconicIsChecked = draconic.IsChecked;
+            if (sideRealIsChecked == true)
             {
                 main.configData.sidereal = config.Esidereal.SIDEREAL;
+            }
+            else if (draconicIsChecked == true)
+            {
+                main.configData.sidereal = config.Esidereal.DRACONIC;
             }
             else
             {
                 main.configData.sidereal = config.Esidereal.TROPICAL;
             }
 
-            if ((bool)decimalDisp.IsChecked)
+            bool? decimalDispIsChecked = decimalDisp.IsChecked;
+            if (decimalDispIsChecked == true)
             {
                 main.configData.decimalDisp = config.EDecimalDisp.DECIMAL;
             }
@@ -190,7 +204,8 @@ namespace microcosm
                 main.configData.decimalDisp = config.EDecimalDisp.DEGREE;
             }
 
-            if ((bool)fullDisp.IsChecked)
+            bool? fullDispIsChecked = fullDisp.IsChecked;
+            if (fullDispIsChecked == true)
             {
                 main.configData.dispPattern = config.EDispPetern.FULL;
             }

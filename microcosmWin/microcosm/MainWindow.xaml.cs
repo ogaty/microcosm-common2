@@ -496,10 +496,36 @@ namespace microcosm
             else
             {
                 // natal or transit
-                list1 = calc.PositionCalc(list1UserData.GetBirthDateTime(),
-                    list1UserData.lat, list1UserData.lng, configData.houseCalc, 0);
+                if (configData.sidereal == Esidereal.DRACONIC)
+                {
+                    list1 = calc.DraconicPositionCalc(list1UserData.GetBirthDateTime(), list1UserData.lat, list1UserData.lng, configData.houseCalc, 0);
+                }
+                else
+                {
+                    list1 = calc.PositionCalc(list1UserData.GetBirthDateTime(),
+                        list1UserData.lat, list1UserData.lng, configData.houseCalc, 0);
+                }
                 houseList1 = calc.CuspCalc(list1UserData.GetBirthDateTime(),
                     list1UserData.timezone, list1UserData.lat, list1UserData.lng, configData.houseCalc);
+                if (configData.sidereal == Esidereal.DRACONIC)
+                {
+                    if (configData.nodeCalc == ENodeCalc.TRUE)
+                    {
+                        houseList1.Select(h => {
+                            h -= list1[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+                            if (h < 0) h += 360;
+                            return h;
+                        });
+                    }
+                    else
+                    {
+                        houseList1.Select(h => {
+                            h -= list1[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+                            if (h < 0) h += 360;
+                            return h;
+                        });
+                    }
+                }
                 list1[CommonData.ZODIAC_ASC] = new PlanetData
                 {
                     no = CommonData.ZODIAC_ASC,
@@ -528,6 +554,7 @@ namespace microcosm
             if (tempSettings.secondBand == TempSetting.BandKind.PROGRESS)
             {
                 // progresはlist1とlist3の時刻で固定
+                // progresではDraconicを無効化させる
                 list2 = calc.Progress(list1, list1UserData, list3UserData.GetBirthDateTime(), list1UserData.timezone, list1UserData.lat, list1UserData.lng);
                 if (configData.progression == EProgression.SECONDARY)
                 {
@@ -575,10 +602,37 @@ namespace microcosm
             else
             {
                 // natal or transit
-                list2 = calc.PositionCalc(list2UserData.GetBirthDateTime(),
-                    list2UserData.lat, list2UserData.lng, configData.houseCalc, 1);
+                if (configData.sidereal == Esidereal.DRACONIC)
+                {
+                    list2 = calc.DraconicPositionCalc(list2UserData.GetBirthDateTime(), list2UserData.lat, list2UserData.lng, configData.houseCalc, 0);
+                }
+                else
+                {
+                    list2 = calc.PositionCalc(list2UserData.GetBirthDateTime(),
+                        list2UserData.lat, list2UserData.lng, configData.houseCalc, 1);
+                }
+
                 houseList2 = calc.CuspCalc(list1UserData.GetBirthDateTime(),
                         list3UserData.timezone, list3UserData.lat, list3UserData.lng, configData.houseCalc);
+                if (configData.sidereal == Esidereal.DRACONIC)
+                {
+                    if (configData.nodeCalc == ENodeCalc.TRUE)
+                    {
+                        houseList2.Select(h => {
+                            h -= list2[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+                            if (h < 0) h += 360;
+                            return h;
+                        });
+                    }
+                    else
+                    {
+                        houseList2.Select(h => {
+                            h -= list2[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+                            if (h < 0) h += 360;
+                            return h;
+                        });
+                    }
+                }
                 list2[CommonData.ZODIAC_ASC] = new PlanetData
                 {
                     no = CommonData.ZODIAC_ASC,
@@ -635,10 +689,37 @@ namespace microcosm
             else
             {
                 // natal or transit
-                list3 = calc.PositionCalc(list3UserData.GetBirthDateTime(),
-                    list3UserData.lat, list3UserData.lng, configData.houseCalc, 2);
+                if (configData.sidereal == Esidereal.DRACONIC)
+                {
+                    list3 = calc.DraconicPositionCalc(list3UserData.GetBirthDateTime(), list3UserData.lat, list3UserData.lng, configData.houseCalc, 0);
+                }
+                else
+                {
+                    list3 = calc.PositionCalc(list3UserData.GetBirthDateTime(),
+                        list3UserData.lat, list3UserData.lng, configData.houseCalc, 2);
+                }
+
                 houseList3 = calc.CuspCalc(list3UserData.GetBirthDateTime(),
                             list3UserData.timezone, list1UserData.lat, list1UserData.lng, configData.houseCalc);
+                if (configData.sidereal == Esidereal.DRACONIC)
+                {
+                    if (configData.nodeCalc == ENodeCalc.TRUE)
+                    {
+                        houseList3.Select(h => {
+                            h -= list3[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+                            if (h < 0) h += 360;
+                            return h;
+                        });
+                    }
+                    else
+                    {
+                        houseList3.Select(h => {
+                            h -= list3[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+                            if (h < 0) h += 360;
+                            return h;
+                        });
+                    }
+                }
                 list3[CommonData.ZODIAC_ASC] = new PlanetData
                 {
                     no = CommonData.ZODIAC_ASC,

@@ -1054,6 +1054,10 @@ namespace microcosm.calc
             {
                 PlanetData data = pair.Value;
                 data.absolute_position -= targetDegree;
+                if (data.absolute_position < 0)
+                {
+                    data.absolute_position += 360;
+                }
                 newPlanetList.Add(pair.Key, data);
             }
 
