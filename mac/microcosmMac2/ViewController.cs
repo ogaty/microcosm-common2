@@ -1195,8 +1195,8 @@ namespace microcosmMac2
                 DrawPlanetText(index, houseList1[1], planet, p, cvs, planetOffset);
 
                 // 天体から中心への線
-                //if (appDelegate.bands == 1)
-                //{
+                if (appDelegate.bands == 1)
+                {
                     Position startPt;
                     Position endPt;
 
@@ -1209,7 +1209,7 @@ namespace microcosmMac2
                     endPt.y = -1 * endPt.y + CenterY;
 
                     cvs.DrawLine((float)startPt.x, (float)startPt.y, (float)endPt.x, (float)endPt.y, lineStyle);
-                //}
+                }
             }
             
 
