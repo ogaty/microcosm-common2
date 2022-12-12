@@ -520,6 +520,27 @@ namespace microcosmMac2
                 list3 = calc.ReCalc(configData, appDelegate.currentSetting, ring3);
             }
             houseList1 = calc.CuspCalc(ring1.GetDateTime(), ring1.timezone, ring1.lat, ring1.lng, configData.houseCalc);
+            if (configData.sidereal == Esidereal.DRACONIC)
+            {
+                if (configData.nodeCalc == ENodeCalc.TRUE)
+                {
+                    houseList1.Select(h =>
+                    {
+                        h -= list1[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+                else
+                {
+                    houseList1.Select(h =>
+                    {
+                        h -= list1[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+            }
             list1[CommonData.ZODIAC_ASC] = new PlanetData()
             {
                 no = CommonData.ZODIAC_ASC,
@@ -552,6 +573,27 @@ namespace microcosmMac2
             {
                 houseList2 = calc.CuspCalc(ring2.GetDateTime(), ring2.timezone, ring2.lat, ring2.lng, configData.houseCalc);
             }
+            if (configData.sidereal == Esidereal.DRACONIC)
+            {
+                if (configData.nodeCalc == ENodeCalc.TRUE)
+                {
+                    houseList2.Select(h =>
+                    {
+                        h -= list2[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+                else
+                {
+                    houseList2.Select(h =>
+                    {
+                        h -= list2[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+            }
             list2[CommonData.ZODIAC_ASC] = new PlanetData()
             {
                 no = CommonData.ZODIAC_ASC,
@@ -577,6 +619,28 @@ namespace microcosmMac2
 
 
             houseList3 = calc.CuspCalc(ring3.GetDateTime(), ring3.timezone, ring3.lat, ring3.lng, configData.houseCalc);
+            if (configData.sidereal == Esidereal.DRACONIC)
+            {
+                if (configData.nodeCalc == ENodeCalc.TRUE)
+                {
+                    houseList3.Select(h =>
+                    {
+                        h -= list3[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+                else
+                {
+                    houseList3.Select(h =>
+                    {
+                        h -= list3[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+            }
+
             list3[CommonData.ZODIAC_ASC] = new PlanetData()
             {
                 no = CommonData.ZODIAC_ASC,
