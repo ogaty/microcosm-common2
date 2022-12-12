@@ -37,6 +37,50 @@ namespace microcosmMac2.Views
         public override void ViewDidLoad()
         {
             AppDelegate appDelegate = (AppDelegate)NSApplication.SharedApplication.Delegate;
+
+            if (appDelegate.currentSpanType == Common.SpanType.UNIT)
+            {
+                UnitRadio.State = NSCellStateValue.On;
+                NewMoonRadio.State = NSCellStateValue.Off;
+                FullMoonRadio.State = NSCellStateValue.Off;
+                SolarReturnRadio.State = NSCellStateValue.Off;
+                Ingress.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.NEWMOON)
+            {
+                NewMoonRadio.State = NSCellStateValue.On;
+                UnitRadio.State = NSCellStateValue.Off;
+                FullMoonRadio.State = NSCellStateValue.Off;
+                SolarReturnRadio.State = NSCellStateValue.Off;
+                Ingress.State = NSCellStateValue.Off;
+
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.FULLMOON)
+            {
+                FullMoonRadio.State = NSCellStateValue.On;
+                UnitRadio.State = NSCellStateValue.Off;
+                NewMoonRadio.State = NSCellStateValue.Off;
+                SolarReturnRadio.State = NSCellStateValue.Off;
+                Ingress.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.SOLARRETURN)
+            {
+                SolarReturnRadio.State = NSCellStateValue.On;
+                UnitRadio.State = NSCellStateValue.Off;
+                NewMoonRadio.State = NSCellStateValue.Off;
+                FullMoonRadio.State = NSCellStateValue.Off;
+                Ingress.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.SOLARINGRESS ||
+                appDelegate.currentSpanType == Common.SpanType.MOONINGRESS
+                )
+            {
+                Ingress.State = NSCellStateValue.On;
+                UnitRadio.State = NSCellStateValue.Off;
+                NewMoonRadio.State = NSCellStateValue.Off;
+                FullMoonRadio.State = NSCellStateValue.Off;
+                SolarReturnRadio.State = NSCellStateValue.Off;
+            }
             unit.StringValue = appDelegate.viewController.plusUnit.ToString();
 
             if (appDelegate.viewController.plusUnit >= 86400)
@@ -80,6 +124,17 @@ namespace microcosmMac2.Views
             spanCombo.AddItems(items);
             spanCombo.SelectItem(appDelegate.config.defaultTimezoneStr);
 
+            string[] ingressPlanetList = { "sun", "moon" };
+            IngressPlanet.RemoveAllItems();
+            IngressPlanet.AddItems(ingressPlanetList);
+            if (appDelegate.currentSpanType == Common.SpanType.SOLARINGRESS)
+            {
+                IngressPlanet.SelectItem("sun");
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.MOONINGRESS)
+            {
+                IngressPlanet.SelectItem("moon");
+            }
         }
 
         #endregion
@@ -138,19 +193,31 @@ namespace microcosmMac2.Views
             }
             else if (NewMoonRadio.State == NSCellStateValue.On)
             {
+                appDelegate.viewController.SetSpanButton("NewMoon");
                 appDelegate.currentSpanType = Common.SpanType.NEWMOON;
             }
             else if (FullMoonRadio.State == NSCellStateValue.On)
             {
+                appDelegate.viewController.SetSpanButton("FullMoon");
                 appDelegate.currentSpanType = Common.SpanType.FULLMOON;
             }
             else if (SolarReturnRadio.State == NSCellStateValue.On)
             {
+                appDelegate.viewController.SetSpanButton("Solar");
                 appDelegate.currentSpanType = Common.SpanType.SOLARRETURN;
             }
             else if (Ingress.State == NSCellStateValue.On)
             {
-                appDelegate.currentSpanType = Common.SpanType.INGRESS;
+                if (IngressPlanet.SelectedItem.Title == "sun")
+                {
+                    appDelegate.viewController.SetSpanButton("Sun Ing.");
+                    appDelegate.currentSpanType = Common.SpanType.SOLARINGRESS;
+                }
+                else if (IngressPlanet.SelectedItem.Title == "moon")
+                {
+                    appDelegate.viewController.SetSpanButton("Moon Ing.");
+                    appDelegate.currentSpanType = Common.SpanType.MOONINGRESS;
+                }
             }
 
             DismissController(this);

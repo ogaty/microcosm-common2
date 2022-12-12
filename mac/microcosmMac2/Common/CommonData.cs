@@ -40,8 +40,9 @@ namespace microcosmMac2.Common
         UNIT = 0,
         NEWMOON = 1,
         FULLMOON = 2,
-        INGRESS = 3,
-        SOLARRETURN = 4,
+        SOLARINGRESS = 11,
+        MOONINGRESS = 12,
+        SOLARRETURN = 21,
     }
 
     public static class CommonData
