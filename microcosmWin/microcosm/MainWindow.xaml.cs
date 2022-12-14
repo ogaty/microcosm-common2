@@ -1151,7 +1151,10 @@ namespace microcosm
         {
             var proc = new System.Diagnostics.Process();
 
-            proc.StartInfo.FileName = Util.root() + @"\data";
+            string path = Util.root() + @"\data";
+            DirectoryInfo file = new DirectoryInfo(path);
+
+            proc.StartInfo.FileName = file.FullName;
             proc.StartInfo.UseShellExecute = true;
             proc.Start();
         }
@@ -1165,7 +1168,10 @@ namespace microcosm
             }
             var proc = new System.Diagnostics.Process();
 
-            proc.StartInfo.FileName = Util.root() + @"\system\addr.csv";
+            string path = Util.root() + @"\system\data";
+            FileInfo file = new FileInfo(path);
+
+            proc.StartInfo.FileName = file.FullName;
             proc.StartInfo.UseShellExecute = true;
             proc.Start();
         }
@@ -1725,7 +1731,10 @@ namespace microcosm
             }
             var proc = new System.Diagnostics.Process();
 
-            proc.StartInfo.FileName = Util.root() + @"\system\sabian.csv";
+            string path = Util.root() + @"\system\sabian.csv";
+            FileInfo file = new FileInfo(path);
+
+            proc.StartInfo.FileName = file.FullName;
             proc.StartInfo.UseShellExecute = true;
             proc.Start();
         }
