@@ -305,6 +305,9 @@
       <DependentUpon>DirMoveViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AmateruCsv.cs" />
+    <Compile Include="ViewControllerPartialAspectChartMenu.cs" />
+    <Compile Include="ViewControllerPartialTimeSetter.cs" />
+    <Compile Include="Calc\MoonCalc.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
