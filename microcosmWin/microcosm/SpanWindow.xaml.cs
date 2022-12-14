@@ -97,7 +97,7 @@ namespace microcosm
             }
             else if (RadioSolarReturn.IsChecked == true)
             {
-                main.ChangeSpanButton.Content = "SolarReturn";
+                main.ChangeSpanButton.Content = "SolarRet";
                 main.currentSpanType = common.SpanType.SOLARRETURN;
             }
             else if (RadioIngress.IsChecked == true && (string)((ComboBoxItem)IngressCombo.SelectedItem).Content == "sun")
