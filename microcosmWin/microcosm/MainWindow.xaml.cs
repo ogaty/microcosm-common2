@@ -1151,7 +1151,7 @@ namespace microcosm
         {
             var proc = new System.Diagnostics.Process();
 
-            string path = Util.root() + @"\data";
+            string path = Util.root2() + @"\data";
             DirectoryInfo file = new DirectoryInfo(path);
 
             proc.StartInfo.FileName = file.FullName;
@@ -1168,7 +1168,7 @@ namespace microcosm
             }
             var proc = new System.Diagnostics.Process();
 
-            string path = Util.root() + @"\system\data";
+            string path = Util.root2() + @"\system\addr.csv";
             FileInfo file = new FileInfo(path);
 
             proc.StartInfo.FileName = file.FullName;
@@ -1671,35 +1671,45 @@ namespace microcosm
             sfd.Filter = "pngファイル(*.png)|*.png|jpegファイル(*.jpg)|*.jpg|すべてのファイル(*.*)|*.*";
             sfd.Title = "画像ファイル名を選択してください";
 
-            sfd.ShowDialog();
-            if (sfd.FileName != "")
+            bool? result = sfd.ShowDialog();
+            using (StreamWriter sw = new StreamWriter(Util.root() + @"\log.txt", false, Encoding.UTF8))
             {
-                // 画像生成
-                if (sfd.FileName.EndsWith(".jpg"))
+                sw.WriteLine(sfd.FileName);
+            }
+            try
+            {
+                if (result == true)
                 {
-                    var enc = new JpegBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(render));
-
-                    string fileName = sfd.FileName;
-                    using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                    // 画像生成
+                    if (sfd.FileName.EndsWith(".jpg"))
                     {
-                        enc.Save(fs);
-                        fs.Close();
+                        var enc = new JpegBitmapEncoder();
+                        enc.Frames.Add(BitmapFrame.Create(render));
+
+                        string fileName = sfd.FileName;
+                        using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                        {
+                            enc.Save(fs);
+                            fs.Close();
+                        }
+                    }
+                    else if (sfd.FileName.EndsWith(".png"))
+                    {
+                        var enc = new PngBitmapEncoder();
+                        enc.Frames.Add(BitmapFrame.Create(render));
+
+                        string pngFile = sfd.FileName;
+                        using (FileStream fs = new FileStream(pngFile, FileMode.Create))
+                        {
+                            enc.Save(fs);
+                            fs.Close();
+                        }
+
                     }
                 }
-                else
-                {
-                    var enc = new PngBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(render));
-
-                    string pngFile = sfd.FileName;
-                    using (FileStream fs = new FileStream(pngFile, FileMode.Create))
-                    {
-                        enc.Save(fs);
-                        fs.Close();
-                    }
-
-                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。\n" + ex.Message);
             }
 
             // これいる？
@@ -1731,7 +1741,7 @@ namespace microcosm
             }
             var proc = new System.Diagnostics.Process();
 
-            string path = Util.root() + @"\system\sabian.csv";
+            string path = Util.root2() + @"\system\sabian.csv";
             FileInfo file = new FileInfo(path);
 
             proc.StartInfo.FileName = file.FullName;
@@ -1829,7 +1839,8 @@ namespace microcosm
         {
             var proc = new System.Diagnostics.Process();
 
-            proc.StartInfo.FileName = Util.root() + @"\license";
+            string path = Util.root2() + @"\license";
+            proc.StartInfo.FileName = path;
             proc.StartInfo.UseShellExecute = true;
             proc.Start();
         }
