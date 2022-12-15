@@ -1328,7 +1328,7 @@ namespace microcosm
             {
                 minuteTxt = CommonData.DecimalToHex(data.degree % 1 * 100).ToString("00") + "'";
             }
-            mainWindow.mainWindowVM.explanationTxt = data.planet + " " + data.sign + " " + degree.ToString() + "." + minuteTxt + " " + mainWindow.sabians[degree];
+            mainWindow.mainWindowVM.explanationTxt = data.planet + retro + " " + data.sign + " " + degree.ToString() + "." + minuteTxt + " " + mainWindow.sabians[degree];
         }
         private void aspectMouseEnter(object sender, System.EventArgs e)
         {
