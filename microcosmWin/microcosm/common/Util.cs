@@ -20,6 +20,36 @@ namespace microcosm.common
             return dir;
         }
 
+        /// <summary>
+        /// wpfからuwpへ変換時、奇妙な現象が発生
+        /// AppData/LocalとPackages/.../Localを見比べている
+        /// どっちもない場合、PackagesがBaseとなる
+        /// Packageのみにある場合、Packagesが
+        /// Appのみにある場合、AppDataが
+        /// 両方ある場合、AppDataがベースとなる
+        /// </summary>
+        /// <returns></returns>
+        public static string root2()
+        {
+            string dir1 = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\microcosm";
+            if (Directory.Exists(dir1))
+            {
+                using (StreamWriter sw = new StreamWriter(Util.root() + @"\log.txt", true, Encoding.UTF8))
+                {
+                    sw.WriteLine("directory exists.");
+                }
+            }
+            string dir2 = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Packages\30056ogatism.49446E90E6664_mccaxa6e50ygw\LocalCache\Local\microcosm";
+            return dir2;
+            /*
+            string dir1 = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\microcosm";
+            if (Directory.Exists(dir1))
+            {
+                return dir1;
+            }
+            */
+        }
+        
         public static bool isNoDisp(PlanetData p)
         {
             if (!p.isDisp) return true;
