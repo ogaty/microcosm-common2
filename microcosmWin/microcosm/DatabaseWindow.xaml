@@ -65,7 +65,7 @@
                                 <ListView x:Name="EventList" Height="200" ItemsSource="{Binding userEventList}" Margin="0, 0, 10, 0" SelectionChanged="EventList_SelectionChanged">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Header="" Width="20" DisplayMemberBinding="{Binding index}"></GridViewColumn>
+                                            <GridViewColumn Header="" Width="25" DisplayMemberBinding="{Binding index}"></GridViewColumn>
                                             <GridViewColumn Header="名前" Width="100" DisplayMemberBinding="{Binding eventName}"></GridViewColumn>
                                             <GridViewColumn Header="時刻" Width="120" DisplayMemberBinding="{Binding eventBirth}"></GridViewColumn>
                                             <GridViewColumn Header="timezone" Width="60" DisplayMemberBinding="{Binding eventTimezone}"></GridViewColumn>
@@ -120,6 +120,8 @@
                                     <ComboBoxItem Content="AMATERU(*.csv)" IsSelected="True"></ComboBoxItem>
                                     <ComboBoxItem Content="Ｓtargazer"></ComboBoxItem>
                                     <ComboBoxItem Content="Zet(*.zbs)"></ComboBoxItem>
+                                    <ComboBoxItem Content="SolarFire(*.txt)"></ComboBoxItem>
+                                    <ComboBoxItem Content="Kepler(*.txt)"></ComboBoxItem>
                                 </ComboBox>
                                 <Button x:Name="Import" Content="インポート" Margin="10,10,1,0" Width="100" Click="Import_Click"></Button>
                                 <Button x:Name="SubmitBtn" Content="終了" Margin="20,10,1,0" Width="100" HorizontalAlignment="Right" Click="Submit_Click"></Button>

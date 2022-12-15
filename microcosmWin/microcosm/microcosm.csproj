@@ -7,7 +7,7 @@
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU;x64;ARM64</Platforms>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
-    <FileVersion>1.1.5</FileVersion>
+    <FileVersion>1.1.6.1</FileVersion>
     <PackageLicenseFile>agpl-3.0_ja.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
