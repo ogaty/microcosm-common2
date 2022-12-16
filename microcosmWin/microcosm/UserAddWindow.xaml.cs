@@ -88,12 +88,12 @@ namespace microcosm
 
             if (fileName.Text.IndexOf(@"\") >= 0)
             {
-                MessageBox.Show("そのファイル名は指定できません。");
+                MessageBox.Show("利用できない文字が含まれています。");
                 return;
             }
             if (fileName.Text.IndexOf(@"/") >= 0)
             {
-                MessageBox.Show("そのファイル名は指定できません。");
+                MessageBox.Show("利用できない文字が含まれています。");
                 return;
             }
 
@@ -164,6 +164,16 @@ namespace microcosm
 
             databaseWindow.ReRender();
             databaseWindow.ReRenderEvent(file);
+            int i = 0;
+            foreach (UserFileListData u in databaseWindow.UserList.Items)
+            {
+                if (u.fileNameFullPath == file)
+                {
+                    databaseWindow.UserList.SelectedIndex = i;
+                }
+                i++;
+            }
+            databaseWindow.EventList.SelectedIndex = 0;
             this.Visibility = Visibility.Hidden;
         }
 

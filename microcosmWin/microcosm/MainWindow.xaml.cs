@@ -93,8 +93,6 @@ namespace microcosm
         public bool aspect23disp = true;
         public bool aspect33disp = true;
 
-        public SpanType currentSpanType = SpanType.UNIT;
-
         public int plusUnit = 86400;
 
         public MainWindow(BaseData baseData)
@@ -498,36 +496,10 @@ namespace microcosm
             else
             {
                 // natal or transit
-                if (configData.sidereal == Esidereal.DRACONIC)
-                {
-                    list1 = calc.DraconicPositionCalc(list1UserData.GetBirthDateTime(), list1UserData.lat, list1UserData.lng, configData.houseCalc, 0);
-                }
-                else
-                {
-                    list1 = calc.PositionCalc(list1UserData.GetBirthDateTime(),
-                        list1UserData.lat, list1UserData.lng, configData.houseCalc, 0);
-                }
+                list1 = calc.PositionCalc(list1UserData.GetBirthDateTime(),
+                    list1UserData.lat, list1UserData.lng, configData.houseCalc, 0);
                 houseList1 = calc.CuspCalc(list1UserData.GetBirthDateTime(),
                     list1UserData.timezone, list1UserData.lat, list1UserData.lng, configData.houseCalc);
-                if (configData.sidereal == Esidereal.DRACONIC)
-                {
-                    if (configData.nodeCalc == ENodeCalc.TRUE)
-                    {
-                        houseList1.Select(h => {
-                            h -= list1[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
-                            if (h < 0) h += 360;
-                            return h;
-                        });
-                    }
-                    else
-                    {
-                        houseList1.Select(h => {
-                            h -= list1[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
-                            if (h < 0) h += 360;
-                            return h;
-                        });
-                    }
-                }
                 list1[CommonData.ZODIAC_ASC] = new PlanetData
                 {
                     no = CommonData.ZODIAC_ASC,
@@ -556,7 +528,6 @@ namespace microcosm
             if (tempSettings.secondBand == TempSetting.BandKind.PROGRESS)
             {
                 // progresはlist1とlist3の時刻で固定
-                // progresではDraconicを無効化させる
                 list2 = calc.Progress(list1, list1UserData, list3UserData.GetBirthDateTime(), list1UserData.timezone, list1UserData.lat, list1UserData.lng);
                 if (configData.progression == EProgression.SECONDARY)
                 {
@@ -604,37 +575,10 @@ namespace microcosm
             else
             {
                 // natal or transit
-                if (configData.sidereal == Esidereal.DRACONIC)
-                {
-                    list2 = calc.DraconicPositionCalc(list2UserData.GetBirthDateTime(), list2UserData.lat, list2UserData.lng, configData.houseCalc, 0);
-                }
-                else
-                {
-                    list2 = calc.PositionCalc(list2UserData.GetBirthDateTime(),
-                        list2UserData.lat, list2UserData.lng, configData.houseCalc, 1);
-                }
-
+                list2 = calc.PositionCalc(list2UserData.GetBirthDateTime(),
+                    list2UserData.lat, list2UserData.lng, configData.houseCalc, 1);
                 houseList2 = calc.CuspCalc(list1UserData.GetBirthDateTime(),
                         list3UserData.timezone, list3UserData.lat, list3UserData.lng, configData.houseCalc);
-                if (configData.sidereal == Esidereal.DRACONIC)
-                {
-                    if (configData.nodeCalc == ENodeCalc.TRUE)
-                    {
-                        houseList2.Select(h => {
-                            h -= list2[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
-                            if (h < 0) h += 360;
-                            return h;
-                        });
-                    }
-                    else
-                    {
-                        houseList2.Select(h => {
-                            h -= list2[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
-                            if (h < 0) h += 360;
-                            return h;
-                        });
-                    }
-                }
                 list2[CommonData.ZODIAC_ASC] = new PlanetData
                 {
                     no = CommonData.ZODIAC_ASC,
@@ -691,37 +635,10 @@ namespace microcosm
             else
             {
                 // natal or transit
-                if (configData.sidereal == Esidereal.DRACONIC)
-                {
-                    list3 = calc.DraconicPositionCalc(list3UserData.GetBirthDateTime(), list3UserData.lat, list3UserData.lng, configData.houseCalc, 0);
-                }
-                else
-                {
-                    list3 = calc.PositionCalc(list3UserData.GetBirthDateTime(),
-                        list3UserData.lat, list3UserData.lng, configData.houseCalc, 2);
-                }
-
+                list3 = calc.PositionCalc(list3UserData.GetBirthDateTime(),
+                    list3UserData.lat, list3UserData.lng, configData.houseCalc, 2);
                 houseList3 = calc.CuspCalc(list3UserData.GetBirthDateTime(),
                             list3UserData.timezone, list1UserData.lat, list1UserData.lng, configData.houseCalc);
-                if (configData.sidereal == Esidereal.DRACONIC)
-                {
-                    if (configData.nodeCalc == ENodeCalc.TRUE)
-                    {
-                        houseList3.Select(h => {
-                            h -= list3[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
-                            if (h < 0) h += 360;
-                            return h;
-                        });
-                    }
-                    else
-                    {
-                        houseList3.Select(h => {
-                            h -= list3[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
-                            if (h < 0) h += 360;
-                            return h;
-                        });
-                    }
-                }
                 list3[CommonData.ZODIAC_ASC] = new PlanetData
                 {
                     no = CommonData.ZODIAC_ASC,
@@ -1234,7 +1151,7 @@ namespace microcosm
         {
             var proc = new System.Diagnostics.Process();
 
-            string path = Util.root() + @"\data";
+            string path = Util.root2() + @"\data";
             DirectoryInfo file = new DirectoryInfo(path);
 
             proc.StartInfo.FileName = file.FullName;
@@ -1251,7 +1168,7 @@ namespace microcosm
             }
             var proc = new System.Diagnostics.Process();
 
-            string path = Util.root() + @"\system\data";
+            string path = Util.root2() + @"\system\addr.csv";
             FileInfo file = new FileInfo(path);
 
             proc.StartInfo.FileName = file.FullName;
@@ -1754,35 +1671,45 @@ namespace microcosm
             sfd.Filter = "pngファイル(*.png)|*.png|jpegファイル(*.jpg)|*.jpg|すべてのファイル(*.*)|*.*";
             sfd.Title = "画像ファイル名を選択してください";
 
-            sfd.ShowDialog();
-            if (sfd.FileName != "")
+            bool? result = sfd.ShowDialog();
+            using (StreamWriter sw = new StreamWriter(Util.root() + @"\log.txt", false, Encoding.UTF8))
             {
-                // 画像生成
-                if (sfd.FileName.EndsWith(".jpg"))
+                sw.WriteLine(sfd.FileName);
+            }
+            try
+            {
+                if (result == true)
                 {
-                    var enc = new JpegBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(render));
-
-                    string fileName = sfd.FileName;
-                    using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                    // 画像生成
+                    if (sfd.FileName.EndsWith(".jpg"))
                     {
-                        enc.Save(fs);
-                        fs.Close();
+                        var enc = new JpegBitmapEncoder();
+                        enc.Frames.Add(BitmapFrame.Create(render));
+
+                        string fileName = sfd.FileName;
+                        using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                        {
+                            enc.Save(fs);
+                            fs.Close();
+                        }
+                    }
+                    else if (sfd.FileName.EndsWith(".png"))
+                    {
+                        var enc = new PngBitmapEncoder();
+                        enc.Frames.Add(BitmapFrame.Create(render));
+
+                        string pngFile = sfd.FileName;
+                        using (FileStream fs = new FileStream(pngFile, FileMode.Create))
+                        {
+                            enc.Save(fs);
+                            fs.Close();
+                        }
+
                     }
                 }
-                else
-                {
-                    var enc = new PngBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(render));
-
-                    string pngFile = sfd.FileName;
-                    using (FileStream fs = new FileStream(pngFile, FileMode.Create))
-                    {
-                        enc.Save(fs);
-                        fs.Close();
-                    }
-
-                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。\n" + ex.Message);
             }
 
             // これいる？
@@ -1814,7 +1741,7 @@ namespace microcosm
             }
             var proc = new System.Diagnostics.Process();
 
-            string path = Util.root() + @"\system\sabian.csv";
+            string path = Util.root2() + @"\system\sabian.csv";
             FileInfo file = new FileInfo(path);
 
             proc.StartInfo.FileName = file.FullName;
@@ -1912,7 +1839,8 @@ namespace microcosm
         {
             var proc = new System.Diagnostics.Process();
 
-            proc.StartInfo.FileName = Util.root() + @"\license";
+            string path = Util.root2() + @"\license";
+            proc.StartInfo.FileName = path;
             proc.StartInfo.UseShellExecute = true;
             proc.Start();
         }
