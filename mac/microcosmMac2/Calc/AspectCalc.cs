@@ -81,7 +81,7 @@ namespace microcosmMac2.Calc
 
                         SoftHard sh = SoftHard.HARD;
                         bool isAspect = false;
-                        if (i == CommonData.ZODIAC_SUN || i == CommonData.ZODIAC_MOON)
+                        if (calcList[i].no == CommonData.ZODIAC_SUN || calcList[i].no == CommonData.ZODIAC_MOON)
                         {
                             if (isFirstAspectKind(kind))
                             {
