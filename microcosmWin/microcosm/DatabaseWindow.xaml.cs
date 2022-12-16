@@ -21,6 +21,7 @@ using System.Data;
 using System.Security.Cryptography;
 using System.Reflection;
 using System.Xml.Serialization;
+using CsvHelper;
 
 namespace microcosm
 {
@@ -744,7 +745,7 @@ namespace microcosm
                 else if (importCombo.SelectedIndex == 2)
                 {
                     //zet
-                    ofd.Filter = "Zbs File(*.zbs)|*.zbs";
+                    ofd.Filter = "Zbs File(*.zbs)|*.zbs|すべてのファイル|*.*";
                     if (ofd.ShowDialog() == true)
                     {
                         var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -859,7 +860,7 @@ namespace microcosm
                 {
                     MessageBox.Show("SolarFireファイルを読み込む場合、\n名前,年,月,日,時,分,秒,場所,緯度,経度\nの順に並べたcsvでエクスポートしてください。");
                     //solar fire
-                    ofd.Filter = "Solar Fire Exported File(*.txt)|*.txt";
+                    ofd.Filter = "Solar Fire Exported File(*.txt)|*.txt|すべてのファイル|*.*";
                     if (ofd.ShowDialog() == true)
                     {
                         string root = Util.root();
@@ -938,7 +939,7 @@ namespace microcosm
                 {
                     MessageBox.Show("Keplerファイルを読み込む場合、Add Quotes and Commasオプションでエクスポートしてください。");
                     //kepler
-                    ofd.Filter = "Kepler Exported File(*.txt)|*.txt";
+                    ofd.Filter = "Kepler Exported File(*.txt)|*.txt|すべてのファイル|*.*";
                     if (ofd.ShowDialog() == true)
                     {
                         string root = Util.root();
@@ -1036,6 +1037,19 @@ namespace microcosm
                     }
                 }
 
+            }
+            catch (FormatException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                MessageBox.Show("フォーマットが不正です。\n" + ex.Message);
+            }
+            catch (CsvHelper.MissingFieldException ex)
+            {
+                MessageBox.Show("フォーマットが不正です。\n" + ex.Message);
+            }
+            catch (CsvHelper.ParserException ex)
+            {
+                MessageBox.Show("フォーマットが不正です。\n" + ex.Message);
             }
             catch (Exception ex)
             {
