@@ -21,6 +21,7 @@ using System.Data;
 using System.Security.Cryptography;
 using System.Reflection;
 using System.Xml.Serialization;
+using CsvHelper;
 
 namespace microcosm
 {
@@ -489,11 +490,11 @@ namespace microcosm
 
         private void Import_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.InitialDirectory = @"C:\";
-            ofd.Title = "ファイルを選択してください";
             try
             {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.InitialDirectory = @"C:\";
+                ofd.Title = "ファイルを選択してください";
                 if (importCombo.SelectedIndex == 0)
                 {
                     //AMATERU
@@ -625,15 +626,15 @@ namespace microcosm
                 }
                 else if (importCombo.SelectedIndex == 1)
                 {
+                    MessageBox.Show("Stargazerファイルを読み込む場合、予め文字コードをUTF-8に変換しないと文字化けします。");
                     //stargazer
-                    ofd.Filter = "stargazer File|*";
+                    ofd.Filter = "Stargazer File|*";
                     if (ofd.ShowDialog() == true)
                     {
                         // SGはcsvじゃないので200件だけ読んでおく
                         List<string> dataStr = new List<string>();
                         int i = 0;
-                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                        using (var reader = new StreamReader(ofd.FileName, System.Text.Encoding.GetEncoding("Shift_JIS")))
+                        using (var reader = new StreamReader(ofd.FileName, System.Text.Encoding.GetEncoding("UTF-8")))
                         {
                             while (reader.Peek() >= 0)
                             {
@@ -744,11 +745,9 @@ namespace microcosm
                 else if (importCombo.SelectedIndex == 2)
                 {
                     //zet
-                    ofd.Filter = "Zbs File(*.zbs)|*.zbs";
+                    ofd.Filter = "Zbs File(*.zbs)|*.zbs|すべてのファイル|*.*";
                     if (ofd.ShowDialog() == true)
                     {
-                        int success = 0;
-                        int err = 0;
                         var config = new CsvConfiguration(CultureInfo.InvariantCulture)
                         {
                             PrepareHeaderForMatch = args => args.Header.ToUpper(),
@@ -821,8 +820,8 @@ namespace microcosm
                                     birth_minute = minute,
                                     birth_second = second,
                                     birth_place = place,
-                                    timezone = 9.0,
-                                    timezone_str = "Asia/Tokyo",
+                                    timezone = timezeone,
+                                    timezone_str = timezone_str,
                                     lat = lat,
                                     lng = lng,
                                     memo = memo
@@ -857,12 +856,205 @@ namespace microcosm
                         ReRender();
                     }
                 }
+                else if (importCombo.SelectedIndex == 3)
+                {
+                    MessageBox.Show("SolarFireファイルを読み込む場合、\n名前,年,月,日,時,分,秒,場所,緯度,経度\nの順に並べたcsvでエクスポートしてください。");
+                    //solar fire
+                    ofd.Filter = "Solar Fire Exported File(*.txt)|*.txt|すべてのファイル|*.*";
+                    if (ofd.ShowDialog() == true)
+                    {
+                        string root = Util.root();
 
-            } catch (Exception ex)
-            {
-                MessageBox.Show("エラーが発生しました。\n", ex.Message);
+                        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+                        {
+                            Delimiter = ",",
+                            HasHeaderRecord = false
+                        };
+                        int i = 0;
+                        using (var reader = new StreamReader(ofd.FileName, Encoding.GetEncoding("UTF-8")))
+                        {
+                            using (var csv = new CsvHelper.CsvReader(reader, config))
+                            {
+                                var records = csv.GetRecords<SolarFireCsv>();
+
+                                UserJsonList jsonList = new UserJsonList();
+                                jsonList.list = new List<UserData>();
+                                foreach (SolarFireCsv record in records)
+                                {
+                                    DateTime date = new DateTime(
+                                        record.YEAR,
+                                        record.MONTH,
+                                        record.DAY,
+                                        record.HOUR,
+                                        record.MINUTE,
+                                        record.SECOND
+                                        );
+
+
+                                    jsonList.list.Add(new UserData()
+                                    {
+                                        name = record.NAME,
+                                        birth_year = record.YEAR,
+                                        birth_month = record.MONTH,
+                                        birth_day = record.DAY,
+                                        birth_hour = record.HOUR,
+                                        birth_minute = record.MINUTE,
+                                        birth_second = record.SECOND,
+                                        birth_place = record.PLACENAME,
+                                        timezone = -9.0,
+                                        timezone_str = "Asia/Tokyo",
+                                        lat = record.LATITUDE,
+                                        lng = record.LONGITUDE,
+                                        memo = ""
+                                    });
+
+                                    i++;
+                                    if (i >= 200)
+                                    {
+                                        MessageBox.Show("インポートが200件を超えたため停止しました。");
+                                        break;
+                                    }
+                                }
+
+                                string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
+                                {
+                                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                                    WriteIndented = true,
+                                });
+
+                                string file = root + @"\data\SolarFire" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
+                                using (FileStream fs = new FileStream(file, FileMode.Create))
+                                {
+                                    StreamWriter sw = new StreamWriter(fs);
+                                    sw.WriteLine(userJsonStr);
+                                    sw.Close();
+                                }
+                            }
+                        }
+                        ReRenderDir();
+                        ReRender();
+                    }
+                }
+                else if (importCombo.SelectedIndex == 4)
+                {
+                    MessageBox.Show("Keplerファイルを読み込む場合、Add Quotes and Commasオプションでエクスポートしてください。");
+                    //kepler
+                    ofd.Filter = "Kepler Exported File(*.txt)|*.txt|すべてのファイル|*.*";
+                    if (ofd.ShowDialog() == true)
+                    {
+                        string root = Util.root();
+
+                        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+                        {
+                            Delimiter = ",",
+                            HasHeaderRecord = false
+                        };
+                        int i = 0;
+                        using (var reader = new StreamReader(ofd.FileName, Encoding.GetEncoding("UTF-8")))
+                        {
+                            using (var csv = new CsvHelper.CsvReader(reader, config))
+                            {
+                                var records = csv.GetRecords<KeplerCsv>();
+
+                                UserJsonList jsonList = new UserJsonList();
+                                jsonList.list = new List<UserData>();
+                                foreach (KeplerCsv record in records)
+                                {
+                                    int month = int.Parse(record.DATE.Substring(0, 2));
+                                    int day = int.Parse(record.DATE.Substring(2, 2));
+                                    int year = int.Parse(record.DATE.Substring(4, 4));
+
+                                    int hour = int.Parse(record.TIME.Substring(0, 2));
+                                    int minute = int.Parse(record.TIME.Substring(2, 2));
+                                    int second = int.Parse(record.TIME.Substring(4, 2));
+
+                                    string[] lat;
+                                    if (record.LATITUDE.IndexOf("N") > 0)
+                                    {
+                                        lat = record.LATITUDE.Split("N");
+                                    }
+                                    else
+                                    {
+                                        lat = record.LATITUDE.Split("S");
+                                    }
+                                    int latMin = Int32.Parse(lat[1].Substring(0, 2));
+                                    int latSec = Int32.Parse(lat[1].Substring(2, 2));
+                                    string[] lon;
+                                    if (record.LONGITUDE.IndexOf("E") > 0)
+                                    {
+                                        lon = record.LONGITUDE.Split("E");
+                                    }
+                                    else
+                                    {
+                                        lon = record.LONGITUDE.Split("W");
+                                    }
+                                    int lonMin = Int32.Parse(lon[1].Substring(0, 2));
+                                    int lonSec = Int32.Parse(lon[1].Substring(2, 2));
+
+
+                                    jsonList.list.Add(new UserData()
+                                    {
+                                        name = record.NAME,
+                                        birth_year = year,
+                                        birth_month = month,
+                                        birth_day = day,
+                                        birth_hour = hour,
+                                        birth_minute = minute,
+                                        birth_second = second,
+                                        birth_place = record.PLACENAME,
+                                        timezone = -9.0,
+                                        timezone_str = "Asia/Tokyo",
+                                        lat = Double.Parse(lat[0]) + latMin / 60 + latSec / 3600,
+                                        lng = Double.Parse(lon[0]) + lonMin / 60 + lonSec / 3600,
+                                        memo = ""
+                                    });
+
+                                    i++;
+                                    if (i >= 200)
+                                    {
+                                        MessageBox.Show("インポートが200件を超えたため停止しました。");
+                                        break;
+                                    }
+                                }
+
+                                string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
+                                {
+                                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                                    WriteIndented = true,
+                                });
+
+                                string file = root + @"\data\Kepler" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
+                                using (FileStream fs = new FileStream(file, FileMode.Create))
+                                {
+                                    StreamWriter sw = new StreamWriter(fs);
+                                    sw.WriteLine(userJsonStr);
+                                    sw.Close();
+                                }
+                            }
+                        }
+                        ReRenderDir();
+                        ReRender();
+                    }
+                }
+
             }
-
+            catch (FormatException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                MessageBox.Show("フォーマットが不正です。\n" + ex.Message);
+            }
+            catch (CsvHelper.MissingFieldException ex)
+            {
+                MessageBox.Show("フォーマットが不正です。\n" + ex.Message);
+            }
+            catch (CsvHelper.ParserException ex)
+            {
+                MessageBox.Show("フォーマットが不正です。\n" + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("エラーが発生しました。\n" + ex.Message);
+            }
         }
 
         private void EventList_SelectionChanged(object sender, SelectionChangedEventArgs e)
