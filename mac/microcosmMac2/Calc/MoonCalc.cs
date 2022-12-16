@@ -62,10 +62,6 @@ namespace microcosmMac2.Calc
             int flag = SwissEph.SEFLG_SWIEPH | SwissEph.SEFLG_SPEED;
             if (configData.centric == ECentric.HELIO_CENTRIC) flag |= SwissEph.SEFLG_HELCTR;
 
-            // (Earth-planet-sun)
-            // アスペクトの角度とは違う
-            // 新月：180度
-            // 満月：0度
             s.swe_calc(dret[1], 0, flag, x1, ref serr);
             double sunDegree = x1[0];
             s.swe_calc(dret[1], 1, flag, x2, ref serr);
@@ -181,6 +177,106 @@ ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_
 
             return newday;
 		}
-	}
+
+        public DateTime GetFullMoon(DateTime date, double timezone)
+        {
+            AppDelegate appDelegate = (AppDelegate)NSApplication.SharedApplication.Delegate;
+            Dictionary<int, PlanetData> planetList = new Dictionary<int, PlanetData>();
+
+            //          s.swe_set_ephe_path(path);
+            int utc_year = 0;
+            int utc_month = 0;
+            int utc_day = 0;
+            int utc_hour = 0;
+            int utc_minute = 0;
+            double utc_second = 0;
+            double[] dret = { 0.0, 0.0 };
+            double[] x = new double[20];
+            double[] x1 = new double[20];
+            double[] x2 = new double[20];
+            string serr = "";
+
+            s.swe_utc_time_zone(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, timezone,
+                                ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
+            s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
+
+            int flag = SwissEph.SEFLG_SWIEPH | SwissEph.SEFLG_SPEED;
+            if (configData.centric == ECentric.HELIO_CENTRIC) flag |= SwissEph.SEFLG_HELCTR;
+
+            s.swe_calc(dret[1], 0, flag, x1, ref serr);
+            double sunDegree = x1[0];
+            s.swe_calc(dret[1], 1, flag, x2, ref serr);
+            double moonDegree = x2[0];
+            DateTime newday = date;
+            int offset = 0;
+
+            if (sunDegree - moonDegree > 179)
+            {
+                offset = 1;
+                newday = newday.AddDays(offset);
+
+                s.swe_utc_time_zone(newday.Year, newday.Month, newday.Day, newday.Hour, newday.Minute, newday.Second, timezone,
+ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
+                s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
+
+                if (configData.centric == ECentric.HELIO_CENTRIC) flag |= SwissEph.SEFLG_HELCTR;
+                s.swe_calc_ut(dret[1], 0, flag, x1, ref serr);
+                s.swe_calc_ut(dret[1], 1, flag, x2, ref serr);
+
+
+                sunDegree = x1[0];
+                moonDegree = x2[0];
+            }
+            if (sunDegree < 180)
+            {
+                if (sunDegree + 180 < moonDegree)
+                {
+                    while (moonDegree < 180)
+                    {
+                        offset = 1;
+                        newday = newday.AddDays(offset);
+                        s.swe_utc_time_zone(newday.Year, newday.Month, newday.Day, newday.Hour, newday.Minute, newday.Second, timezone,
+ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
+                        s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
+
+                        if (configData.centric == ECentric.HELIO_CENTRIC) flag |= SwissEph.SEFLG_HELCTR;
+                        s.swe_calc_ut(dret[1], 0, flag, x1, ref serr);
+                        s.swe_calc_ut(dret[1], 1, flag, x2, ref serr);
+
+                        sunDegree = x1[0];
+                        moonDegree = x2[0];
+                    }
+                }
+            }
+
+            // 足していくだけだから0度またいでも大丈夫のはず
+            // ただ0またぐとマイナスになるから1mしか進んでくれない
+            while (Math.Abs(sunDegree - moonDegree) < 160)
+            {
+                offset = 1;
+                newday = newday.AddDays(offset);
+                Debug.WriteLine("+1d");
+
+                s.swe_utc_time_zone(newday.Year, newday.Month, newday.Day, newday.Hour, newday.Minute, newday.Second, timezone,
+                    ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
+                s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
+
+                if (configData.centric == ECentric.HELIO_CENTRIC) flag |= SwissEph.SEFLG_HELCTR;
+                s.swe_calc_ut(dret[1], 0, flag, x1, ref serr);
+                s.swe_calc_ut(dret[1], 1, flag, x2, ref serr);
+
+
+                sunDegree = x1[0];
+                moonDegree = x2[0];
+
+                Debug.WriteLine(newday.ToString());
+                Debug.WriteLine(x1[0]);
+                Debug.WriteLine(x2[0]);
+            }
+
+            return newday;
+        }
+
+    }
 }
 

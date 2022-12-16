@@ -52,9 +52,9 @@ namespace microcosmMac2
             }
             else if (appDelegate.currentSpanType == SpanType.NEWMOON)
             {
+                MoonCalc moon = new MoonCalc(configData);
                 if (currentTime == "User1")
                 {
-                    MoonCalc moon = new MoonCalc(configData);
                     now = moon.GetNewMoon(udata1.GetDateTime(), udata1.timezone);
                     udata1.SetDateTime(now);
                     ReCalc();
@@ -62,21 +62,21 @@ namespace microcosmMac2
                 }
                 else if (currentTime == "User2")
                 {
-                    now = udata2.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetNewMoon(udata2.GetDateTime(), udata2.timezone);
                     udata2.SetDateTime(now);
                     ReCalc();
                     RefreshUserBox(1, udata2);
                 }
                 else if (currentTime == "Event1")
                 {
-                    now = edata1.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetNewMoon(edata1.GetDateTime(), edata1.timezone);
                     edata1.SetDateTime(now);
                     ReCalc();
                     RefreshEventBox(0, edata1);
                 }
                 else if (currentTime == "Event2")
                 {
-                    now = edata2.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetNewMoon(edata2.GetDateTime(), edata2.timezone);
                     edata2.SetDateTime(now);
                     ReCalc();
                     RefreshEventBox(1, edata2);
@@ -84,30 +84,31 @@ namespace microcosmMac2
             }
             else if (appDelegate.currentSpanType == SpanType.FULLMOON)
             {
+                MoonCalc moon = new MoonCalc(configData);
                 if (currentTime == "User1")
                 {
-                    now = udata1.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetFullMoon(udata1.GetDateTime(), udata1.timezone);
                     udata1.SetDateTime(now);
                     ReCalc();
                     RefreshUserBox(0, udata1);
                 }
                 else if (currentTime == "User2")
                 {
-                    now = udata2.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetFullMoon(udata2.GetDateTime(), udata2.timezone);
                     udata2.SetDateTime(now);
                     ReCalc();
                     RefreshUserBox(1, udata2);
                 }
                 else if (currentTime == "Event1")
                 {
-                    now = edata1.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetFullMoon(edata1.GetDateTime(), edata1.timezone);
                     edata1.SetDateTime(now);
                     ReCalc();
                     RefreshEventBox(0, edata1);
                 }
                 else if (currentTime == "Event2")
                 {
-                    now = edata2.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetFullMoon(edata2.GetDateTime(), edata2.timezone);
                     edata2.SetDateTime(now);
                     ReCalc();
                     RefreshEventBox(1, edata2);
