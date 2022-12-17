@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ephe\seas_18.se1" />
+    <None Remove="ephe\semo_18.se1" />
+    <None Remove="ephe\sepl_18.se1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SwissEphNet" Version="2.8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ephe\seas_18.se1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\semo_18.se1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ephe\sepl_18.se1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
