@@ -308,6 +308,8 @@
     <Compile Include="ViewControllerPartialAspectChartMenu.cs" />
     <Compile Include="ViewControllerPartialTimeSetter.cs" />
     <Compile Include="Calc\MoonCalc.cs" />
+    <Compile Include="Models\SolarFireCsv.cs" />
+    <Compile Include="Models\KeplerCsv.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

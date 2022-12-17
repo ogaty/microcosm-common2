@@ -1301,17 +1301,6 @@
                                     <action selector="UnitRadioClicked:" target="7c2-Hx-O9N" id="fa7-iR-jiC"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QrE-xi-znG">
-                                <rect key="frame" x="18" y="97" width="51" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="満月" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ihJ-Iv-T6d">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="FullMoonRadioClicked:" target="7c2-Hx-O9N" id="ai2-sk-VbI"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9B-ds-KkM">
                                 <rect key="frame" x="18" y="77" width="75" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1441,6 +1430,17 @@
                                     <action selector="SaveButtonClicked:" target="7c2-Hx-O9N" id="6uq-pn-OXy"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QrE-xi-znG">
+                                <rect key="frame" x="18" y="142" width="51" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="満月" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ihJ-Iv-T6d">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="FullMoonRadioClicked:" target="7c2-Hx-O9N" id="ai2-sk-VbI"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -1474,8 +1474,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="5IV-Hd-FVO">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="692517412.22337997">
-                                        <!--2022-12-12 05:56:52 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="692962357.32519698">
+                                        <!--2022-12-17 09:32:37 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3248,8 +3248,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="noP-AC-93d">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="692517412.28724205">
-                                        <!--2022-12-12 05:56:52 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="692962357.38758099">
+                                        <!--2022-12-17 09:32:37 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3731,8 +3731,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="OhK-h3-i3y">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="692517412.30357301">
-                                        <!--2022-12-12 05:56:52 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="692962357.40279102">
+                                        <!--2022-12-17 09:32:37 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -4111,8 +4111,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="oLl-RD-Me0">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="692517412.31765604">
-                                        <!--2022-12-12 05:56:52 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="692962357.41538">
+                                        <!--2022-12-17 09:32:37 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
