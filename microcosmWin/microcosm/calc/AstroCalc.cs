@@ -20,7 +20,7 @@ namespace microcosm.calc
         //public MainWindow main;
         public ConfigData configData;
         public double year_days = 365.2424;
-        public SwissEph s;
+        private SwissEph s;
         public EclipseCalc? eclipse;
         public SettingData currentSetting;
 
@@ -30,7 +30,7 @@ namespace microcosm.calc
         {
             //this.main = main;
             this.configData = configData;
-            this.currentSetting = setting;
+            currentSetting = setting;
             s = new SwissEph();
             // http://www.astro.com/ftp/swisseph/ephe/archive_zip/ からDL
             s.swe_set_ephe_path(configData.ephepath);
@@ -38,6 +38,11 @@ namespace microcosm.calc
                 if (File.Exists(ev.FileName))
                     ev.File = new FileStream(ev.FileName, FileMode.Open);
             };
+        }
+
+        public SwissEph GetSwiss()
+        {
+            return this.s;
         }
 
 
