@@ -1276,11 +1276,11 @@
             <objects>
                 <viewController id="7c2-Hx-O9N" customClass="SpanViewController" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="ojR-Qj-rCG">
-                        <rect key="frame" x="0.0" y="0.0" width="341" height="365"/>
+                        <rect key="frame" x="0.0" y="0.0" width="341" height="321"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Kp-hD-eDi">
-                                <rect key="frame" x="18" y="164" width="51" height="18"/>
+                                <rect key="frame" x="18" y="120" width="51" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="新月" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="K6v-Yt-8Sc">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1291,7 +1291,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gDI-Hp-ga2">
-                                <rect key="frame" x="18" y="329" width="75" height="18"/>
+                                <rect key="frame" x="18" y="285" width="75" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="単位時刻" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="i5V-9X-oNi">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1302,7 +1302,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9B-ds-KkM">
-                                <rect key="frame" x="18" y="77" width="75" height="18"/>
+                                <rect key="frame" x="18" y="76" width="75" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="太陽回帰" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Al8-BQ-SqB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1313,7 +1313,7 @@
                                 </connections>
                             </button>
                             <box fixedFrame="YES" title="時刻" translatesAutoresizingMaskIntoConstraints="NO" id="FtT-DL-rPI">
-                                <rect key="frame" x="110" y="181" width="214" height="164"/>
+                                <rect key="frame" x="110" y="137" width="214" height="164"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="55A-9i-7sg">
                                     <rect key="frame" x="3" y="3" width="208" height="146"/>
@@ -1394,7 +1394,7 @@
                                 </view>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8v-Ky-Qtc">
-                                <rect key="frame" x="18" y="55" width="87" height="18"/>
+                                <rect key="frame" x="18" y="54" width="87" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="radio" title="イングレス" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8AX-6l-EE8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1405,7 +1405,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ztk-mT-PeN">
-                                <rect key="frame" x="110" y="52" width="78" height="25"/>
+                                <rect key="frame" x="110" y="47" width="78" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="OA8-1e-uve" id="tDk-4p-wLc">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -1419,6 +1419,17 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QrE-xi-znG">
+                                <rect key="frame" x="18" y="98" width="51" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="満月" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ihJ-Iv-T6d">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="FullMoonRadioClicked:" target="7c2-Hx-O9N" id="ai2-sk-VbI"/>
+                                </connections>
+                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0nq-ya-UQi">
                                 <rect key="frame" x="269" y="13" width="59" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1428,17 +1439,6 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="SaveButtonClicked:" target="7c2-Hx-O9N" id="6uq-pn-OXy"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QrE-xi-znG">
-                                <rect key="frame" x="18" y="142" width="51" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="radio" title="満月" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ihJ-Iv-T6d">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="FullMoonRadioClicked:" target="7c2-Hx-O9N" id="ai2-sk-VbI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1460,7 +1460,7 @@
                 </viewController>
                 <customObject id="7gI-7H-K4p" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334.5" y="2198.5"/>
+            <point key="canvasLocation" x="334.5" y="2176.5"/>
         </scene>
         <!--Time Set View Controller-->
         <scene sceneID="CYW-Pn-zZe">
@@ -1474,8 +1474,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="5IV-Hd-FVO">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="692962357.32519698">
-                                        <!--2022-12-17 09:32:37 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="693037225.93766296">
+                                        <!--2022-12-18 06:20:25 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3248,8 +3248,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="noP-AC-93d">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="692962357.38758099">
-                                        <!--2022-12-17 09:32:37 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="693037226.00083899">
+                                        <!--2022-12-18 06:20:26 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3731,8 +3731,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="OhK-h3-i3y">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="692962357.40279102">
-                                        <!--2022-12-17 09:32:37 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="693037226.01658702">
+                                        <!--2022-12-18 06:20:26 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -4111,8 +4111,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="oLl-RD-Me0">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="692962357.41538">
-                                        <!--2022-12-17 09:32:37 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="693037226.029531">
+                                        <!--2022-12-18 06:20:26 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
