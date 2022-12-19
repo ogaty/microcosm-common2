@@ -1,4 +1,5 @@
-﻿using SwissEphNet;
+﻿using ConsoleApp1;
+using SwissEphNet;
 using System;
 
 
@@ -536,9 +537,13 @@ class MoonCalc
         */
 
         //        moon.NewMoonMinus();
-        moon.FullMoonMinus();
+        //moon.FullMoonMinus();
 
         //        moon.FullMoonPlus();
+
+        EclipseCalc eclipse = new EclipseCalc();
+
+        eclipse.GetEclipse(new DateTime(2022, 12, 19, 12, 0, 0), 9.0, 0, 267.0, false);
 
     }
 }
