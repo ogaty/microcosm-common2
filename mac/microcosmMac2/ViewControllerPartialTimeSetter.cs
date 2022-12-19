@@ -149,7 +149,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.SOLARINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 0, targetDegree, true);
@@ -182,7 +182,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.MOONINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 1, targetDegree, true);
@@ -357,7 +357,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.SOLARINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 0, targetDegree, false);
@@ -390,7 +390,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.MOONINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 1, targetDegree, false);
