@@ -149,7 +149,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.SOLARINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 0, targetDegree, true);
@@ -182,7 +182,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.MOONINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 1, targetDegree, true);
@@ -292,30 +292,31 @@ namespace microcosmMac2
             }
             else if (appDelegate.currentSpanType == SpanType.FULLMOON)
             {
+                MoonCalc moon = new MoonCalc(configData);
                 if (currentTime == "User1")
                 {
-                    now = udata1.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetFullMoonMinus(udata1.GetDateTime(), edata1.timezone);
                     udata1.SetDateTime(now);
                     ReCalc();
                     RefreshUserBox(0, udata1);
                 }
                 else if (currentTime == "User2")
                 {
-                    now = udata2.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetFullMoonMinus(udata2.GetDateTime(), edata1.timezone);
                     udata2.SetDateTime(now);
                     ReCalc();
                     RefreshUserBox(1, udata2);
                 }
                 else if (currentTime == "Event1")
                 {
-                    now = edata1.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetFullMoonMinus(edata1.GetDateTime(), edata1.timezone);
                     edata1.SetDateTime(now);
                     ReCalc();
                     RefreshEventBox(0, edata1);
                 }
                 else if (currentTime == "Event2")
                 {
-                    now = edata2.GetDateTime().AddSeconds(plusUnit);
+                    now = moon.GetFullMoonMinus(edata2.GetDateTime(), edata1.timezone);
                     edata2.SetDateTime(now);
                     ReCalc();
                     RefreshEventBox(1, edata2);
@@ -356,7 +357,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.SOLARINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 0, targetDegree, false);
@@ -389,7 +390,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.MOONINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 1, targetDegree, false);
