@@ -558,7 +558,8 @@ namespace microcosmMac2.Views
             appDelegate.udata1.memo = jsonObj.list[index].memo;
 
             appDelegate.viewController.RefreshUserBox(0, new UserData(jsonObj.list[index]));
-
+            appDelegate.viewController.ReCalc();
+            appDelegate.viewController.ReRender();
         }
 
         partial void User2Clicked(Foundation.NSObject sender)
@@ -590,6 +591,8 @@ namespace microcosmMac2.Views
             appDelegate.udata2.memo = jsonObj.list[index].memo;
 
             appDelegate.viewController.RefreshUserBox(1, new UserData(jsonObj.list[index]));
+            appDelegate.viewController.ReCalc();
+            appDelegate.viewController.ReRender();
         }
 
         partial void Event1Clicked(Foundation.NSObject sender)
@@ -622,6 +625,8 @@ namespace microcosmMac2.Views
             appDelegate.edata1.memo = jsonObj.list[index].memo;
 
             appDelegate.viewController.RefreshEventBox(0, new UserData(jsonObj.list[index]));
+            appDelegate.viewController.ReCalc();
+            appDelegate.viewController.ReRender();
         }
 
         partial void Event2Clicked(Foundation.NSObject sender)
@@ -654,6 +659,8 @@ namespace microcosmMac2.Views
             appDelegate.edata2.memo = jsonObj.list[index].memo;
 
             appDelegate.viewController.RefreshEventBox(1, new UserData(jsonObj.list[index]));
+            appDelegate.viewController.ReCalc();
+            appDelegate.viewController.ReRender();
 
         }
 
@@ -1155,7 +1162,7 @@ namespace microcosmMac2.Views
                                         birth_minute = record.MINUTE,
                                         birth_second = record.SECOND,
                                         birth_place = record.PLACENAME,
-                                        birth_timezone = -9.0,
+                                        birth_timezone = 9.0,
                                         birth_timezone_str = "Asia/Tokyo",
                                         lat = record.LATITUDE,
                                         lng = record.LONGITUDE,
@@ -1259,7 +1266,7 @@ namespace microcosmMac2.Views
                                         birth_minute = minute,
                                         birth_second = second,
                                         birth_place = record.PLACENAME,
-                                        birth_timezone = -9.0,
+                                        birth_timezone = 9.0,
                                         birth_timezone_str = "Asia/Tokyo",
                                         lat = Double.Parse(lat[0]) + latMin / 60 + latSec / 3600,
                                         lng = Double.Parse(lon[0]) + lonMin / 60 + lonSec / 3600,

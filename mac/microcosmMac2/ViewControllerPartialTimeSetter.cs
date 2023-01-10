@@ -119,28 +119,28 @@ namespace microcosmMac2
                 EclipseCalc eclipse = calc.GetEclipseInstance();
                 if (currentTime == "User1")
                 {
-                    DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 0, list1[CommonData.ZODIAC_SUN].absolute_position, true);
+                    DateTime target = eclipse.GetEclipse(udata1.GetDateTime().AddDays(350), udata1.timezone, 0, list1[CommonData.ZODIAC_SUN].absolute_position, true);
                     udata1.SetDateTime(target);
                     ReCalc();
                     RefreshUserBox(0, udata1);
                 }
                 else if (currentTime == "User2")
                 {
-                    DateTime target = eclipse.GetEclipse(udata2.GetDateTime(), udata2.timezone, 0, list1[CommonData.ZODIAC_SUN].absolute_position, true);
+                    DateTime target = eclipse.GetEclipse(udata2.GetDateTime().AddDays(350), udata2.timezone, 0, list1[CommonData.ZODIAC_SUN].absolute_position, true);
                     udata2.SetDateTime(now);
                     ReCalc();
                     RefreshUserBox(1, udata2);
                 }
                 else if (currentTime == "Event1")
                 {
-                    DateTime target = eclipse.GetEclipse(edata1.GetDateTime(), edata1.timezone, 0, list1[CommonData.ZODIAC_SUN].absolute_position, true);
+                    DateTime target = eclipse.GetEclipse(edata1.GetDateTime().AddDays(350), edata1.timezone, 0, list1[CommonData.ZODIAC_SUN].absolute_position, true);
                     edata1.SetDateTime(target);
                     ReCalc();
                     RefreshEventBox(0, edata1);
                 }
                 else if (currentTime == "Event2")
                 {
-                    DateTime target = eclipse.GetEclipse(edata2.GetDateTime(), edata2.timezone, 0, list1[CommonData.ZODIAC_SUN].absolute_position, true);
+                    DateTime target = eclipse.GetEclipse(edata2.GetDateTime().AddDays(350), edata2.timezone, 0, list1[CommonData.ZODIAC_SUN].absolute_position, true);
                     edata2.SetDateTime(now);
                     ReCalc();
                     RefreshEventBox(1, edata2);
@@ -182,7 +182,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.MOONINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = Util.GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetNextIngressDegree(list1[CommonData.ZODIAC_MOON].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 1, targetDegree, true);
@@ -390,7 +390,7 @@ namespace microcosmMac2
             else if (appDelegate.currentSpanType == SpanType.MOONINGRESS)
             {
                 EclipseCalc eclipse = calc.GetEclipseInstance();
-                double targetDegree = Util.GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                double targetDegree = Util.GetPrevIngressDegree(list1[CommonData.ZODIAC_MOON].absolute_position);
                 if (currentTime == "User1")
                 {
                     DateTime target = eclipse.GetEclipse(udata1.GetDateTime(), udata1.timezone, 1, targetDegree, false);

@@ -411,7 +411,6 @@ ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_
             while(true)
             {
                 double calcDegree = sunDegree + 180;
-                double calcMoon = moonDegree;
                 double orb = GetOrb(sunDegree, moonDegree);
                 if (isIn(sunDegree, moonDegree, 180, 0.05))
                 {

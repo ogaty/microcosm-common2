@@ -2438,30 +2438,6 @@ namespace microcosmMac2
             ReRender();
         }
 
-        public double GetNextIngressDegree(double degree)
-        {
-            double[] degrees = { 30.0, 60.0, 90.0, 120.0, 150.0, 180.0, 210.0, 240,0, 270.0, 300.0, 330.0 };
-            foreach (double d in degrees)
-            {
-                if (degree < d) return d;
-            }
-            return 0.0;
-        }
-
-        public double GetPrevIngressDegree(double degree)
-        {
-            double[] degrees = { 331.0, 301.0, 271.0, 241.0, 211.0, 181.0, 151.0, 121.0, 91.0, 61.0, 31.0 };
-            if (degree < 1)
-            {
-                return 330.0;
-            }
-            foreach (double d in degrees)
-            {
-                if (degree > d) return d - 1.0;
-            }
-            return 0.0;
-        }
-
         partial void test100(Foundation.NSObject sender)
         {
         }

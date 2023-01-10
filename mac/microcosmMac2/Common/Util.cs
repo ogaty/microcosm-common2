@@ -137,16 +137,31 @@ namespace microcosmMac2.Common
             return EShortCut.Noop;
         }
 
+        /// <summary>
+        /// 次のイングレス度数
+        /// </summary>
+        /// <param name="degree"></param>
+        /// <returns></returns>
         public static double GetNextIngressDegree(double degree)
         {
             double[] degrees = { 30.0, 60.0, 90.0, 120.0, 150.0, 180.0, 210.0, 240, 0, 270.0, 300.0, 330.0 };
+            if (degree > 359.5)
+            {
+                return 30.0;
+            }
             foreach (double d in degrees)
             {
-                if (degree < d) return d;
+                // 149.999とかになる場合がある
+                if (degree + 0.4 < d) return d;
             }
             return 0.0;
         }
 
+        /// <summary>
+        /// 手前のイングレス度数
+        /// </summary>
+        /// <param name="degree"></param>
+        /// <returns></returns>
         public static double GetPrevIngressDegree(double degree)
         {
             double[] degrees = { 331.0, 301.0, 271.0, 241.0, 211.0, 181.0, 151.0, 121.0, 91.0, 61.0, 31.0 };
