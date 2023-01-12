@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace microcosmTest
 {
     /// <summary>
-    /// ˆêíƒI[ƒu‚¾‚¯‚â‚éA“ñí‚Í•ÊƒNƒ‰ƒX‚Å
+    /// ä¸€ç¨®ã‚ªãƒ¼ãƒ–ã ã‘ã‚„ã‚‹ã€äºŒç¨®ã¯åˆ¥ã‚¯ãƒ©ã‚¹ã§
     /// </summary>
     public class Orb1st
     {
@@ -19,7 +19,7 @@ namespace microcosmTest
         }
 
         /// <summary>
-        /// Orb1st‚¶‚á‚È‚­‚ÄOrbSunMoon‚ğg‚Á‚Ä‚¢‚é‚©
+        /// Orb1stã˜ã‚ƒãªãã¦OrbSunMoonã‚’ä½¿ã£ã¦ã„ã‚‹ã‹
         /// </summary>
         [Test]
         public void testOrbSun()
@@ -27,7 +27,7 @@ namespace microcosmTest
             SettingData setting = new SettingData(0);
             setting.orb1st[0] = 0;
             setting.orb1st[1] = 0;
-            // sun‚Í8,6‚É‚È‚Á‚Ä‚¢‚é
+            // sunã¯8,6ã«ãªã£ã¦ã„ã‚‹
 
             Dictionary<int, PlanetData> list = new Dictionary<int, PlanetData>();
             list.Add(CommonData.ZODIAC_SUN, new PlanetData()
@@ -42,7 +42,7 @@ namespace microcosmTest
                 thirdAspects = new List<AspectInfo>(),
                 sensitive = false
             });
-            //5“xƒn[ƒh
+            //5åº¦ãƒãƒ¼ãƒ‰
             list.Add(CommonData.ZODIAC_MOON, new PlanetData()
             {
                 no = CommonData.ZODIAC_MOON,
@@ -55,7 +55,7 @@ namespace microcosmTest
                 thirdAspects = new List<AspectInfo>(),
                 sensitive = false
             });
-            //‘ÎÛŠO
+            //å¯¾è±¡å¤–
             list.Add(CommonData.ZODIAC_MERCURY, new PlanetData()
             {
                 no = CommonData.ZODIAC_MERCURY,
@@ -68,7 +68,7 @@ namespace microcosmTest
                 thirdAspects = new List<AspectInfo>(),
                 sensitive = false
             });
-            //7“xƒ\ƒtƒg
+            //7åº¦ã‚½ãƒ•ãƒˆ
             list.Add(CommonData.ZODIAC_VENUS, new PlanetData()
             {
                 no = CommonData.ZODIAC_VENUS,
@@ -91,7 +91,7 @@ namespace microcosmTest
         }
 
         /// <summary>
-        /// Orb1st‚¶‚á‚È‚­‚ÄOrbSunMoon‚ğg‚Á‚Ä‚¢‚é‚©Moon”Å
+        /// Orb1stã˜ã‚ƒãªãã¦OrbSunMoonã‚’ä½¿ã£ã¦ã„ã‚‹ã‹Moonç‰ˆ
         /// </summary>
         [Test]
         public void testOrbMoon()
@@ -99,7 +99,7 @@ namespace microcosmTest
             SettingData setting = new SettingData(0);
             setting.orb1st[0] = 0;
             setting.orb1st[1] = 0;
-            // sun‚Í8,6‚É‚È‚Á‚Ä‚¢‚é
+            // sunã¯8,6ã«ãªã£ã¦ã„ã‚‹
 
             Dictionary<int, PlanetData> list = new Dictionary<int, PlanetData>();
             list.Add(CommonData.ZODIAC_MOON, new PlanetData()
@@ -114,7 +114,7 @@ namespace microcosmTest
                 thirdAspects = new List<AspectInfo>(),
                 sensitive = false
             });
-            //5“xƒn[ƒh
+            //5åº¦ãƒãƒ¼ãƒ‰
             list.Add(CommonData.ZODIAC_MERCURY, new PlanetData()
             {
                 no = CommonData.ZODIAC_MERCURY,
@@ -127,7 +127,7 @@ namespace microcosmTest
                 thirdAspects = new List<AspectInfo>(),
                 sensitive = false
             });
-            //‘ÎÛŠO
+            //å¯¾è±¡å¤–
             list.Add(CommonData.ZODIAC_VENUS, new PlanetData()
             {
                 no = CommonData.ZODIAC_VENUS,
@@ -140,7 +140,7 @@ namespace microcosmTest
                 thirdAspects = new List<AspectInfo>(),
                 sensitive = false
             });
-            //7“xƒ\ƒtƒg
+            //7åº¦ã‚½ãƒ•ãƒˆ
             list.Add(CommonData.ZODIAC_MARS, new PlanetData()
             {
                 no = CommonData.ZODIAC_MARS,
@@ -163,13 +163,14 @@ namespace microcosmTest
         }
 
         /// <summary>
-        /// Orb1st”Å
+        /// Orb1stç‰ˆ
         /// </summary>
         [Test]
         public void testOrb1st()
         {
             SettingData setting = new SettingData(0);
-            // 6,4‚É‚È‚Á‚Ä‚¢‚é
+            setting.orb1st[0] = 6;
+            setting.orb1st[1] = 4;
 
             Dictionary<int, PlanetData> list = new Dictionary<int, PlanetData>();
             list.Add(CommonData.ZODIAC_MERCURY, new PlanetData()
@@ -184,7 +185,7 @@ namespace microcosmTest
                 thirdAspects = new List<AspectInfo>(),
                 sensitive = false
             });
-            //3“xƒn[ƒh
+            //3åº¦ãƒãƒ¼ãƒ‰
             list.Add(CommonData.ZODIAC_VENUS, new PlanetData()
             {
                 no = CommonData.ZODIAC_VENUS,
@@ -197,7 +198,7 @@ namespace microcosmTest
                 thirdAspects = new List<AspectInfo>(),
                 sensitive = false
             });
-            //‘ÎÛŠO
+            //å¯¾è±¡å¤–
             list.Add(CommonData.ZODIAC_MARS, new PlanetData()
             {
                 no = CommonData.ZODIAC_MARS,
@@ -210,7 +211,7 @@ namespace microcosmTest
                 thirdAspects = new List<AspectInfo>(),
                 sensitive = false
             });
-            //5“xƒ\ƒtƒg
+            //5åº¦ã‚½ãƒ•ãƒˆ
             list.Add(CommonData.ZODIAC_JUPITER, new PlanetData()
             {
                 no = CommonData.ZODIAC_JUPITER,

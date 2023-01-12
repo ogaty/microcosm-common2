@@ -4,6 +4,7 @@ using microcosm.config;
 using microcosm.Planet;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,7 +84,7 @@ namespace microcosm.calc
 
                         SoftHard sh = SoftHard.HARD;
                         bool isAspect = false;
-                        if (i == CommonData.ZODIAC_SUN || i == CommonData.ZODIAC_MOON)
+                        if (calcList[i].no == CommonData.ZODIAC_SUN || calcList[i].no == CommonData.ZODIAC_MOON)
                         {
                             if (isFirstAspectKind(kind))
                             {
@@ -229,7 +230,7 @@ namespace microcosm.calc
                         if (listKind == 3)
                         {
                             // 1-2
-                            if (i == CommonData.ZODIAC_SUN || i == CommonData.ZODIAC_MOON)
+                            if (calcFromList[i].no == CommonData.ZODIAC_SUN || calcFromList[i].no == CommonData.ZODIAC_MOON)
                             {
                                 if (isFirstAspectKind(kind))
                                 {
@@ -289,7 +290,7 @@ namespace microcosm.calc
                             // 今はこれで
                             // 1-3
                             // 2-3
-                            if (i == CommonData.ZODIAC_SUN || i == CommonData.ZODIAC_MOON)
+                            if (calcFromList[i].no == CommonData.ZODIAC_SUN || calcFromList[i].no == CommonData.ZODIAC_MOON)
                             {
                                 if (isFirstAspectKind(kind))
                                 {

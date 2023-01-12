@@ -26,7 +26,7 @@ namespace microcosm.common
         SOLARRETURN = 21,
     }
 
-    class CommonData
+    public class CommonData
     {
 
 
