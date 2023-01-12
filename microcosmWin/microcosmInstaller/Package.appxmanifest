@@ -9,7 +9,7 @@
   <Identity
     Name="30056ogatism.49446E90E6664"
     Publisher="CN=6F20220C-28DE-463D-BB80-DA20742BFC90"
-    Version="1.1.16.0" />
+    Version="1.2.2.0" />
 
   <Properties>
     <DisplayName>microcosm horoscope</DisplayName>

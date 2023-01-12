@@ -175,9 +175,13 @@ namespace microcosm.common
         public static double GetNextIngressDegree(double degree)
         {
             double[] degrees = { 30.0, 60.0, 90.0, 120.0, 150.0, 180.0, 210.0, 240.0, 270.0, 300.0, 330.0 };
+            if (degree > 359.5)
+            {
+                return 30.0;
+            }
             foreach (double d in degrees)
             {
-                if (degree < d) return d;
+                if (degree + 0.4 < d) return d;
             }
             return 0.0;
         }
@@ -191,7 +195,7 @@ namespace microcosm.common
             }
             foreach (double d in degrees)
             {
-                if (degree < d) return d - 1.0;
+                if (degree > d) return d - 1.0;
             }
             return 0.0;
         }
