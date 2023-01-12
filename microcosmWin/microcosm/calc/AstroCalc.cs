@@ -20,8 +20,8 @@ namespace microcosm.calc
         //public MainWindow main;
         public ConfigData configData;
         public double year_days = 365.2424;
-        public SwissEph s;
-        public EclipseCalc eclipse;
+        private SwissEph s;
+        public EclipseCalc? eclipse;
         public SettingData currentSetting;
 
         public const double SOLAR_YEAR = 365.2424;
@@ -30,7 +30,7 @@ namespace microcosm.calc
         {
             //this.main = main;
             this.configData = configData;
-            this.currentSetting = setting;
+            currentSetting = setting;
             s = new SwissEph();
             // http://www.astro.com/ftp/swisseph/ephe/archive_zip/ からDL
             s.swe_set_ephe_path(configData.ephepath);
@@ -38,6 +38,11 @@ namespace microcosm.calc
                 if (File.Exists(ev.FileName))
                     ev.File = new FileStream(ev.FileName, FileMode.Open);
             };
+        }
+
+        public SwissEph GetSwiss()
+        {
+            return this.s;
         }
 
 
@@ -718,7 +723,7 @@ namespace microcosm.calc
 
             foreach (KeyValuePair<int, PlanetData> pair in natallist)
             {
-                PlanetData progressdata = null;
+                PlanetData progressdata;
                 if (pair.Key == CommonData.ZODIAC_ASC)
                 {
                     // swe_calcでは計算不可
@@ -977,6 +982,28 @@ namespace microcosm.calc
             return SecondaryProgressionHouseCalc(houseList, natallist, natalTime, transitTime, lat, lng, timezone);
         }
 
+        /// <summary>
+        /// すべての値をヘッドの度数マイナス
+        /// </summary>
+        /// <param name="houseList"></param>
+        /// <param name="planetList"></param>
+        /// <returns></returns>
+        public double[] DraconicHouseCalc(double[] houseList, Dictionary<int, PlanetData> planetList)
+        {
+            double targetDegree;
+            if (configData.nodeCalc == ENodeCalc.MEAN)
+            {
+                targetDegree = planetList[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+            }
+            else
+            {
+                targetDegree = planetList[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+            }
+
+            double[] newList = houseList.Select(d => { return d - targetDegree; }).ToArray();
+            return newList;
+        }
+
         public EclipseCalc GetEclipseInstance()
         {
             if (eclipse == null)
@@ -988,7 +1015,7 @@ namespace microcosm.calc
 
         public Dictionary<int, PlanetData> Progress(Dictionary<int, PlanetData> list1, UserData udata, DateTime transitDate, double timezone, double lat, double lng)
         {
-            Dictionary<int, PlanetData> p = null;
+            Dictionary<int, PlanetData> p;
             if (configData.progression == EProgression.SOLAR)
             {
                 p = SolarArcCalc(list1, udata.GetBirthDateTime(), transitDate, timezone);
@@ -1011,6 +1038,35 @@ namespace microcosm.calc
             }
 
             return p;
+        }
+
+        public Dictionary<int, PlanetData> DraconicPositionCalc(DateTime d, double lat, double lng, EHouseCalc houseKind, int subIndex)
+        {
+            Dictionary<int, PlanetData> planetList = PositionCalc(d, lat, lng, houseKind, subIndex);
+
+            double targetDegree;
+            if (configData.nodeCalc == ENodeCalc.MEAN)
+            {
+                targetDegree = planetList[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+            }
+            else
+            {
+                targetDegree = planetList[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+            }
+
+            Dictionary<int, PlanetData> newPlanetList = new Dictionary<int, PlanetData>();
+            foreach (KeyValuePair<int, PlanetData> pair in planetList)
+            {
+                PlanetData data = pair.Value;
+                data.absolute_position -= targetDegree;
+                if (data.absolute_position < 0)
+                {
+                    data.absolute_position += 360;
+                }
+                newPlanetList.Add(pair.Key, data);
+            }
+
+            return newPlanetList;
         }
     }
 }

@@ -81,7 +81,7 @@ namespace microcosmMac2.Views
             currentPath = root + "/data";
             DirRefresh();
             FilesRefresh();
-            string[] items = new string[] { "Amateru(csv)", "stargazer", "Zet(zbs)" };
+            string[] items = new string[] { "Amateru(csv)", "stargazer", "Zet(zbs)", "SolarFire(txt)", "Kepler(txt)" };
 
             ImportCombo.RemoveAllItems();
             ImportCombo.AddItems(items);
@@ -558,7 +558,8 @@ namespace microcosmMac2.Views
             appDelegate.udata1.memo = jsonObj.list[index].memo;
 
             appDelegate.viewController.RefreshUserBox(0, new UserData(jsonObj.list[index]));
-
+            appDelegate.viewController.ReCalc();
+            appDelegate.viewController.ReRender();
         }
 
         partial void User2Clicked(Foundation.NSObject sender)
@@ -590,6 +591,8 @@ namespace microcosmMac2.Views
             appDelegate.udata2.memo = jsonObj.list[index].memo;
 
             appDelegate.viewController.RefreshUserBox(1, new UserData(jsonObj.list[index]));
+            appDelegate.viewController.ReCalc();
+            appDelegate.viewController.ReRender();
         }
 
         partial void Event1Clicked(Foundation.NSObject sender)
@@ -622,6 +625,8 @@ namespace microcosmMac2.Views
             appDelegate.edata1.memo = jsonObj.list[index].memo;
 
             appDelegate.viewController.RefreshEventBox(0, new UserData(jsonObj.list[index]));
+            appDelegate.viewController.ReCalc();
+            appDelegate.viewController.ReRender();
         }
 
         partial void Event2Clicked(Foundation.NSObject sender)
@@ -654,6 +659,8 @@ namespace microcosmMac2.Views
             appDelegate.edata2.memo = jsonObj.list[index].memo;
 
             appDelegate.viewController.RefreshEventBox(1, new UserData(jsonObj.list[index]));
+            appDelegate.viewController.ReCalc();
+            appDelegate.viewController.ReRender();
 
         }
 
@@ -730,380 +737,598 @@ namespace microcosmMac2.Views
 
         partial void ImportClicked(Foundation.NSObject sender)
         {
-            NSOpenPanel ofd = new NSOpenPanel();
-            ofd.Title = "ファイルを選択してください";
-            if (ImportCombo.SelectedItem.Title == "Amateru(csv)")
+            try
             {
-                //AMATERU
-                ofd.AllowedFileTypes = new string[] { "csv" };
-                if (ofd.RunModal() == 1)
+                NSOpenPanel ofd = new NSOpenPanel();
+                ofd.Title = "ファイルを選択してください";
+                if (ImportCombo.SelectedItem.Title == "Amateru(csv)")
                 {
-                    string root = Util.root;
+                    //AMATERU
+                    ofd.AllowedFileTypes = new string[] { "csv" };
+                    if (ofd.RunModal() == 1)
+                    {
+                        string root = Util.root;
 
-                    var config = new CsvConfiguration(CultureInfo.InvariantCulture)
-                    {
-                        PrepareHeaderForMatch = args => args.Header.ToUpper(),
-                        Delimiter = "\t"
-                    };
-                    int i = 0;
-                    using (var reader = new StreamReader(ofd.Url.ToString().Replace("file://", "").Replace("%20", " "), Encoding.GetEncoding("UTF-8")))
-                    {
-                        using (var csv = new CsvHelper.CsvReader(reader, config))
+                        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
                         {
-                            var records = csv.GetRecords<AmateruCsv>();
-
-                            UserJsonList jsonList = new UserJsonList();
-                            jsonList.list = new List<UserJson>();
-                            foreach (AmateruCsv record in records)
+                            PrepareHeaderForMatch = args => args.Header.ToUpper(),
+                            Delimiter = "\t"
+                        };
+                        int i = 0;
+                        using (var reader = new StreamReader(ofd.Url.ToString().Replace("file://", "").Replace("%20", " "), Encoding.GetEncoding("UTF-8")))
+                        {
+                            using (var csv = new CsvHelper.CsvReader(reader, config))
                             {
-                                DateTime date = DateTime.Now;
-                                if (String.IsNullOrEmpty(record.DATE))
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    date = DateTime.Parse(record.DATE);
-                                }
+                                var records = csv.GetRecords<AmateruCsv>();
 
-                                string[] time = record.TIME.Split(':');
-
-                                int hour;
-                                int minute;
-                                int second;
-                                if (time.Length > 2)
+                                UserJsonList jsonList = new UserJsonList();
+                                jsonList.list = new List<UserJson>();
+                                foreach (AmateruCsv record in records)
                                 {
-                                    if (!Int32.TryParse(time[0], out hour))
+                                    DateTime date = DateTime.Now;
+                                    if (String.IsNullOrEmpty(record.DATE))
+                                    {
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        date = DateTime.Parse(record.DATE);
+                                    }
+
+                                    string[] time = record.TIME.Split(':');
+
+                                    int hour;
+                                    int minute;
+                                    int second;
+                                    if (time.Length > 2)
+                                    {
+                                        if (!Int32.TryParse(time[0], out hour))
+                                        {
+                                            hour = 12;
+                                        }
+                                        if (!Int32.TryParse(time[1], out minute))
+                                        {
+                                            minute = 0;
+                                        }
+                                        if (!Int32.TryParse(time[2], out second))
+                                        {
+                                            second = 0;
+                                        }
+                                    }
+                                    else
                                     {
                                         hour = 12;
-                                    }
-                                    if (!Int32.TryParse(time[1], out minute))
-                                    {
                                         minute = 0;
-                                    }
-                                    if (!Int32.TryParse(time[2], out second))
-                                    {
                                         second = 0;
                                     }
-                                }
-                                else
-                                {
-                                    hour = 12;
-                                    minute = 0;
-                                    second = 0;
+
+                                    double lat;
+                                    if (String.IsNullOrEmpty(record.LATITUDE))
+                                    {
+                                        lat = appDelegate.config.lat;
+                                    }
+                                    else if (!Double.TryParse(record.LATITUDE, out lat))
+                                    {
+                                        lat = appDelegate.config.lat;
+                                    }
+                                    double lng;
+                                    if (String.IsNullOrEmpty(record.LONGITUDE))
+                                    {
+                                        lng = appDelegate.config.lng;
+                                    }
+                                    else if (!Double.TryParse(record.LONGITUDE, out lng))
+                                    {
+                                        lng = appDelegate.config.lng;
+                                    }
+
+                                    //todo AMATERUはJSTなのでめんどい
+                                    double timezone = 9.0;
+
+                                    string memo = String.Format("kana: {0}, GENDER: {1}, JOB: {2} \n", record.KANA, record.GENDER, record.JOB);
+
+                                    jsonList.list.Add(new UserJson()
+                                    {
+                                        name = record.NAME,
+                                        birth_year = date.Year,
+                                        birth_month = date.Month,
+                                        birth_day = date.Day,
+                                        birth_hour = hour,
+                                        birth_minute = minute,
+                                        birth_second = second,
+                                        birth_place = record.PLACENAME,
+                                        birth_timezone = 9.0,
+                                        birth_timezone_str = "Asia/Tokyo",
+                                        lat = lat,
+                                        lng = lng,
+                                        memo = memo + record.MEMO
+                                    });
+
+                                    i++;
+                                    if (i >= 200)
+                                    {
+                                        NSAlert alert = new NSAlert();
+                                        alert.MessageText = "インポートが200件を超えたため停止しました。";
+                                        alert.RunModal();
+                                        break;
+                                    }
                                 }
 
+                                string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
+                                {
+                                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                                    WriteIndented = true,
+                                });
+
+                                string file = root + @"/data/AMATERU" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
+                                using (FileStream fs = new FileStream(file, FileMode.Create))
+                                {
+                                    StreamWriter sw = new StreamWriter(fs);
+                                    sw.WriteLine(userJsonStr);
+                                    sw.Close();
+                                }
+                            }
+                        }
+                        DirRefresh();
+                        FilesRefresh();
+                    }
+                }
+                else if (ImportCombo.SelectedItem.Title == "stargazer")
+                {
+                    NSAlert alert2 = new NSAlert();
+                    alert2.MessageText = "Ｓtargazerのファイルを読み込む場合、まず外部ソフトでutf-8エンコードに変換してください。";
+                    alert2.RunModal();
+
+                    //stargazer
+                    if (ofd.RunModal() == 1)
+                    {
+                        // SGはcsvじゃないので200件だけ読んでおく
+                        List<string> dataStr = new List<string>();
+                        int i = 0;
+                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+                        using (var reader = new StreamReader(ofd.Url.ToString().Replace("file://", "").Replace("%20", " "), System.Text.Encoding.GetEncoding("UTF-8")))
+                        {
+                            while (reader.Peek() >= 0)
+                            {
+                                string line = reader.ReadLine();
+                                dataStr.Add(line);
+
+                                if (i >= 201) break;
+                            }
+                        }
+                        UserJsonList jsonList = new UserJsonList();
+                        jsonList.list = new List<UserJson>();
+                        foreach (string line in dataStr)
+                        {
+                            //先頭に読む件数あるけど、データ行は,の有無で判断
+                            if (line.IndexOf(",") == 0) continue;
+
+                            try
+                            {
+                                string trimdata = line.Replace("  ", " ");
+                                string[] data = trimdata.Split(' ');
+                                // data[0] ymd
+                                // data[1] his
+                                // data[2] lat
+                                // data[3] lng
+                                // data[4] other
+
+                                int year = int.Parse(data[0].Substring(0, 4));
+                                int month = int.Parse(data[0].Substring(4, 2));
+                                int day = int.Parse(data[0].Substring(6, 2));
+
+                                int hour = int.Parse(data[1].Substring(0, 2));
+                                int minute = int.Parse(data[1].Substring(2, 2));
+                                int second = int.Parse(data[1].Substring(4, 2));
+
+                                // stargazerはUTCで記録されるため、+9:00する
+                                DateTime d = new DateTime(year, month, day, hour, minute, second);
+                                d = d.AddHours(9.0);
+
+                                string[] name = data[4].Split(',');
+                                name[0] = name[0].Replace("\"", "");
+                                name[1] = name[1].Replace("\"", "");
+
                                 double lat;
-                                if (String.IsNullOrEmpty(record.LATITUDE))
+                                if (String.IsNullOrEmpty(data[2]))
                                 {
                                     lat = appDelegate.config.lat;
                                 }
-                                else if (!Double.TryParse(record.LATITUDE, out lat))
+                                else if (!Double.TryParse(data[2], out lat))
                                 {
                                     lat = appDelegate.config.lat;
                                 }
                                 double lng;
-                                if (String.IsNullOrEmpty(record.LONGITUDE))
+                                if (String.IsNullOrEmpty(data[3]))
                                 {
                                     lng = appDelegate.config.lng;
                                 }
-                                else if (!Double.TryParse(record.LONGITUDE, out lng))
+                                else if (!Double.TryParse(data[3], out lng))
                                 {
                                     lng = appDelegate.config.lng;
                                 }
-
-                                //todo AMATERUはJSTなのでめんどい
-                                double timezone = 9.0;
-
-                                string memo = String.Format("kana: {0}, GENDER: {1}, JOB: {2} \n", record.KANA, record.GENDER, record.JOB);
-
+                                string memo = String.Format("GENDER: {0} \n", name[3]);
                                 jsonList.list.Add(new UserJson()
                                 {
-                                    name = record.NAME,
+                                    name = name[1],
+                                    birth_year = d.Year,
+                                    birth_month = d.Month,
+                                    birth_day = d.Day,
+                                    birth_hour = d.Hour,
+                                    birth_minute = d.Minute,
+                                    birth_second = d.Second,
+                                    birth_place = name[0],
+                                    birth_timezone = 9.0,
+                                    birth_timezone_str = "Asia/Tokyo",
+                                    lat = lat,
+                                    lng = lng,
+                                    memo = memo + name[2]
+                                });
+                            }
+                            catch (Exception exception)
+                            {
+                                Debug.WriteLine(exception.Message);
+                                continue;
+                            }
+                        }
+                        if (i >= 200)
+                        {
+                            NSAlert alert = new NSAlert();
+                            alert.MessageText = "インポートが200件を超えたため停止しました。";
+                            alert.RunModal();
+                        }
+
+                        string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
+                        {
+                            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                            WriteIndented = true,
+                        });
+
+                        string root = Util.root;
+                        string file = root + @"/data/StarGazer" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
+                        using (FileStream fs = new FileStream(file, FileMode.Create))
+                        {
+                            StreamWriter sw = new StreamWriter(fs);
+                            sw.WriteLine(userJsonStr);
+                            sw.Close();
+                        }
+                        DirRefresh();
+                        FilesRefresh();
+                    }
+                }
+                else if (ImportCombo.SelectedItem.Title == "Zet(zbs)")
+                {
+                    //zet
+                    ofd.AllowedFileTypes = new string[] { "zbs" };
+                    if (ofd.RunModal() == 1)
+                    {
+                        int success = 0;
+                        int err = 0;
+                        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+                        {
+                            PrepareHeaderForMatch = args => args.Header.ToUpper(),
+                            Delimiter = ";"
+                        };
+                        // 文字コードのせいでcsvHelperがうまく読めないので普通に読む
+                        List<string> dataStr = new List<string>();
+                        int i = 0;
+                        using (var reader = new StreamReader(ofd.Url.ToString().Replace("file://", "").Replace("%20", " "), System.Text.Encoding.GetEncoding("UTF-8")))
+                        {
+                            while (reader.Peek() >= 0)
+                            {
+                                string line = reader.ReadLine();
+                                dataStr.Add(line);
+
+                                if (i >= 201) break;
+                            }
+                        }
+                        UserJsonList jsonList = new UserJsonList();
+                        jsonList.list = new List<UserJson>();
+                        foreach (string line in dataStr)
+                        {
+                            try
+                            {
+                                string[] data = line.Split(';');
+                                if (data.Length < 8)
+                                {
+                                    continue;
+                                }
+                                // data[0] ymd
+                                // data[1] his
+                                // data[2] lat
+                                // data[3] lng
+                                // data[4] other
+
+                                string name = data[0];
+
+                                // dd.mm.yyyyじゃなくて一桁だったりする
+                                string d = data[1].Trim(' ');
+                                string[] dd = d.Split(".");
+                                int year = Int32.Parse(dd[2]);
+                                int month = Int32.Parse(dd[1]);
+                                int day = Int32.Parse(dd[0]);
+
+                                DateTime date = new DateTime(year, month, day);
+
+                                string t = data[2].Trim(' ');
+                                string[] his = t.Split(":");
+
+                                int hour = int.Parse(his[0]);
+                                int minute = int.Parse(his[1]);
+                                int second = 0;
+
+                                double timezeone = 9.0;
+                                string timezone_str = "Asia/Tokyo";
+
+                                string place = data[4];
+                                double lat = appDelegate.config.lat;
+                                double lng = appDelegate.config.lng;
+
+
+                                string memo = data[7];
+                                jsonList.list.Add(new UserJson()
+                                {
+                                    name = name,
                                     birth_year = date.Year,
                                     birth_month = date.Month,
                                     birth_day = date.Day,
                                     birth_hour = hour,
                                     birth_minute = minute,
                                     birth_second = second,
-                                    birth_place = record.PLACENAME,
+                                    birth_place = place,
                                     birth_timezone = 9.0,
                                     birth_timezone_str = "Asia/Tokyo",
                                     lat = lat,
                                     lng = lng,
-                                    memo = memo + record.MEMO
+                                    memo = memo
                                 });
-
-                                i++;
-                                if (i >= 200)
-                                {
-                                    NSAlert alert = new NSAlert();
-                                    alert.MessageText = "インポートが200件を超えたため停止しました。";
-                                    alert.RunModal();
-                                    break;
-                                }
                             }
-
-                            string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
+                            catch (Exception exception)
                             {
-                                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-                                WriteIndented = true,
-                            });
-
-                            string file = root + @"/data/AMATERU" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
-                            using (FileStream fs = new FileStream(file, FileMode.Create))
-                            {
-                                StreamWriter sw = new StreamWriter(fs);
-                                sw.WriteLine(userJsonStr);
-                                sw.Close();
-                            }
-                        }
-                    }
-                    DirRefresh();
-                    FilesRefresh();
-                }
-            }
-            else if (ImportCombo.SelectedItem.Title == "stargazer")
-            {
-                NSAlert alert2 = new NSAlert();
-                alert2.MessageText = "Ｓtargazerのファイルを読み込む場合、まず外部ソフトでutf-8エンコードに変換してください。";
-                alert2.RunModal();
-
-                //stargazer
-                if (ofd.RunModal() == 1)
-                {
-                    // SGはcsvじゃないので200件だけ読んでおく
-                    List<string> dataStr = new List<string>();
-                    int i = 0;
-                    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
-                    using (var reader = new StreamReader(ofd.Url.ToString().Replace("file://", "").Replace("%20", " "), System.Text.Encoding.GetEncoding("UTF-8")))
-                    {
-                        while (reader.Peek() >= 0)
-                        {
-                            string line = reader.ReadLine();
-                            dataStr.Add(line);
-
-                            if (i >= 201) break;
-                        }
-                    }
-                    UserJsonList jsonList = new UserJsonList();
-                    jsonList.list = new List<UserJson>();
-                    foreach (string line in dataStr)
-                    {
-                        //先頭に読む件数あるけど、データ行は,の有無で判断
-                        if (line.IndexOf(",") == 0) continue;
-
-                        try
-                        {
-                            string trimdata = line.Replace("  ", " ");
-                            string[] data = trimdata.Split(' ');
-                            // data[0] ymd
-                            // data[1] his
-                            // data[2] lat
-                            // data[3] lng
-                            // data[4] other
-
-                            int year = int.Parse(data[0].Substring(0, 4));
-                            int month = int.Parse(data[0].Substring(4, 2));
-                            int day = int.Parse(data[0].Substring(6, 2));
-
-                            int hour = int.Parse(data[1].Substring(0, 2));
-                            int minute = int.Parse(data[1].Substring(2, 2));
-                            int second = int.Parse(data[1].Substring(4, 2));
-
-                            // stargazerはUTCで記録されるため、+9:00する
-                            DateTime d = new DateTime(year, month, day, hour, minute, second);
-                            d = d.AddHours(9.0);
-
-                            string[] name = data[4].Split(',');
-                            name[0] = name[0].Replace("\"", "");
-                            name[1] = name[1].Replace("\"", "");
-
-                            double lat;
-                            if (String.IsNullOrEmpty(data[2]))
-                            {
-                                lat = appDelegate.config.lat;
-                            }
-                            else if (!Double.TryParse(data[2], out lat))
-                            {
-                                lat = appDelegate.config.lat;
-                            }
-                            double lng;
-                            if (String.IsNullOrEmpty(data[3]))
-                            {
-                                lng = appDelegate.config.lng;
-                            }
-                            else if (!Double.TryParse(data[3], out lng))
-                            {
-                                lng = appDelegate.config.lng;
-                            }
-                            string memo = String.Format("GENDER: {0} \n", name[3]);
-                            jsonList.list.Add(new UserJson()
-                            {
-                                name = name[1],
-                                birth_year = d.Year,
-                                birth_month = d.Month,
-                                birth_day = d.Day,
-                                birth_hour = d.Hour,
-                                birth_minute = d.Minute,
-                                birth_second = d.Second,
-                                birth_place = name[0],
-                                birth_timezone = 9.0,
-                                birth_timezone_str = "Asia/Tokyo",
-                                lat = lat,
-                                lng = lng,
-                                memo = memo + name[2]
-                            });
-                        }
-                        catch (Exception exception)
-                        {
-                            Debug.WriteLine(exception.Message);
-                            continue;
-                        }
-                    }
-                    if (i >= 200)
-                    {
-                        NSAlert alert = new NSAlert();
-                        alert.MessageText = "インポートが200件を超えたため停止しました。";
-                        alert.RunModal();
-                    }
-
-                    string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
-                    {
-                        Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-                        WriteIndented = true,
-                    });
-
-                    string root = Util.root;
-                    string file = root + @"/data/StarGazer" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
-                    using (FileStream fs = new FileStream(file, FileMode.Create))
-                    {
-                        StreamWriter sw = new StreamWriter(fs);
-                        sw.WriteLine(userJsonStr);
-                        sw.Close();
-                    }
-                    DirRefresh();
-                    FilesRefresh();
-                }
-            }
-            else if (ImportCombo.SelectedItem.Title == "Zet(zbs)")
-            {
-                //zet
-                ofd.AllowedFileTypes = new string[] { "zbs" };
-                if (ofd.RunModal() == 1)
-                {
-                    int success = 0;
-                    int err = 0;
-                    var config = new CsvConfiguration(CultureInfo.InvariantCulture)
-                    {
-                        PrepareHeaderForMatch = args => args.Header.ToUpper(),
-                        Delimiter = ";"
-                    };
-                    // 文字コードのせいでcsvHelperがうまく読めないので普通に読む
-                    List<string> dataStr = new List<string>();
-                    int i = 0;
-                    using (var reader = new StreamReader(ofd.Url.ToString().Replace("file://", "").Replace("%20", " "), System.Text.Encoding.GetEncoding("UTF-8")))
-                    {
-                        while (reader.Peek() >= 0)
-                        {
-                            string line = reader.ReadLine();
-                            dataStr.Add(line);
-
-                            if (i >= 201) break;
-                        }
-                    }
-                    UserJsonList jsonList = new UserJsonList();
-                    jsonList.list = new List<UserJson>();
-                    foreach (string line in dataStr)
-                    {
-                        try
-                        {
-                            string[] data = line.Split(';');
-                            if (data.Length < 8)
-                            {
+                                Debug.WriteLine(exception.Message);
                                 continue;
                             }
-                            // data[0] ymd
-                            // data[1] his
-                            // data[2] lat
-                            // data[3] lng
-                            // data[4] other
-
-                            string name = data[0];
-
-                            // dd.mm.yyyyじゃなくて一桁だったりする
-                            string d = data[1].Trim(' ');
-                            string[] dd = d.Split(".");
-                            int year = Int32.Parse(dd[2]);
-                            int month = Int32.Parse(dd[1]);
-                            int day = Int32.Parse(dd[0]);
-
-                            DateTime date = new DateTime(year, month, day);
-
-                            string t = data[2].Trim(' ');
-                            string[] his = t.Split(":");
-
-                            int hour = int.Parse(his[0]);
-                            int minute = int.Parse(his[1]);
-                            int second = 0;
-
-                            double timezeone = 9.0;
-                            string timezone_str = "Asia/Tokyo";
-
-                            string place = data[4];
-                            double lat = appDelegate.config.lat;
-                            double lng = appDelegate.config.lng;
-
-
-                            string memo = data[7];
-                            jsonList.list.Add(new UserJson()
-                            {
-                                name = name,
-                                birth_year = date.Year,
-                                birth_month = date.Month,
-                                birth_day = date.Day,
-                                birth_hour = hour,
-                                birth_minute = minute,
-                                birth_second = second,
-                                birth_place = place,
-                                birth_timezone = 9.0,
-                                birth_timezone_str = "Asia/Tokyo",
-                                lat = lat,
-                                lng = lng,
-                                memo = memo
-                            });
                         }
-                        catch (Exception exception)
+                        if (i >= 200)
                         {
-                            Debug.WriteLine(exception.Message);
-                            continue;
+                            NSAlert alert = new NSAlert();
+                            alert.MessageText = "インポートが200件を超えたため停止しました。";
+                            alert.RunModal();
                         }
-                    }
-                    if (i >= 200)
-                    {
-                        NSAlert alert = new NSAlert();
-                        alert.MessageText = "インポートが200件を超えたため停止しました。";
-                        alert.RunModal();
-                    }
 
-                    string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
-                    {
-                        Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-                        WriteIndented = true,
-                    });
+                        string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
+                        {
+                            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                            WriteIndented = true,
+                        });
 
-                    string root = Util.root;
-                    string file = root + @"/data/Zet" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
-                    using (FileStream fs = new FileStream(file, FileMode.Create))
-                    {
-                        StreamWriter sw = new StreamWriter(fs);
-                        sw.WriteLine(userJsonStr);
-                        sw.Close();
+                        string root = Util.root;
+                        string file = root + @"/data/Zet" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
+                        using (FileStream fs = new FileStream(file, FileMode.Create))
+                        {
+                            StreamWriter sw = new StreamWriter(fs);
+                            sw.WriteLine(userJsonStr);
+                            sw.Close();
+                        }
+                        DirRefresh();
+                        FilesRefresh();
                     }
-                    DirRefresh();
-                    FilesRefresh();
                 }
+                else if (ImportCombo.SelectedItem.Title == "SolarFire(txt)")
+                {
+                    NSAlert alert = new NSAlert();
+                    alert.MessageText = "SolarFireファイルを読み込む場合、\n名前,年,月,日,時,分,秒,場所,緯度,経度\nの順に並べたcsvでエクスポートしてください。";
+                    alert.RunModal();
+                    //solar fire
+                    ofd.AllowedFileTypes = new string[] { "txt" };
+
+                    if (ofd.RunModal() == 1)
+                    {
+                        string root = Util.root;
+
+                        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+                        {
+                            Delimiter = ",",
+                            HasHeaderRecord = false
+                        };
+                        int i = 0;
+                        using (var reader = new StreamReader(ofd.Url.ToString().Replace("file://", "").Replace("%20", " "), System.Text.Encoding.GetEncoding("UTF-8")))
+                        {
+                            using (var csv = new CsvHelper.CsvReader(reader, config))
+                            {
+                                var records = csv.GetRecords<SolarFireCsv>();
+
+                                UserJsonList jsonList = new UserJsonList();
+                                jsonList.list = new List<UserJson>();
+                                foreach (SolarFireCsv record in records)
+                                {
+                                    DateTime date = new DateTime(
+                                        record.YEAR,
+                                        record.MONTH,
+                                        record.DAY,
+                                        record.HOUR,
+                                        record.MINUTE,
+                                        record.SECOND
+                                        );
+
+
+                                    jsonList.list.Add(new UserJson()
+                                    {
+                                        name = record.NAME,
+                                        birth_year = record.YEAR,
+                                        birth_month = record.MONTH,
+                                        birth_day = record.DAY,
+                                        birth_hour = record.HOUR,
+                                        birth_minute = record.MINUTE,
+                                        birth_second = record.SECOND,
+                                        birth_place = record.PLACENAME,
+                                        birth_timezone = 9.0,
+                                        birth_timezone_str = "Asia/Tokyo",
+                                        lat = record.LATITUDE,
+                                        lng = record.LONGITUDE,
+                                        memo = ""
+                                    });
+
+                                    i++;
+                                    if (i >= 200)
+                                    {
+                                        alert.MessageText = "インポートが200件を超えたため停止しました。";
+                                        alert.RunModal();
+                                        break;
+                                    }
+                                }
+
+                                string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
+                                {
+                                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                                    WriteIndented = true,
+                                });
+
+                                string file = root + @"/data/SolarFire" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
+                                using (FileStream fs = new FileStream(file, FileMode.Create))
+                                {
+                                    StreamWriter sw = new StreamWriter(fs);
+                                    sw.WriteLine(userJsonStr);
+                                    sw.Close();
+                                }
+                            }
+                        }
+                        DirRefresh();
+                        FilesRefresh();
+                    }
+                }
+                else if (ImportCombo.SelectedItem.Title == "Kepler(txt)")
+                {
+                    NSAlert alert = new NSAlert();
+                    alert.MessageText = "Keplerファイルを読み込む場合、Add Quotes and Commasオプションでエクスポートしてください。";
+                    alert.RunModal();
+                    //kepler
+                    ofd.AllowedFileTypes = new string[] { "txt" };
+                    if (ofd.RunModal() == 1)
+                    {
+                        string root = Util.root;
+
+                        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+                        {
+                            Delimiter = ",",
+                            HasHeaderRecord = false
+                        };
+                        int i = 0;
+                        using (var reader = new StreamReader(ofd.Url.ToString().Replace("file://", "").Replace("%20", " "), System.Text.Encoding.GetEncoding("UTF-8")))
+                        {
+                            using (var csv = new CsvHelper.CsvReader(reader, config))
+                            {
+                                var records = csv.GetRecords<KeplerCsv>();
+
+                                UserJsonList jsonList = new UserJsonList();
+                                jsonList.list = new List<UserJson>();
+                                foreach (KeplerCsv record in records)
+                                {
+                                    int month = int.Parse(record.DATE.Substring(0, 2));
+                                    int day = int.Parse(record.DATE.Substring(2, 2));
+                                    int year = int.Parse(record.DATE.Substring(4, 4));
+
+                                    int hour = int.Parse(record.TIME.Substring(0, 2));
+                                    int minute = int.Parse(record.TIME.Substring(2, 2));
+                                    int second = int.Parse(record.TIME.Substring(4, 2));
+
+                                    string[] lat;
+                                    if (record.LATITUDE.IndexOf("N") > 0)
+                                    {
+                                        lat = record.LATITUDE.Split("N");
+                                    }
+                                    else
+                                    {
+                                        lat = record.LATITUDE.Split("S");
+                                    }
+                                    int latMin = Int32.Parse(lat[1].Substring(0, 2));
+                                    int latSec = Int32.Parse(lat[1].Substring(2, 2));
+                                    string[] lon;
+                                    if (record.LONGITUDE.IndexOf("E") > 0)
+                                    {
+                                        lon = record.LONGITUDE.Split("E");
+                                    }
+                                    else
+                                    {
+                                        lon = record.LONGITUDE.Split("W");
+                                    }
+                                    int lonMin = Int32.Parse(lon[1].Substring(0, 2));
+                                    int lonSec = Int32.Parse(lon[1].Substring(2, 2));
+
+
+                                    jsonList.list.Add(new UserJson()
+                                    {
+                                        name = record.NAME,
+                                        birth_year = year,
+                                        birth_month = month,
+                                        birth_day = day,
+                                        birth_hour = hour,
+                                        birth_minute = minute,
+                                        birth_second = second,
+                                        birth_place = record.PLACENAME,
+                                        birth_timezone = 9.0,
+                                        birth_timezone_str = "Asia/Tokyo",
+                                        lat = Double.Parse(lat[0]) + latMin / 60 + latSec / 3600,
+                                        lng = Double.Parse(lon[0]) + lonMin / 60 + lonSec / 3600,
+                                        memo = ""
+                                    });
+
+                                    i++;
+                                    if (i >= 200)
+                                    {
+                                        alert.MessageText = "インポートが200件を超えたため停止しました。";
+                                        alert.RunModal();
+                                        break;
+                                    }
+                                }
+
+                                string userJsonStr = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions
+                                {
+                                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                                    WriteIndented = true,
+                                });
+
+                                string file = root + @"/data/Kepler" + DateTime.Now.ToString("yyyyMMddHHmm") + ".json";
+                                using (FileStream fs = new FileStream(file, FileMode.Create))
+                                {
+                                    StreamWriter sw = new StreamWriter(fs);
+                                    sw.WriteLine(userJsonStr);
+                                    sw.Close();
+                                }
+                            }
+                        }
+                        DirRefresh();
+                        FilesRefresh();
+                    }
+                }
+            }
+            catch (FormatException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                NSAlert alert2 = new NSAlert();
+                alert2.MessageText = "フォーマットが不正です。\n" + ex.Message;
+                alert2.RunModal();
+            }
+            catch (CsvHelper.MissingFieldException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                NSAlert alert2 = new NSAlert();
+                alert2.MessageText = "フォーマットが不正です。\n" + ex.Message;
+                alert2.RunModal();
+            }
+            catch (CsvHelper.ParserException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                NSAlert alert2 = new NSAlert();
+                alert2.MessageText = "フォーマットが不正です。\n" + ex.Message;
+                alert2.RunModal();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                NSAlert alert2 = new NSAlert();
+                alert2.MessageText = "エラーが発生しました。\n" + ex.Message;
+                alert2.RunModal();
             }
         }
     }

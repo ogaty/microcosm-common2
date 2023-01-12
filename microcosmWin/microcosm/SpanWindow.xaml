@@ -5,21 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:microcosm"
         mc:Ignorable="d"
-        Title="Span" Height="200" Width="150" ResizeMode="CanResize" Closing="Window_Closing">
+        Title="Span" Height="290" Width="270" ResizeMode="CanResize" Closing="Window_Closing">
     <Grid>
         <StackPanel>
-            <ComboBox Name="SpanCombo" Margin="10" SelectionChanged="SpanCombo_SelectionChanged">
-                
-            </ComboBox>
             <StackPanel Orientation="Horizontal">
-                <StackPanel Margin="10, 10, 0, 0">
-                    <TextBox x:Name="unit" Text="1" Width="50"></TextBox>
+                <StackPanel Margin="10">
+                    <RadioButton x:Name="RadioUnit" Height="100" IsChecked="True">時刻</RadioButton>
+                    <RadioButton x:Name="RadioNewMoon" Margin="0, 5, 0, 0">新月</RadioButton>
+                    <RadioButton x:Name="RadioFullMoon" Margin="0, 5, 0, 0">満月</RadioButton>
+                    <RadioButton x:Name="RadioSolarReturn" Margin="0, 5, 0, 0">太陽回帰</RadioButton>
+                    <RadioButton x:Name="RadioIngress" Margin="0, 5, 0, 0">イングレス</RadioButton>
                 </StackPanel>
-                <StackPanel Margin="10, 10, 0, 0">
-                    <RadioButton x:Name="RadioSeconds">Seconds</RadioButton>
-                    <RadioButton x:Name="RadioMinutes">Minutes</RadioButton>
-                    <RadioButton x:Name="RadioHours">Hours</RadioButton>
-                    <RadioButton x:Name="RadioDays" IsChecked="True">Days</RadioButton>
+                <StackPanel Margin="0, 10, 0, 0">
+                    <Border BorderBrush="DimGray" BorderThickness="1">
+                        <StackPanel Margin="10">
+                            <ComboBox Name="SpanCombo" SelectionChanged="SpanCombo_SelectionChanged">
+
+                            </ComboBox>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Margin="10, 10, 0, 0">
+                                    <TextBox x:Name="unit" Text="1" Width="50"></TextBox>
+                                </StackPanel>
+                                <StackPanel Margin="10, 10, 0, 0">
+                                    <RadioButton x:Name="RadioSeconds">Seconds</RadioButton>
+                                    <RadioButton x:Name="RadioMinutes">Minutes</RadioButton>
+                                    <RadioButton x:Name="RadioHours">Hours</RadioButton>
+                                    <RadioButton x:Name="RadioDays" IsChecked="True">Days</RadioButton>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <ComboBox Name="IngressCombo" Margin="10, 50, 10, 0">
+                        <ComboBoxItem Content="sun" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="moon"></ComboBoxItem>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="10, 20, 10, 0">

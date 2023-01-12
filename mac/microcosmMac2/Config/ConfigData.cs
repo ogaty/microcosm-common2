@@ -6,12 +6,14 @@ namespace microcosmMac2.Config
     public enum ECentric
     {
         GEO_CENTRIC = 0,
-        HELIO_CENTRIC = 1
+        HELIO_CENTRIC = 1,
+        DRACONIC = 2,
     }
     public enum Esidereal
     {
         TROPICAL = 0,
-        SIDEREAL = 1
+        SIDEREAL = 1,
+        DRACONIC = 2,
     }
     public enum EProgression
     {

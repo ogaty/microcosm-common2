@@ -35,13 +35,13 @@ namespace microcosm
         public DatabaseWindowUserEventListViewModel userEventVM;
         public DatabaseWindowDirViewModel dirVm;
 
-        public UserAddWindow userAddWindow;
-        public UserEditWindow userEditWindow;
-        public EventAddWindow eventAddWindow;
-        public EventEditWindow eventEditWindow;
-        public EclipseWindow eclipseWindow;
-        public DirAddWindow dirAddWindow;
-        public DirEditWindow dirEditWindow;
+        public UserAddWindow? userAddWindow;
+        public UserEditWindow? userEditWindow;
+        public EventAddWindow? eventAddWindow;
+        public EventEditWindow? eventEditWindow;
+        public EclipseWindow? eclipseWindow;
+        public DirAddWindow? dirAddWindow;
+        public DirEditWindow? dirEditWindow;
 
         public string currentFullPath = "";
 

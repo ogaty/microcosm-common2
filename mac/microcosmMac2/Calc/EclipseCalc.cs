@@ -4,6 +4,7 @@ using System.Diagnostics;
 using microcosmMac2.Common;
 using microcosmMac2.Config;
 using SwissEphNet;
+using EventKit;
 
 namespace microcosmMac2.Calc
 {
@@ -33,14 +34,14 @@ namespace microcosmMac2.Calc
             {
                 if (!isForward)
                 {
-                    begin.AddYears(-1);
+                    begin = begin.AddDays(-366);
                 }
             }
             else if (planetId == CommonData.ZODIAC_MOON)
             {
                 if (!isForward)
                 {
-                    begin.AddDays(-28);
+                    begin = begin.AddDays(-28);
                 }
             }
             s.swe_utc_time_zone(begin.Year, begin.Month, begin.Day, begin.Hour, begin.Minute, begin.Second, timezone,
@@ -79,6 +80,7 @@ namespace microcosmMac2.Calc
                 offset = targetDegree - x[0];
                 if (offset < 0)
                 {
+                    // 現在280度、対象が270度だった場合は350度のずれ、来年の10日前くらいにざっくりセット
                     offset += 360;
                 }
                 int days = (int)offset;
@@ -95,262 +97,300 @@ ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_
 
                 double calcDegree = x[0];
 
-                while (Math.Abs(targetDegree - calcDegree) > 0.0001)
+                // 対象度数が0でcalcDegreeは359なのでおかしくなるので
+                if (targetDegree < 1)
                 {
-                    if (Math.Abs(targetDegree - calcDegree) > 0.5)
+                    while (calcDegree > 1)
                     {
-                        // 0.5 = 12時間ずらす
-                        if (targetDegree - calcDegree < 0)
+                        if (calcDegree < 358)
                         {
-                            offset = -12;
+                            offset = 358 - calcDegree;
+                            newDay = newDay.AddDays(offset);
                         }
-                        else
+                        else if (calcDegree < 359.5)
                         {
                             offset = 12;
+                            newDay = newDay.AddHours(offset);
                         }
-                        newDay = newDay.AddHours(offset);
-
-                        s.swe_utc_time_zone(newDay.Year, newDay.Month, newDay.Day, newDay.Hour, newDay.Minute, newDay.Second, timezone,
-        ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
-                        s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
-                        s.swe_calc_ut(dret[1], planetId, flag, x, ref serr);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 0.3)
-                    {
-                        // 0.25 = 6時間
-                        if (targetDegree - calcDegree < 0)
+                        else if (calcDegree < 359.7)
                         {
-                            offset = -6;
-                        }
-                        else
-                        {
+                            // 0.25 = 6時間
                             offset = 6;
+                            newDay = newDay.AddHours(offset);
                         }
-
-                        newDay = newDay.AddHours(offset);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 0.1)
-                    {
-                        // 0.04 = 1時間
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -1;
-                        }
-                        else
+                        else if (calcDegree < 359.9)
                         {
                             offset = 1;
+                            newDay = newDay.AddHours(offset);
                         }
-
-                        newDay = newDay.AddHours(offset);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 0.05)
-                    {
-                        // ここからは分単位で
-
-                        if (targetDegree - calcDegree < 0)
+                        else if (calcDegree < 359.95)
                         {
-                            offset = -25;
-                        }
-                        else
-                        {
+                            // ここからは分単位で
                             offset = 25;
+                            newDay = newDay.AddMinutes(offset);
                         }
-
-                        newDay = newDay.AddMinutes(offset);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 0.01)
-                    {
-                        // ここからは分単位で
-
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -7;
-                        }
-                        else
+                        else if (calcDegree < 359.99)
                         {
                             offset = 7;
-                        }
-
-                        newDay = newDay.AddMinutes(offset);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 0.003)
-                    {
-                        // 分
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -3;
-                        }
-                        else
-                        {
-                            offset = 3;
-                        }
-
-                        newDay = newDay.AddMinutes(offset);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 0.001)
-                    {
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -45;
+                            newDay = newDay.AddMinutes(offset);
                         }
                         else
                         {
                             offset = 45;
+                            newDay = newDay.AddSeconds(offset);
                         }
+                        s.swe_utc_time_zone(newDay.Year, newDay.Month, newDay.Day, newDay.Hour, newDay.Minute, newDay.Second, timezone,
+                        ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
+                        s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
+                        s.swe_calc_ut(dret[1], planetId, flag, x, ref serr);
+                        calc++;
 
-                        newDay = newDay.AddSeconds(offset);
+                        Debug.WriteLine(targetDegree);
+                        Debug.WriteLine(x[0]);
+
+                        calcDegree = x[0];
                     }
-                    else
+                }
+                else
+                {
+                    while (targetDegree - calcDegree > 0)
                     {
-                        // 秒、ここまで必要？
-                        if (targetDegree - calcDegree < 0)
+                        if (Math.Abs(targetDegree - calcDegree) > 0.5)
                         {
-                            offset = -17;
+                            // 0.5 = 12時間ずらす
+                            if (targetDegree - calcDegree < 0)
+                            {
+                                offset = -12;
+                            }
+                            else
+                            {
+                                offset = 12;
+                            }
+                            newDay = newDay.AddHours(offset);
+
+                            s.swe_utc_time_zone(newDay.Year, newDay.Month, newDay.Day, newDay.Hour, newDay.Minute, newDay.Second, timezone,
+            ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
+                            s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
+                            s.swe_calc_ut(dret[1], planetId, flag, x, ref serr);
+                        }
+                        else if (Math.Abs(targetDegree - calcDegree) > 0.3)
+                        {
+                            // 0.25 = 6時間
+                            if (targetDegree - calcDegree < 0)
+                            {
+                                offset = -6;
+                            }
+                            else
+                            {
+                                offset = 6;
+                            }
+
+                            newDay = newDay.AddHours(offset);
+                        }
+                        else if (Math.Abs(targetDegree - calcDegree) > 0.1)
+                        {
+                            // 0.04 = 1時間
+                            if (targetDegree - calcDegree < 0)
+                            {
+                                offset = -1;
+                            }
+                            else
+                            {
+                                offset = 1;
+                            }
+
+                            newDay = newDay.AddHours(offset);
+                        }
+                        else if (Math.Abs(targetDegree - calcDegree) > 0.05)
+                        {
+                            // ここからは分単位で
+
+                            if (targetDegree - calcDegree < 0)
+                            {
+                                offset = -25;
+                            }
+                            else
+                            {
+                                offset = 25;
+                            }
+
+                            newDay = newDay.AddMinutes(offset);
+                        }
+                        else if (Math.Abs(targetDegree - calcDegree) > 0.01)
+                        {
+                            // ここからは分単位で
+
+                            if (targetDegree - calcDegree < 0)
+                            {
+                                offset = -7;
+                            }
+                            else
+                            {
+                                offset = 7;
+                            }
+
+                            newDay = newDay.AddMinutes(offset);
+                        }
+                        else if (Math.Abs(targetDegree - calcDegree) > 0.003)
+                        {
+                            // 分
+                            if (targetDegree - calcDegree < 0)
+                            {
+                                offset = -1;
+                            }
+                            else
+                            {
+                                offset = 1;
+                            }
+
+                            newDay = newDay.AddMinutes(offset);
+                        }
+                        else if (Math.Abs(targetDegree - calcDegree) > 0.001)
+                        {
+                            if (targetDegree - calcDegree < 0)
+                            {
+                                offset = -45;
+                            }
+                            else
+                            {
+                                offset = 45;
+                            }
+
+                            newDay = newDay.AddSeconds(offset);
                         }
                         else
                         {
-                            offset = 17;
+                            // 秒、ここまで必要？
+                            if (targetDegree - calcDegree < 0)
+                            {
+                                offset = -17;
+                            }
+                            else
+                            {
+                                offset = 17;
+                            }
+
+                            newDay = newDay.AddSeconds(offset);
                         }
 
-                        newDay = newDay.AddSeconds(offset);
+                        Debug.WriteLine(newDay.ToString());
+
+
+
+                        s.swe_utc_time_zone(newDay.Year, newDay.Month, newDay.Day, newDay.Hour, newDay.Minute, newDay.Second, timezone,
+                        ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
+                        s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
+                        s.swe_calc_ut(dret[1], planetId, flag, x, ref serr);
+                        calc++;
+
+                        Debug.WriteLine(targetDegree);
+                        Debug.WriteLine(x[0]);
+
+                        calcDegree = x[0];
                     }
 
-                    Debug.WriteLine(newDay.ToString());
-
-
-
-                    s.swe_utc_time_zone(newDay.Year, newDay.Month, newDay.Day, newDay.Hour, newDay.Minute, newDay.Second, timezone,
-                    ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
-                    s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
-                    s.swe_calc_ut(dret[1], planetId, flag, x, ref serr);
-                    calc++;
-
-                    Debug.WriteLine(targetDegree);
-                    Debug.WriteLine(x[0]);
-
-                    calcDegree = x[0];
                 }
             }
             else if (planetId == CommonData.ZODIAC_MOON)
             {
                 // 月も逆行無いので単純
-                // 一日に14〜15度進むので一旦15で割った日数進ませる
-                offset = targetDegree - x[0];
-                if (offset < 0)
-                {
-                    offset += 360;
-                }
-                int days = (int)(offset / 15);
-                newDay = begin.AddDays(days);
-                s.swe_utc_time_zone(newDay.Year, newDay.Month, newDay.Day, newDay.Hour, newDay.Minute, newDay.Second, timezone,
-ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
-                s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
-                s.swe_calc_ut(dret[1], planetId, flag, x, ref serr);
-
-                Debug.WriteLine(x[0]);
-
                 double calcDegree = x[0];
+                newDay = begin;
 
-                while (Math.Abs(targetDegree - calcDegree) > 0.001)
+                //誤差があまりにも近い=次の角度を計算
+                if (isIn(targetDegree, calcDegree, 0, 0.4))
                 {
-                    Debug.WriteLine(Math.Abs(targetDegree - calcDegree));
-
-                    if (Math.Abs(targetDegree - calcDegree) > 50)
+                    if (isApply(targetDegree, calcDegree))
                     {
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -72;
-                        }
-                        else
-                        {
-                            offset = 72;
-                        }
-                        newDay = newDay.AddHours(offset);
-
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 20)
-                    {
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -24;
-                        }
-                        else
-                        {
-                            offset = 24;
-                        }
-                        newDay = newDay.AddHours(offset);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 6)
-                    {
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -12;
-                        }
-                        else
-                        {
-                            offset = 12;
-                        }
-                        newDay = newDay.AddHours(offset);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 1)
-                    {
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -2;
-                        }
-                        else
-                        {
-                            offset = 2;
-                        }
-                        newDay = newDay.AddHours(offset);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 0.1)
-                    {
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -12;
-                        }
-                        else
-                        {
-                            offset = 12;
-                        }
-                        newDay = newDay.AddMinutes(offset);
-                    }
-                    else if (Math.Abs(targetDegree - calcDegree) > 0.03)
-                    {
-                        if (targetDegree - calcDegree < 0)
-                        {
-                            offset = -2;
-                        }
-                        else
-                        {
-                            offset = 2;
-                        }
-                        newDay = newDay.AddMinutes(offset);
+                        offset = 2;
                     }
                     else
                     {
-                        if (targetDegree - calcDegree < 0)
+                        offset = 1;
+                    }
+                    newDay = newDay.AddDays(offset);
+                    s.swe_utc_time_zone(newDay.Year, newDay.Month, newDay.Day, newDay.Hour, newDay.Minute, newDay.Second, timezone,
+                    ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
+                    s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
+                    if (configData.centric == ECentric.HELIO_CENTRIC) flag |= SwissEph.SEFLG_HELCTR;
+                    s.swe_calc_ut(dret[1], 1, flag, x, ref serr);
+                    calcDegree = x[0];
+                }
+
+                int cnt = 0;
+                while (true)
+                {
+                    double orb = GetOrb(targetDegree, calcDegree);
+                    if (isIn(targetDegree, calcDegree, 0, 0.01))
+                    {
+                        break;
+                    }
+
+                    Debug.WriteLine(orb);
+                    if (isApply(targetDegree, calcDegree))
+                    {
+                        // applyということは満月過ぎ
+                        if (orb < 0.2)
                         {
-                            offset = -12;
+                            offset = 2;
+                            newDay = newDay.AddMinutes(offset);
+                        }
+                        else if (orb < 1)
+                        {
+                            offset = 15;
+                            newDay = newDay.AddMinutes(offset);
+                        }
+                        else if (orb < 3)
+                        {
+                            offset = 1;
+                            newDay = newDay.AddHours(offset);
+                        }
+                        else if (orb < 10)
+                        {
+                            offset = 3;
+                            newDay = newDay.AddHours(offset);
+                        }
+                        else if (orb < 60)
+                        {
+                            offset = 1;
+                            newDay = newDay.AddDays(offset);
                         }
                         else
                         {
-                            offset = 12;
+                            offset = 3;
+                            newDay = newDay.AddDays(offset);
                         }
-                        newDay = newDay.AddSeconds(offset);
+                    }
+                    else
+                    {
+                        offset = 3;
+                        newDay = newDay.AddDays(offset);
                     }
 
                     s.swe_utc_time_zone(newDay.Year, newDay.Month, newDay.Day, newDay.Hour, newDay.Minute, newDay.Second, timezone,
     ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
                     s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
-                    s.swe_calc_ut(dret[1], planetId, flag, x, ref serr);
-                    calc++;
 
-                    Debug.WriteLine(targetDegree);
-                    Debug.WriteLine(calcDegree);
+                    if (configData.centric == ECentric.HELIO_CENTRIC) flag |= SwissEph.SEFLG_HELCTR;
+                    s.swe_calc_ut(dret[1], 1, flag, x, ref serr);
+
+
                     calcDegree = x[0];
+
+                    cnt++;
+                    if (cnt > 100)
+                    {
+                        NSAlert alert = new NSAlert();
+                        alert.MessageText = "100ごえ";
+                        alert.RunModal();
+
+                        break;
+                    }
                 }
+
+                Debug.WriteLine(cnt);
+                Debug.WriteLine(newDay);
+                return newDay;
             }
             else if (planetId == CommonData.ZODIAC_MERCURY)
             {
@@ -763,6 +803,57 @@ ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_
 
             Debug.WriteLine(calc);
             return newDay;
+        }
+
+        public bool isIn(double from, double to, double degree, double orb)
+        {
+            double calc = GetOrb(from, to);
+            if (degree - orb < calc && calc < degree + orb)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public double GetOrb(double from, double to)
+        {
+            double calc = Math.Abs(to - from);
+            if (calc > 180) calc = 360 - calc;
+
+            return calc;
+        }
+
+        public bool isApply(double sunDegree, double moonDegree)
+        {
+            if (sunDegree < 180)
+            {
+                double mid = sunDegree + 180;
+                if (moonDegree < sunDegree)
+                {
+                    return true;
+                }
+                if (mid < moonDegree)
+                {
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                double mid = (sunDegree + 180) % 360;
+                if (moonDegree < mid)
+                {
+                    return false;
+                }
+                if (sunDegree < moonDegree)
+                {
+                    return false;
+                }
+                return true;
+            }
+
+            return false;
         }
     }
 }

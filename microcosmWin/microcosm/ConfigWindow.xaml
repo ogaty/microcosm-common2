@@ -21,6 +21,7 @@
                         <StackPanel>
                             <RadioButton x:Name="tropical" Content="Tropical" IsChecked="True" />
                             <RadioButton x:Name="sidereal" Content="SideReal"/>
+                            <RadioButton x:Name="draconic" Content="Draconic"/>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="ヘッド計算">

@@ -95,6 +95,8 @@ namespace microcosm
 
         public int plusUnit = 86400;
 
+        public common.SpanType currentSpanType = common.SpanType.UNIT;
+
         public MainWindow(BaseData baseData)
         {
             InitializeComponent();
@@ -1079,70 +1081,421 @@ namespace microcosm
             ReRender();
         }
 
+        /// <summary>
+        /// "<"ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TimeMinus_Click(object sender, RoutedEventArgs e)
         {
-            DateTime now = user1data.GetBirthDateTime();
-            if (NT.SelectedIndex == 0)
+            if (currentSpanType == SpanType.UNIT)
             {
-                now = user1data.GetBirthDateTime().AddSeconds(-1 * plusUnit);
-                user1data.SetDateTime(now);
-                ReCalc();
-                mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                DateTime now = user1data.GetBirthDateTime();
+                if (NT.SelectedIndex == 0)
+                {
+                    now = user1data.GetBirthDateTime().AddSeconds(-1 * plusUnit);
+                    user1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    now = user2data.GetBirthDateTime().AddSeconds(-1 * plusUnit);
+                    user2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    now = event1data.GetBirthDateTime().AddSeconds(-1 * plusUnit);
+                    event1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    now = event2data.GetBirthDateTime().AddSeconds(-1 * plusUnit);
+                    event2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
             }
-            else if (NT.SelectedIndex == 1)
+            else if (currentSpanType == SpanType.NEWMOON)
             {
-                now = user2data.GetBirthDateTime().AddSeconds(-1 * plusUnit);
-                user2data.SetDateTime(now);
-                ReCalc();
-                mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                DateTime now;
+                MoonCalc moon = new MoonCalc(configData, calc.GetSwiss());
+                if (NT.SelectedIndex == 0)
+                {
+                    now = moon.NewMoonMinus(user1data.GetBirthDateTime(), user1data.timezone);
+                    user1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    now = moon.NewMoonMinus(user2data.GetBirthDateTime(), user2data.timezone);
+                    user2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    now = moon.NewMoonMinus(event1data.GetBirthDateTime(), event1data.timezone);
+                    event1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    now = moon.NewMoonMinus(event2data.GetBirthDateTime(), event2data.timezone);
+                    event2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
             }
-            else if (NT.SelectedIndex == 2)
+            else if (currentSpanType == SpanType.FULLMOON)
             {
-                now = event1data.GetBirthDateTime().AddSeconds(-1 * plusUnit);
-                event1data.SetDateTime(now);
-                ReCalc();
-                mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                DateTime now = user1data.GetBirthDateTime();
+                MoonCalc moon = new MoonCalc(configData, calc.GetSwiss());
+                if (NT.SelectedIndex == 0)
+                {
+                    now = moon.FullMoonMinus(user1data.GetBirthDateTime(), user1data.timezone);
+                    user1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    now = moon.FullMoonMinus(user2data.GetBirthDateTime(), user2data.timezone);
+                    user2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    now = moon.FullMoonMinus(event1data.GetBirthDateTime(), event1data.timezone);
+                    event1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    now = moon.FullMoonMinus(event2data.GetBirthDateTime(), event2data.timezone);
+                    event2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
             }
-            else if (NT.SelectedIndex == 3)
+            else if (currentSpanType == SpanType.SOLARRETURN)
             {
-                now = event2data.GetBirthDateTime().AddSeconds(-1 * plusUnit);
-                event2data.SetDateTime(now);
-                ReCalc();
-                mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                EclipseCalc eclipse = calc.GetEclipseInstance();
+                if (NT.SelectedIndex == 0)
+                {
+                    DateTime target = eclipse.GetEclipse(user1data.GetBirthDateTime(), user1data.timezone, CommonData.ZODIAC_SUN, list1[CommonData.ZODIAC_SUN].absolute_position, false);
+                    user1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    DateTime target = eclipse.GetEclipse(user2data.GetBirthDateTime(), user2data.timezone, CommonData.ZODIAC_SUN, list1[CommonData.ZODIAC_SUN].absolute_position, false);
+                    user2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    DateTime target = eclipse.GetEclipse(event1data.GetBirthDateTime(), event1data.timezone, CommonData.ZODIAC_SUN, list1[CommonData.ZODIAC_SUN].absolute_position, false);
+                    event1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    DateTime target = eclipse.GetEclipse(event2data.GetBirthDateTime(), event2data.timezone, CommonData.ZODIAC_SUN, list1[CommonData.ZODIAC_SUN].absolute_position, false);
+                    event2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
+            }
+            else if (currentSpanType == SpanType.SOLARINGRESS)
+            {
+                EclipseCalc eclipse = calc.GetEclipseInstance();
+                double targetDegree = Util.GetPrevIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                if (NT.SelectedIndex == 0)
+                {
+                    DateTime target = eclipse.GetEclipse(user1data.GetBirthDateTime(), user1data.timezone, CommonData.ZODIAC_SUN, targetDegree, false);
+                    user1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    DateTime target = eclipse.GetEclipse(user2data.GetBirthDateTime(), user2data.timezone, CommonData.ZODIAC_SUN, targetDegree, false);
+                    user2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    DateTime target = eclipse.GetEclipse(event1data.GetBirthDateTime(), event1data.timezone, CommonData.ZODIAC_SUN, targetDegree, false);
+                    event1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    DateTime target = eclipse.GetEclipse(event2data.GetBirthDateTime(), event2data.timezone, CommonData.ZODIAC_SUN, targetDegree, false);
+                    event2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
+            }
+            else if (currentSpanType == SpanType.MOONINGRESS)
+            {
+                EclipseCalc eclipse = calc.GetEclipseInstance();
+                double targetDegree = Util.GetPrevIngressDegree(list1[CommonData.ZODIAC_MOON].absolute_position);
+                if (NT.SelectedIndex == 0)
+                {
+                    DateTime target = eclipse.GetEclipse(user1data.GetBirthDateTime(), user1data.timezone, CommonData.ZODIAC_MOON, targetDegree, false);
+                    user1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    DateTime target = eclipse.GetEclipse(user2data.GetBirthDateTime(), user2data.timezone, CommonData.ZODIAC_MOON, targetDegree, false);
+                    user2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    DateTime target = eclipse.GetEclipse(event1data.GetBirthDateTime(), event1data.timezone, CommonData.ZODIAC_MOON, targetDegree, false);
+                    event1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    DateTime target = eclipse.GetEclipse(event2data.GetBirthDateTime(), event2data.timezone, CommonData.ZODIAC_MOON, targetDegree, false);
+                    event2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
             }
             ReRender();
         }
 
         private void TimePlus_Click(object sender, RoutedEventArgs e)
         {
-            DateTime now = user1data.GetBirthDateTime();
-            if (NT.SelectedIndex == 0)
+            if (currentSpanType == SpanType.UNIT)
             {
-                now = user1data.GetBirthDateTime().AddSeconds(plusUnit);
-                user1data.SetDateTime(now);
-                ReCalc();
-                mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                DateTime now = user1data.GetBirthDateTime();
+                if (NT.SelectedIndex == 0)
+                {
+                    now = user1data.GetBirthDateTime().AddSeconds(plusUnit);
+                    user1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    now = user2data.GetBirthDateTime().AddSeconds(plusUnit);
+                    user2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    now = event1data.GetBirthDateTime().AddSeconds(plusUnit);
+                    event1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    now = event2data.GetBirthDateTime().AddSeconds(plusUnit);
+                    event2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
             }
-            else if (NT.SelectedIndex == 1)
+            else if (currentSpanType == SpanType.NEWMOON)
             {
-                now = user2data.GetBirthDateTime().AddSeconds(plusUnit);
-                user2data.SetDateTime(now);
-                ReCalc();
-                mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                DateTime now;
+                MoonCalc moon = new MoonCalc(configData, calc.GetSwiss());
+                if (NT.SelectedIndex == 0)
+                {
+                    now = moon.NewMoonPlus(user1data.GetBirthDateTime(), user1data.timezone);
+                    user1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    now = moon.NewMoonPlus(user2data.GetBirthDateTime(), user2data.timezone);
+                    user2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    now = moon.NewMoonPlus(event1data.GetBirthDateTime(), event1data.timezone);
+                    event1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    now = moon.NewMoonPlus(event2data.GetBirthDateTime(), event2data.timezone);
+                    event2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
             }
-            else if (NT.SelectedIndex == 2)
+            else if (currentSpanType == SpanType.FULLMOON)
             {
-                now = event1data.GetBirthDateTime().AddSeconds(plusUnit);
-                event1data.SetDateTime(now);
-                ReCalc();
-                mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                DateTime now = user1data.GetBirthDateTime();
+                MoonCalc moon = new MoonCalc(configData, calc.GetSwiss());
+                if (NT.SelectedIndex == 0)
+                {
+                    now = moon.FullMoonPlus(user1data.GetBirthDateTime(), user1data.timezone);
+                    user1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    now = moon.FullMoonPlus(user2data.GetBirthDateTime(), user2data.timezone);
+                    user2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    now = moon.FullMoonPlus(event1data.GetBirthDateTime(), event1data.timezone);
+                    event1data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    now = moon.FullMoonPlus(event2data.GetBirthDateTime(), event2data.timezone);
+                    event2data.SetDateTime(now);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
             }
-            else if (NT.SelectedIndex == 3)
+            else if (currentSpanType == SpanType.SOLARRETURN)
             {
-                now = event2data.GetBirthDateTime().AddSeconds(plusUnit);
-                event2data.SetDateTime(now);
-                ReCalc();
-                mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                EclipseCalc eclipse = calc.GetEclipseInstance();
+                if (NT.SelectedIndex == 0)
+                {
+                    DateTime target = eclipse.GetEclipse(user1data.GetBirthDateTime(), user1data.timezone, CommonData.ZODIAC_SUN, list1[CommonData.ZODIAC_SUN].absolute_position, true);
+                    user1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    DateTime target = eclipse.GetEclipse(user2data.GetBirthDateTime(), user2data.timezone, CommonData.ZODIAC_SUN, list1[CommonData.ZODIAC_SUN].absolute_position, true);
+                    user2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    DateTime target = eclipse.GetEclipse(event1data.GetBirthDateTime(), event1data.timezone, CommonData.ZODIAC_SUN, list1[CommonData.ZODIAC_SUN].absolute_position, true);
+                    event1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    DateTime target = eclipse.GetEclipse(event2data.GetBirthDateTime(), event2data.timezone, CommonData.ZODIAC_SUN, list1[CommonData.ZODIAC_SUN].absolute_position, true);
+                    event2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
+            }
+            else if (currentSpanType == SpanType.SOLARINGRESS)
+            {
+                EclipseCalc eclipse = calc.GetEclipseInstance();
+                double targetDegree = Util.GetNextIngressDegree(list1[CommonData.ZODIAC_SUN].absolute_position);
+                if (NT.SelectedIndex == 0)
+                {
+                    DateTime target = eclipse.GetEclipse(user1data.GetBirthDateTime(), user1data.timezone, CommonData.ZODIAC_SUN, targetDegree, true);
+                    user1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    DateTime target = eclipse.GetEclipse(user2data.GetBirthDateTime(), user2data.timezone, CommonData.ZODIAC_SUN, targetDegree, true);
+                    user2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    DateTime target = eclipse.GetEclipse(event1data.GetBirthDateTime(), event1data.timezone, CommonData.ZODIAC_SUN, targetDegree, true);
+                    event1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    DateTime target = eclipse.GetEclipse(event2data.GetBirthDateTime(), event2data.timezone, CommonData.ZODIAC_SUN, targetDegree, true);
+                    event2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
+
+
+
+            }
+            else if (currentSpanType == SpanType.MOONINGRESS)
+            {
+                EclipseCalc eclipse = calc.GetEclipseInstance();
+                double targetDegree = Util.GetNextIngressDegree(list1[CommonData.ZODIAC_MOON].absolute_position);
+                if (NT.SelectedIndex == 0)
+                {
+                    DateTime target = eclipse.GetEclipse(user1data.GetBirthDateTime(), user1data.timezone, CommonData.ZODIAC_MOON, targetDegree, true);
+                    user1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(0, user1data.name, user1data.GetBirthDateTime(), user1data.birth_place, String.Format("{0:f3} {1:f3}", user1data.lat, user1data.lng), user1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 1)
+                {
+                    DateTime target = eclipse.GetEclipse(user2data.GetBirthDateTime(), user2data.timezone, CommonData.ZODIAC_MOON, targetDegree, true);
+                    user2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(1, user2data.name, user2data.GetBirthDateTime(), user2data.birth_place, String.Format("{0:f3} {1:f3}", user2data.lat, user2data.lng), user2data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 2)
+                {
+                    DateTime target = eclipse.GetEclipse(event1data.GetBirthDateTime(), event1data.timezone, CommonData.ZODIAC_MOON, targetDegree, true);
+                    event1data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(2, event1data.name, event1data.GetBirthDateTime(), event1data.birth_place, String.Format("{0:f3} {1:f3}", event1data.lat, event1data.lng), event1data.timezone_str);
+                }
+                else if (NT.SelectedIndex == 3)
+                {
+                    DateTime target = eclipse.GetEclipse(event2data.GetBirthDateTime(), event2data.timezone, CommonData.ZODIAC_MOON, targetDegree, true);
+                    event2data.SetDateTime(target);
+                    ReCalc();
+                    mainWindowVM.ReSet(3, event2data.name, event2data.GetBirthDateTime(), event2data.birth_place, String.Format("{0:f3} {1:f3}", event2data.lat, event2data.lng), event2data.timezone_str);
+                }
             }
             ReRender();
         }

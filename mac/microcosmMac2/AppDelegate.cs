@@ -23,6 +23,7 @@ namespace microcosmMac2
 		public int settingIndex;
         public ConfigData config;
 		public TempSetting tempSetting;
+        public SpanType currentSpanType = SpanType.UNIT;
 
         // old:savedFileはディレクトリ、eventFileはファイル
         // new:savedFileはファイル、eventIndexはファイル内index

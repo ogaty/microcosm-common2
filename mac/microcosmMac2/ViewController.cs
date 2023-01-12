@@ -520,6 +520,27 @@ namespace microcosmMac2
                 list3 = calc.ReCalc(configData, appDelegate.currentSetting, ring3);
             }
             houseList1 = calc.CuspCalc(ring1.GetDateTime(), ring1.timezone, ring1.lat, ring1.lng, configData.houseCalc);
+            if (configData.sidereal == Esidereal.DRACONIC)
+            {
+                if (configData.nodeCalc == ENodeCalc.TRUE)
+                {
+                    houseList1.Select(h =>
+                    {
+                        h -= list1[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+                else
+                {
+                    houseList1.Select(h =>
+                    {
+                        h -= list1[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+            }
             list1[CommonData.ZODIAC_ASC] = new PlanetData()
             {
                 no = CommonData.ZODIAC_ASC,
@@ -552,6 +573,27 @@ namespace microcosmMac2
             {
                 houseList2 = calc.CuspCalc(ring2.GetDateTime(), ring2.timezone, ring2.lat, ring2.lng, configData.houseCalc);
             }
+            if (configData.sidereal == Esidereal.DRACONIC)
+            {
+                if (configData.nodeCalc == ENodeCalc.TRUE)
+                {
+                    houseList2.Select(h =>
+                    {
+                        h -= list2[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+                else
+                {
+                    houseList2.Select(h =>
+                    {
+                        h -= list2[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+            }
             list2[CommonData.ZODIAC_ASC] = new PlanetData()
             {
                 no = CommonData.ZODIAC_ASC,
@@ -577,6 +619,28 @@ namespace microcosmMac2
 
 
             houseList3 = calc.CuspCalc(ring3.GetDateTime(), ring3.timezone, ring3.lat, ring3.lng, configData.houseCalc);
+            if (configData.sidereal == Esidereal.DRACONIC)
+            {
+                if (configData.nodeCalc == ENodeCalc.TRUE)
+                {
+                    houseList3.Select(h =>
+                    {
+                        h -= list3[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+                else
+                {
+                    houseList3.Select(h =>
+                    {
+                        h -= list3[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+                        if (h < 0) h += 360;
+                        return h;
+                    });
+                }
+            }
+
             list3[CommonData.ZODIAC_ASC] = new PlanetData()
             {
                 no = CommonData.ZODIAC_ASC,
@@ -1124,15 +1188,15 @@ namespace microcosmMac2
 
                 int index = (int)(planet.absolute_position / 5);
 
-                BoxInit(ref box, ref index, planet.absolute_position);
+                BoxInit(ref box, ref index);
 
                 // 天体そのもの
                 planetOffset = GetPlanetOffset(1);
                 DrawPlanetText(index, houseList1[1], planet, p, cvs, planetOffset);
 
                 // 天体から中心への線
-                //if (appDelegate.bands == 1)
-                //{
+                if (appDelegate.bands == 1)
+                {
                     Position startPt;
                     Position endPt;
 
@@ -1145,7 +1209,7 @@ namespace microcosmMac2
                     endPt.y = -1 * endPt.y + CenterY;
 
                     cvs.DrawLine((float)startPt.x, (float)startPt.y, (float)endPt.x, (float)endPt.y, lineStyle);
-                //}
+                }
             }
             
 
@@ -1171,7 +1235,7 @@ namespace microcosmMac2
 
                     int index2 = (int)(planet2.absolute_position / 5);
 
-                    BoxInit(ref box2, ref index2, planet2.absolute_position);
+                    BoxInit(ref box2, ref index2);
 
                     // 天体そのもの
                     planetOffset2 = GetPlanetOffset(2);
@@ -1199,7 +1263,7 @@ namespace microcosmMac2
 
                     int index3 = (int)(planet3.absolute_position / 5);
 
-                    BoxInit(ref box3, ref index3, planet3.absolute_position);
+                    BoxInit(ref box3, ref index3);
 
                     // 天体そのもの
                     planetOffset3 = GetPlanetOffset(3);
@@ -1809,8 +1873,13 @@ namespace microcosmMac2
             }
         }
 
-        public void BoxInit(ref int[] box, ref int index, double absolute_position)
+        public void BoxInit(ref int[] box, ref int index)
         {
+            if (box.Length < index || index < 0)
+            {
+                Debug.WriteLine("BoxInitError:" + index);
+                return;
+            }
             // 重ならないようにずらしを入れる
             // 1サインに6度単位5個までデータが入る
             if (box[index] == 1)
@@ -2146,212 +2215,6 @@ namespace microcosmMac2
             ReRender();
         }
 
-        public string GetTimeSet()
-        {
-            return timesetterChangeButton.SelectedItem.Title;
-        }
-
-        partial void TimeSetRightClicked(Foundation.NSObject sender)
-        {
-            string currentTime = GetTimeSet();
-            DateTime now = udata1.GetDateTime();
-            if (currentTime == "User1")
-            {
-                now = udata1.GetDateTime().AddSeconds(plusUnit);
-                udata1.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(0, udata1);
-            }
-            else if (currentTime == "User2")
-            {
-                now = udata2.GetDateTime().AddSeconds(plusUnit);
-                udata2.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(1, udata2);
-            }
-            else if (currentTime == "Event1")
-            {
-                now = edata1.GetDateTime().AddSeconds(plusUnit);
-                edata1.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(0, edata1);
-            }
-            else if (currentTime == "Event2")
-            {
-                now = edata2.GetDateTime().AddSeconds(plusUnit);
-                edata2.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(1, edata2);
-            }
-            ReRender();
-        }
-
-        partial void TimeSetLeftClicked(Foundation.NSObject sender)
-        {
-            string currentTime = GetTimeSet();
-            DateTime now = udata1.GetDateTime();
-            if (currentTime == "User1")
-            {
-                now = udata1.GetDateTime().AddSeconds(-1 * plusUnit);
-                udata1.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(0, udata1);
-            }
-            else if (currentTime == "User2")
-            {
-                now = udata2.GetDateTime().AddSeconds(-1 * plusUnit);
-                udata2.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(1, udata2);
-            }
-            else if (currentTime == "Event1")
-            {
-                now = edata1.GetDateTime().AddSeconds(-1 * plusUnit);
-                edata1.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(0, edata1);
-            }
-            else if (currentTime == "Event2")
-            {
-                now = edata2.GetDateTime().AddSeconds(-1 * plusUnit);
-                edata2.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(1, edata2);
-            }
-            ReRender();
-        }
-
-        partial void TimeSetNowClicked(Foundation.NSObject sender)
-        {
-            string currentTime = GetTimeSet();
-            if (currentTime == "User1")
-            {
-                udata1.SetDateTime(DateTime.Now);
-                ReCalc();
-                RefreshUserBox(0, udata1);
-            }
-            else if (currentTime == "User2")
-            {
-                udata2.SetDateTime(DateTime.Now);
-                ReCalc();
-                RefreshUserBox(1, udata1);
-            }
-            else if (currentTime == "Event1")
-            {
-                edata1.SetDateTime(DateTime.Now);
-                ReCalc();
-                RefreshEventBox(0, edata1);
-            }
-            else if (currentTime == "Event2")
-            {
-                edata2.SetDateTime(DateTime.Now);
-                ReCalc();
-                RefreshEventBox(1, edata2);
-            }
-            ReRender();
-        }
-
-        /// <summary>
-        /// 1重なら表示されている円、3重なら外側をNowにする
-        /// </summary>
-        public void TimeSetNowCurrentBand()
-        {
-            ETargetUser currentTime = ETargetUser.USER1;
-
-            if (appDelegate.bands == 1)
-            {
-                currentTime = calcTargetUser[0];
-            }
-            else if (appDelegate.bands == 2)
-            {
-                currentTime = calcTargetUser[1];
-            }
-            else if (appDelegate.bands == 3)
-            {
-                currentTime = calcTargetUser[2];
-            }
-            DateTime now = DateTime.Now;
-            if (currentTime == ETargetUser.USER1)
-            {
-                udata1.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(0, udata1);
-            }
-            else if (currentTime == ETargetUser.USER2)
-            {
-                udata2.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(1, udata2);
-            }
-            else if (currentTime == ETargetUser.EVENT1)
-            {
-                edata1.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(0, edata1);
-            }
-            else if (currentTime == ETargetUser.EVENT2)
-            {
-                edata2.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(1, edata2);
-            }
-            ReRender();
-
-        }
-
-        /// <summary>
-        /// 1重なら表示されている円、3重なら外側かなぁ
-        /// </summary>
-        /// <param name="seconds"></param>
-        public void TimeSetAny(int seconds)
-        {
-            ETargetUser currentTime = ETargetUser.USER1;
-
-            if (appDelegate.bands == 1)
-            {
-                currentTime = calcTargetUser[0];
-            }
-            else if (appDelegate.bands == 2)
-            {
-                currentTime = calcTargetUser[1];
-            }
-            else if (appDelegate.bands == 3)
-            {
-                currentTime = calcTargetUser[2];
-            }
-            DateTime now = udata1.GetDateTime();
-            if (currentTime == ETargetUser.USER1)
-            {
-                now = udata1.GetDateTime().AddSeconds(seconds);
-                udata1.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(0, udata1);
-            }
-            else if (currentTime == ETargetUser.USER2)
-            {
-                now = udata2.GetDateTime().AddSeconds(seconds);
-                udata2.SetDateTime(now);
-                ReCalc();
-                RefreshUserBox(1, udata2);
-            }
-            else if (currentTime == ETargetUser.EVENT1)
-            {
-                now = edata1.GetDateTime().AddSeconds(seconds);
-                edata1.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(0, edata1);
-            }
-            else if (currentTime == ETargetUser.EVENT2)
-            {
-                now = edata2.GetDateTime().AddSeconds(seconds);
-                edata2.SetDateTime(now);
-                ReCalc();
-                RefreshEventBox(1, edata2);
-            }
-            ReRender();
-
-        }
-
         /// <summary>
         /// マウスオーバー
         /// </summary>
@@ -2495,323 +2358,6 @@ namespace microcosmMac2
             Chart1E1();
         }
 
-        public void Chart1U1()
-        {
-            appDelegate.bands = 1;
-            calcTargetUser[0] = ETargetUser.USER1;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart1U2()
-        {
-            appDelegate.bands = 1;
-            calcTargetUser[0] = ETargetUser.USER2;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart1E1()
-        {
-            appDelegate.bands = 1;
-            calcTargetUser[0] = ETargetUser.EVENT1;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart1E2()
-        {
-            appDelegate.bands = 1;
-            calcTargetUser[0] = ETargetUser.EVENT2;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart2UU()
-        {
-            appDelegate.bands = 2;
-            appDelegate.secondBand = AppDelegate.BandKind.NATAL;
-            calcTargetUser[0] = ETargetUser.USER1;
-            calcTargetUser[1] = ETargetUser.USER2;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart2UE()
-        {
-            appDelegate.bands = 2;
-            appDelegate.secondBand = AppDelegate.BandKind.TRANSIT;
-            calcTargetUser[0] = ETargetUser.USER1;
-            calcTargetUser[1] = ETargetUser.EVENT1;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart2EE()
-        {
-            appDelegate.bands = 2;
-            appDelegate.secondBand = AppDelegate.BandKind.TRANSIT;
-            calcTargetUser[0] = ETargetUser.EVENT1;
-            calcTargetUser[1] = ETargetUser.EVENT2;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart3NPT()
-        {
-            appDelegate.bands = 3;
-            appDelegate.secondBand = AppDelegate.BandKind.PROGRESS;
-            appDelegate.thirdBand = AppDelegate.BandKind.TRANSIT;
-            calcTargetUser[0] = ETargetUser.USER1;
-            calcTargetUser[1] = ETargetUser.EVENT1;
-            calcTargetUser[2] = ETargetUser.EVENT1;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart3NNT()
-        {
-            appDelegate.bands = 3;
-            appDelegate.secondBand = AppDelegate.BandKind.NATAL;
-            appDelegate.thirdBand = AppDelegate.BandKind.NATAL;
-            calcTargetUser[0] = ETargetUser.USER1;
-            calcTargetUser[1] = ETargetUser.USER2;
-            calcTargetUser[2] = ETargetUser.EVENT1;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart3NTT()
-        {
-            appDelegate.bands = 3;
-            appDelegate.secondBand = AppDelegate.BandKind.TRANSIT;
-            appDelegate.thirdBand = AppDelegate.BandKind.TRANSIT;
-            calcTargetUser[0] = ETargetUser.USER1;
-            calcTargetUser[1] = ETargetUser.EVENT1;
-            calcTargetUser[2] = ETargetUser.EVENT2;
-            ReCalc();
-            ReRender();
-        }
-
-        public void Chart3NNC()
-        {
-            appDelegate.bands = 3;
-            appDelegate.secondBand = AppDelegate.BandKind.TRANSIT;
-            appDelegate.thirdBand = AppDelegate.BandKind.COMPOSIT;
-            calcTargetUser[0] = ETargetUser.USER1;
-            calcTargetUser[1] = ETargetUser.USER2;
-            calcTargetUser[2] = ETargetUser.EVENT2;
-            ReCalc();
-            ReRender();
-        }
-
-        public void SetAspect11()
-        {
-            NSMenuItem item = appDelegate.GetAspect11();
-            if (item.State == NSCellStateValue.On)
-            {
-                appDelegate.SetAspect11(NSCellStateValue.Off);
-                appDelegate.aspect11disp = false;
-            }
-            else
-            {
-                appDelegate.SetAspect11(NSCellStateValue.On);
-                appDelegate.aspect11disp = true;
-            }
-            ReRender();
-
-        }
-
-        public void SetAspect12()
-        {
-            NSMenuItem item = appDelegate.GetAspect12();
-            if (item.State == NSCellStateValue.On)
-            {
-                appDelegate.SetAspect12(NSCellStateValue.Off);
-                appDelegate.aspect12disp = false;
-            }
-            else
-            {
-                appDelegate.SetAspect12(NSCellStateValue.On);
-                appDelegate.aspect12disp = true;
-            }
-            ReRender();
-
-        }
-
-        public void SetAspect13()
-        {
-            NSMenuItem item = appDelegate.GetAspect13();
-            if (item.State == NSCellStateValue.On)
-            {
-                appDelegate.SetAspect13(NSCellStateValue.Off);
-                appDelegate.aspect13disp = false;
-            }
-            else
-            {
-                appDelegate.SetAspect13(NSCellStateValue.On);
-                appDelegate.aspect13disp = true;
-            }
-            ReRender();
-
-        }
-
-        public void SetAspect22()
-        {
-            NSMenuItem item = appDelegate.GetAspect22();
-            if (item.State == NSCellStateValue.On)
-            {
-                appDelegate.SetAspect22(NSCellStateValue.Off);
-                appDelegate.aspect22disp = false;
-            }
-            else
-            {
-                appDelegate.SetAspect22(NSCellStateValue.On);
-                appDelegate.aspect22disp = true;
-            }
-            ReRender();
-
-        }
-
-        public void SetAspect23()
-        {
-            NSMenuItem item = appDelegate.GetAspect23();
-            if (item.State == NSCellStateValue.On)
-            {
-                appDelegate.SetAspect23(NSCellStateValue.Off);
-                appDelegate.aspect23disp = false;
-            }
-            else
-            {
-                appDelegate.SetAspect23(NSCellStateValue.On);
-                appDelegate.aspect23disp = true;
-            }
-            ReRender();
-
-        }
-
-        public void SetAspect33()
-        {
-            NSMenuItem item = appDelegate.GetAspect33();
-            if (item.State == NSCellStateValue.On)
-            {
-                appDelegate.SetAspect33(NSCellStateValue.Off);
-                appDelegate.aspect33disp = false;
-            }
-            else
-            {
-                appDelegate.SetAspect33(NSCellStateValue.On);
-                appDelegate.aspect33disp = true;
-            }
-            ReRender();
-        }
-
-        public void AspectAllOn()
-        {
-            appDelegate.SetAspect11(NSCellStateValue.On);
-            appDelegate.SetAspect12(NSCellStateValue.On);
-            appDelegate.SetAspect13(NSCellStateValue.On);
-            appDelegate.SetAspect22(NSCellStateValue.On);
-            appDelegate.SetAspect23(NSCellStateValue.On);
-            appDelegate.SetAspect33(NSCellStateValue.On);
-            appDelegate.aspect11disp = true;
-            appDelegate.aspect12disp = true;
-            appDelegate.aspect13disp = true;
-            appDelegate.aspect22disp = true;
-            appDelegate.aspect23disp = true;
-            appDelegate.aspect33disp = true;
-            ReRender();
-        }
-
-        public void AspectOn(int index)
-        {
-            if (index == 0)
-            {
-                appDelegate.SetAspect11(NSCellStateValue.On);
-                appDelegate.aspect11disp = true;
-            }
-            else if (index == 1)
-            {
-                appDelegate.SetAspect12(NSCellStateValue.On);
-                appDelegate.aspect12disp = true;
-            }
-            else if (index == 2)
-            {
-                appDelegate.SetAspect13(NSCellStateValue.On);
-                appDelegate.aspect13disp = true;
-            }
-            else if (index == 3)
-            {
-                appDelegate.SetAspect22(NSCellStateValue.On);
-                appDelegate.aspect22disp = true;
-            }
-            else if (index == 4)
-            {
-                appDelegate.SetAspect23(NSCellStateValue.On);
-                appDelegate.aspect23disp = true;
-            }
-            else if (index == 5)
-            {
-                appDelegate.SetAspect33(NSCellStateValue.On);
-                appDelegate.aspect33disp = true;
-            }
-
-            ReRender();
-        }
-
-        public void AspectAllOff()
-        {
-            appDelegate.SetAspect11(NSCellStateValue.Off);
-            appDelegate.SetAspect12(NSCellStateValue.Off);
-            appDelegate.SetAspect13(NSCellStateValue.Off);
-            appDelegate.SetAspect22(NSCellStateValue.Off);
-            appDelegate.SetAspect23(NSCellStateValue.Off);
-            appDelegate.SetAspect33(NSCellStateValue.Off);
-            appDelegate.aspect11disp = false;
-            appDelegate.aspect12disp = false;
-            appDelegate.aspect13disp = false;
-            appDelegate.aspect22disp = false;
-            appDelegate.aspect23disp = false;
-            appDelegate.aspect33disp = false;
-            ReRender();
-        }
-
-        public void AspectOff(int index)
-        {
-            if (index == 0)
-            {
-                appDelegate.SetAspect11(NSCellStateValue.Off);
-                appDelegate.aspect11disp = false;
-            }
-            else if (index == 1)
-            {
-                appDelegate.SetAspect12(NSCellStateValue.Off);
-                appDelegate.aspect12disp = false;
-            }
-            else if (index == 2)
-            {
-                appDelegate.SetAspect13(NSCellStateValue.Off);
-                appDelegate.aspect13disp = false;
-            }
-            else if (index == 3)
-            {
-                appDelegate.SetAspect22(NSCellStateValue.Off);
-                appDelegate.aspect22disp = false;
-            }
-            else if (index == 4)
-            {
-                appDelegate.SetAspect23(NSCellStateValue.Off);
-                appDelegate.aspect23disp = false;
-            }
-            else if (index == 5)
-            {
-                appDelegate.SetAspect33(NSCellStateValue.Off);
-                appDelegate.aspect33disp = false;
-            }
-
-            ReRender();
-        }
-
         /// <summary>
         /// どのデータを使うか(u1/u2/e1/u2)
         /// </summary>
@@ -2891,7 +2437,6 @@ namespace microcosmMac2
             base.MouseDragged(theEvent);
             ReRender();
         }
-
 
         partial void test100(Foundation.NSObject sender)
         {

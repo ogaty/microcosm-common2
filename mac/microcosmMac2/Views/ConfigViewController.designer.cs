@@ -34,6 +34,9 @@ namespace microcosmMac2.Views
 		AppKit.NSPopUpButton defaultTimezone { get; set; }
 
 		[Outlet]
+		AppKit.NSButton Draconic { get; set; }
+
+		[Outlet]
 		AppKit.NSButton equal { get; set; }
 
 		[Outlet]
@@ -104,6 +107,9 @@ namespace microcosmMac2.Views
 
 		[Action ("DecimalClick:")]
 		partial void DecimalClick (Foundation.NSObject sender);
+
+		[Action ("DraconicClick:")]
+		partial void DraconicClick (Foundation.NSObject sender);
 
 		[Action ("EqualClick:")]
 		partial void EqualClick (Foundation.NSObject sender);
@@ -303,6 +309,11 @@ namespace microcosmMac2.Views
 			if (zeroaries != null) {
 				zeroaries.Dispose ();
 				zeroaries = null;
+			}
+
+			if (Draconic != null) {
+				Draconic.Dispose ();
+				Draconic = null;
 			}
 		}
 	}

@@ -25,11 +25,6 @@ namespace microcosm
         public MainWindow mainWindow;
         public DatabaseWindow databaseWindow;
 
-        public DirAddWindow()
-        {
-            InitializeComponent();
-        }
-
         public DirAddWindow(MainWindow main, DatabaseWindow dbWindow)
         {
             InitializeComponent();
@@ -41,6 +36,7 @@ namespace microcosm
         {
             string root = Util.root();
 
+            // fileNameというけど実際DirName
             if (fileName.Text.IndexOf(@"\") >= 0)
             {
                 MessageBox.Show("そのファイル名は指定できません。");

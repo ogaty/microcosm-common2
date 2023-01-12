@@ -37,6 +37,50 @@ namespace microcosmMac2.Views
         public override void ViewDidLoad()
         {
             AppDelegate appDelegate = (AppDelegate)NSApplication.SharedApplication.Delegate;
+
+            if (appDelegate.currentSpanType == Common.SpanType.UNIT)
+            {
+                UnitRadio.State = NSCellStateValue.On;
+                NewMoonRadio.State = NSCellStateValue.Off;
+                FullMoonRadio.State = NSCellStateValue.Off;
+                SolarReturnRadio.State = NSCellStateValue.Off;
+                Ingress.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.NEWMOON)
+            {
+                NewMoonRadio.State = NSCellStateValue.On;
+                UnitRadio.State = NSCellStateValue.Off;
+                FullMoonRadio.State = NSCellStateValue.Off;
+                SolarReturnRadio.State = NSCellStateValue.Off;
+                Ingress.State = NSCellStateValue.Off;
+
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.FULLMOON)
+            {
+                FullMoonRadio.State = NSCellStateValue.On;
+                UnitRadio.State = NSCellStateValue.Off;
+                NewMoonRadio.State = NSCellStateValue.Off;
+                SolarReturnRadio.State = NSCellStateValue.Off;
+                Ingress.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.SOLARRETURN)
+            {
+                SolarReturnRadio.State = NSCellStateValue.On;
+                UnitRadio.State = NSCellStateValue.Off;
+                NewMoonRadio.State = NSCellStateValue.Off;
+                FullMoonRadio.State = NSCellStateValue.Off;
+                Ingress.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.SOLARINGRESS ||
+                appDelegate.currentSpanType == Common.SpanType.MOONINGRESS
+                )
+            {
+                Ingress.State = NSCellStateValue.On;
+                UnitRadio.State = NSCellStateValue.Off;
+                NewMoonRadio.State = NSCellStateValue.Off;
+                FullMoonRadio.State = NSCellStateValue.Off;
+                SolarReturnRadio.State = NSCellStateValue.Off;
+            }
             unit.StringValue = appDelegate.viewController.plusUnit.ToString();
 
             if (appDelegate.viewController.plusUnit >= 86400)
@@ -80,6 +124,17 @@ namespace microcosmMac2.Views
             spanCombo.AddItems(items);
             spanCombo.SelectItem(appDelegate.config.defaultTimezoneStr);
 
+            string[] ingressPlanetList = { "sun", "moon" };
+            IngressPlanet.RemoveAllItems();
+            IngressPlanet.AddItems(ingressPlanetList);
+            if (appDelegate.currentSpanType == Common.SpanType.SOLARINGRESS)
+            {
+                IngressPlanet.SelectItem("sun");
+            }
+            else if (appDelegate.currentSpanType == Common.SpanType.MOONINGRESS)
+            {
+                IngressPlanet.SelectItem("moon");
+            }
         }
 
         #endregion
@@ -97,41 +152,73 @@ namespace microcosmMac2.Views
         {
             AppDelegate appDelegate = (AppDelegate)NSApplication.SharedApplication.Delegate;
 
-            int unitInt = 0;
-            if (!Int32.TryParse(unit.StringValue, out unitInt))
+            if (UnitRadio.State == NSCellStateValue.On)
             {
-                NSAlert alert = new NSAlert();
-                alert.MessageText = "数値で指定してください。";
-                alert.RunModal();
-                return;
-            }
+                int unitInt = 0;
+                if (!Int32.TryParse(unit.StringValue, out unitInt))
+                {
+                    NSAlert alert = new NSAlert();
+                    alert.MessageText = "数値で指定してください。";
+                    alert.RunModal();
+                    return;
+                }
 
-            string unitDisplay = unitInt.ToString();
-            string display = "";
-            int plusUnit = 0;
+                string unitDisplay = unitInt.ToString();
+                string display = "";
+                int plusUnit = 0;
 
-            if (radioSeconds.State == NSCellStateValue.On)
-            {
-                display = " Seconds";
-                plusUnit = unitInt;
+                if (radioSeconds.State == NSCellStateValue.On)
+                {
+                    display = " Seconds";
+                    plusUnit = unitInt;
+                }
+                if (radioMinutes.State == NSCellStateValue.On)
+                {
+                    display = " Minutes";
+                    plusUnit = unitInt * 60;
+                }
+                if (radioHours.State == NSCellStateValue.On)
+                {
+                    display = " Hours";
+                    plusUnit = unitInt * 3600;
+                }
+                if (radioDays.State == NSCellStateValue.On)
+                {
+                    display = " Days";
+                    plusUnit = unitInt * 86400;
+                }
+                appDelegate.viewController.SetSpanButton(unitDisplay + display);
+                appDelegate.viewController.plusUnit = plusUnit;
+                appDelegate.currentSpanType = Common.SpanType.UNIT;
             }
-            if (radioMinutes.State == NSCellStateValue.On)
+            else if (NewMoonRadio.State == NSCellStateValue.On)
             {
-                display = " Minutes";
-                plusUnit = unitInt * 60;
+                appDelegate.viewController.SetSpanButton("NewMoon");
+                appDelegate.currentSpanType = Common.SpanType.NEWMOON;
             }
-            if (radioHours.State == NSCellStateValue.On)
+            else if (FullMoonRadio.State == NSCellStateValue.On)
             {
-                display = " Hours";
-                plusUnit = unitInt * 3600;
+                appDelegate.viewController.SetSpanButton("FullMoon");
+                appDelegate.currentSpanType = Common.SpanType.FULLMOON;
             }
-            if (radioDays.State == NSCellStateValue.On)
+            else if (SolarReturnRadio.State == NSCellStateValue.On)
             {
-                display = " Days";
-                plusUnit = unitInt * 86400;
+                appDelegate.viewController.SetSpanButton("Solar");
+                appDelegate.currentSpanType = Common.SpanType.SOLARRETURN;
             }
-            appDelegate.viewController.SetSpanButton(unitDisplay + display);
-            appDelegate.viewController.plusUnit = plusUnit;
+            else if (Ingress.State == NSCellStateValue.On)
+            {
+                if (IngressPlanet.SelectedItem.Title == "sun")
+                {
+                    appDelegate.viewController.SetSpanButton("Sun Ing.");
+                    appDelegate.currentSpanType = Common.SpanType.SOLARINGRESS;
+                }
+                else if (IngressPlanet.SelectedItem.Title == "moon")
+                {
+                    appDelegate.viewController.SetSpanButton("Moon Ing.");
+                    appDelegate.currentSpanType = Common.SpanType.MOONINGRESS;
+                }
+            }
 
             DismissController(this);
         }
@@ -162,6 +249,46 @@ namespace microcosmMac2.Views
             radioMinutes.State = NSCellStateValue.Off;
             radioHours.State = NSCellStateValue.Off;
             radioDays.State = NSCellStateValue.Off;
+        }
+
+        partial void FullMoonRadioClicked(Foundation.NSObject sender)
+        {
+            SolarReturnRadio.State = NSCellStateValue.Off;
+            Ingress.State = NSCellStateValue.Off;
+            NewMoonRadio.State = NSCellStateValue.Off;
+            UnitRadio.State = NSCellStateValue.Off;
+        }
+
+        partial void NewMoonRadioClicked(Foundation.NSObject sender)
+        {
+            SolarReturnRadio.State = NSCellStateValue.Off;
+            Ingress.State = NSCellStateValue.Off;
+            FullMoonRadio.State = NSCellStateValue.Off;
+            UnitRadio.State = NSCellStateValue.Off;
+        }
+
+        partial void IngressClicked(Foundation.NSObject sender)
+        {
+            SolarReturnRadio.State = NSCellStateValue.Off;
+            NewMoonRadio.State = NSCellStateValue.Off;
+            FullMoonRadio.State = NSCellStateValue.Off;
+            UnitRadio.State = NSCellStateValue.Off;
+        }
+
+        partial void SolarReturnRadioClicked(Foundation.NSObject sender)
+        {
+            Ingress.State = NSCellStateValue.Off;
+            NewMoonRadio.State = NSCellStateValue.Off;
+            FullMoonRadio.State = NSCellStateValue.Off;
+            UnitRadio.State = NSCellStateValue.Off;
+        }
+
+        partial void UnitRadioClicked(Foundation.NSObject sender)
+        {
+            SolarReturnRadio.State = NSCellStateValue.Off;
+            Ingress.State = NSCellStateValue.Off;
+            NewMoonRadio.State = NSCellStateValue.Off;
+            FullMoonRadio.State = NSCellStateValue.Off;
         }
 
         partial void spanPopupChanged(Foundation.NSObject sender)

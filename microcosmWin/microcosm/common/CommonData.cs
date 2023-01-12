@@ -15,6 +15,17 @@ namespace microcosm.common
         EVENT1 = 2,
         EVENT2 = 3
     }
+
+    public enum SpanType
+    {
+        UNIT = 0,
+        NEWMOON = 1,
+        FULLMOON = 2,
+        SOLARINGRESS = 11,
+        MOONINGRESS = 12,
+        SOLARRETURN = 21,
+    }
+
     class CommonData
     {
 
@@ -63,6 +74,8 @@ namespace microcosm.common
 
         public static double defaultLat = 35.670587;
         public static double defaultLng = 139.772003;
+
+
 
         /// <summary>
         /// 番号を引数に天体のシンボルを返す

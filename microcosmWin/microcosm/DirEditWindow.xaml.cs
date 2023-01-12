@@ -24,12 +24,7 @@ namespace microcosm
     {
         public MainWindow mainWindow;
         public DatabaseWindow databaseWindow;
-        public string targetFullPath;
-
-        public DirEditWindow()
-        {
-            InitializeComponent();
-        }
+        public string? targetFullPath;
 
         public DirEditWindow(MainWindow main, DatabaseWindow databaseWindow)
         {
@@ -46,19 +41,18 @@ namespace microcosm
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            string root = Util.root();
-
-            if (fileName.Text.IndexOf(@"\") >= 0)
+            if (fileName.Text.Contains(@"\", StringComparison.CurrentCulture))
             {
                 MessageBox.Show("そのファイル名は指定できません。");
                 return;
             }
-            if (fileName.Text.IndexOf(@"/") >= 0)
+            if (fileName.Text.Contains(@"/", StringComparison.CurrentCulture))
             {
                 MessageBox.Show("そのファイル名は指定できません。");
                 return;
             }
 
+            targetFullPath ??= Util.root() + @"\data\";
 
             DirectoryInfo dir = new DirectoryInfo(targetFullPath);
             if (dir.Name == fileName.Text)

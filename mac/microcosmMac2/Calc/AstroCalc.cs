@@ -490,7 +490,15 @@ namespace microcosmMac2.Calc
         /// <param name="udata">UserData.</param>
         public Dictionary<int, PlanetData> ReCalc(ConfigData config, SettingData setting, UserData udata)
         {
-            Dictionary<int, PlanetData> p = PositionCalc(udata.GetDateTime(), udata.timezone, setting);
+            Dictionary<int, PlanetData> p;
+            if (config.sidereal == Esidereal.DRACONIC)
+            {
+                p = DraconicPositionCalc(udata.GetDateTime(), udata.timezone, setting);
+            }
+            else
+            {
+                p = PositionCalc(udata.GetDateTime(), udata.timezone, setting);
+            }
             //double[] cusps = CuspCalc(udata.GetDateTime(), udata.timezone, udata.lat, udata.lng, config.houseCalc);
             //Calculation calculate = new Calculation(p, cusps);
 
@@ -1108,7 +1116,41 @@ namespace microcosmMac2.Calc
             return eclipse;
         }
 
+        /// <summary>
+        /// draconic
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="timezone"></param>
+        /// <param name="currentSetting"></param>
+        /// <returns></returns>
+        public Dictionary<int, PlanetData> DraconicPositionCalc(DateTime d, double timezone, SettingData currentSetting)
+        {
+            Dictionary<int, PlanetData> planetList = PositionCalc(d, timezone, currentSetting);
 
+            double targetDegree;
+            if (configData.nodeCalc == ENodeCalc.MEAN)
+            {
+                targetDegree = planetList[CommonData.ZODIAC_DH_MEANNODE].absolute_position;
+            }
+            else
+            {
+                targetDegree = planetList[CommonData.ZODIAC_DH_TRUENODE].absolute_position;
+            }
+
+            Dictionary<int, PlanetData> newPlanetList = new Dictionary<int, PlanetData>();
+            foreach (KeyValuePair<int, PlanetData> pair in planetList)
+            {
+                PlanetData data = pair.Value;
+                data.absolute_position -= targetDegree;
+                if (data.absolute_position < 0)
+                {
+                    data.absolute_position += 360;
+                }
+                newPlanetList.Add(pair.Key, data);
+            }
+
+            return newPlanetList;
+        }
     }
 }
 
