@@ -15,25 +15,6 @@ namespace microcosmMac2.Config
         SIDEREAL = 1,
         DRACONIC = 2,
     }
-    public enum EProgression
-    {
-        PRIMARY = 0,
-        SECONDARY = 1,
-        SOLARARC = 2,
-        CPS = 3
-    }
-    public enum EHouseCalc
-    {
-        PLACIDUS = 0,
-        KOCH = 1,
-        CAMPANUS = 2,
-        EQUAL = 3,
-        PORPHYRY = 4,
-        REGIOMONTANUS = 5,
-        SOLAR = 6,
-        SOLARSIGN = 7,
-        ZEROARIES = 8
-    }
     public enum EDecimalDisp
     {
         DECIMAL = 0,
@@ -105,16 +86,8 @@ namespace microcosmMac2.Config
         [JsonPropertyName("defaultTimezone")]
         public double defaultTimezone { get; set; }
 
-        // プログレス計算方法
-        [JsonPropertyName("progression")]
-        public EProgression progression { get; set; }
-
         // デフォルト表示
         public int defaultBands { get; set; }
-
-        // ハウス
-        [JsonPropertyName("houseCalc")]
-        public EHouseCalc houseCalc { get; set; }
 
         // 獣帯外側幅
         public int zodiacOuterWidth { get; set; }
@@ -150,11 +123,9 @@ namespace microcosmMac2.Config
             defaultTimezone = 9.0;
             defaultTimezoneStr = "Asia/Tokyo (+9:00)";
             defaultPlace = "東京都";
-            houseCalc = EHouseCalc.PLACIDUS;
             lat = Common.CommonData.defaultLat;
             lng = Common.CommonData.defaultLng;
             decimalDisp = EDecimalDisp.DECIMAL;
-            progression = EProgression.SOLARARC;
             /*
             zodiacOuterWidth = 470;
             zodiacWidth = 60;
@@ -171,11 +142,9 @@ namespace microcosmMac2.Config
             defaultTimezone = 9.0;
             defaultTimezoneStr = "Asia/Tokyo (+9:00)";
             defaultPlace = "東京都";
-            houseCalc = EHouseCalc.PLACIDUS;
             lat = Common.CommonData.defaultLat;
             lng = Common.CommonData.defaultLng;
             decimalDisp = EDecimalDisp.DECIMAL;
-            progression = EProgression.SOLARARC;
 
             /*
             defaultPlace = "東京都千代田区";

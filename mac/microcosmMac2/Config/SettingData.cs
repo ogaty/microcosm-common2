@@ -3,9 +3,30 @@ using microcosmMac2.Common;
 using microcosmMac2.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace microcosmMac2.Config
 {
+    public enum EProgression
+    {
+        PRIMARY = 0,
+        SECONDARY = 1,
+        SOLARARC = 2,
+        CPS = 3
+    }
+    public enum EHouseCalc
+    {
+        PLACIDUS = 0,
+        KOCH = 1,
+        CAMPANUS = 2,
+        EQUAL = 3,
+        PORPHYRY = 4,
+        REGIOMONTANUS = 5,
+        SOLAR = 6,
+        SOLARSIGN = 7,
+        ZEROARIES = 8
+    }
+
     /// <summary>
     /// settingJsonをもとに生成
     /// 実際のsettingが最終的に格納されるところ
@@ -86,6 +107,12 @@ namespace microcosmMac2.Config
         public double[] orbSunMoon;
         public double[] orb1st;
         public double[] orb2nd;
+
+        // プログレス計算方法
+        public EProgression progression { get; set; }
+
+        // ハウス
+        public EHouseCalc houseCalc { get; set; }
 
         /// <summary>
         /// jsonから読まない
@@ -171,6 +198,9 @@ namespace microcosmMac2.Config
             dispAspectPlanetPallas = 0;
             dispAspectPlanetJuno = 0;
             dispAspectPlanetVesta = 0;
+
+            progression = EProgression.SECONDARY;
+            houseCalc = EHouseCalc.PLACIDUS;
         }
 
         /// <summary>
@@ -253,6 +283,9 @@ namespace microcosmMac2.Config
             dispAspectPlanetPallas = json.dispAspectPlanetPallas;
             dispAspectPlanetJuno = json.dispAspectPlanetJuno;
             dispAspectPlanetVesta = json.dispAspectPlanetVesta;
+
+            progression = json.progression;
+            houseCalc = json.houseCalc;
 
         }
 

@@ -55,6 +55,9 @@ namespace microcosmMac2.Views
 		AppKit.NSPopUpButton ctrlHShortCut { get; set; }
 
 		[Outlet]
+		AppKit.NSPopUpButton ctrlIShortCut { get; set; }
+
+		[Outlet]
 		AppKit.NSPopUpButton ctrlJShortCut { get; set; }
 
 		[Outlet]
@@ -71,6 +74,18 @@ namespace microcosmMac2.Views
 
 		[Outlet]
 		AppKit.NSPopUpButton ctrlOpenBracketShortCut { get; set; }
+
+		[Outlet]
+		AppKit.NSPopUpButton ctrlOShortCut { get; set; }
+
+		[Outlet]
+		AppKit.NSPopUpButton ctrlPShortCut { get; set; }
+
+		[Outlet]
+		AppKit.NSPopUpButton ctrlUShortCut { get; set; }
+
+		[Outlet]
+		AppKit.NSPopUpButton ctrlYShortCut { get; set; }
 
 		[Outlet]
 		AppKit.NSPopUpButton F10ShortCut { get; set; }
@@ -107,54 +122,29 @@ namespace microcosmMac2.Views
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ctrlHShortCut != null) {
-				ctrlHShortCut.Dispose ();
-				ctrlHShortCut = null;
+			if (ctrlYShortCut != null) {
+				ctrlYShortCut.Dispose ();
+				ctrlYShortCut = null;
 			}
 
-			if (ctrlJShortCut != null) {
-				ctrlJShortCut.Dispose ();
-				ctrlJShortCut = null;
+			if (ctrlUShortCut != null) {
+				ctrlUShortCut.Dispose ();
+				ctrlUShortCut = null;
 			}
 
-			if (ctrlKShortCut != null) {
-				ctrlKShortCut.Dispose ();
-				ctrlKShortCut = null;
+			if (ctrlIShortCut != null) {
+				ctrlIShortCut.Dispose ();
+				ctrlIShortCut = null;
 			}
 
-			if (ctrlLShorCut != null) {
-				ctrlLShorCut.Dispose ();
-				ctrlLShorCut = null;
+			if (ctrlOShortCut != null) {
+				ctrlOShortCut.Dispose ();
+				ctrlOShortCut = null;
 			}
 
-			if (ctrlNShortCut != null) {
-				ctrlNShortCut.Dispose ();
-				ctrlNShortCut = null;
-			}
-
-			if (ctrlMShortCut != null) {
-				ctrlMShortCut.Dispose ();
-				ctrlMShortCut = null;
-			}
-
-			if (ctrlCommaShortCut != null) {
-				ctrlCommaShortCut.Dispose ();
-				ctrlCommaShortCut = null;
-			}
-
-			if (ctrlDotShortCut != null) {
-				ctrlDotShortCut.Dispose ();
-				ctrlDotShortCut = null;
-			}
-
-			if (ctrlOpenBracketShortCut != null) {
-				ctrlOpenBracketShortCut.Dispose ();
-				ctrlOpenBracketShortCut = null;
-			}
-
-			if (ctrlCloseBracketShortCut != null) {
-				ctrlCloseBracketShortCut.Dispose ();
-				ctrlCloseBracketShortCut = null;
+			if (ctrlPShortCut != null) {
+				ctrlPShortCut.Dispose ();
+				ctrlPShortCut = null;
 			}
 
 			if (ctrl0ShortCut != null) {
@@ -207,6 +197,61 @@ namespace microcosmMac2.Views
 				ctrl9ShortCut = null;
 			}
 
+			if (ctrlCloseBracketShortCut != null) {
+				ctrlCloseBracketShortCut.Dispose ();
+				ctrlCloseBracketShortCut = null;
+			}
+
+			if (ctrlCommaShortCut != null) {
+				ctrlCommaShortCut.Dispose ();
+				ctrlCommaShortCut = null;
+			}
+
+			if (ctrlDotShortCut != null) {
+				ctrlDotShortCut.Dispose ();
+				ctrlDotShortCut = null;
+			}
+
+			if (ctrlHShortCut != null) {
+				ctrlHShortCut.Dispose ();
+				ctrlHShortCut = null;
+			}
+
+			if (ctrlJShortCut != null) {
+				ctrlJShortCut.Dispose ();
+				ctrlJShortCut = null;
+			}
+
+			if (ctrlKShortCut != null) {
+				ctrlKShortCut.Dispose ();
+				ctrlKShortCut = null;
+			}
+
+			if (ctrlLShorCut != null) {
+				ctrlLShorCut.Dispose ();
+				ctrlLShorCut = null;
+			}
+
+			if (ctrlMShortCut != null) {
+				ctrlMShortCut.Dispose ();
+				ctrlMShortCut = null;
+			}
+
+			if (ctrlNShortCut != null) {
+				ctrlNShortCut.Dispose ();
+				ctrlNShortCut = null;
+			}
+
+			if (ctrlOpenBracketShortCut != null) {
+				ctrlOpenBracketShortCut.Dispose ();
+				ctrlOpenBracketShortCut = null;
+			}
+
+			if (F10ShortCut != null) {
+				F10ShortCut.Dispose ();
+				F10ShortCut = null;
+			}
+
 			if (F1ShorCut != null) {
 				F1ShorCut.Dispose ();
 				F1ShorCut = null;
@@ -250,11 +295,6 @@ namespace microcosmMac2.Views
 			if (F9ShortCut != null) {
 				F9ShortCut.Dispose ();
 				F9ShortCut = null;
-			}
-
-			if (F10ShortCut != null) {
-				F10ShortCut.Dispose ();
-				F10ShortCut = null;
 			}
 		}
 	}

@@ -46,6 +46,11 @@ namespace microcosmMac2.Calc
             };
         }
 
+        public void updateConfig(ConfigData config)
+        {
+            this.configData = config;
+        }
+
         /// <summary>
         /// planet position calcurate.
         /// </summary>
@@ -515,22 +520,22 @@ namespace microcosmMac2.Calc
         public Dictionary<int, PlanetData> ReCalcProgress(ConfigData config, SettingData setting, Dictionary<int, PlanetData> natalList, UserData udata, DateTime transitTime, double timezone)
         {
             Dictionary<int, PlanetData> p = null;
-            if (config.progression == EProgression.SOLARARC)
+            if (setting.progression == EProgression.SOLARARC)
             {
                 p = SolarArcCalc(natalList, udata.GetDateTime(), transitTime, timezone);
 
             }
-            else if (config.progression == EProgression.SECONDARY)
+            else if (setting.progression == EProgression.SECONDARY)
             {
                 p = SecondaryProgressionCalc(natalList, udata.GetDateTime(), transitTime, timezone);
 
             }
-            else if (config.progression == EProgression.PRIMARY)
+            else if (setting.progression == EProgression.PRIMARY)
             {
                 p = PrimaryProgressionCalc(natalList, udata.GetDateTime(), transitTime);
 
             }
-            else if (config.progression == EProgression.CPS)
+            else if (setting.progression == EProgression.CPS)
             {
                 p = CompositProgressionCalc(natalList, udata.GetDateTime(), transitTime, timezone);
 
@@ -905,7 +910,7 @@ namespace microcosmMac2.Calc
         /// <param name="lng"></param>
         /// <param name="timezone"></param>
         /// <returns></returns>
-        public double[] SecondaryProgressionHouseCalc(double[] houseList, Dictionary<int, PlanetData> natallist, DateTime natalTime, DateTime transitTime, double lat, double lng, double timezone)
+        public double[] SecondaryProgressionHouseCalc(SettingData setting, double[] houseList, Dictionary<int, PlanetData> natallist, DateTime natalTime, DateTime transitTime, double lat, double lng, double timezone)
         {
             List<PlanetData> progresslist = new List<PlanetData>();
             TimeSpan ts = transitTime - natalTime;
@@ -919,8 +924,7 @@ namespace microcosmMac2.Calc
             DateTime newTime = natalTime + add;
 
 
-            //todo
-            double[] retHouse = CuspCalc(newTime, timezone, lat, lng, configData.houseCalc);
+            double[] retHouse = CuspCalc(newTime, timezone, lat, lng, setting.houseCalc);
 
             return retHouse;
         }
@@ -1070,38 +1074,38 @@ namespace microcosmMac2.Calc
 
             return progresslist;
         }
-        public double[] CompositProgressionHouseCalc(double[] houseList, Dictionary<int, PlanetData> natallist, DateTime natalTime, DateTime transitTime, double lat, double lng, double timezone)
+        public double[] CompositProgressionHouseCalc(SettingData setting, double[] houseList, Dictionary<int, PlanetData> natallist, DateTime natalTime, DateTime transitTime, double lat, double lng, double timezone)
         {
             // AMATERU、SG共にSecondaryで計算されてた
-            return SecondaryProgressionHouseCalc(houseList, natallist, natalTime, transitTime, lat, lng, timezone);
+            return SecondaryProgressionHouseCalc(setting, houseList, natallist, natalTime, transitTime, lat, lng, timezone);
         }
 
         public double[] HouseCalcProgress(ConfigData config, SettingData setting, double[] houseList, Dictionary<int, PlanetData> natallist, DateTime natalTime, DateTime transitTime, double lat, double lng, double timezone)
         {
             double[] house;
-            if (config.progression == EProgression.SOLARARC)
+            if (setting.progression == EProgression.SOLARARC)
             {
                 house = SolarArcHouseCalc(natallist[0].absolute_position, houseList, natalTime, transitTime, timezone);
 
             }
-            else if (config.progression == EProgression.SECONDARY)
+            else if (setting.progression == EProgression.SECONDARY)
             {
-                house = SecondaryProgressionHouseCalc(houseList, natallist, natalTime, transitTime, lat, lng, timezone);
+                house = SecondaryProgressionHouseCalc(setting, houseList, natallist, natalTime, transitTime, lat, lng, timezone);
 
             }
-            else if (config.progression == EProgression.PRIMARY)
+            else if (setting.progression == EProgression.PRIMARY)
             {
                 house = PrimaryProgressionHouseCalc(houseList, natalTime, transitTime);
 
             }
-            else if (config.progression == EProgression.CPS)
+            else if (setting.progression == EProgression.CPS)
             {
-                house = CompositProgressionHouseCalc(houseList, natallist, natalTime, transitTime, lat, lng, timezone);
+                house = CompositProgressionHouseCalc(setting, houseList, natallist, natalTime, transitTime, lat, lng, timezone);
 
             }
             else
             {
-                house = CuspCalc(natalTime, timezone, lat, lng, config.houseCalc);
+                house = CuspCalc(natalTime, timezone, lat, lng, setting.houseCalc);
             }
 
             return house;

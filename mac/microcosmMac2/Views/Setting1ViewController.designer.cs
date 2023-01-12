@@ -13,6 +13,12 @@ namespace microcosmMac2.Views
 	partial class Setting1ViewController
 	{
 		[Outlet]
+		AppKit.NSButton campanus { get; set; }
+
+		[Outlet]
+		AppKit.NSButton compositProgression { get; set; }
+
+		[Outlet]
 		AppKit.NSButton dispAspectPlanetAsc { get; set; }
 
 		[Outlet]
@@ -187,6 +193,12 @@ namespace microcosmMac2.Views
 		AppKit.NSButton dispTrine { get; set; }
 
 		[Outlet]
+		AppKit.NSButton equal { get; set; }
+
+		[Outlet]
+		AppKit.NSButton koch { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField orb1stHard { get; set; }
 
 		[Outlet]
@@ -208,6 +220,12 @@ namespace microcosmMac2.Views
 		AppKit.NSTextField orbSunMoonSoft { get; set; }
 
 		[Outlet]
+		AppKit.NSButton placidus { get; set; }
+
+		[Outlet]
+		AppKit.NSButton primaryProgression { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField SavedAspectPlanetLabel { get; set; }
 
 		[Outlet]
@@ -223,10 +241,37 @@ namespace microcosmMac2.Views
 		AppKit.NSTextField savedPlanetLabel { get; set; }
 
 		[Outlet]
+		AppKit.NSButton secondaryProgression { get; set; }
+
+		[Outlet]
 		AppKit.NSTableColumn SettingListColumn { get; set; }
 
 		[Outlet]
 		AppKit.NSTableView SettingListTable { get; set; }
+
+		[Outlet]
+		AppKit.NSButton solarArcProgression { get; set; }
+
+		[Outlet]
+		AppKit.NSButton zeroAries { get; set; }
+
+		[Action ("campanusClick:")]
+		partial void campanusClick (Foundation.NSObject sender);
+
+		[Action ("compositClick:")]
+		partial void compositClick (Foundation.NSObject sender);
+
+		[Action ("equalClick:")]
+		partial void equalClick (Foundation.NSObject sender);
+
+		[Action ("kochClick:")]
+		partial void kochClick (Foundation.NSObject sender);
+
+		[Action ("placidusClick:")]
+		partial void placidusClick (Foundation.NSObject sender);
+
+		[Action ("primaryClick:")]
+		partial void primaryClick (Foundation.NSObject sender);
 
 		[Action ("SaveAspectKind:")]
 		partial void SaveAspectKind (Foundation.NSObject sender);
@@ -243,14 +288,36 @@ namespace microcosmMac2.Views
 		[Action ("SaveOrbClicked:")]
 		partial void SaveOrbClicked (Foundation.NSObject sender);
 
+		[Action ("secondaryClick:")]
+		partial void secondaryClick (Foundation.NSObject sender);
+
+		[Action ("SettingKindSave:")]
+		partial void SettingKindSave (Foundation.NSObject sender);
+
 		[Action ("SettingListTableClicked:")]
 		partial void SettingListTableClicked (Foundation.NSObject sender);
 
 		[Action ("SettingTableCellClicked:")]
 		partial void SettingTableCellClicked (Foundation.NSObject sender);
+
+		[Action ("solarArcClick:")]
+		partial void solarArcClick (Foundation.NSObject sender);
+
+		[Action ("zeroAriesClick:")]
+		partial void zeroAriesClick (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (campanus != null) {
+				campanus.Dispose ();
+				campanus = null;
+			}
+
+			if (compositProgression != null) {
+				compositProgression.Dispose ();
+				compositProgression = null;
+			}
+
 			if (dispAspectPlanetAsc != null) {
 				dispAspectPlanetAsc.Dispose ();
 				dispAspectPlanetAsc = null;
@@ -491,6 +558,11 @@ namespace microcosmMac2.Views
 				dispPlanetVesta = null;
 			}
 
+			if (dispQuindecile != null) {
+				dispQuindecile.Dispose ();
+				dispQuindecile = null;
+			}
+
 			if (dispQuintile != null) {
 				dispQuintile.Dispose ();
 				dispQuintile = null;
@@ -536,6 +608,16 @@ namespace microcosmMac2.Views
 				dispTrine = null;
 			}
 
+			if (equal != null) {
+				equal.Dispose ();
+				equal = null;
+			}
+
+			if (koch != null) {
+				koch.Dispose ();
+				koch = null;
+			}
+
 			if (orb1stHard != null) {
 				orb1stHard.Dispose ();
 				orb1stHard = null;
@@ -571,6 +653,16 @@ namespace microcosmMac2.Views
 				orbSunMoonSoft = null;
 			}
 
+			if (placidus != null) {
+				placidus.Dispose ();
+				placidus = null;
+			}
+
+			if (primaryProgression != null) {
+				primaryProgression.Dispose ();
+				primaryProgression = null;
+			}
+
 			if (SavedAspectPlanetLabel != null) {
 				SavedAspectPlanetLabel.Dispose ();
 				SavedAspectPlanetLabel = null;
@@ -596,6 +688,11 @@ namespace microcosmMac2.Views
 				savedPlanetLabel = null;
 			}
 
+			if (secondaryProgression != null) {
+				secondaryProgression.Dispose ();
+				secondaryProgression = null;
+			}
+
 			if (SettingListColumn != null) {
 				SettingListColumn.Dispose ();
 				SettingListColumn = null;
@@ -606,9 +703,14 @@ namespace microcosmMac2.Views
 				SettingListTable = null;
 			}
 
-			if (dispQuindecile != null) {
-				dispQuindecile.Dispose ();
-				dispQuindecile = null;
+			if (solarArcProgression != null) {
+				solarArcProgression.Dispose ();
+				solarArcProgression = null;
+			}
+
+			if (zeroAries != null) {
+				zeroAries.Dispose ();
+				zeroAries = null;
 			}
 		}
 	}

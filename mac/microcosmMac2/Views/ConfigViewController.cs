@@ -164,75 +164,7 @@ namespace microcosmMac2.Views
                 meanapogee.State = NSCellStateValue.On;
             }
 
-            if (appDelegate.config.progression == EProgression.SECONDARY)
-            {
-                secondary.State = NSCellStateValue.On;
-                primary.State = NSCellStateValue.Off;
-                solararc.State = NSCellStateValue.Off;
-                cps.State = NSCellStateValue.Off;
-            }
-            else if (appDelegate.config.progression == EProgression.PRIMARY)
-            {
-                secondary.State = NSCellStateValue.Off;
-                primary.State = NSCellStateValue.On;
-                solararc.State = NSCellStateValue.Off;
-                cps.State = NSCellStateValue.Off;
-            }
-            else if (appDelegate.config.progression == EProgression.SOLARARC)
-            {
-                secondary.State = NSCellStateValue.Off;
-                primary.State = NSCellStateValue.Off;
-                solararc.State = NSCellStateValue.On;
-                cps.State = NSCellStateValue.Off;
-            }
-            else
-            {
-                secondary.State = NSCellStateValue.Off;
-                primary.State = NSCellStateValue.Off;
-                solararc.State = NSCellStateValue.Off;
-                cps.State = NSCellStateValue.On;
-            }
 
-            if (appDelegate.config.houseCalc == EHouseCalc.PLACIDUS)
-            {
-                placidus.State = NSCellStateValue.On;
-                koch.State = NSCellStateValue.Off;
-                campanus.State = NSCellStateValue.Off;
-                equal.State = NSCellStateValue.Off;
-                zeroaries.State = NSCellStateValue.Off;
-            }
-            else if (appDelegate.config.houseCalc == EHouseCalc.KOCH)
-            {
-                placidus.State = NSCellStateValue.Off;
-                koch.State = NSCellStateValue.On;
-                campanus.State = NSCellStateValue.Off;
-                equal.State = NSCellStateValue.Off;
-                zeroaries.State = NSCellStateValue.Off;
-            }
-            else if (appDelegate.config.houseCalc == EHouseCalc.CAMPANUS)
-            {
-                placidus.State = NSCellStateValue.Off;
-                koch.State = NSCellStateValue.Off;
-                campanus.State = NSCellStateValue.On;
-                equal.State = NSCellStateValue.Off;
-                zeroaries.State = NSCellStateValue.Off;
-            }
-            else if (appDelegate.config.houseCalc == EHouseCalc.EQUAL)
-            {
-                placidus.State = NSCellStateValue.Off;
-                koch.State = NSCellStateValue.Off;
-                campanus.State = NSCellStateValue.Off;
-                equal.State = NSCellStateValue.On;
-                zeroaries.State = NSCellStateValue.Off;
-            }
-            else
-            {
-                placidus.State = NSCellStateValue.Off;
-                koch.State = NSCellStateValue.Off;
-                campanus.State = NSCellStateValue.Off;
-                equal.State = NSCellStateValue.Off;
-                zeroaries.State = NSCellStateValue.On;
-            }
 
             defaultLat.StringValue = appDelegate.config.lat.ToString();
             defaultLng.StringValue = appDelegate.config.lng.ToString();
@@ -361,50 +293,6 @@ namespace microcosmMac2.Views
             }
         }
 
-        partial void SecondaryProgressionClick(Foundation.NSObject sender)
-        {
-            NSButton btn = (NSButton)sender;
-            if (btn.State == NSCellStateValue.On)
-            {
-                primary.State = NSCellStateValue.Off;
-                solararc.State = NSCellStateValue.Off;
-                cps.State = NSCellStateValue.Off;
-            }
-        }
-
-        partial void PrimaryProgressionClick(Foundation.NSObject sender)
-        {
-            NSButton btn = (NSButton)sender;
-            if (btn.State == NSCellStateValue.On)
-            {
-                secondary.State = NSCellStateValue.Off;
-                solararc.State = NSCellStateValue.Off;
-                cps.State = NSCellStateValue.Off;
-            }
-        }
-
-        partial void SolarArcProgressionClick(Foundation.NSObject sender)
-        {
-            NSButton btn = (NSButton)sender;
-            if (btn.State == NSCellStateValue.On)
-            {
-                secondary.State = NSCellStateValue.Off;
-                primary.State = NSCellStateValue.Off;
-                cps.State = NSCellStateValue.Off;
-            }
-        }
-
-        partial void CpsClick(Foundation.NSObject sender)
-        {
-            NSButton btn = (NSButton)sender;
-            if (btn.State == NSCellStateValue.On)
-            {
-                secondary.State = NSCellStateValue.Off;
-                primary.State = NSCellStateValue.Off;
-                solararc.State = NSCellStateValue.Off;
-            }
-        }
-
         partial void HexClick(Foundation.NSObject sender)
         {
             NSButton btn = (NSButton)sender;
@@ -438,66 +326,6 @@ namespace microcosmMac2.Views
             if (btn.State == NSCellStateValue.On)
             {
                 fulldisp.State = NSCellStateValue.Off;
-            }
-        }
-
-        partial void PlacidusClick(Foundation.NSObject sender)
-        {
-            NSButton btn = (NSButton)sender;
-            if (btn.State == NSCellStateValue.On)
-            {
-                koch.State = NSCellStateValue.Off;
-                campanus.State = NSCellStateValue.Off;
-                equal.State = NSCellStateValue.Off;
-                zeroaries.State = NSCellStateValue.Off;
-            }
-        }
-
-        partial void KochClick(Foundation.NSObject sender)
-        {
-            NSButton btn = (NSButton)sender;
-            if (btn.State == NSCellStateValue.On)
-            {
-                placidus.State = NSCellStateValue.Off;
-                campanus.State = NSCellStateValue.Off;
-                equal.State = NSCellStateValue.Off;
-                zeroaries.State = NSCellStateValue.Off;
-            }
-        }
-
-        partial void CampanusClick(Foundation.NSObject sender)
-        {
-            NSButton btn = (NSButton)sender;
-            if (btn.State == NSCellStateValue.On)
-            {
-                placidus.State = NSCellStateValue.Off;
-                koch.State = NSCellStateValue.Off;
-                equal.State = NSCellStateValue.Off;
-                zeroaries.State = NSCellStateValue.Off;
-            }
-        }
-
-        partial void EqualClick(Foundation.NSObject sender)
-        {
-            NSButton btn = (NSButton)sender;
-            if (btn.State == NSCellStateValue.On)
-            {
-                placidus.State = NSCellStateValue.Off;
-                koch.State = NSCellStateValue.Off;
-                campanus.State = NSCellStateValue.Off;
-                zeroaries.State = NSCellStateValue.Off;
-            }
-        }
-
-        partial void ZeroAriesClick(Foundation.NSObject sender)
-        {
-            NSButton btn = (NSButton)sender;
-            if (btn.State == NSCellStateValue.On)
-            {
-                placidus.State = NSCellStateValue.Off;
-                koch.State = NSCellStateValue.Off;
-                campanus.State = NSCellStateValue.Off;
-                equal.State = NSCellStateValue.Off;
             }
         }
 
@@ -582,44 +410,6 @@ namespace microcosmMac2.Views
                 appDelegate.config.dispPattern2 = Config.EDispPettern.MINI;
             }
 
-            if (placidus.State == NSCellStateValue.On)
-            {
-                appDelegate.config.houseCalc = Config.EHouseCalc.PLACIDUS;
-            }
-            else if (koch.State == NSCellStateValue.On)
-            {
-                appDelegate.config.houseCalc = Config.EHouseCalc.KOCH;
-            }
-            else if (campanus.State == NSCellStateValue.On)
-            {
-                appDelegate.config.houseCalc = Config.EHouseCalc.CAMPANUS;
-            }
-            else if (equal.State == NSCellStateValue.On)
-            {
-                appDelegate.config.houseCalc = Config.EHouseCalc.EQUAL;
-            }
-            else
-            {
-                appDelegate.config.houseCalc = Config.EHouseCalc.ZEROARIES;
-            }
-
-            if (secondary.State == NSCellStateValue.On)
-            {
-                appDelegate.config.progression = Config.EProgression.SECONDARY;
-            }
-            else if (primary.State == NSCellStateValue.On)
-            {
-                appDelegate.config.progression = Config.EProgression.PRIMARY;
-            }
-            else if (solararc.State == NSCellStateValue.On)
-            {
-                appDelegate.config.progression = Config.EProgression.SOLARARC;
-            }
-            else
-            {
-                appDelegate.config.progression = Config.EProgression.CPS;
-            }
-
             appDelegate.config.defaultPlace = defaultPlace.StringValue;
             appDelegate.config.lat = Double.Parse(defaultLat.StringValue);
             appDelegate.config.lng = Double.Parse(defaultLng.StringValue);
@@ -634,6 +424,7 @@ namespace microcosmMac2.Views
             appDelegate.config.defaultTimezone = CommonData.GetTimezoneValue(appDelegate.config.defaultTimezoneStr);
 
             ConfigSave();
+            appDelegate.viewController.calc.updateConfig(appDelegate.config);
             savedLabel.StringValue = "保存しました";
             appDelegate.viewController.ReCalc();
             appDelegate.viewController.ReRender();

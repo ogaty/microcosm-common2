@@ -76,6 +76,21 @@ namespace microcosmMac2.Models
         [JsonPropertyName("ctrlM")]
         public EShortCut ctrlM { get; set; }
 
+        [JsonPropertyName("ctrlY")]
+        public EShortCut ctrlY { get; set; }
+
+        [JsonPropertyName("ctrlU")]
+        public EShortCut ctrlU { get; set; }
+
+        [JsonPropertyName("ctrlI")]
+        public EShortCut ctrlI { get; set; }
+
+        [JsonPropertyName("ctrlO")]
+        public EShortCut ctrlO { get; set; }
+
+        [JsonPropertyName("ctrlP")]
+        public EShortCut ctrlP { get; set; }
+
         [JsonPropertyName("ctrlComma")]
         public EShortCut ctrlComma { get; set; }
 
@@ -156,6 +171,11 @@ namespace microcosmMac2.Models
             ctrlL = EShortCut.Plus30Day;
             ctrlN = EShortCut.Ring1U1;
             ctrlM = EShortCut.Ring3NPT;
+            ctrlY = EShortCut.Noop;
+            ctrlU = EShortCut.Noop;
+            ctrlI = EShortCut.Noop;
+            ctrlO = EShortCut.Noop;
+            ctrlP = EShortCut.Noop;
             ctrlComma = EShortCut.Noop;
             ctrlDot = EShortCut.Noop;
             ctrlOpenBracket = EShortCut.Noop;

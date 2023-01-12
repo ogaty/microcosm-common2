@@ -138,6 +138,76 @@ namespace microcosmMac2.Views
             SettingListTable.Delegate = new SettingDataDelegate(DataSource);
             SettingListTable.SelectRow(0, false);
 
+            if (appDelegate.currentSetting.progression == EProgression.SECONDARY)
+            {
+                secondaryProgression.State = NSCellStateValue.On;
+                primaryProgression.State = NSCellStateValue.Off;
+                solarArcProgression.State = NSCellStateValue.Off;
+                compositProgression.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSetting.progression == EProgression.PRIMARY)
+            {
+                secondaryProgression.State = NSCellStateValue.Off;
+                primaryProgression.State = NSCellStateValue.On;
+                solarArcProgression.State = NSCellStateValue.Off;
+                compositProgression.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSetting.progression == EProgression.SOLARARC)
+            {
+                secondaryProgression.State = NSCellStateValue.Off;
+                primaryProgression.State = NSCellStateValue.Off;
+                solarArcProgression.State = NSCellStateValue.On;
+                compositProgression.State = NSCellStateValue.Off;
+            }
+            else
+            {
+                secondaryProgression.State = NSCellStateValue.Off;
+                primaryProgression.State = NSCellStateValue.Off;
+                solarArcProgression.State = NSCellStateValue.Off;
+                compositProgression.State = NSCellStateValue.On;
+            }
+
+            if (appDelegate.currentSetting.houseCalc == EHouseCalc.PLACIDUS)
+            {
+                placidus.State = NSCellStateValue.On;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSetting.houseCalc == EHouseCalc.KOCH)
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.On;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSetting.houseCalc == EHouseCalc.CAMPANUS)
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.On;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.currentSetting.houseCalc == EHouseCalc.EQUAL)
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.On;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+            else
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.On;
+            }
+
         }
 
         public override void AwakeFromNib()
@@ -372,6 +442,77 @@ namespace microcosmMac2.Views
             orb1stHard.StringValue = appDelegate.settings[s.ClickedRow].orb1st[1].ToString();
             orb2ndSoft.StringValue = appDelegate.settings[s.ClickedRow].orb2nd[0].ToString();
             orb2ndHard.StringValue = appDelegate.settings[s.ClickedRow].orb2nd[1].ToString();
+
+            if (appDelegate.settings[s.ClickedRow].progression == EProgression.SECONDARY)
+            {
+                secondaryProgression.State = NSCellStateValue.On;
+                primaryProgression.State = NSCellStateValue.Off;
+                solarArcProgression.State = NSCellStateValue.Off;
+                compositProgression.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.settings[s.ClickedRow].progression == EProgression.PRIMARY)
+            {
+                secondaryProgression.State = NSCellStateValue.Off;
+                primaryProgression.State = NSCellStateValue.On;
+                solarArcProgression.State = NSCellStateValue.Off;
+                compositProgression.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.settings[s.ClickedRow].progression == EProgression.SOLARARC)
+            {
+                secondaryProgression.State = NSCellStateValue.Off;
+                primaryProgression.State = NSCellStateValue.Off;
+                solarArcProgression.State = NSCellStateValue.On;
+                compositProgression.State = NSCellStateValue.Off;
+            }
+            else
+            {
+                secondaryProgression.State = NSCellStateValue.Off;
+                primaryProgression.State = NSCellStateValue.Off;
+                solarArcProgression.State = NSCellStateValue.Off;
+                compositProgression.State = NSCellStateValue.On;
+            }
+
+            if (appDelegate.settings[s.ClickedRow].houseCalc == EHouseCalc.PLACIDUS)
+            {
+                placidus.State = NSCellStateValue.On;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.settings[s.ClickedRow].houseCalc == EHouseCalc.KOCH)
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.On;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.settings[s.ClickedRow].houseCalc == EHouseCalc.CAMPANUS)
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.On;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+            else if (appDelegate.settings[s.ClickedRow].houseCalc == EHouseCalc.EQUAL)
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.On;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+            else
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.On;
+            }
+
         }
 
         partial void SaveDispPlanet(Foundation.NSObject sender)
@@ -455,6 +596,166 @@ namespace microcosmMac2.Views
                 appDelegate.viewController.ReRender();
             }
 
+        }
+
+        partial void secondaryClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                primaryProgression.State = NSCellStateValue.Off;
+                solarArcProgression.State = NSCellStateValue.Off;
+                compositProgression.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void primaryClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                secondaryProgression.State = NSCellStateValue.Off;
+                solarArcProgression.State = NSCellStateValue.Off;
+                compositProgression.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void solarArcClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                secondaryProgression.State = NSCellStateValue.Off;
+                primaryProgression.State = NSCellStateValue.Off;
+                compositProgression.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void compositClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                secondaryProgression.State = NSCellStateValue.Off;
+                primaryProgression.State = NSCellStateValue.Off;
+                solarArcProgression.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void placidusClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void kochClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                placidus.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void campanusClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void equalClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                zeroAries.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void zeroAriesClick(Foundation.NSObject sender)
+        {
+            NSButton btn = (NSButton)sender;
+            if (btn.State == NSCellStateValue.On)
+            {
+                placidus.State = NSCellStateValue.Off;
+                koch.State = NSCellStateValue.Off;
+                campanus.State = NSCellStateValue.Off;
+                equal.State = NSCellStateValue.Off;
+            }
+        }
+
+        partial void SettingKindSave(Foundation.NSObject sender)
+        {
+            AppDelegate appDelegate = (AppDelegate)NSApplication.SharedApplication.Delegate;
+            int index = ((int)SettingListTable.SelectedRow);
+            if (index == -1)
+            {
+                index = 0;
+            }
+
+            if (placidus.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].houseCalc = EHouseCalc.PLACIDUS;
+            }
+            else if (koch.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].houseCalc = EHouseCalc.KOCH;
+            }
+            else if (campanus.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].houseCalc = EHouseCalc.CAMPANUS;
+            }
+            else if (equal.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].houseCalc = EHouseCalc.EQUAL;
+            }
+            else if (zeroAries.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].houseCalc = EHouseCalc.ZEROARIES;
+            }
+
+            if (secondaryProgression.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].progression = EProgression.SECONDARY;
+            }
+            else if (primaryProgression.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].progression = EProgression.PRIMARY;
+            }
+            else if (solarArcProgression.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].progression = EProgression.SOLARARC;
+            }
+            else if (compositProgression.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].progression = EProgression.CPS;
+            }
+
+            SettingSave(index, appDelegate.settings[index]);
+            SavedAspectPlanetLabel.StringValue = "保存しました";
+            if (appDelegate.settingIndex == index)
+            {
+                appDelegate.viewController.ReCalc();
+                appDelegate.viewController.ReRender();
+            }
         }
     }
 }

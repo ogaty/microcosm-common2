@@ -427,6 +427,11 @@ namespace microcosmMac2
             appDelegate.keyEventCtrl.Add(29, shortCut.ctrl0);
             appDelegate.keyEventCtrl.Add(45, shortCut.ctrlN);
             appDelegate.keyEventCtrl.Add(46, shortCut.ctrlM);
+            appDelegate.keyEventCtrl.Add(16, shortCut.ctrlY);
+            appDelegate.keyEventCtrl.Add(32, shortCut.ctrlU);
+            appDelegate.keyEventCtrl.Add(34, shortCut.ctrlI);
+            appDelegate.keyEventCtrl.Add(31, shortCut.ctrlO);
+            appDelegate.keyEventCtrl.Add(35, shortCut.ctrlP);
             appDelegate.keyEventCtrl.Add(43, shortCut.ctrlComma);
             appDelegate.keyEventCtrl.Add(47, shortCut.ctrlDot);
             appDelegate.keyEventCtrl.Add(33, shortCut.ctrlOpenBracket);
@@ -519,7 +524,7 @@ namespace microcosmMac2
             {
                 list3 = calc.ReCalc(configData, appDelegate.currentSetting, ring3);
             }
-            houseList1 = calc.CuspCalc(ring1.GetDateTime(), ring1.timezone, ring1.lat, ring1.lng, configData.houseCalc);
+            houseList1 = calc.CuspCalc(ring1.GetDateTime(), ring1.timezone, ring1.lat, ring1.lng, appDelegate.currentSetting.houseCalc);
             if (configData.sidereal == Esidereal.DRACONIC)
             {
                 if (configData.nodeCalc == ENodeCalc.TRUE)
@@ -571,7 +576,7 @@ namespace microcosmMac2
             }
             else
             {
-                houseList2 = calc.CuspCalc(ring2.GetDateTime(), ring2.timezone, ring2.lat, ring2.lng, configData.houseCalc);
+                houseList2 = calc.CuspCalc(ring2.GetDateTime(), ring2.timezone, ring2.lat, ring2.lng, appDelegate.currentSetting.houseCalc);
             }
             if (configData.sidereal == Esidereal.DRACONIC)
             {
@@ -618,7 +623,7 @@ namespace microcosmMac2
             };
 
 
-            houseList3 = calc.CuspCalc(ring3.GetDateTime(), ring3.timezone, ring3.lat, ring3.lng, configData.houseCalc);
+            houseList3 = calc.CuspCalc(ring3.GetDateTime(), ring3.timezone, ring3.lat, ring3.lng, appDelegate.currentSetting.houseCalc);
             if (configData.sidereal == Esidereal.DRACONIC)
             {
                 if (configData.nodeCalc == ENodeCalc.TRUE)
@@ -896,8 +901,8 @@ namespace microcosmMac2
                     }
                 }
             }
-            settingFieldList.Add(configData.progression.ToString());
-            settingFieldList.Add(CommonData.HouseCalcToString(configData.houseCalc));
+            settingFieldList.Add(appDelegate.currentSetting.progression.ToString());
+            settingFieldList.Add(CommonData.HouseCalcToString(appDelegate.currentSetting.houseCalc));
             settingFieldList.Add(configData.centric.ToString());
             settingFieldList.Add(configData.sidereal.ToString());
 
