@@ -65,6 +65,16 @@ namespace microcosm
                 ctrlN.Items.Add(s.Value);
                 if (s.Value == shortCutList[shortcut.ctrlN]) ctrlN.SelectedIndex = index;
                 ctrlM.Items.Add(s.Value);
+                if (s.Value == shortCutList[shortcut.ctrlY]) ctrlY.SelectedIndex = index;
+                ctrlY.Items.Add(s.Value);
+                if (s.Value == shortCutList[shortcut.ctrlU]) ctrlU.SelectedIndex = index;
+                ctrlU.Items.Add(s.Value);
+                if (s.Value == shortCutList[shortcut.ctrlI]) ctrlI.SelectedIndex = index;
+                ctrlI.Items.Add(s.Value);
+                if (s.Value == shortCutList[shortcut.ctrlO]) ctrlO.SelectedIndex = index;
+                ctrlO.Items.Add(s.Value);
+                if (s.Value == shortCutList[shortcut.ctrlP]) ctrlP.SelectedIndex = index;
+                ctrlP.Items.Add(s.Value);
                 if (s.Value == shortCutList[shortcut.ctrlM]) ctrlM.SelectedIndex = index;
                 ctrlComma.Items.Add(s.Value);
                 if (s.Value == shortCutList[shortcut.ctrlComma]) ctrlComma.SelectedIndex = index;
@@ -134,6 +144,11 @@ namespace microcosm
             main.shortCutData.ctrlL = Util.ShortCutStringToEnum((string)ctrlL.SelectedItem);
             main.shortCutData.ctrlN = Util.ShortCutStringToEnum((string)ctrlN.SelectedItem);
             main.shortCutData.ctrlM = Util.ShortCutStringToEnum((string)ctrlM.SelectedItem);
+            main.shortCutData.ctrlY = Util.ShortCutStringToEnum((string)ctrlY.SelectedItem);
+            main.shortCutData.ctrlU = Util.ShortCutStringToEnum((string)ctrlU.SelectedItem);
+            main.shortCutData.ctrlI = Util.ShortCutStringToEnum((string)ctrlI.SelectedItem);
+            main.shortCutData.ctrlO = Util.ShortCutStringToEnum((string)ctrlO.SelectedItem);
+            main.shortCutData.ctrlP = Util.ShortCutStringToEnum((string)ctrlP.SelectedItem);
             main.shortCutData.ctrlComma = Util.ShortCutStringToEnum((string)ctrlComma.SelectedItem);
             main.shortCutData.ctrlDot = Util.ShortCutStringToEnum((string)ctrlDot.SelectedItem);
             main.shortCutData.ctrlOpenBracket = Util.ShortCutStringToEnum((string)ctrlOpenBracket.SelectedItem);
@@ -204,6 +219,7 @@ namespace microcosm
                 sw.Close();
             }
 
+            main.ShortCutInit();
             this.Visibility = Visibility.Hidden;
         }
     }

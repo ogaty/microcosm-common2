@@ -45,6 +45,11 @@ namespace microcosm.calc
             return this.s;
         }
 
+        public void changeCurrentSetting(SettingData setting)
+        {
+            currentSetting = setting;
+        }
+
 
         /// <summary>
         /// 天体の位置を計算する
@@ -1016,19 +1021,19 @@ namespace microcosm.calc
         public Dictionary<int, PlanetData> Progress(Dictionary<int, PlanetData> list1, UserData udata, DateTime transitDate, double timezone, double lat, double lng)
         {
             Dictionary<int, PlanetData> p;
-            if (configData.progression == EProgression.SOLAR)
+            if (currentSetting.progression == EProgression.SOLAR)
             {
                 p = SolarArcCalc(list1, udata.GetBirthDateTime(), transitDate, timezone);
             }
-            else if (configData.progression == EProgression.SECONDARY)
+            else if (currentSetting.progression == EProgression.SECONDARY)
             {
                 p = SecondaryProgressionCalc(list1, udata.GetBirthDateTime(), transitDate, timezone, lat, lng);
             }
-            else if (configData.progression == EProgression.PRIMARY)
+            else if (currentSetting.progression == EProgression.PRIMARY)
             {
                 p = PrimaryProgressionCalc(list1, udata.GetBirthDateTime(), transitDate);
             }
-            else if (configData.progression == EProgression.CPS)
+            else if (currentSetting.progression == EProgression.CPS)
             {
                 p = CompositProgressionCalc(list1, udata.GetBirthDateTime(), transitDate, timezone);
             }

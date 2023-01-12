@@ -41,14 +41,6 @@
                 </StackPanel>
                 <StackPanel Width="250">
                 <StackPanel>
-                    <GroupBox Header="プログレス計算">
-                        <StackPanel>
-                            <RadioButton x:Name="secondaryProgression" Content="一日一年法(Secondary Progression)" IsChecked="True"></RadioButton>
-                            <RadioButton x:Name="primaryProgression" Content="一度一年法(Primary Progression)"></RadioButton>
-                            <RadioButton x:Name="solarArcProgression" Content="ソーラーアーク法(SolarArc Progression)"></RadioButton>
-                            <RadioButton x:Name="compositProgression" Content="CPS(Composit Progression)"></RadioButton>
-                        </StackPanel>
-                    </GroupBox>
                     <GroupBox Header="小数点以下表示">
                         <StackPanel>
                             <RadioButton x:Name="degreeDisp" Content="60進数(15.59°)" IsChecked="True"></RadioButton>
@@ -65,15 +57,6 @@
                 </StackPanel>
                 <StackPanel Margin="10, 0, 0, 0">
                     <StackPanel>
-                        <GroupBox Header="ハウス計算">
-                            <StackPanel>
-                                <RadioButton x:Name="placidus" Content="Placidus" IsChecked="True"></RadioButton>
-                                <RadioButton x:Name="koch" Content="Koch"></RadioButton>
-                                <RadioButton x:Name="campanus" Content="Campanus"></RadioButton>
-                                <RadioButton x:Name="equal" Content="Equal"></RadioButton>
-                                <RadioButton x:Name="zeroaries" Content="Zero Aries"></RadioButton>
-                            </StackPanel>
-                        </GroupBox>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="10, 5, 0, 0">

@@ -116,6 +116,43 @@ namespace microcosm
             SaveAspectKindLabel.Content = "";
             SaveOrbsLabel.Content = "";
 
+            if (main.settings[0].houseCalc == config.EHouseCalc.PLACIDUS)
+            {
+                placidus.IsChecked = true;
+            }
+            else if (main.settings[0].houseCalc == config.EHouseCalc.KOCH)
+            {
+                koch.IsChecked = true;
+            }
+            else if (main.settings[0].houseCalc == config.EHouseCalc.CAMPANUS)
+            {
+                campanus.IsChecked = true;
+            }
+            else if (main.settings[0].houseCalc == config.EHouseCalc.EQUAL)
+            {
+                equal.IsChecked = true;
+            }
+            else if (main.settings[0].houseCalc == config.EHouseCalc.ZEROARIES)
+            {
+                zeroaries.IsChecked = true;
+            }
+
+            if (main.settings[0].progression == config.EProgression.SECONDARY)
+            {
+                secondaryProgression.IsChecked = true;
+            }
+            else if (main.settings[0].progression == config.EProgression.PRIMARY)
+            {
+                koch.IsChecked = true;
+            }
+            else if (main.settings[0].progression == config.EProgression.SOLAR)
+            {
+                solarArcProgression.IsChecked = true;
+            }
+            else if (main.settings[0].progression == config.EProgression.CPS)
+            {
+                compositProgression.IsChecked = true;
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -210,7 +247,43 @@ namespace microcosm
             SaveAspectKindLabel.Content = "";
             SaveOrbsLabel.Content = "";
 
+            if (main.settings[index].houseCalc == config.EHouseCalc.PLACIDUS)
+            {
+                placidus.IsChecked = true;
+            }
+            else if (main.settings[index].houseCalc == config.EHouseCalc.KOCH)
+            {
+                koch.IsChecked = true;
+            }
+            else if (main.settings[index].houseCalc == config.EHouseCalc.CAMPANUS)
+            {
+                campanus.IsChecked = true;
+            }
+            else if (main.settings[index].houseCalc == config.EHouseCalc.EQUAL)
+            {
+                equal.IsChecked = true;
+            }
+            else if (main.settings[index].houseCalc == config.EHouseCalc.ZEROARIES)
+            {
+                zeroaries.IsChecked = true;
+            }
 
+            if (main.settings[index].progression == config.EProgression.SECONDARY)
+            {
+                secondaryProgression.IsChecked = true;
+            }
+            else if (main.settings[index].progression == config.EProgression.PRIMARY)
+            {
+                primaryProgression.IsChecked = true;
+            }
+            else if (main.settings[index].progression == config.EProgression.SOLAR)
+            {
+                solarArcProgression.IsChecked = true;
+            }
+            else if (main.settings[index].progression == config.EProgression.CPS)
+            {
+                compositProgression.IsChecked = true;
+            }
         }
 
         private void saveDispName_Click(object sender, RoutedEventArgs e)
@@ -392,6 +465,59 @@ namespace microcosm
             SaveAspectKindLabel.Content = "";
             SaveOrbsLabel.Content = "";
 
+        }
+
+        private void saveDispKind_Click(object sender, RoutedEventArgs e)
+        {
+            int index = SettingDispNameList.SelectedIndex;
+            if (index == -1)
+            {
+                index = 0;
+            }
+            SettingData setting = main.settings[index];
+            if (secondaryProgression.IsChecked == true)
+            {
+                setting.progression = EProgression.SECONDARY;
+            }
+            else if (primaryProgression.IsChecked == true)
+            {
+                setting.progression = EProgression.PRIMARY;
+            }
+            else if (solarArcProgression.IsChecked == true)
+            {
+                setting.progression = EProgression.SOLAR;
+            }
+            else if (compositProgression.IsChecked == true)
+            {
+                setting.progression = EProgression.CPS;
+            }
+
+            if (placidus.IsChecked == true)
+            {
+                setting.houseCalc = EHouseCalc.PLACIDUS;
+            }
+            else if (koch.IsChecked == true)
+            {
+                setting.houseCalc = EHouseCalc.KOCH;
+            }
+            else if (campanus.IsChecked == true)
+            {
+                setting.houseCalc = EHouseCalc.CAMPANUS;
+            }
+            else if (equal.IsChecked == true)
+            {
+                setting.houseCalc = EHouseCalc.EQUAL;
+            }
+            else if (zeroaries.IsChecked == true)
+            {
+                setting.houseCalc = EHouseCalc.ZEROARIES;
+            }
+
+            saveDispKind.Content = "保存しました";
+
+            SettingSave(index, setting);
+            main.ReCalc();
+            main.ReRender();
         }
     }
 }

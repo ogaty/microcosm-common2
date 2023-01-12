@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:microcosm"
         mc:Ignorable="d"
-        Title="ショートカット設定" Height="440" Width="600" Closing="Window_Closing">
+        Title="ショートカット設定" Height="480" Width="700" Closing="Window_Closing">
     <Grid>
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal" Margin="10">
@@ -34,6 +34,28 @@
                         <TextBlock Width="40">Ctrl+M</TextBlock>
                         <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlM" ItemsSource="{Binding command}"></ComboBox>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+Y</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlY" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+U</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlU" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+I</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlI" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+O</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlO" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <TextBlock Width="40">Ctrl+P</TextBlock>
+                        <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlP" ItemsSource="{Binding command}"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="10, 0, 0, 0">
                     <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
                         <TextBlock Width="40">Ctrl+,</TextBlock>
                         <ComboBox Margin="10, 0, 0, 0" Width="100" x:Name="ctrlComma" ItemsSource="{Binding command}"></ComboBox>

@@ -286,6 +286,11 @@ namespace microcosm
             keyEventCtrl.Add(37, shortCutData.ctrlL);
             keyEventCtrl.Add(45, shortCutData.ctrlN);
             keyEventCtrl.Add(46, shortCutData.ctrlM);
+            keyEventCtrl.Add(16, shortCutData.ctrlY);
+            keyEventCtrl.Add(32, shortCutData.ctrlU);
+            keyEventCtrl.Add(34, shortCutData.ctrlI);
+            keyEventCtrl.Add(31, shortCutData.ctrlO);
+            keyEventCtrl.Add(35, shortCutData.ctrlP);
             keyEventCtrl.Add(43, shortCutData.ctrlComma);
             keyEventCtrl.Add(47, shortCutData.ctrlDot);
             keyEventCtrl.Add(33, shortCutData.ctrlOpenBracket);
@@ -311,67 +316,78 @@ namespace microcosm
             keyEvent.Add(101, shortCutData.F9);
             keyEvent.Add(109, shortCutData.F10);
 
-            var ctrlH = new RoutedUICommand("ctrlH", "ctrlH", typeof(MainWindow));
-            var ctrlJ = new RoutedUICommand("ctrlJ", "ctrlJ", typeof(MainWindow));
-            var ctrlK = new RoutedUICommand("ctrlK", "ctrlK", typeof(MainWindow));
-            var ctrlL = new RoutedUICommand("ctrlL", "ctrlL", typeof(MainWindow));
-            var ctrlN = new RoutedUICommand("ctrlN", "ctrlN", typeof(MainWindow));
-            var ctrlM = new RoutedUICommand("ctrlM", "ctrlM", typeof(MainWindow));
-            var ctrlComma = new RoutedUICommand("ctrlComma", "ctrlComma", typeof(MainWindow));
-            var ctrlDot = new RoutedUICommand("ctrlDot", "ctrlDot", typeof(MainWindow));
-            var ctrlOpenBracket = new RoutedUICommand("ctrlOpenBracket", "ctrlOpenBracket", typeof(MainWindow));
-            var ctrlCloseBracket = new RoutedUICommand("ctrlCloseBracket", "ctrlCloseBracket", typeof(MainWindow));
-            var ctrl0 = new RoutedUICommand("ctrl0", "ctrl0", typeof(MainWindow));
-            var ctrl1 = new RoutedUICommand("ctrl1", "ctrl1", typeof(MainWindow));
-            var ctrl2 = new RoutedUICommand("ctrl2", "ctrl2", typeof(MainWindow));
-            var ctrl3 = new RoutedUICommand("ctrl3", "ctrl3", typeof(MainWindow));
-            var ctrl4 = new RoutedUICommand("ctrl4", "ctrl4", typeof(MainWindow));
-            var ctrl5 = new RoutedUICommand("ctrl5", "ctrl5", typeof(MainWindow));
-            var ctrl6 = new RoutedUICommand("ctrl6", "ctrl6", typeof(MainWindow));
-            var ctrl7 = new RoutedUICommand("ctrl7", "ctrl7", typeof(MainWindow));
-            var ctrl8 = new RoutedUICommand("ctrl8", "ctrl8", typeof(MainWindow));
-            var ctrl9 = new RoutedUICommand("ctrl9", "ctrl9", typeof(MainWindow));
-            var f1 = new RoutedUICommand("F1", "F1", typeof(MainWindow));
-            var f2 = new RoutedUICommand("F2", "F2", typeof(MainWindow));
-            var f3 = new RoutedUICommand("F3", "F3", typeof(MainWindow));
-            var f4 = new RoutedUICommand("F4", "F4", typeof(MainWindow));
-            var f5 = new RoutedUICommand("F5", "F5", typeof(MainWindow));
-            var f6 = new RoutedUICommand("F6", "F6", typeof(MainWindow));
-            var f7 = new RoutedUICommand("F7", "F7", typeof(MainWindow));
-            var f8 = new RoutedUICommand("F8", "F8", typeof(MainWindow));
-            var f9 = new RoutedUICommand("F9", "F9", typeof(MainWindow));
-            var f10 = new RoutedUICommand("F10", "F10", typeof(MainWindow));
+            var handleCtrlH = new RoutedUICommand("ctrlH", "ctrlH", typeof(MainWindow));
+            var handleCtrlJ = new RoutedUICommand("ctrlJ", "ctrlJ", typeof(MainWindow));
+            var handleCtrlK = new RoutedUICommand("ctrlK", "ctrlK", typeof(MainWindow));
+            var handleCtrlL = new RoutedUICommand("ctrlL", "ctrlL", typeof(MainWindow));
+            var handleCtrlN = new RoutedUICommand("ctrlN", "ctrlN", typeof(MainWindow));
+            var handleCtrlM = new RoutedUICommand("ctrlM", "ctrlM", typeof(MainWindow));
+            var handleCtrlY = new RoutedUICommand("ctrlY", "ctrlY", typeof(MainWindow));
+            var handleCtrlU = new RoutedUICommand("ctrlU", "ctrlU", typeof(MainWindow));
+            var handleCtrlI = new RoutedUICommand("ctrlI", "ctrlI", typeof(MainWindow));
+            var handleCtrlO = new RoutedUICommand("ctrlO", "ctrlO", typeof(MainWindow));
+            var handleCtrlP = new RoutedUICommand("ctrlP", "ctrlP", typeof(MainWindow));
+            var handleCtrlComma = new RoutedUICommand("ctrlComma", "ctrlComma", typeof(MainWindow));
+            var handleCtrlDot = new RoutedUICommand("ctrlDot", "ctrlDot", typeof(MainWindow));
+            var handleCtrlOpenBracket = new RoutedUICommand("ctrlOpenBracket", "ctrlOpenBracket", typeof(MainWindow));
+            var handleCtrlCloseBracket = new RoutedUICommand("ctrlCloseBracket", "ctrlCloseBracket", typeof(MainWindow));
+            var handleCtrl0 = new RoutedUICommand("ctrl0", "ctrl0", typeof(MainWindow));
+            var handleCtrl1 = new RoutedUICommand("ctrl1", "ctrl1", typeof(MainWindow));
+            var handleCtrl2 = new RoutedUICommand("ctrl2", "ctrl2", typeof(MainWindow));
+            var handleCtrl3 = new RoutedUICommand("ctrl3", "ctrl3", typeof(MainWindow));
+            var handleCtrl4 = new RoutedUICommand("ctrl4", "ctrl4", typeof(MainWindow));
+            var handleCtrl5 = new RoutedUICommand("ctrl5", "ctrl5", typeof(MainWindow));
+            var handleCtrl6 = new RoutedUICommand("ctrl6", "ctrl6", typeof(MainWindow));
+            var handleCtrl7 = new RoutedUICommand("ctrl7", "ctrl7", typeof(MainWindow));
+            var handleCtrl8 = new RoutedUICommand("ctrl8", "ctrl8", typeof(MainWindow));
+            var handleCtrl9 = new RoutedUICommand("ctrl9", "ctrl9", typeof(MainWindow));
+            var handleF1 = new RoutedUICommand("F1", "F1", typeof(MainWindow));
+            var handleF2 = new RoutedUICommand("F2", "F2", typeof(MainWindow));
+            var handleF3 = new RoutedUICommand("F3", "F3", typeof(MainWindow));
+            var handleF4 = new RoutedUICommand("F4", "F4", typeof(MainWindow));
+            var handleF5 = new RoutedUICommand("F5", "F5", typeof(MainWindow));
+            var handleF6 = new RoutedUICommand("F6", "F6", typeof(MainWindow));
+            var handleF7 = new RoutedUICommand("F7", "F7", typeof(MainWindow));
+            var handleF8 = new RoutedUICommand("F8", "F8", typeof(MainWindow));
+            var handleF9 = new RoutedUICommand("F9", "F9", typeof(MainWindow));
+            var handleF10 = new RoutedUICommand("F10", "F10", typeof(MainWindow));
 
-            CommandBindings.Add(new CommandBinding(ctrlH, CtrlH));
-            CommandBindings.Add(new CommandBinding(ctrlJ, CtrlJ));
-            CommandBindings.Add(new CommandBinding(ctrlK, CtrlK));
-            CommandBindings.Add(new CommandBinding(ctrlL, CtrlL));
-            CommandBindings.Add(new CommandBinding(ctrlN, CtrlN));
-            CommandBindings.Add(new CommandBinding(ctrlM, CtrlM));
-            CommandBindings.Add(new CommandBinding(ctrlComma, CtrlCommma));
-            CommandBindings.Add(new CommandBinding(ctrlDot, CtrlDot));
-            CommandBindings.Add(new CommandBinding(ctrlOpenBracket, CtrlOpenBracket));
-            CommandBindings.Add(new CommandBinding(ctrlCloseBracket, CtrlCloseBracket));
-            CommandBindings.Add(new CommandBinding(ctrl0, Ctrl0));
-            CommandBindings.Add(new CommandBinding(ctrl1, Ctrl1));
-            CommandBindings.Add(new CommandBinding(ctrl2, Ctrl2));
-            CommandBindings.Add(new CommandBinding(ctrl3, Ctrl3));
-            CommandBindings.Add(new CommandBinding(ctrl4, Ctrl4));
-            CommandBindings.Add(new CommandBinding(ctrl5, Ctrl5));
-            CommandBindings.Add(new CommandBinding(ctrl6, Ctrl6));
-            CommandBindings.Add(new CommandBinding(ctrl7, Ctrl7));
-            CommandBindings.Add(new CommandBinding(ctrl8, Ctrl8));
-            CommandBindings.Add(new CommandBinding(ctrl9, Ctrl9));
-            CommandBindings.Add(new CommandBinding(f1, F1));
-            CommandBindings.Add(new CommandBinding(f2, F2));
-            CommandBindings.Add(new CommandBinding(f3, F3));
-            CommandBindings.Add(new CommandBinding(f4, F4));
-            CommandBindings.Add(new CommandBinding(f5, F5));
-            CommandBindings.Add(new CommandBinding(f6, F6));
-            CommandBindings.Add(new CommandBinding(f7, F7));
-            CommandBindings.Add(new CommandBinding(f8, F8));
-            CommandBindings.Add(new CommandBinding(f9, F9));
-            CommandBindings.Add(new CommandBinding(f10, F10));
+            CommandBindings.Clear();
+            CommandBindings.Add(new CommandBinding(handleCtrlH, CtrlH));
+            CommandBindings.Add(new CommandBinding(handleCtrlJ, CtrlJ));
+            CommandBindings.Add(new CommandBinding(handleCtrlK, CtrlK));
+            CommandBindings.Add(new CommandBinding(handleCtrlL, CtrlL));
+            CommandBindings.Add(new CommandBinding(handleCtrlN, CtrlN));
+            CommandBindings.Add(new CommandBinding(handleCtrlM, CtrlM));
+            CommandBindings.Add(new CommandBinding(handleCtrlY, CtrlY));
+            CommandBindings.Add(new CommandBinding(handleCtrlU, CtrlU));
+            CommandBindings.Add(new CommandBinding(handleCtrlI, CtrlI));
+            CommandBindings.Add(new CommandBinding(handleCtrlO, CtrlO));
+            CommandBindings.Add(new CommandBinding(handleCtrlP, CtrlP));
+            CommandBindings.Add(new CommandBinding(handleCtrlComma, CtrlCommma));
+            CommandBindings.Add(new CommandBinding(handleCtrlDot, CtrlDot));
+            CommandBindings.Add(new CommandBinding(handleCtrlOpenBracket, CtrlOpenBracket));
+            CommandBindings.Add(new CommandBinding(handleCtrlCloseBracket, CtrlCloseBracket));
+            CommandBindings.Add(new CommandBinding(handleCtrl0, Ctrl0));
+            CommandBindings.Add(new CommandBinding(handleCtrl1, Ctrl1));
+            CommandBindings.Add(new CommandBinding(handleCtrl2, Ctrl2));
+            CommandBindings.Add(new CommandBinding(handleCtrl3, Ctrl3));
+            CommandBindings.Add(new CommandBinding(handleCtrl4, Ctrl4));
+            CommandBindings.Add(new CommandBinding(handleCtrl5, Ctrl5));
+            CommandBindings.Add(new CommandBinding(handleCtrl6, Ctrl6));
+            CommandBindings.Add(new CommandBinding(handleCtrl7, Ctrl7));
+            CommandBindings.Add(new CommandBinding(handleCtrl8, Ctrl8));
+            CommandBindings.Add(new CommandBinding(handleCtrl9, Ctrl9));
+            CommandBindings.Add(new CommandBinding(handleF1, F1));
+            CommandBindings.Add(new CommandBinding(handleF2, F2));
+            CommandBindings.Add(new CommandBinding(handleF3, F3));
+            CommandBindings.Add(new CommandBinding(handleF4, F4));
+            CommandBindings.Add(new CommandBinding(handleF5, F5));
+            CommandBindings.Add(new CommandBinding(handleF6, F6));
+            CommandBindings.Add(new CommandBinding(handleF7, F7));
+            CommandBindings.Add(new CommandBinding(handleF8, F8));
+            CommandBindings.Add(new CommandBinding(handleF9, F9));
+            CommandBindings.Add(new CommandBinding(handleF10, F10));
 
 
             KeyGesture h = new KeyGesture(Key.H, ModifierKeys.Control);
@@ -380,6 +396,11 @@ namespace microcosm
             KeyGesture l = new KeyGesture(Key.L, ModifierKeys.Control);
             KeyGesture n = new KeyGesture(Key.N, ModifierKeys.Control);
             KeyGesture m = new KeyGesture(Key.M, ModifierKeys.Control);
+            KeyGesture y = new KeyGesture(Key.Y, ModifierKeys.Control);
+            KeyGesture u = new KeyGesture(Key.U, ModifierKeys.Control);
+            KeyGesture i = new KeyGesture(Key.I, ModifierKeys.Control);
+            KeyGesture o = new KeyGesture(Key.O, ModifierKeys.Control);
+            KeyGesture p = new KeyGesture(Key.P, ModifierKeys.Control);
             KeyGesture commma = new KeyGesture(Key.OemComma, ModifierKeys.Control);
             KeyGesture dot = new KeyGesture(Key.OemPeriod, ModifierKeys.Control);
             KeyGesture openBracket = new KeyGesture(Key.OemOpenBrackets, ModifierKeys.Control);
@@ -405,36 +426,42 @@ namespace microcosm
             KeyGesture f9k = new KeyGesture(Key.F9);
             KeyGesture f10k = new KeyGesture(Key.F10);
 
-            InputBindings.Add(new KeyBinding(ctrlH, h));
-            InputBindings.Add(new KeyBinding(ctrlJ, j));
-            InputBindings.Add(new KeyBinding(ctrlK, k));
-            InputBindings.Add(new KeyBinding(ctrlL, l));
-            InputBindings.Add(new KeyBinding(ctrlN, n));
-            InputBindings.Add(new KeyBinding(ctrlM, m));
-            InputBindings.Add(new KeyBinding(ctrlComma, commma));
-            InputBindings.Add(new KeyBinding(ctrlDot, dot));
-            InputBindings.Add(new KeyBinding(ctrlOpenBracket, openBracket));
-            InputBindings.Add(new KeyBinding(ctrlCloseBracket, closeBracket));
-            InputBindings.Add(new KeyBinding(ctrl0, d0));
-            InputBindings.Add(new KeyBinding(ctrl1, d1));
-            InputBindings.Add(new KeyBinding(ctrl2, d2));
-            InputBindings.Add(new KeyBinding(ctrl3, d3));
-            InputBindings.Add(new KeyBinding(ctrl4, d4));
-            InputBindings.Add(new KeyBinding(ctrl5, d5));
-            InputBindings.Add(new KeyBinding(ctrl6, d6));
-            InputBindings.Add(new KeyBinding(ctrl7, d7));
-            InputBindings.Add(new KeyBinding(ctrl8, d8));
-            InputBindings.Add(new KeyBinding(ctrl9, d9));
-            InputBindings.Add(new KeyBinding(f1, f1k));
-            InputBindings.Add(new KeyBinding(f2, f2k));
-            InputBindings.Add(new KeyBinding(f3, f3k));
-            InputBindings.Add(new KeyBinding(f4, f4k));
-            InputBindings.Add(new KeyBinding(f5, f5k));
-            InputBindings.Add(new KeyBinding(f6, f6k));
-            InputBindings.Add(new KeyBinding(f7, f7k));
-            InputBindings.Add(new KeyBinding(f8, f8k));
-            InputBindings.Add(new KeyBinding(f9, f9k));
-            InputBindings.Add(new KeyBinding(f10, f10k));
+            InputBindings.Clear();
+            InputBindings.Add(new KeyBinding(handleCtrlH, h));
+            InputBindings.Add(new KeyBinding(handleCtrlJ, j));
+            InputBindings.Add(new KeyBinding(handleCtrlK, k));
+            InputBindings.Add(new KeyBinding(handleCtrlL, l));
+            InputBindings.Add(new KeyBinding(handleCtrlN, n));
+            InputBindings.Add(new KeyBinding(handleCtrlM, m));
+            InputBindings.Add(new KeyBinding(handleCtrlY, y));
+            InputBindings.Add(new KeyBinding(handleCtrlU, u));
+            InputBindings.Add(new KeyBinding(handleCtrlI, i));
+            InputBindings.Add(new KeyBinding(handleCtrlO, o));
+            InputBindings.Add(new KeyBinding(handleCtrlP, p));
+            InputBindings.Add(new KeyBinding(handleCtrlComma, commma));
+            InputBindings.Add(new KeyBinding(handleCtrlDot, dot));
+            InputBindings.Add(new KeyBinding(handleCtrlOpenBracket, openBracket));
+            InputBindings.Add(new KeyBinding(handleCtrlCloseBracket, closeBracket));
+            InputBindings.Add(new KeyBinding(handleCtrl0, d0));
+            InputBindings.Add(new KeyBinding(handleCtrl1, d1));
+            InputBindings.Add(new KeyBinding(handleCtrl2, d2));
+            InputBindings.Add(new KeyBinding(handleCtrl3, d3));
+            InputBindings.Add(new KeyBinding(handleCtrl4, d4));
+            InputBindings.Add(new KeyBinding(handleCtrl5, d5));
+            InputBindings.Add(new KeyBinding(handleCtrl6, d6));
+            InputBindings.Add(new KeyBinding(handleCtrl7, d7));
+            InputBindings.Add(new KeyBinding(handleCtrl8, d8));
+            InputBindings.Add(new KeyBinding(handleCtrl9, d9));
+            InputBindings.Add(new KeyBinding(handleF1, f1k));
+            InputBindings.Add(new KeyBinding(handleF2, f2k));
+            InputBindings.Add(new KeyBinding(handleF3, f3k));
+            InputBindings.Add(new KeyBinding(handleF4, f4k));
+            InputBindings.Add(new KeyBinding(handleF5, f5k));
+            InputBindings.Add(new KeyBinding(handleF6, f6k));
+            InputBindings.Add(new KeyBinding(handleF7, f7k));
+            InputBindings.Add(new KeyBinding(handleF8, f8k));
+            InputBindings.Add(new KeyBinding(handleF9, f9k));
+            InputBindings.Add(new KeyBinding(handleF10, f10k));
 
         }
 
@@ -531,19 +558,19 @@ namespace microcosm
             {
                 // progresはlist1とlist3の時刻で固定
                 list2 = calc.Progress(list1, list1UserData, list3UserData.GetBirthDateTime(), list1UserData.timezone, list1UserData.lat, list1UserData.lng);
-                if (configData.progression == EProgression.SECONDARY)
+                if (currentSetting.progression == EProgression.SECONDARY)
                 {
                     houseList2 = calc.SecondaryProgressionHouseCalc(houseList1, list1, list1UserData.GetBirthDateTime(), list3UserData.GetBirthDateTime(), list1UserData.lat, list1UserData.lng, list1UserData.timezone);
                 }
-                else if (configData.progression == EProgression.PRIMARY)
+                else if (currentSetting.progression == EProgression.PRIMARY)
                 {
                     houseList2 = calc.PrimaryProgressionHouseCalc(houseList1, list1UserData.GetBirthDateTime(), list3UserData.GetBirthDateTime());
                 }
-                else if (configData.progression == EProgression.SOLAR)
+                else if (currentSetting.progression == EProgression.SOLAR)
                 {
                     houseList2 = calc.SolarArcHouseCalc(list1[0].absolute_position, houseList1, list1UserData.GetBirthDateTime(), list3UserData.GetBirthDateTime(), list1UserData.timezone);
                 }
-                else if (configData.progression == EProgression.CPS)
+                else if (currentSetting.progression == EProgression.CPS)
                 {
                     houseList2 = calc.CompositProgressionHouseCalc( houseList1, list1, list1UserData.GetBirthDateTime(), list3UserData.GetBirthDateTime(), list1UserData.lat, list1UserData.lng, list1UserData.timezone);
                 }
@@ -750,15 +777,15 @@ namespace microcosm
             mainWindowVM.targetUser3 = calcTargetUser[2].ToString();
 
 
-            if (configData.progression == EProgression.SOLAR)
+            if (currentSetting.progression == EProgression.SOLAR)
             {
                 mainWindowVM.progressionCalc = "ソーラーアーク法";
             }
-            else if (configData.progression == EProgression.SECONDARY)
+            else if (currentSetting.progression == EProgression.SECONDARY)
             {
                 mainWindowVM.progressionCalc = "一日一年法";
             }
-            else if (configData.progression == EProgression.PRIMARY)
+            else if (currentSetting.progression == EProgression.PRIMARY)
             {
                 mainWindowVM.progressionCalc = "一度一年法";
             }
@@ -777,23 +804,23 @@ namespace microcosm
             }
 
 
-            if (configData.houseCalc == EHouseCalc.CAMPANUS)
+            if (currentSetting.houseCalc == EHouseCalc.CAMPANUS)
             {
                 mainWindowVM.houseDivide = "CAMPANUS";
             }
-            else if (configData.houseCalc == EHouseCalc.EQUAL)
+            else if (currentSetting.houseCalc == EHouseCalc.EQUAL)
             {
                 mainWindowVM.houseDivide = "EQUAL";
             }
-            else if (configData.houseCalc == EHouseCalc.KOCH)
+            else if (currentSetting.houseCalc == EHouseCalc.KOCH)
             {
                 mainWindowVM.houseDivide = "KOCH";
             }
-            else if (configData.houseCalc == EHouseCalc.PLACIDUS)
+            else if (currentSetting.houseCalc == EHouseCalc.PLACIDUS)
             {
                 mainWindowVM.houseDivide = "PLACIDUS";
             }
-            else if (configData.houseCalc == EHouseCalc.ZEROARIES)
+            else if (currentSetting.houseCalc == EHouseCalc.ZEROARIES)
             {
                 mainWindowVM.houseDivide = "Zero Aries";
             }
@@ -914,6 +941,7 @@ namespace microcosm
         {
             currentSetting = settings[index];
             changeSettingList.SelectedIndex = index;
+            calc.changeCurrentSetting(currentSetting);
             ReCalc();
             ReRender();
         }

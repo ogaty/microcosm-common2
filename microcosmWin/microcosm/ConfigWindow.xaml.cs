@@ -64,6 +64,7 @@ namespace microcosm
                 draconic.IsChecked = true;
             }
 
+            /*
             if (main.configData.progression == config.EProgression.SECONDARY)
             {
                 secondaryProgression.IsChecked = true;
@@ -80,6 +81,7 @@ namespace microcosm
             {
                 compositProgression.IsChecked = true;
             }
+            */
 
             if (main.configData.decimalDisp == config.EDecimalDisp.DECIMAL)
             {
@@ -99,26 +101,9 @@ namespace microcosm
                 miniDisp.IsChecked = true;
             }
 
-            if (main.configData.houseCalc == config.EHouseCalc.PLACIDUS)
-            {
-                placidus.IsChecked = true;
-            }
-            else if (main.configData.houseCalc == config.EHouseCalc.KOCH)
-            {
-                koch.IsChecked = true;
-            }
-            else if (main.configData.houseCalc == config.EHouseCalc.CAMPANUS)
-            {
-                campanus.IsChecked = true;
-            }
-            else if (main.configData.houseCalc == config.EHouseCalc.EQUAL)
-            {
-                equal.IsChecked = true;
-            }
-            else if (main.configData.houseCalc == config.EHouseCalc.ZEROARIES)
-            {
-                zeroaries.IsChecked = true;
-            }
+            /*
+
+            */
 
             defaultLat.Text = main.configData.lat.ToString();
             defaultLng.Text = main.configData.lng.ToString();
@@ -207,44 +192,6 @@ namespace microcosm
             else
             {
                 main.configData.dispPattern = config.EDispPetern.MINI;
-            }
-
-            if ((bool)secondaryProgression.IsChecked)
-            {
-                main.configData.progression = config.EProgression.SECONDARY;
-            }
-            else if ((bool)primaryProgression.IsChecked)
-            {
-                main.configData.progression = config.EProgression.PRIMARY;
-            }
-            else if ((bool)solarArcProgression.IsChecked)
-            {
-                main.configData.progression = config.EProgression.SOLAR;
-            }
-            else if ((bool)compositProgression.IsChecked)
-            {
-                main.configData.progression = config.EProgression.CPS;
-            }
-
-            if ((bool)placidus.IsChecked)
-            {
-                main.configData.houseCalc = config.EHouseCalc.PLACIDUS;
-            }
-            else if ((bool)koch.IsChecked)
-            {
-                main.configData.houseCalc = config.EHouseCalc.KOCH;
-            }
-            else if ((bool)campanus.IsChecked)
-            {
-                main.configData.houseCalc = config.EHouseCalc.CAMPANUS;
-            }
-            else if ((bool)equal.IsChecked)
-            {
-                main.configData.houseCalc = config.EHouseCalc.EQUAL;
-            }
-            else if ((bool)zeroaries.IsChecked)
-            {
-                main.configData.houseCalc = config.EHouseCalc.ZEROARIES;
             }
 
             if (trueHead.IsChecked == true)

@@ -16,6 +16,12 @@ namespace microcosm.config
         [JsonPropertyName("name")]
         public string name { get; set; }
 
+        [JsonPropertyName("progression")]
+        public EProgression progression { get; set; }
+
+        [JsonPropertyName("houseCalc")]
+        public EHouseCalc houseCalc { get; set; }
+
         [JsonPropertyName("dispPlanetSun")]
         public int dispPlanetSun { get; set; }
         [JsonPropertyName("dispPlanetMoon")]
@@ -228,6 +234,9 @@ namespace microcosm.config
             dispAspectBiQuintile = 0;
             dispAspectSemiQuintile = 0;
             dispAspectQuindecile = 0;
+
+            progression = EProgression.SECONDARY;
+            houseCalc = EHouseCalc.PLACIDUS;
         }
 
         public SettingJson(SettingData data)
@@ -308,7 +317,8 @@ namespace microcosm.config
             dispAspectPlanetJuno = data.dispAspectPlanetJuno;
             dispAspectPlanetVesta = data.dispAspectPlanetVesta;
 
-
+            progression = data.progression;
+            houseCalc = data.houseCalc;
         }
 
         public SettingJson()

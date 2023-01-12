@@ -77,6 +77,9 @@ namespace microcosm.config
         public double[] orb1st;
         public double[] orb2nd;
 
+        public EProgression progression;
+        public EHouseCalc houseCalc;
+
 
         // no: 設定番号
         public SettingData(int no)
@@ -159,6 +162,9 @@ namespace microcosm.config
             dispAspectPlanetPallas = 0;
             dispAspectPlanetJuno = 0;
             dispAspectPlanetVesta = 0;
+
+            progression = EProgression.SECONDARY;
+            houseCalc = EHouseCalc.PLACIDUS;
         }
 
         public void init(SettingJson json)
@@ -235,6 +241,9 @@ namespace microcosm.config
             dispAspectPlanetPallas = json.dispAspectPlanetPallas;
             dispAspectPlanetJuno = json.dispAspectPlanetJuno;
             dispAspectPlanetVesta = json.dispAspectPlanetVesta;
+
+            progression = json.progression;
+            houseCalc = json.houseCalc;
         }
 
         public bool GetDispPlanet(int planetNo)
