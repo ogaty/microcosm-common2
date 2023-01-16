@@ -40,6 +40,10 @@ namespace microcosmMac2.Models
         Minus30Day = 43,
         Plus365Day = 44,
         Minus365Day = 45,
+        NextFullMoon = 51,
+        PrevFullMoon = 52,
+        NextNewMoon = 53,
+        PrevNewMoon = 54,
         InvisibleAllAspect = 60,
         VisibleAllAspect = 61,
         Visible11 = 62,
@@ -56,6 +60,10 @@ namespace microcosmMac2.Models
         InVisible33 = 73,
     }
 
+    /// <summary>
+    /// ここは定義だけ
+    /// 発火はEventKeyCodeから
+    /// </summary>
     public class ShortCut
     {
         [JsonPropertyName("ctrlH")]

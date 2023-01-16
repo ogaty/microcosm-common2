@@ -7,6 +7,9 @@ using static CoreMedia.CMTime;
 
 namespace microcosmMac2.Models
 {
+    /// <summary>
+    /// ショートカットキー操作を扱う
+    /// </summary>
     public class EventKeyCode
     {
         NSEvent e;
@@ -99,6 +102,18 @@ namespace microcosmMac2.Models
                     break;
                 case EShortCut.Minus365Day:
                     appDelegate.viewController.TimeSetAny(-86400 * 365);
+                    break;
+                case EShortCut.NextFullMoon:
+                    appDelegate.viewController.SetNextFullMoon();
+                    break;
+                case EShortCut.PrevFullMoon:
+                    appDelegate.viewController.SetPrevFullMoon();
+                    break;
+                case EShortCut.NextNewMoon:
+                    appDelegate.viewController.SetNextNewMoon();
+                    break;
+                case EShortCut.PrevNewMoon:
+                    appDelegate.viewController.SetPrevNewMoon();
                     break;
                 case EShortCut.ChagngeSetting0:
                     appDelegate.viewController.SettingIndexChange(0);

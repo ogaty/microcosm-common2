@@ -64,6 +64,10 @@ namespace microcosmMac2.Common
             shortCut.Add(EShortCut.Minus30Day, "30日戻す");
             shortCut.Add(EShortCut.Plus365Day, "365日進める");
             shortCut.Add(EShortCut.Minus365Day, "365日戻す");
+            shortCut.Add(EShortCut.NextFullMoon, "次の満月");
+            shortCut.Add(EShortCut.PrevFullMoon, "前の満月");
+            shortCut.Add(EShortCut.NextNewMoon, "次の新月");
+            shortCut.Add(EShortCut.PrevNewMoon, "前の新月");
             shortCut.Add(EShortCut.InvisibleAllAspect, "すべてのアスペクト線を非表示");
             shortCut.Add(EShortCut.VisibleAllAspect, "すべてのアスペクト線を表示");
             shortCut.Add(EShortCut.InVisible11, "アスペクト線(1-1)を非表示");
@@ -119,6 +123,10 @@ namespace microcosmMac2.Common
             if (s == "30日戻す") return EShortCut.Minus30Day;
             if (s == "365日進める") return EShortCut.Plus365Day;
             if (s == "365日戻す") return EShortCut.Minus365Day;
+            if (s == "次の満月") return EShortCut.NextFullMoon;
+            if (s == "前の満月") return EShortCut.PrevFullMoon;
+            if (s == "次の新月") return EShortCut.NextNewMoon;
+            if (s == "前の新月") return EShortCut.PrevNewMoon;
             if (s == "すべてのアスペクト線を非表示") return EShortCut.InvisibleAllAspect;
             if (s == "すべてのアスペクト線を表示") return EShortCut.VisibleAllAspect;
             if (s == "アスペクト線(1-1)を非表示") return EShortCut.InVisible11;

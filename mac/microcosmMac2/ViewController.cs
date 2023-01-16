@@ -434,8 +434,8 @@ namespace microcosmMac2
             appDelegate.keyEventCtrl.Add(35, shortCut.ctrlP);
             appDelegate.keyEventCtrl.Add(43, shortCut.ctrlComma);
             appDelegate.keyEventCtrl.Add(47, shortCut.ctrlDot);
-            appDelegate.keyEventCtrl.Add(33, shortCut.ctrlOpenBracket);
-            appDelegate.keyEventCtrl.Add(30, shortCut.ctrlCloseBracket);
+            appDelegate.keyEventCtrl.Add(30, shortCut.ctrlOpenBracket);
+            appDelegate.keyEventCtrl.Add(42, shortCut.ctrlCloseBracket);
             appDelegate.keyEvent.Add(122, shortCut.F1);
             appDelegate.keyEvent.Add(120, shortCut.F2);
             appDelegate.keyEvent.Add(99, shortCut.F3);
@@ -2404,8 +2404,8 @@ namespace microcosmMac2
                 e.KeyCode != 46 &&
                 e.KeyCode != 43 &&
                 e.KeyCode != 47 &&
-                e.KeyCode != 33 &&
                 e.KeyCode != 30 &&
+                e.KeyCode != 42 &&
                 e.KeyCode != 122 &&
                 e.KeyCode != 120 &&
                 e.KeyCode != 99 &&

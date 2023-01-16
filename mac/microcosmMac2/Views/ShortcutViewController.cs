@@ -223,8 +223,8 @@ namespace microcosmMac2.Views
             appDelegate.keyEventCtrl[35] = appDelegate.shortCut.ctrlP;
             appDelegate.keyEventCtrl[43] = appDelegate.shortCut.ctrlComma;
             appDelegate.keyEventCtrl[47] = appDelegate.shortCut.ctrlDot;
-            appDelegate.keyEventCtrl[33] = appDelegate.shortCut.ctrlOpenBracket;
-            appDelegate.keyEventCtrl[30] = appDelegate.shortCut.ctrlCloseBracket;
+            appDelegate.keyEventCtrl[30] = appDelegate.shortCut.ctrlOpenBracket;
+            appDelegate.keyEventCtrl[42] = appDelegate.shortCut.ctrlCloseBracket;
             appDelegate.keyEventCtrl[29] = appDelegate.shortCut.ctrl0;
             appDelegate.keyEventCtrl[18] = appDelegate.shortCut.ctrl1;
             appDelegate.keyEventCtrl[19] = appDelegate.shortCut.ctrl2;

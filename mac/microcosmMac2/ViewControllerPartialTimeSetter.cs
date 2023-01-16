@@ -554,7 +554,209 @@ namespace microcosmMac2
 
         }
 
+        public void SetNextFullMoon()
+        {
+            ETargetUser currentTime = ETargetUser.USER1;
 
+            if (appDelegate.bands == 1)
+            {
+                currentTime = calcTargetUser[0];
+            }
+            else if (appDelegate.bands == 2)
+            {
+                currentTime = calcTargetUser[1];
+            }
+            else if (appDelegate.bands == 3)
+            {
+                currentTime = calcTargetUser[2];
+            }
+            DateTime now = udata1.GetDateTime();
+            MoonCalc moon = new MoonCalc(configData);
+            if (currentTime == ETargetUser.USER1)
+            {
+                now = moon.GetFullMoon(udata1.GetDateTime(), udata1.timezone);
+                udata1.SetDateTime(now);
+                ReCalc();
+                RefreshUserBox(0, udata1);
+            }
+            else if (currentTime == ETargetUser.USER2)
+            {
+                now = moon.GetFullMoon(udata2.GetDateTime(), udata2.timezone);
+                udata2.SetDateTime(now);
+                ReCalc();
+                RefreshUserBox(1, udata2);
+            }
+            else if (currentTime == ETargetUser.EVENT1)
+            {
+                now = moon.GetFullMoon(edata1.GetDateTime(), edata1.timezone);
+                edata1.SetDateTime(now);
+                ReCalc();
+                RefreshEventBox(0, edata1);
+            }
+            else if (currentTime == ETargetUser.EVENT2)
+            {
+                now = moon.GetFullMoon(edata2.GetDateTime(), edata2.timezone);
+                edata2.SetDateTime(now);
+                ReCalc();
+                RefreshEventBox(1, edata2);
+            }
+            ReRender();
+        }
+
+        public void SetPrevFullMoon()
+        {
+            ETargetUser currentTime = ETargetUser.USER1;
+
+            if (appDelegate.bands == 1)
+            {
+                currentTime = calcTargetUser[0];
+            }
+            else if (appDelegate.bands == 2)
+            {
+                currentTime = calcTargetUser[1];
+            }
+            else if (appDelegate.bands == 3)
+            {
+                currentTime = calcTargetUser[2];
+            }
+            DateTime now = udata1.GetDateTime();
+
+            MoonCalc moon = new MoonCalc(configData);
+            if (currentTime == ETargetUser.USER1)
+            {
+                now = moon.GetFullMoonMinus(udata1.GetDateTime(), edata1.timezone);
+                udata1.SetDateTime(now);
+                ReCalc();
+                RefreshUserBox(0, udata1);
+            }
+            else if (currentTime == ETargetUser.USER2)
+            {
+                now = moon.GetFullMoonMinus(udata2.GetDateTime(), edata1.timezone);
+                udata2.SetDateTime(now);
+                ReCalc();
+                RefreshUserBox(1, udata2);
+            }
+            else if (currentTime == ETargetUser.EVENT1)
+            {
+                now = moon.GetFullMoonMinus(edata1.GetDateTime(), edata1.timezone);
+                edata1.SetDateTime(now);
+                ReCalc();
+                RefreshEventBox(0, edata1);
+            }
+            else if (currentTime == ETargetUser.EVENT2)
+            {
+                now = moon.GetFullMoonMinus(edata2.GetDateTime(), edata1.timezone);
+                edata2.SetDateTime(now);
+                ReCalc();
+                RefreshEventBox(1, edata2);
+            }
+            ReRender();
+
+        }
+
+        public void SetNextNewMoon()
+        {
+            ETargetUser currentTime = ETargetUser.USER1;
+
+            if (appDelegate.bands == 1)
+            {
+                currentTime = calcTargetUser[0];
+            }
+            else if (appDelegate.bands == 2)
+            {
+                currentTime = calcTargetUser[1];
+            }
+            else if (appDelegate.bands == 3)
+            {
+                currentTime = calcTargetUser[2];
+            }
+            DateTime now = udata1.GetDateTime();
+            MoonCalc moon = new MoonCalc(configData);
+            if (currentTime == ETargetUser.USER1)
+            {
+                now = moon.GetNewMoon(udata1.GetDateTime(), udata1.timezone);
+                udata1.SetDateTime(now);
+                ReCalc();
+                RefreshUserBox(0, udata1);
+            }
+            else if (currentTime == ETargetUser.USER2)
+            {
+                now = moon.GetNewMoon(udata2.GetDateTime(), udata2.timezone);
+                udata2.SetDateTime(now);
+                ReCalc();
+                RefreshUserBox(1, udata2);
+            }
+            else if (currentTime == ETargetUser.EVENT1)
+            {
+                now = moon.GetNewMoon(edata1.GetDateTime(), edata1.timezone);
+                edata1.SetDateTime(now);
+                ReCalc();
+                RefreshEventBox(0, edata1);
+            }
+            else if (currentTime == ETargetUser.EVENT2)
+            {
+                now = moon.GetNewMoon(edata2.GetDateTime(), edata2.timezone);
+                edata2.SetDateTime(now);
+                ReCalc();
+                RefreshEventBox(1, edata2);
+            }
+            ReRender();
+
+        }
+
+        public void SetPrevNewMoon()
+        {
+            ETargetUser currentTime = ETargetUser.USER1;
+
+            if (appDelegate.bands == 1)
+            {
+                currentTime = calcTargetUser[0];
+            }
+            else if (appDelegate.bands == 2)
+            {
+                currentTime = calcTargetUser[1];
+            }
+            else if (appDelegate.bands == 3)
+            {
+                currentTime = calcTargetUser[2];
+            }
+            DateTime now = udata1.GetDateTime();
+            MoonCalc moon = new MoonCalc(configData);
+            if (currentTime == ETargetUser.USER1)
+            {
+                DateTime d = udata1.GetDateTime();
+                now = moon.GetNewMoonMinus(d, udata1.timezone);
+                udata1.SetDateTime(now);
+                ReCalc();
+                RefreshUserBox(0, udata1);
+            }
+            else if (currentTime == ETargetUser.USER2)
+            {
+                DateTime d = udata2.GetDateTime();
+                now = moon.GetNewMoonMinus(d, udata2.timezone);
+                udata2.SetDateTime(now);
+                ReCalc();
+                RefreshUserBox(1, udata2);
+            }
+            else if (currentTime == ETargetUser.EVENT1)
+            {
+                DateTime d = edata1.GetDateTime();
+                now = moon.GetNewMoonMinus(d, edata1.timezone);
+                edata1.SetDateTime(now);
+                ReCalc();
+                RefreshEventBox(0, edata1);
+            }
+            else if (currentTime == ETargetUser.EVENT2)
+            {
+                DateTime d = edata2.GetDateTime();
+                now = moon.GetNewMoonMinus(d, edata2.timezone);
+                edata2.SetDateTime(now);
+                ReCalc();
+                RefreshEventBox(1, edata2);
+            }
+            ReRender();
+
+        }
     }
 }
 
