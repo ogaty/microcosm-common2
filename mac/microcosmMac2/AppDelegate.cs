@@ -59,6 +59,7 @@ namespace microcosmMac2
         public bool aspect23disp = true;
         public bool aspect33disp = true;
 
+        public mainChart currentChart = mainChart.CHART;
 
         public ShortCut shortCut;
 
@@ -330,7 +331,17 @@ namespace microcosmMac2
             System.Diagnostics.Process.Start(Util.root + @"/license");
         }
 
+        partial void ShowChart(Foundation.NSObject sender)
+        {
+            currentChart = mainChart.CHART;
+            viewController.ReRender();
+        }
 
+        partial void ShowGrid(NSObject sender)
+        {
+            currentChart = mainChart.GRID;
+            viewController.ReRender();
+        }
     }
 }
 
