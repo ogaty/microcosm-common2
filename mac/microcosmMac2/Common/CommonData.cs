@@ -486,6 +486,18 @@ namespace microcosmMac2.Common
 
         }
 
+        public static string getAspectSymbol2(AspectKind kind)
+        {
+            if (kind == AspectKind.CONJUNCTION)
+            {
+                return "A";
+            }
+            else
+            {
+                return getAspectSymbol(kind);
+            }
+        }
+
 
         /// <summary>
         /// サインの色をSKColorで返却
