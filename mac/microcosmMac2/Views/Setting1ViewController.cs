@@ -749,6 +749,15 @@ namespace microcosmMac2.Views
                 appDelegate.settings[index].progression = EProgression.CPS;
             }
 
+            if (sameCuspsOn.State == NSCellStateValue.On)
+            {
+                appDelegate.settings[index].sameCusps = true;
+            }
+            else
+            {
+                appDelegate.settings[index].sameCusps = false;
+            }
+
             SettingSave(index, appDelegate.settings[index]);
             SavedAspectPlanetLabel.StringValue = "保存しました";
             if (appDelegate.settingIndex == index)
@@ -756,6 +765,18 @@ namespace microcosmMac2.Views
                 appDelegate.viewController.ReCalc();
                 appDelegate.viewController.ReRender();
             }
+        }
+
+        partial void sameCuspsOnClick(Foundation.NSObject sender)
+        {
+            sameCuspsOn.State = NSCellStateValue.On;
+            sameCuspsOff.State = NSCellStateValue.Off;
+        }
+
+        partial void sameCuspsOffClick(NSObject sender)
+        {
+            sameCuspsOn.State = NSCellStateValue.Off;
+            sameCuspsOff.State = NSCellStateValue.On;
         }
     }
 }

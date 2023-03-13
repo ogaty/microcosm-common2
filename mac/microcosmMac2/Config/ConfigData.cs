@@ -118,24 +118,17 @@ namespace microcosmMac2.Config
         public ConfigData(string path)
         {
             ephepath = path;
-            centric = ECentric.GEO_CENTRIC;
-            sidereal = Esidereal.TROPICAL;
-            defaultTimezone = 9.0;
-            defaultTimezoneStr = "Asia/Tokyo (+9:00)";
-            defaultPlace = "東京都";
-            lat = Common.CommonData.defaultLat;
-            lng = Common.CommonData.defaultLng;
-            decimalDisp = EDecimalDisp.DECIMAL;
-            /*
-            zodiacOuterWidth = 470;
-            zodiacWidth = 60;
-            zodiacCenter = 250;
-            */
+            setDefault();
         }
 
         public ConfigData()
         {
             ephepath = "./";
+            setDefault();
+        }
+
+        public void setDefault()
+        {
             centric = ECentric.GEO_CENTRIC;
             sidereal = Esidereal.TROPICAL;
             sidereal = Esidereal.TROPICAL;
@@ -145,21 +138,6 @@ namespace microcosmMac2.Config
             lat = Common.CommonData.defaultLat;
             lng = Common.CommonData.defaultLng;
             decimalDisp = EDecimalDisp.DECIMAL;
-
-            /*
-            defaultPlace = "東京都千代田区";
-            lat = Common.CommonData.defaultLat;
-            lng = Common.CommonData.defaultLng;
-            houseCalc = EHouseCalc.PLACIDUS;
-            zodiacOuterWidth = 470;
-            zodiacWidth = 60;
-            zodiacCenter = 250;
-            defaultTimezone = "JST";
-            decimalDisp = EDecimalDisp.DECIMAL;
-            dispPattern2 = EDispPettern.MINI;
-            progression = EProgression.PRIMARY;
-            color29 = EColor29.NOCHANGE;
-            */
         }
     }
 }

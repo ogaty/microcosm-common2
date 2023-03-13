@@ -226,6 +226,12 @@ namespace microcosmMac2.Views
 		AppKit.NSButton primaryProgression { get; set; }
 
 		[Outlet]
+		AppKit.NSButton sameCuspsOff { get; set; }
+
+		[Outlet]
+		AppKit.NSButton sameCuspsOn { get; set; }
+
+		[Outlet]
 		AppKit.NSTextField SavedAspectPlanetLabel { get; set; }
 
 		[Outlet]
@@ -272,6 +278,12 @@ namespace microcosmMac2.Views
 
 		[Action ("primaryClick:")]
 		partial void primaryClick (Foundation.NSObject sender);
+
+		[Action ("sameCuspsOffClick:")]
+		partial void sameCuspsOffClick (Foundation.NSObject sender);
+
+		[Action ("sameCuspsOnClick:")]
+		partial void sameCuspsOnClick (Foundation.NSObject sender);
 
 		[Action ("SaveAspectKind:")]
 		partial void SaveAspectKind (Foundation.NSObject sender);
@@ -711,6 +723,16 @@ namespace microcosmMac2.Views
 			if (zeroAries != null) {
 				zeroAries.Dispose ();
 				zeroAries = null;
+			}
+
+			if (sameCuspsOn != null) {
+				sameCuspsOn.Dispose ();
+				sameCuspsOn = null;
+			}
+
+			if (sameCuspsOff != null) {
+				sameCuspsOff.Dispose ();
+				sameCuspsOff = null;
 			}
 		}
 	}
