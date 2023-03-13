@@ -2237,12 +2237,14 @@ namespace microcosm
 
         private void mainChart_Click(object sender, RoutedEventArgs e)
         {
-
+            tempSettings.mainChart = TempSetting.MainChart.CHART;
+            ReRender();
         }
 
         private void mainGrid_Click(object sender, RoutedEventArgs e)
         {
-
+            tempSettings.mainChart = TempSetting.MainChart.GRID;
+            ReRender();
         }
     }
 }

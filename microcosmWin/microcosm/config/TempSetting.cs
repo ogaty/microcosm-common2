@@ -36,6 +36,12 @@ namespace microcosm.config
             PROGRESS = 2
         }
 
+        public enum MainChart
+        {
+            CHART = 0,
+            GRID = 1,
+        }
+
         public int bands = 1;
         public BandKind firstBand;
         public BandKind secondBand;
@@ -44,6 +50,7 @@ namespace microcosm.config
         public HouseDivide secondHouseDiv;
         public HouseDivide thirdHouseDiv;
         public double zodiacCenter;
+        public MainChart mainChart;
 
         public TempSetting(ConfigData configData)
         {
@@ -55,6 +62,8 @@ namespace microcosm.config
             firstHouseDiv = HouseDivide.USER1;
             secondHouseDiv = HouseDivide.PROGRESS;
             thirdHouseDiv = HouseDivide.EVENT1;
+
+            mainChart = MainChart.CHART;
 
        }
     }

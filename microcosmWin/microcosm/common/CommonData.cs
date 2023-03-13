@@ -1,4 +1,5 @@
-﻿using microcosm.Db;
+﻿using microcosm.Aspect;
+using microcosm.Db;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -453,6 +454,45 @@ namespace microcosm.common
                 case ZODIAC_DH_TRUENODE:
                     return "D.H.";
             }
+            return "";
+        }
+
+        public static string getAspectSymbol(int number)
+        {
+            switch (number)
+            {
+                case (int)AspectKind.CONJUNCTION:
+                    return "A";
+                case (int)AspectKind.OPPOSITION:
+                    return "B";
+                case (int)AspectKind.TRINE:
+                    return "C";
+                case (int)AspectKind.SQUARE:
+                    return "D";
+                case (int)AspectKind.SEXTILE:
+                    return "E";
+                case (int)AspectKind.INCONJUNCT:
+                    return "H";
+                case (int)AspectKind.SESQUIQUADRATE:
+                    return "I";
+                case (int)AspectKind.SEMISEXTILE:
+                    return "F";
+                case (int)AspectKind.SEMIQINTILE:
+                    return "L";
+                case (int)AspectKind.NOVILE:
+                    return "M";
+                case (int)AspectKind.SEMISQUARE:
+                    return "G";
+                case (int)AspectKind.SEPTILE:
+                    return "N";
+                case (int)AspectKind.QUINTILE:
+                    return "J";
+                case (int)AspectKind.BIQUINTILE:
+                    return "K";
+                case (int)AspectKind.QUINDECILE:
+                    return "O";
+            }
+
             return "";
         }
 

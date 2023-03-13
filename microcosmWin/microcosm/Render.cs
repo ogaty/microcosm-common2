@@ -1,4 +1,5 @@
 ﻿using microcosm.Aspect;
+using microcosm.calc;
 using microcosm.common;
 using microcosm.config;
 using microcosm.Planet;
@@ -92,6 +93,11 @@ namespace microcosm
             DateTime startDt = DateTime.Now;
 #endif
             AllClear(rcanvasVM, ringCanvas);
+            if (tempSettings.mainChart == TempSetting.MainChart.GRID)
+            {
+                gridRender();
+                return;
+            }
             rcanvasVM.innerLeft = configData.zodiacWidth / 2;
             rcanvasVM.innerTop = configData.zodiacWidth / 2;
             if (ringCanvas.ActualWidth > ringStack.ActualHeight)
@@ -187,6 +193,152 @@ namespace microcosm
             newList3.Sort((a, b) => (int)(a.no - b.no));
             aspectsRendering(houseList1[1], list1, list2, list3);
 
+        }
+
+        /// <summary>
+        /// Grid用
+        /// </summary>
+        private void gridRender()
+        {
+            foreach (int i in Enumerable.Range(1, 12))
+            {
+                Line l1 = new Line();
+                l1.X1 = 50;
+                l1.Y1 = 50 * i;
+                l1.X2 = 600;
+                l1.Y2 = 50 * i;
+                l1.Stroke = System.Windows.Media.Brushes.Black;
+                l1.StrokeThickness = 2.0;
+                ringCanvas.Children.Add(l1);
+
+                Line l2 = new Line();
+                l2.X1 = 50 * i;
+                l2.Y1 = 50;
+                l2.X2 = 50 * i;
+                l2.Y2 = 600;
+                l2.Stroke = System.Windows.Media.Brushes.Black;
+                l2.StrokeThickness = 2.0;
+                ringCanvas.Children.Add(l2);
+            }
+
+            Line l3 = new Line();
+            l3.X1 = 50;
+            l3.Y1 = 50;
+            l3.X2 = 600;
+            l3.Y2 = 600;
+            l3.Stroke = System.Windows.Media.Brushes.Black;
+            l3.StrokeThickness = 2.0;
+            ringCanvas.Children.Add(l3);
+
+
+            foreach (int i in Enumerable.Range(0, 10))
+            {
+                Label zodiacLabel = new Label();
+                zodiacLabel.Content = CommonData.getPlanetSymbol2(i);
+                zodiacLabel.FontFamily = new System.Windows.Media.FontFamily("file:///" + Util.root() + @"\system\microcosm.otf#microcosm");
+                zodiacLabel.FontSize = 24;
+                zodiacLabel.Margin = new Thickness(50 * (i + 2) + 10, 50, 0, 0);
+                zodiacLabel.Foreground = CommonData.getSignColor(i * 30);
+                ringCanvas.Children.Add(zodiacLabel);
+            }
+
+            foreach (int i in Enumerable.Range(0, 10))
+            {
+                Label zodiacLabel = new Label();
+                zodiacLabel.Content = CommonData.getPlanetSymbol2(i);
+                zodiacLabel.FontFamily = new System.Windows.Media.FontFamily("file:///" + Util.root() + @"\system\microcosm.otf#microcosm");
+                zodiacLabel.FontSize = 24;
+                zodiacLabel.Margin = new Thickness(50, 50 * (i + 2) + 10, 0, 0);
+                zodiacLabel.Foreground = CommonData.getSignColor(i * 30);
+                ringCanvas.Children.Add(zodiacLabel);
+            }
+
+            AspectCalc aspectCalc = new AspectCalc();
+            foreach (int i in Enumerable.Range(0, 10))
+            {
+                if (!list1[i].isAspectDisp)
+                {
+                    continue;
+                }
+                foreach (int j in Enumerable.Range(i + 1, 9 - i))
+                {
+                    if (!list1[j].isAspectDisp)
+                    {
+                        continue;
+                    }
+                    double aspect_degree = list1[j].absolute_position - list1[i].absolute_position;
+                    if (aspect_degree > 180)
+                    {
+                        aspect_degree = 360 + list1[i].absolute_position - list1[j].absolute_position;
+                    }
+
+                    foreach (AspectKind kind in Enum.GetValues(typeof(AspectKind)))
+                    {
+                        if (kind == AspectKind.CONJUNCTION && currentSetting.dispAspectConjunction == 0) continue;
+                        if (kind == AspectKind.OPPOSITION && currentSetting.dispAspectOpposition == 0) continue;
+                        if (kind == AspectKind.TRINE && currentSetting.dispAspectTrine == 0) continue;
+                        if (kind == AspectKind.SQUARE && currentSetting.dispAspectSquare == 0) continue;
+                        if (kind == AspectKind.SEXTILE && currentSetting.dispAspectSextile == 0) continue;
+                        if (kind == AspectKind.INCONJUNCT && currentSetting.dispAspectInconjunct == 0) continue;
+                        if (kind == AspectKind.SESQUIQUADRATE && currentSetting.dispAspectSesquiQuadrate == 0) continue;
+                        if (kind == AspectKind.SEMISEXTILE && currentSetting.dispAspectSemiSextile == 0) continue;
+                        if (kind == AspectKind.SEMISQUARE && currentSetting.dispAspectSemiSquare == 0) continue;
+                        if (kind == AspectKind.QUINTILE && currentSetting.dispAspectQuintile == 0) continue;
+                        if (kind == AspectKind.BIQUINTILE && currentSetting.dispAspectBiQuintile == 0) continue;
+                        if (kind == AspectKind.SEMIQINTILE && currentSetting.dispAspectSemiQuintile == 0) continue;
+                        if (kind == AspectKind.NOVILE && currentSetting.dispAspectNovile == 0) continue;
+                        if (kind == AspectKind.SEPTILE && currentSetting.dispAspectSeptile == 0) continue;
+                        if (kind == AspectKind.QUINDECILE && currentSetting.dispAspectQuindecile == 0) continue;
+
+                        bool isAspect = false;
+                        SoftHard softHard = SoftHard.HARD;
+                        double[] orbs = new double[2] { 6.0, 10.0 };
+                        double degree = aspectCalc.getDegree(kind);
+
+                        if (list1[i].no == CommonData.ZODIAC_SUN || list1[i].no == CommonData.ZODIAC_MOON)
+                        {
+                            if (aspectCalc.isFirstAspectKind(kind))
+                            {
+                                aspectCalc.IsAspect(aspect_degree, degree, currentSetting.orbSunMoon, ref isAspect, ref softHard);
+                            }
+                            else
+                            {
+                                // 2種:3種はsun/moon関係なし
+                                aspectCalc.IsAspect(aspect_degree, degree, currentSetting.orb2nd, ref isAspect, ref softHard);
+                            }
+                        }
+                        else
+                        {
+                            if (aspectCalc.isFirstAspectKind(kind))
+                            {
+                                aspectCalc.IsAspect(aspect_degree, degree, currentSetting.orb1st, ref isAspect, ref softHard);
+                            }
+                            else
+                            {
+                                aspectCalc.IsAspect(aspect_degree, degree, currentSetting.orb2nd, ref isAspect, ref softHard);
+                            }
+                        }
+
+                        if (isAspect)
+                        {
+                            Debug.WriteLine(i.ToString());
+                            Debug.WriteLine(j.ToString());
+                            Debug.WriteLine(kind.ToString());
+
+
+                            Label zodiacLabel = new Label();
+                            zodiacLabel.Content = CommonData.getAspectSymbol((int)kind);
+                            zodiacLabel.FontFamily = new System.Windows.Media.FontFamily("file:///" + Util.root() + @"\system\microcosm-aspects.otf#microcosm-aspects");
+                            zodiacLabel.FontSize = 24;
+                            zodiacLabel.Margin = new Thickness(50 + 50 * (i + 1) + 10, 50 + 50 * (j + 1) + 10, 0, 0);
+                            zodiacLabel.Foreground = CommonData.getSignColor(i * 30);
+                            ringCanvas.Children.Add(zodiacLabel);
+                            break;
+                        }
+                    }
+                }
+
+            }
         }
 
         /// <summary>
