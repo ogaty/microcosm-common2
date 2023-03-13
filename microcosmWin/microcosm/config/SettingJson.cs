@@ -160,6 +160,9 @@ namespace microcosm.config
         [JsonPropertyName("dispAspectQuindecile")]
         public int dispAspectQuindecile { get; set; }
 
+        [JsonPropertyName("sameCusps")]
+        public bool sameCusps { get; set; }
+
 
         public SettingJson(int i)
         {
@@ -237,6 +240,7 @@ namespace microcosm.config
 
             progression = EProgression.SECONDARY;
             houseCalc = EHouseCalc.PLACIDUS;
+            sameCusps = false;
         }
 
         public SettingJson(SettingData data)
@@ -319,11 +323,16 @@ namespace microcosm.config
 
             progression = data.progression;
             houseCalc = data.houseCalc;
+            sameCusps = data.sameCusps; 
         }
 
         public SettingJson()
         {
-
+            name = "noName";
+            progression = EProgression.SECONDARY;
+            this.orbSunMoon = new double[2];
+            this.orb1st = new double[2];
+            this.orb2nd = new double[2];
         }
     }
 }

@@ -153,11 +153,23 @@ namespace microcosm
             {
                 compositProgression.IsChecked = true;
             }
+
+            if (main.settings[0].sameCusps)
+            {
+                sameCuspsOn.IsChecked = true;
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
+            saveDispNameLabel.Content = "保存";
+            saveDispKind.Content = "保存";
+            SavePlanetLabel.Content = "保存";
+            SaveOrbsLabel.Content = "保存";
+            SaveAspectLabel.Content = "保存";
+            SaveAspectKindLabel.Content = "保存";
+
             this.Visibility = Visibility.Collapsed;
         }
 
@@ -283,6 +295,11 @@ namespace microcosm
             else if (main.settings[index].progression == config.EProgression.CPS)
             {
                 compositProgression.IsChecked = true;
+            }
+
+            if (main.settings[index].sameCusps)
+            {
+                sameCuspsOn.IsChecked = true;
             }
         }
 
@@ -511,6 +528,15 @@ namespace microcosm
             else if (zeroaries.IsChecked == true)
             {
                 setting.houseCalc = EHouseCalc.ZEROARIES;
+            }
+
+            if (sameCuspsOn.IsChecked == true)
+            {
+                setting.sameCusps = true;
+            }
+            else
+            {
+                setting.sameCusps = false;
             }
 
             saveDispKind.Content = "保存しました";

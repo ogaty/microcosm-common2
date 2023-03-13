@@ -35,24 +35,38 @@
                 </TabItem>
                 <TabItem Header="表示設定">
                     <StackPanel>
-                        <GroupBox Header="プログレス計算" Margin="5">
+                        <StackPanel Orientation="Horizontal">
                             <StackPanel>
-                                <RadioButton x:Name="secondaryProgression" Content="一日一年法(Secondary Progression)" IsChecked="True"></RadioButton>
-                                <RadioButton x:Name="primaryProgression" Content="一度一年法(Primary Progression)"></RadioButton>
-                                <RadioButton x:Name="solarArcProgression" Content="ソーラーアーク法(SolarArc Progression)"></RadioButton>
-                                <RadioButton x:Name="compositProgression" Content="CPS(Composit Progression)"></RadioButton>
+                                <GroupBox Header="プログレス計算" Margin="5">
+                                    <StackPanel>
+                                        <RadioButton x:Name="secondaryProgression" Content="一日一年法(Secondary Progression)" IsChecked="True"></RadioButton>
+                                        <RadioButton x:Name="primaryProgression" Content="一度一年法(Primary Progression)"></RadioButton>
+                                        <RadioButton x:Name="solarArcProgression" Content="ソーラーアーク法(SolarArc Progression)"></RadioButton>
+                                        <RadioButton x:Name="compositProgression" Content="CPS(Composit Progression)"></RadioButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="ハウス計算" Margin="5">
+                                    <StackPanel>
+                                        <RadioButton x:Name="placidus" Content="Placidus" IsChecked="True"></RadioButton>
+                                        <RadioButton x:Name="koch" Content="Koch"></RadioButton>
+                                        <RadioButton x:Name="campanus" Content="Campanus"></RadioButton>
+                                        <RadioButton x:Name="equal" Content="Equal"></RadioButton>
+                                        <RadioButton x:Name="zeroaries" Content="Zero Aries"></RadioButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <Label Content=" " x:Name="saveDispKindLabel"></Label>
+
                             </StackPanel>
-                        </GroupBox>
-                        <GroupBox Header="ハウス計算" Margin="5">
                             <StackPanel>
-                                <RadioButton x:Name="placidus" Content="Placidus" IsChecked="True"></RadioButton>
-                                <RadioButton x:Name="koch" Content="Koch"></RadioButton>
-                                <RadioButton x:Name="campanus" Content="Campanus"></RadioButton>
-                                <RadioButton x:Name="equal" Content="Equal"></RadioButton>
-                                <RadioButton x:Name="zeroaries" Content="Zero Aries"></RadioButton>
+                                <GroupBox Header="ネイタルカスプ使用" Margin="5">
+                                    <StackPanel>
+                                        <TextBlock Text="(二重円、三重円のハウスカスプをネイタルカスプにします)"></TextBlock>
+                                        <RadioButton x:Name="sameCuspsOff" Content="無効" IsChecked="True"></RadioButton>
+                                        <RadioButton x:Name="sameCuspsOn" Content="有効"></RadioButton>
+                                    </StackPanel>
+                                </GroupBox>
                             </StackPanel>
-                        </GroupBox>
-                        <Label Content=" " x:Name="saveDispKindLabel"></Label>
+                        </StackPanel>
                         <Button x:Name="saveDispKind" Content="保存" Width="100" Margin="10" Click="saveDispKind_Click" HorizontalAlignment="Right"></Button>
                     </StackPanel>
                 </TabItem>

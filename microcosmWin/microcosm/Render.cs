@@ -411,7 +411,10 @@ namespace microcosm
                     newStart.Y = newStart.Y * -1;
                     newStart.Y += (float)rcanvasVM.outerHeight / 2;
 
-                    endX = (rcanvasVM.outerWidth - 90) / 2;
+                    if (!currentSetting.sameCusps)
+                    {
+                        endX = (rcanvasVM.outerWidth - 90) / 2;
+                    }
                     PointF newEnd = CommonData.rotate(endX, endY, degree);
                     newEnd.X += (float)rcanvasVM.outerWidth / 2;
                     // Formの座標は下がプラス、数学では上がマイナス
@@ -462,7 +465,10 @@ namespace microcosm
                     newStart.Y = newStart.Y * -1;
                     newStart.Y += (float)rcanvasVM.outerHeight / 2;
 
-                    endX = (rcanvasVM.outerWidth + 2 * tempSettings.zodiacCenter - 90) / 6;
+                    if (!currentSetting.sameCusps)
+                    {
+                        endX = (rcanvasVM.outerWidth + 2 * tempSettings.zodiacCenter - 90) / 6;
+                    }
                     PointF newEnd = CommonData.rotate(endX, endY, degree);
                     newEnd.X += (float)rcanvasVM.outerWidth / 2;
                     // Formの座標は下がプラス、数学では上がマイナス
@@ -584,7 +590,7 @@ namespace microcosm
                 }
                 ringCanvas.Children.Add(l);
             });
-            if (tempSettings.bands >= 2)
+            if (tempSettings.bands >= 2 && !currentSetting.sameCusps)
             {
                 Enumerable.Range(0, 12).ToList().ForEach(i =>
                 {
@@ -635,7 +641,7 @@ namespace microcosm
                     ringCanvas.Children.Add(l);
                 });
             }
-            if (tempSettings.bands >= 3)
+            if (tempSettings.bands >= 3 && !currentSetting.sameCusps)
             {
                 Enumerable.Range(0, 12).ToList().ForEach(i =>
                 {

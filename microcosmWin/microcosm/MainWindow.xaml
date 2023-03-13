@@ -32,6 +32,10 @@
                         <MenuItem Header="3重円(NTT)" Click="TripleRingNTT_Click" />
                         <MenuItem Header="3重円(NNC)" Click="TripleRingNNC_Click" />
                     </MenuItem>
+                    <MenuItem Header="メインウィンドウ">
+                        <MenuItem Header="チャート" Name="mainChart" Click="mainChart_Click" ></MenuItem>
+                        <MenuItem Header="グリッド" Name="mainGrid" Click="mainGrid_Click"  ></MenuItem>
+                    </MenuItem>
                     <MenuItem Header="アスペクト切り替え">
                         <MenuItem Header="すべてOFF" Name="allAspectOff" Click="allAspectOff_Click"></MenuItem>
                         <MenuItem Header="すべてON" Name="allAspectOn" Click="allAspectOn_Click"></MenuItem>

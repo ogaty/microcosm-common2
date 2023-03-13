@@ -2234,5 +2234,15 @@ namespace microcosm
             proc.StartInfo.UseShellExecute = true;
             proc.Start();
         }
+
+        private void mainChart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mainGrid_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

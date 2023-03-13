@@ -80,6 +80,8 @@ namespace microcosm.config
         public EProgression progression;
         public EHouseCalc houseCalc;
 
+        public bool sameCusps;
+
 
         // no: 設定番号
         public SettingData(int no)
@@ -165,6 +167,8 @@ namespace microcosm.config
 
             progression = EProgression.SECONDARY;
             houseCalc = EHouseCalc.PLACIDUS;
+
+            sameCusps = false;
         }
 
         public void init(SettingJson json)
@@ -244,6 +248,7 @@ namespace microcosm.config
 
             progression = json.progression;
             houseCalc = json.houseCalc;
+            sameCusps = json.sameCusps;
         }
 
         public bool GetDispPlanet(int planetNo)
