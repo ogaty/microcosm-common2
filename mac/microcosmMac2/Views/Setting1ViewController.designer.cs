@@ -675,6 +675,16 @@ namespace microcosmMac2.Views
 				primaryProgression = null;
 			}
 
+			if (sameCuspsOff != null) {
+				sameCuspsOff.Dispose ();
+				sameCuspsOff = null;
+			}
+
+			if (sameCuspsOn != null) {
+				sameCuspsOn.Dispose ();
+				sameCuspsOn = null;
+			}
+
 			if (SavedAspectPlanetLabel != null) {
 				SavedAspectPlanetLabel.Dispose ();
 				SavedAspectPlanetLabel = null;
@@ -723,16 +733,6 @@ namespace microcosmMac2.Views
 			if (zeroAries != null) {
 				zeroAries.Dispose ();
 				zeroAries = null;
-			}
-
-			if (sameCuspsOn != null) {
-				sameCuspsOn.Dispose ();
-				sameCuspsOn = null;
-			}
-
-			if (sameCuspsOff != null) {
-				sameCuspsOff.Dispose ();
-				sameCuspsOff = null;
 			}
 		}
 	}

@@ -208,6 +208,17 @@ namespace microcosmMac2.Views
                 zeroAries.State = NSCellStateValue.On;
             }
 
+            if (appDelegate.currentSetting.sameCusps)
+            {
+                sameCuspsOff.State = NSCellStateValue.Off;
+                sameCuspsOn.State = NSCellStateValue.On;
+            }
+            else
+            {
+                sameCuspsOff.State = NSCellStateValue.On;
+                sameCuspsOn.State = NSCellStateValue.Off;
+            }
+
         }
 
         public override void AwakeFromNib()
