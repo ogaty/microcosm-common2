@@ -114,6 +114,8 @@ namespace microcosmMac2.Config
         // ハウス
         public EHouseCalc houseCalc { get; set; }
 
+        public bool sameCusps { get; set; }
+
         /// <summary>
         /// jsonから読まない
         /// Serializeから呼ばれる
@@ -201,6 +203,7 @@ namespace microcosmMac2.Config
 
             progression = EProgression.SECONDARY;
             houseCalc = EHouseCalc.PLACIDUS;
+            sameCusps = false;
         }
 
         /// <summary>
@@ -286,6 +289,7 @@ namespace microcosmMac2.Config
 
             progression = json.progression;
             houseCalc = json.houseCalc;
+            sameCusps = json.sameCusps;
 
         }
 

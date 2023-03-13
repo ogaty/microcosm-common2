@@ -107,6 +107,12 @@ namespace microcosmMac2
 		[Action ("Setting3Open:")]
 		partial void Setting3Open (Foundation.NSObject sender);
 
+		[Action ("ShowChart:")]
+		partial void ShowChart (Foundation.NSObject sender);
+
+		[Action ("ShowGrid:")]
+		partial void ShowGrid (Foundation.NSObject sender);
+
 		[Action ("ShowHelp:")]
 		partial void ShowHelp (Foundation.NSObject sender);
 

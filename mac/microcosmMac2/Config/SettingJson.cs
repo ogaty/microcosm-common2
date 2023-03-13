@@ -149,6 +149,7 @@ namespace microcosmMac2.Config
         [JsonPropertyName("dispAspectPlanetVesta")]
         public int dispAspectPlanetVesta { get; set; }
 
+
         // プログレス計算方法
         [JsonPropertyName("progression")]
         public EProgression progression { get; set; }
@@ -156,6 +157,9 @@ namespace microcosmMac2.Config
         // ハウス
         [JsonPropertyName("houseCalc")]
         public EHouseCalc houseCalc { get; set; }
+
+        [JsonPropertyName("sameCusps")]
+        public bool sameCusps { get; set; }
 
 
         public SettingJson()
@@ -196,6 +200,8 @@ namespace microcosmMac2.Config
 
             progression = EProgression.SECONDARY;
             houseCalc = EHouseCalc.PLACIDUS;
+            sameCusps = false;
+
         }
 
         public SettingJson(SettingData data)
@@ -278,6 +284,7 @@ namespace microcosmMac2.Config
 
             progression = EProgression.SECONDARY;
             houseCalc = EHouseCalc.PLACIDUS;
+            sameCusps = data.sameCusps;
         }
     }
 }

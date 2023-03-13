@@ -189,6 +189,25 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
+                                        <menuItem title="メインウィンドウ" id="yRG-Ac-hNQ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" id="nLI-Ce-ESb">
+                                                <items>
+                                                    <menuItem title="チャート" id="PVM-a8-fr2">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="ShowChart:" target="Voe-Tx-rLC" id="yPr-lW-lId"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="グリッド" id="X3E-M0-39o">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="ShowGrid:" target="Voe-Tx-rLC" id="S1T-0g-l1n"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem title="アスペクト線切り替え" id="hjI-T6-23M">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="アスペクト線切り替え" id="Yyi-d8-jWd">
@@ -1474,8 +1493,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="5IV-Hd-FVO">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="695203937.44684803">
-                                        <!--2023-01-12 08:12:17 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="700375094.69365501">
+                                        <!--2023-03-13 04:38:14 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1814,6 +1833,46 @@
                                                     <color key="bezelColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
                                                     <connections>
                                                         <action selector="SettingKindSave:" target="5Ck-z8-sOb" id="8Lz-2u-S6M"/>
+                                                    </connections>
+                                                </button>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhF-8I-Yvi">
+                                                    <rect key="frame" x="305" y="250" width="113" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="ネイタルカスプ使用" id="9OY-9C-jG2">
+                                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRa-ax-ajr">
+                                                    <rect key="frame" x="305" y="204" width="193" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" selectable="YES" title="(二重円、三重円のハウスカスプをネイタルカスプにします)" id="DDZ-kW-Z2m">
+                                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R6D-H9-rdJ">
+                                                    <rect key="frame" x="305" y="181" width="51" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="radio" title="無効" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="guM-oW-FnG">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="sameCuspsOffClick:" target="5Ck-z8-sOb" id="rNe-nd-AAj"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYO-n3-ppn">
+                                                    <rect key="frame" x="370" y="181" width="51" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="radio" title="有効" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="g59-3B-mAi">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="sameCuspsOnClick:" target="5Ck-z8-sOb" id="Cms-RZ-DNB"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -2593,6 +2652,8 @@
                         <outlet property="orbSunMoonSoft" destination="mze-88-PXm" id="QYA-Ob-JUC"/>
                         <outlet property="placidus" destination="y8O-z2-Gro" id="SEq-QC-qHE"/>
                         <outlet property="primaryProgression" destination="VEM-yZ-pbf" id="w3v-Xq-ecA"/>
+                        <outlet property="sameCuspsOff" destination="R6D-H9-rdJ" id="Bxy-yd-hHG"/>
+                        <outlet property="sameCuspsOn" destination="lYO-n3-ppn" id="qq5-zQ-geF"/>
                         <outlet property="savedNameLabel" destination="YEu-4G-T8F" id="WUi-TZ-FuZ"/>
                         <outlet property="savedPlanetLabel" destination="HPJ-Qn-sEb" id="AI3-R8-ixI"/>
                         <outlet property="secondaryProgression" destination="AlC-Xu-cpA" id="dXZ-vC-fHT"/>
@@ -3394,8 +3455,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="noP-AC-93d">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="695203937.51712894">
-                                        <!--2023-01-12 08:12:17 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="700375094.75944698">
+                                        <!--2023-03-13 04:38:14 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3877,8 +3938,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="OhK-h3-i3y">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="695203937.53252101">
-                                        <!--2023-01-12 08:12:17 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="700375094.77481699">
+                                        <!--2023-03-13 04:38:14 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -4257,8 +4318,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="oLl-RD-Me0">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="695203937.54500699">
-                                        <!--2023-01-12 08:12:17 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="700375094.78745902">
+                                        <!--2023-03-13 04:38:14 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

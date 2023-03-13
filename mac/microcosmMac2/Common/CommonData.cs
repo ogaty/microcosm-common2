@@ -45,6 +45,12 @@ namespace microcosmMac2.Common
         SOLARRETURN = 21,
     }
 
+    public enum mainChart
+    {
+        CHART = 0,
+        GRID = 1,
+    }
+
     public static class CommonData
     {
         // AstroCalcで回すループ番号

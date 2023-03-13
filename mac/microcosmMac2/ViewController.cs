@@ -1032,9 +1032,11 @@ namespace microcosmMac2
             textStyle.Color = zzz;
 
             // house cusps
+            // CuspRenderer
+            #region CuspRenderer
             for (int i = 1; i <= 12; i++)
             {
-                if (appDelegate.bands == 1)
+                if (appDelegate.bands == 1 || appDelegate.currentSetting.sameCusps)
                 {
                     housePt = Util.Rotate(diameter / 2 - zodiacWidth, 0, houseList1[i] - houseList1[1]);
                     housePt.x = housePt.x + CenterX;
@@ -1070,7 +1072,7 @@ namespace microcosmMac2
 
                 cvs.DrawText(((int)houseList1[i] % 30).ToString(), (float)housePtTxt.x, (float)housePtTxt.y, textStyle);
             }
-            if (appDelegate.bands > 1)
+            if (appDelegate.bands > 1 && !appDelegate.currentSetting.sameCusps)
             {
                 for (int i = 1; i <= 12; i++)
                 {
@@ -1103,7 +1105,7 @@ namespace microcosmMac2
                 }
 
             }
-            if (appDelegate.bands > 2)
+            if (appDelegate.bands > 2 && !appDelegate.currentSetting.sameCusps)
             {
                 for (int i = 1; i <= 12; i++)
                 {
@@ -1124,6 +1126,7 @@ namespace microcosmMac2
                 }
 
             }
+            #endregion CuspRenderer
 
             // sign cusps
             Position signPt;
@@ -2379,6 +2382,11 @@ namespace microcosmMac2
             return targetUser;
         }
 
+        /// <summary>
+        /// キーダウンイベント
+        /// うまくやらないと通常のテキストボックスにも影響する
+        /// </summary>
+        /// <param name="e"></param>
         public override void KeyDown(NSEvent e)
         {
 

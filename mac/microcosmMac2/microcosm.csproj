@@ -310,6 +310,8 @@
     <Compile Include="Calc\MoonCalc.cs" />
     <Compile Include="Models\SolarFireCsv.cs" />
     <Compile Include="Models\KeplerCsv.cs" />
+    <Compile Include="ViewControllerChartRenderer.cs" />
+    <Compile Include="ViewControllerGridRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
