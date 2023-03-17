@@ -734,6 +734,16 @@ namespace microcosmMac2.Views
 				zeroAries.Dispose ();
 				zeroAries = null;
 			}
+
+			if (sameCuspsOn != null) {
+				sameCuspsOn.Dispose ();
+				sameCuspsOn = null;
+			}
+
+			if (sameCuspsOff != null) {
+				sameCuspsOff.Dispose ();
+				sameCuspsOff = null;
+			}
 		}
 	}
 }
