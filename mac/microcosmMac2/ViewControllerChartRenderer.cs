@@ -122,13 +122,13 @@ namespace microcosmMac2
             // house cusps
             for (int i = 1; i <= 12; i++)
             {
-                if (appDelegate.bands == 1)
+                if (appDelegate.bands == 1 || appDelegate.currentSetting.sameCusps)
                 {
                     housePt = Util.Rotate(diameter / 2 - zodiacWidth, 0, houseList1[i] - houseList1[1]);
                     housePt.x = housePt.x + CenterX;
                     housePt.y = -1 * housePt.y + CenterY;
                 }
-                else if (appDelegate.bands == 2)
+                else if (appDelegate.bands == 2 && !appDelegate.currentSetting.sameCusps)
                 {
                     housePt = Util.Rotate(diameter / 2 - zodiacWidth - 75, 0, houseList1[i] - houseList1[1]);
                     housePt.x = housePt.x + CenterX;
@@ -158,7 +158,7 @@ namespace microcosmMac2
 
                 cvs.DrawText(((int)houseList1[i] % 30).ToString(), (float)housePtTxt.x, (float)housePtTxt.y, textStyle);
             }
-            if (appDelegate.bands > 1)
+            if (appDelegate.bands > 1 && !appDelegate.currentSetting.sameCusps)
             {
                 for (int i = 1; i <= 12; i++)
                 {
@@ -191,7 +191,7 @@ namespace microcosmMac2
                 }
 
             }
-            if (appDelegate.bands > 2)
+            if (appDelegate.bands > 2 && !appDelegate.currentSetting.sameCusps)
             {
                 for (int i = 1; i <= 12; i++)
                 {
