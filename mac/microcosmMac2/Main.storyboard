@@ -1493,8 +1493,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="5IV-Hd-FVO">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="700375094.69365501">
-                                        <!--2023-03-13 04:38:14 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="712984562.09354997">
+                                        <!--2023-08-06 03:16:02 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1839,7 +1839,7 @@
                                                     <rect key="frame" x="305" y="250" width="113" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="ネイタルカスプ使用" id="9OY-9C-jG2">
-                                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -1848,7 +1848,7 @@
                                                     <rect key="frame" x="305" y="204" width="193" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" selectable="YES" title="(二重円、三重円のハウスカスプをネイタルカスプにします)" id="DDZ-kW-Z2m">
-                                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -1858,7 +1858,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="無効" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="guM-oW-FnG">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                        <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="sameCuspsOffClick:" target="5Ck-z8-sOb" id="rNe-nd-AAj"/>
@@ -1869,7 +1869,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="radio" title="有効" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="g59-3B-mAi">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                        <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="sameCuspsOnClick:" target="5Ck-z8-sOb" id="Cms-RZ-DNB"/>
@@ -2672,7 +2672,7 @@
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="4yi-CM-rcD">
                         <rect key="frame" x="0.0" y="0.0" width="842" height="592"/>
                         <subviews>
-                            <box fixedFrame="YES" title="Directories" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-EZ-216">
+                            <box fixedFrame="YES" title="ディレクトリ" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-EZ-216">
                                 <rect key="frame" x="17" y="364" width="230" height="215"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="EVm-4x-gmz">
@@ -2782,8 +2782,9 @@
                                         </button>
                                     </subviews>
                                 </view>
+                                <font key="titleFont" size="11" name=".HiraKakuInterface-W3"/>
                             </box>
-                            <box fixedFrame="YES" title="Files" translatesAutoresizingMaskIntoConstraints="NO" id="CbF-I2-bUu">
+                            <box fixedFrame="YES" title="ファイル" translatesAutoresizingMaskIntoConstraints="NO" id="CbF-I2-bUu">
                                 <rect key="frame" x="17" y="16" width="230" height="344"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="7Gs-tC-ENE">
@@ -2917,6 +2918,7 @@
                                         </button>
                                     </subviews>
                                 </view>
+                                <font key="titleFont" size="11" name=".HiraKakuInterface-W3"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cak-NV-akx">
                                 <rect key="frame" x="269" y="188" width="107" height="32"/>
@@ -2998,7 +3000,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box fixedFrame="YES" title="Event" translatesAutoresizingMaskIntoConstraints="NO" id="b3K-D9-aFR">
+                            <box fixedFrame="YES" title="イベント" translatesAutoresizingMaskIntoConstraints="NO" id="b3K-D9-aFR">
                                 <rect key="frame" x="264" y="229" width="561" height="350"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="4ow-tr-W48">
@@ -3350,6 +3352,7 @@
                                         </textField>
                                     </subviews>
                                 </view>
+                                <font key="titleFont" size="11" name=".HiraKakuInterface-W3"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v6v-p5-ujU">
                                 <rect key="frame" x="758" y="13" width="71" height="32"/>
@@ -3455,8 +3458,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="noP-AC-93d">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="700375094.75944698">
-                                        <!--2023-03-13 04:38:14 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="712984562.15950596">
+                                        <!--2023-08-06 03:16:02 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3903,8 +3906,8 @@
         <scene sceneID="TFT-V3-w4a">
             <objects>
                 <viewController title="イベント追加" id="f82-eO-Xvs" customClass="EventAddViewController" sceneMemberID="viewController">
-                    <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="W2x-Q3-jps">
-                        <rect key="frame" x="0.0" y="0.0" width="502" height="400"/>
+                    <view key="view" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W2x-Q3-jps">
+                        <rect key="frame" x="0.0" y="0.0" width="542" height="400"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHQ-Hp-lIb">
                                 <rect key="frame" x="18" y="364" width="65" height="16"/>
@@ -3938,8 +3941,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="OhK-h3-i3y">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="700375094.77481699">
-                                        <!--2023-03-13 04:38:14 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="712984562.17402101">
+                                        <!--2023-08-06 03:16:02 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -4087,10 +4090,10 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yl3-f6-0N4">
-                                <rect key="frame" x="242" y="60" width="240" height="265"/>
+                                <rect key="frame" x="242" y="60" width="280" height="265"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="TBh-IO-ktQ">
-                                    <rect key="frame" x="1" y="1" width="238" height="263"/>
+                                    <rect key="frame" x="1" y="1" width="278" height="263"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" headerView="laU-GX-KtU" viewBased="YES" id="rZM-FN-r2o">
@@ -4204,7 +4207,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="f2X-OY-0gv">
-                                    <rect key="frame" x="1" y="248" width="238" height="16"/>
+                                    <rect key="frame" x="1" y="248" width="278" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="hhy-cd-Ztc">
@@ -4216,18 +4219,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qIo-bA-kx4">
-                                <rect key="frame" x="430" y="13" width="59" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="追加" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rpg-vJ-Ig4">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <color key="bezelColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
-                                <connections>
-                                    <action selector="SubmitClicked:" target="f82-eO-Xvs" id="W2K-ZW-PYQ"/>
-                                </connections>
-                            </button>
                             <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbj-DZ-lE8">
                                 <rect key="frame" x="19" y="60" width="215" height="83"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -4255,6 +4246,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qIo-bA-kx4">
+                                <rect key="frame" x="470" y="13" width="59" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="追加" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rpg-vJ-Ig4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="SubmitClicked:" target="f82-eO-Xvs" id="W2K-ZW-PYQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="width" constant="502" id="WC3-hZ-7QX"/>
@@ -4283,8 +4286,8 @@
         <scene sceneID="6Qy-KH-4WC">
             <objects>
                 <viewController title="イベント編集" id="hj8-mX-5kX" customClass="EventEditViewController" sceneMemberID="viewController">
-                    <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="b7F-gD-dxx">
-                        <rect key="frame" x="0.0" y="0.0" width="526" height="401"/>
+                    <view key="view" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b7F-gD-dxx">
+                        <rect key="frame" x="0.0" y="0.0" width="542" height="401"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-xB-VfZ">
                                 <rect key="frame" x="20" y="365" width="65" height="16"/>
@@ -4318,8 +4321,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="oLl-RD-Me0">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="700375094.78745902">
-                                        <!--2023-03-13 04:38:14 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="712984562.18568695">
+                                        <!--2023-08-06 03:16:02 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -4467,14 +4470,14 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUo-Jg-4df">
-                                <rect key="frame" x="238" y="60" width="268" height="197"/>
+                                <rect key="frame" x="238" y="60" width="284" height="197"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="301-JG-aDX">
-                                    <rect key="frame" x="1" y="1" width="266" height="195"/>
+                                    <rect key="frame" x="1" y="1" width="282" height="195"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" headerView="B7V-VX-jHh" viewBased="YES" id="qfT-fI-pPf">
-                                            <rect key="frame" x="0.0" y="0.0" width="266" height="167"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="282" height="167"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -4544,7 +4547,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="31" minWidth="10" maxWidth="3.4028234663852886e+38" id="mNu-oA-0GN">
+                                                <tableColumn width="47" minWidth="10" maxWidth="3.4028234663852886e+38" id="mNu-oA-0GN">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="経度">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4557,11 +4560,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="S81-NO-1dg">
-                                                            <rect key="frame" x="229" y="0.0" width="28" height="17"/>
+                                                            <rect key="frame" x="229" y="0.0" width="44" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LyH-JP-aSf">
-                                                                    <rect key="frame" x="0.0" y="1" width="28" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="44" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="T56-7I-SWT">
                                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -4592,22 +4595,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="B7V-VX-jHh">
-                                    <rect key="frame" x="0.0" y="0.0" width="266" height="28"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="282" height="28"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6W-Yj-ZHe">
-                                <rect key="frame" x="454" y="13" width="59" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="更新" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d5v-nD-bdQ">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <color key="bezelColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
-                                <connections>
-                                    <action selector="SubmitClicked:" target="hj8-mX-5kX" id="Rd4-ps-fXz"/>
-                                </connections>
-                            </button>
                             <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNN-VL-4Ca">
                                 <rect key="frame" x="20" y="60" width="210" height="83"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -4635,6 +4626,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6W-Yj-ZHe">
+                                <rect key="frame" x="470" y="13" width="59" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="更新" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d5v-nD-bdQ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="bezelColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="SubmitClicked:" target="hj8-mX-5kX" id="Rd4-ps-fXz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="width" constant="526" id="IEb-MN-Okd"/>
@@ -4657,7 +4660,7 @@
                 </viewController>
                 <customObject id="H26-zw-yPN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2414" y="2259"/>
+            <point key="canvasLocation" x="2414" y="2258.5"/>
         </scene>
         <!--Eclipse View Controller-->
         <scene sceneID="3LU-XJ-EHU">

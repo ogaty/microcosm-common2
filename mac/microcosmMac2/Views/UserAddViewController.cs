@@ -248,10 +248,11 @@ namespace microcosmMac2.Views
         {
             NSTableView s = (NSTableView)sender;
             Debug.WriteLine(s.ClickedRow);
+            if (-1 == s.ClickedRow) return;
 
             event_place.StringValue = addrs[(int)s.ClickedRow].name;
             event_lat.StringValue = addrs[(int)s.ClickedRow].lat.ToString();
-            event_lng.StringValue = addrs[(int)s.ClickedRow].lat.ToString();
+            event_lng.StringValue = addrs[(int)s.ClickedRow].lng.ToString();
         }
     }
 }
