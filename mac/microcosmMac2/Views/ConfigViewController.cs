@@ -435,10 +435,11 @@ namespace microcosmMac2.Views
         {
             NSTableView s = (NSTableView)sender;
             Debug.WriteLine(s.ClickedRow);
+            if (-1 == s.ClickedRow) return;
 
             defaultPlace.StringValue = addrs[(int)s.ClickedRow].name;
             defaultLat.StringValue = addrs[(int)s.ClickedRow].lat.ToString();
-            defaultLng.StringValue = addrs[(int)s.ClickedRow].lat.ToString();
+            defaultLng.StringValue = addrs[(int)s.ClickedRow].lng.ToString();
         }
 
     }

@@ -17,7 +17,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="microcosm" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="microcosmについて" keyEquivalent="" id="5kV-Vb-QxS">
+                                        <menuItem title="microcosmについて" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -1493,8 +1493,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="5IV-Hd-FVO">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="712984562.09354997">
-                                        <!--2023-08-06 03:16:02 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="712985451.338099">
+                                        <!--2023-08-06 03:30:51 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -2782,7 +2782,6 @@
                                         </button>
                                     </subviews>
                                 </view>
-                                <font key="titleFont" size="11" name=".HiraKakuInterface-W3"/>
                             </box>
                             <box fixedFrame="YES" title="ファイル" translatesAutoresizingMaskIntoConstraints="NO" id="CbF-I2-bUu">
                                 <rect key="frame" x="17" y="16" width="230" height="344"/>
@@ -2918,7 +2917,6 @@
                                         </button>
                                     </subviews>
                                 </view>
-                                <font key="titleFont" size="11" name=".HiraKakuInterface-W3"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cak-NV-akx">
                                 <rect key="frame" x="269" y="188" width="107" height="32"/>
@@ -3352,7 +3350,6 @@
                                         </textField>
                                     </subviews>
                                 </view>
-                                <font key="titleFont" size="11" name=".HiraKakuInterface-W3"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v6v-p5-ujU">
                                 <rect key="frame" x="758" y="13" width="71" height="32"/>
@@ -3458,8 +3455,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="noP-AC-93d">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="712984562.15950596">
-                                        <!--2023-08-06 03:16:02 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="712985451.40818298">
+                                        <!--2023-08-06 03:30:51 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -3941,8 +3938,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="OhK-h3-i3y">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="712984562.17402101">
-                                        <!--2023-08-06 03:16:02 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="712985451.42330694">
+                                        <!--2023-08-06 03:30:51 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -4321,8 +4318,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" useCurrentDate="YES" id="oLl-RD-Me0">
                                     <font key="font" metaFont="system"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="712984562.18568695">
-                                        <!--2023-08-06 03:16:02 +0000-->
+                                    <date key="date" timeIntervalSinceReferenceDate="712985451.43636096">
+                                        <!--2023-08-06 03:30:51 +0000-->
                                     </date>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -4587,7 +4584,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="xay-MM-YAb">
-                                    <rect key="frame" x="1" y="180" width="266" height="16"/>
+                                    <rect key="frame" x="1" y="180" width="282" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="HmX-Sf-nyf">
