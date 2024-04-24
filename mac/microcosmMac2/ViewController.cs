@@ -159,7 +159,7 @@ namespace microcosmMac2
             var root = Util.root;
             var bundle = Path.Combine(NSBundle.MainBundle.BundlePath, "Contents", "Resources", "system");
             var epheBundle = Path.Combine(NSBundle.MainBundle.BundlePath, "Contents", "Resources", "ephe");
-            var lisenceBundle = Path.Combine(NSBundle.MainBundle.BundlePath, "Contents", "Resources", "license");
+            var licenseBundle = Path.Combine(NSBundle.MainBundle.BundlePath, "Contents", "Resources", "license");
 
             if (!Directory.Exists(root + "/ephe"))
             {
@@ -343,22 +343,22 @@ namespace microcosmMac2
 
             if (!File.Exists(root + "/license/csvhelper.txt"))
             {
-                File.Copy(lisenceBundle + "/csvhelper.txt", root + "/license/csvhelper.txt");
+                File.Copy(licenseBundle + "/csvhelper.txt", root + "/license/csvhelper.txt");
             }
 
             if (!File.Exists(root + "/license/license.txt"))
             {
-                File.Copy(lisenceBundle + "/license.txt", root + "/license/license.txt");
+                File.Copy(licenseBundle + "/license.txt", root + "/license/license.txt");
             }
 
             if (!File.Exists(root + "/license/agpl-3.0_ja.txt"))
             {
-                File.Copy(lisenceBundle + "/agpl-3.0_ja.txt", root + "/license/agpl-3.0_ja.txt");
+                File.Copy(licenseBundle + "/agpl-3.0_ja.txt", root + "/license/agpl-3.0_ja.txt");
             }
 
             if (!File.Exists(root + "/license/agpl-3.0.txt"))
             {
-                File.Copy(lisenceBundle + "/agpl-3.0.txt", root + "/license/agpl-3.0.txt");
+                File.Copy(licenseBundle + "/agpl-3.0.txt", root + "/license/agpl-3.0.txt");
             }
 
             string[] files = Directory.GetFiles(root + "/data");
