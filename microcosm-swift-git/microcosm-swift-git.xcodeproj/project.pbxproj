@@ -1,0 +1,1073 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		473C62122DF935A80052DA66 /* swissEphemeris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473C61FD2DF935A80052DA66 /* swissEphemeris.framework */; };
+		473C62132DF935A80052DA66 /* swissEphemeris.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 473C61FD2DF935A80052DA66 /* swissEphemeris.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		473C64C42DF94F8A0052DA66 /* swissEphemeris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473C61FD2DF935A80052DA66 /* swissEphemeris.framework */; };
+		47946F102DF954F100EBC125 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = 47946F0F2DF954F100EBC125 /* SwiftCSV */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		473C5E572DF9347B0052DA66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 473C5E3D2DF9347A0052DA66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 473C5E442DF9347A0052DA66;
+			remoteInfo = "microcosm-swift-git";
+		};
+		473C5E612DF9347B0052DA66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 473C5E3D2DF9347A0052DA66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 473C5E442DF9347A0052DA66;
+			remoteInfo = "microcosm-swift-git";
+		};
+		473C62092DF935A80052DA66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 473C5E3D2DF9347A0052DA66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 473C61FC2DF935A80052DA66;
+			remoteInfo = swissEphemeris;
+		};
+		473C620B2DF935A80052DA66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 473C5E3D2DF9347A0052DA66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 473C5E442DF9347A0052DA66;
+			remoteInfo = "microcosm-swift-git";
+		};
+		473C62102DF935A80052DA66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 473C5E3D2DF9347A0052DA66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 473C61FC2DF935A80052DA66;
+			remoteInfo = swissEphemeris;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		473C62172DF935A80052DA66 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				473C62132DF935A80052DA66 /* swissEphemeris.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		473C5E452DF9347A0052DA66 /* microcosm-swift-git.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "microcosm-swift-git.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		473C5E562DF9347B0052DA66 /* microcosm-swift-gitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "microcosm-swift-gitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		473C5E602DF9347B0052DA66 /* microcosm-swift-gitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "microcosm-swift-gitUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		473C61FD2DF935A80052DA66 /* swissEphemeris.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = swissEphemeris.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		473C62072DF935A80052DA66 /* swissEphemerisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swissEphemerisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		473C64C02DF936B80052DA66 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		473C64C22DF939280052DA66 /* Exceptions for "swissEphemeris" folder in "swissEphemeris" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"c/agpl-3.0.txt",
+				c/doc/makefile,
+				c/doc/media/image2.png,
+				c/doc/media/image10.png,
+				c/doc/media/image13.png,
+				c/doc/media/image15.png,
+				c/doc/media/image17.png,
+				c/doc/media/image18.png,
+				c/doc/media/image20.png,
+				c/doc/media/image21.png,
+				c/doc/media/image22.png,
+				c/doc/media/image33.png,
+				c/doc/media/image34.png,
+				c/doc/media/image35.png,
+				c/doc/media/image36.png,
+				c/doc/media/image37.jpeg,
+				c/doc/media/image38.png,
+				c/doc/media/image39.png,
+				c/doc/media/image40.png,
+				c/doc/README.md,
+				c/doc/swephprg.pdf,
+				c/doc/template.htm,
+				c/libswe.a,
+				c/LICENSE,
+				c/Makefile,
+				c/sweasp.c,
+				c/swecl.c,
+				c/swecl.o,
+				c/sweclips.c,
+				c/swedate.c,
+				c/swedate.h,
+				c/swedate.o,
+				c/swedll.h,
+				c/sweephe4.c,
+				c/sweephe4.h,
+				c/swehel.c,
+				c/swehel.o,
+				c/swehouse.c,
+				c/swehouse.h,
+				c/swehouse.o,
+				c/swejpl.c,
+				c/swejpl.h,
+				c/swejpl.o,
+				c/swemini.c,
+				c/swemini.o,
+				c/swemmoon.c,
+				c/swemmoon.o,
+				c/swemplan.c,
+				c/swemplan.o,
+				c/swemptab.h,
+				c/swenut2000a.h,
+				c/sweodef.h,
+				c/sweph.c,
+				c/sweph.h,
+				c/sweph.o,
+				c/swephexp.h,
+				c/swephgen4.c,
+				c/swephlib.c,
+				c/swephlib.h,
+				c/swephlib.o,
+				c/swetest.o,
+				c/swevents,
+				c/swevents.c,
+				c/swevents.h,
+				c/swevents.o,
+				c/zzz.h,
+				d/doc/makefile,
+				d/doc/media/image1.png,
+				d/doc/media/image3.png,
+				d/doc/media/image4.png,
+				d/doc/media/image5.png,
+				d/doc/media/image6.png,
+				d/doc/media/image7.png,
+				d/doc/media/image8.png,
+				d/doc/media/image9.png,
+				d/doc/media/image11.png,
+				d/doc/media/image12.png,
+				d/doc/media/image14.png,
+				d/doc/media/image16.png,
+				d/doc/media/image19.png,
+				d/doc/media/image23.png,
+				d/doc/media/image24.png,
+				d/doc/media/image25.png,
+				d/doc/media/image26.png,
+				d/doc/media/image27.png,
+				d/doc/media/image28.png,
+				d/doc/media/image29.png,
+				d/doc/media/image30.png,
+				d/doc/media/image31.png,
+				d/doc/media/image32.png,
+				d/doc/swisseph.htm,
+				d/doc/swisseph.pdf,
+				d/LICENSE.TXT,
+				d/Makefile,
+				d/seleapsec.txt,
+				d/sweasp.c,
+				d/swecl.c,
+				d/swecl.o,
+				d/sweclips.c,
+				d/swedate.c,
+				d/swedate.o,
+				d/sweephe4.c,
+				d/swehel.c,
+				d/swehel.o,
+				d/swehouse.c,
+				d/swehouse.o,
+				d/swejpl.c,
+				d/swejpl.o,
+				d/swemini,
+				d/swemini.c,
+				d/swemini.o,
+				d/swemmoon.c,
+				d/swemmoon.o,
+				d/swemplan.c,
+				d/swemplan.o,
+				d/sweph.c,
+				d/sweph.o,
+				d/swephgen4.c,
+				d/swephlib.c,
+				d/swephlib.o,
+				d/swetest,
+				d/swetest.o,
+				d/swetests,
+				d/swevents.c,
+				d/swevents.o,
+				d/vb/swedecl.txt,
+				d/vb/swedecl64.txt,
+				swissEphemeris.docc,
+			);
+			target = 473C61FC2DF935A80052DA66 /* swissEphemeris */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		473C5E472DF9347A0052DA66 /* microcosm-swift-git */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "microcosm-swift-git";
+			sourceTree = "<group>";
+		};
+		473C5E592DF9347B0052DA66 /* microcosm-swift-gitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "microcosm-swift-gitTests";
+			sourceTree = "<group>";
+		};
+		473C5E632DF9347B0052DA66 /* microcosm-swift-gitUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "microcosm-swift-gitUITests";
+			sourceTree = "<group>";
+		};
+		473C61FE2DF935A80052DA66 /* swissEphemeris */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				473C64C22DF939280052DA66 /* Exceptions for "swissEphemeris" folder in "swissEphemeris" target */,
+			);
+			path = swissEphemeris;
+			sourceTree = "<group>";
+		};
+		473C620D2DF935A80052DA66 /* swissEphemerisTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = swissEphemerisTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		473C5E422DF9347A0052DA66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				473C62122DF935A80052DA66 /* swissEphemeris.framework in Frameworks */,
+				47946F102DF954F100EBC125 /* SwiftCSV in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C5E532DF9347B0052DA66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C5E5D2DF9347B0052DA66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C61FA2DF935A80052DA66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C62042DF935A80052DA66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				473C64C42DF94F8A0052DA66 /* swissEphemeris.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		473C5E3C2DF9347A0052DA66 = {
+			isa = PBXGroup;
+			children = (
+				473C5E472DF9347A0052DA66 /* microcosm-swift-git */,
+				473C5E592DF9347B0052DA66 /* microcosm-swift-gitTests */,
+				473C5E632DF9347B0052DA66 /* microcosm-swift-gitUITests */,
+				473C61FE2DF935A80052DA66 /* swissEphemeris */,
+				473C620D2DF935A80052DA66 /* swissEphemerisTests */,
+				473C64BF2DF936B80052DA66 /* Frameworks */,
+				473C5E462DF9347A0052DA66 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		473C5E462DF9347A0052DA66 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				473C5E452DF9347A0052DA66 /* microcosm-swift-git.app */,
+				473C5E562DF9347B0052DA66 /* microcosm-swift-gitTests.xctest */,
+				473C5E602DF9347B0052DA66 /* microcosm-swift-gitUITests.xctest */,
+				473C61FD2DF935A80052DA66 /* swissEphemeris.framework */,
+				473C62072DF935A80052DA66 /* swissEphemerisTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		473C64BF2DF936B80052DA66 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				473C64C02DF936B80052DA66 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		473C61F82DF935A80052DA66 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		473C5E442DF9347A0052DA66 /* microcosm-swift-git */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 473C5E6A2DF9347B0052DA66 /* Build configuration list for PBXNativeTarget "microcosm-swift-git" */;
+			buildPhases = (
+				473C5E412DF9347A0052DA66 /* Sources */,
+				473C5E422DF9347A0052DA66 /* Frameworks */,
+				473C5E432DF9347A0052DA66 /* Resources */,
+				473C62172DF935A80052DA66 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				473C62112DF935A80052DA66 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				473C5E472DF9347A0052DA66 /* microcosm-swift-git */,
+			);
+			name = "microcosm-swift-git";
+			packageProductDependencies = (
+				47946F0F2DF954F100EBC125 /* SwiftCSV */,
+			);
+			productName = "microcosm-swift-git";
+			productReference = 473C5E452DF9347A0052DA66 /* microcosm-swift-git.app */;
+			productType = "com.apple.product-type.application";
+		};
+		473C5E552DF9347B0052DA66 /* microcosm-swift-gitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 473C5E6D2DF9347B0052DA66 /* Build configuration list for PBXNativeTarget "microcosm-swift-gitTests" */;
+			buildPhases = (
+				473C5E522DF9347B0052DA66 /* Sources */,
+				473C5E532DF9347B0052DA66 /* Frameworks */,
+				473C5E542DF9347B0052DA66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				473C5E582DF9347B0052DA66 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				473C5E592DF9347B0052DA66 /* microcosm-swift-gitTests */,
+			);
+			name = "microcosm-swift-gitTests";
+			packageProductDependencies = (
+			);
+			productName = "microcosm-swift-gitTests";
+			productReference = 473C5E562DF9347B0052DA66 /* microcosm-swift-gitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		473C5E5F2DF9347B0052DA66 /* microcosm-swift-gitUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 473C5E702DF9347B0052DA66 /* Build configuration list for PBXNativeTarget "microcosm-swift-gitUITests" */;
+			buildPhases = (
+				473C5E5C2DF9347B0052DA66 /* Sources */,
+				473C5E5D2DF9347B0052DA66 /* Frameworks */,
+				473C5E5E2DF9347B0052DA66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				473C5E622DF9347B0052DA66 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				473C5E632DF9347B0052DA66 /* microcosm-swift-gitUITests */,
+			);
+			name = "microcosm-swift-gitUITests";
+			packageProductDependencies = (
+			);
+			productName = "microcosm-swift-gitUITests";
+			productReference = 473C5E602DF9347B0052DA66 /* microcosm-swift-gitUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		473C61FC2DF935A80052DA66 /* swissEphemeris */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 473C62142DF935A80052DA66 /* Build configuration list for PBXNativeTarget "swissEphemeris" */;
+			buildPhases = (
+				473C61F82DF935A80052DA66 /* Headers */,
+				473C61F92DF935A80052DA66 /* Sources */,
+				473C61FA2DF935A80052DA66 /* Frameworks */,
+				473C61FB2DF935A80052DA66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				473C61FE2DF935A80052DA66 /* swissEphemeris */,
+			);
+			name = swissEphemeris;
+			packageProductDependencies = (
+			);
+			productName = swissEphemeris;
+			productReference = 473C61FD2DF935A80052DA66 /* swissEphemeris.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		473C62062DF935A80052DA66 /* swissEphemerisTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 473C62182DF935A80052DA66 /* Build configuration list for PBXNativeTarget "swissEphemerisTests" */;
+			buildPhases = (
+				473C62032DF935A80052DA66 /* Sources */,
+				473C62042DF935A80052DA66 /* Frameworks */,
+				473C62052DF935A80052DA66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				473C620A2DF935A80052DA66 /* PBXTargetDependency */,
+				473C620C2DF935A80052DA66 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				473C620D2DF935A80052DA66 /* swissEphemerisTests */,
+			);
+			name = swissEphemerisTests;
+			packageProductDependencies = (
+			);
+			productName = swissEphemerisTests;
+			productReference = 473C62072DF935A80052DA66 /* swissEphemerisTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		473C5E3D2DF9347A0052DA66 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					473C5E442DF9347A0052DA66 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					473C5E552DF9347B0052DA66 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 473C5E442DF9347A0052DA66;
+					};
+					473C5E5F2DF9347B0052DA66 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 473C5E442DF9347A0052DA66;
+					};
+					473C61FC2DF935A80052DA66 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					473C62062DF935A80052DA66 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 473C5E442DF9347A0052DA66;
+					};
+				};
+			};
+			buildConfigurationList = 473C5E402DF9347A0052DA66 /* Build configuration list for PBXProject "microcosm-swift-git" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 473C5E3C2DF9347A0052DA66;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				47946F0E2DF954F100EBC125 /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 473C5E462DF9347A0052DA66 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				473C5E442DF9347A0052DA66 /* microcosm-swift-git */,
+				473C5E552DF9347B0052DA66 /* microcosm-swift-gitTests */,
+				473C5E5F2DF9347B0052DA66 /* microcosm-swift-gitUITests */,
+				473C61FC2DF935A80052DA66 /* swissEphemeris */,
+				473C62062DF935A80052DA66 /* swissEphemerisTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		473C5E432DF9347A0052DA66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C5E542DF9347B0052DA66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C5E5E2DF9347B0052DA66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C61FB2DF935A80052DA66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C62052DF935A80052DA66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		473C5E412DF9347A0052DA66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C5E522DF9347B0052DA66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C5E5C2DF9347B0052DA66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C61F92DF935A80052DA66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		473C62032DF935A80052DA66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		473C5E582DF9347B0052DA66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 473C5E442DF9347A0052DA66 /* microcosm-swift-git */;
+			targetProxy = 473C5E572DF9347B0052DA66 /* PBXContainerItemProxy */;
+		};
+		473C5E622DF9347B0052DA66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 473C5E442DF9347A0052DA66 /* microcosm-swift-git */;
+			targetProxy = 473C5E612DF9347B0052DA66 /* PBXContainerItemProxy */;
+		};
+		473C620A2DF935A80052DA66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 473C61FC2DF935A80052DA66 /* swissEphemeris */;
+			targetProxy = 473C62092DF935A80052DA66 /* PBXContainerItemProxy */;
+		};
+		473C620C2DF935A80052DA66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 473C5E442DF9347A0052DA66 /* microcosm-swift-git */;
+			targetProxy = 473C620B2DF935A80052DA66 /* PBXContainerItemProxy */;
+		};
+		473C62112DF935A80052DA66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 473C61FC2DF935A80052DA66 /* swissEphemeris */;
+			targetProxy = 473C62102DF935A80052DA66 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		473C5E682DF9347B0052DA66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		473C5E692DF9347B0052DA66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		473C5E6B2DF9347B0052DA66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "microcosm-swift-git/microcosm_swift_git.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swissEphemeris/d",
+					"$(PROJECT_DIR)/swissEphemeris/c",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ogatism.microcosm-swift-git";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		473C5E6C2DF9347B0052DA66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "microcosm-swift-git/microcosm_swift_git.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swissEphemeris/d",
+					"$(PROJECT_DIR)/swissEphemeris/c",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ogatism.microcosm-swift-git";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		473C5E6E2DF9347B0052DA66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swissEphemeris/d",
+					"$(PROJECT_DIR)/swissEphemeris/c",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ogatism.microcosm-swift-gitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/microcosm-swift-git.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/microcosm-swift-git";
+			};
+			name = Debug;
+		};
+		473C5E6F2DF9347B0052DA66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				GENERATE_INFOPLIST_FILE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swissEphemeris/d",
+					"$(PROJECT_DIR)/swissEphemeris/c",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ogatism.microcosm-swift-gitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/microcosm-swift-git.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/microcosm-swift-git";
+			};
+			name = Release;
+		};
+		473C5E712DF9347B0052DA66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ogatism.microcosm-swift-gitUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "microcosm-swift-git";
+			};
+			name = Debug;
+		};
+		473C5E722DF9347B0052DA66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ogatism.microcosm-swift-gitUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "microcosm-swift-git";
+			};
+			name = Release;
+		};
+		473C62152DF935A80052DA66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swissEphemeris/c",
+					"$(PROJECT_DIR)/swissEphemeris/d",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = ogatism.swissEphemeris;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INCLUDE_PATHS = "/Users/ogata/Projects/microcosm-common/microcosm-swift-git/swissEphemeris/d";
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				z = "";
+			};
+			name = Debug;
+		};
+		473C62162DF935A80052DA66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swissEphemeris/c",
+					"$(PROJECT_DIR)/swissEphemeris/d",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = ogatism.swissEphemeris;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INCLUDE_PATHS = "/Users/ogata/Projects/microcosm-common/microcosm-swift-git/swissEphemeris/d";
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				z = "";
+			};
+			name = Release;
+		};
+		473C62192DF935A80052DA66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ogatism.swissEphemerisTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/microcosm-swift-git.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/microcosm-swift-git";
+			};
+			name = Debug;
+		};
+		473C621A2DF935A80052DA66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H64M75WWG3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ogatism.swissEphemerisTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/microcosm-swift-git.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/microcosm-swift-git";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		473C5E402DF9347A0052DA66 /* Build configuration list for PBXProject "microcosm-swift-git" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				473C5E682DF9347B0052DA66 /* Debug */,
+				473C5E692DF9347B0052DA66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		473C5E6A2DF9347B0052DA66 /* Build configuration list for PBXNativeTarget "microcosm-swift-git" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				473C5E6B2DF9347B0052DA66 /* Debug */,
+				473C5E6C2DF9347B0052DA66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		473C5E6D2DF9347B0052DA66 /* Build configuration list for PBXNativeTarget "microcosm-swift-gitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				473C5E6E2DF9347B0052DA66 /* Debug */,
+				473C5E6F2DF9347B0052DA66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		473C5E702DF9347B0052DA66 /* Build configuration list for PBXNativeTarget "microcosm-swift-gitUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				473C5E712DF9347B0052DA66 /* Debug */,
+				473C5E722DF9347B0052DA66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		473C62142DF935A80052DA66 /* Build configuration list for PBXNativeTarget "swissEphemeris" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				473C62152DF935A80052DA66 /* Debug */,
+				473C62162DF935A80052DA66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		473C62182DF935A80052DA66 /* Build configuration list for PBXNativeTarget "swissEphemerisTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				473C62192DF935A80052DA66 /* Debug */,
+				473C621A2DF935A80052DA66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		47946F0E2DF954F100EBC125 /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftcsv/SwiftCSV";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		47946F0F2DF954F100EBC125 /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47946F0E2DF954F100EBC125 /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 473C5E3D2DF9347A0052DA66 /* Project object */;
+}
