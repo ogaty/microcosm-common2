@@ -63,6 +63,15 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4745EC932DF96C3B002556BB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Fonts;
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -338,6 +347,7 @@
 				473C5E422DF9347A0052DA66 /* Frameworks */,
 				473C5E432DF9347A0052DA66 /* Resources */,
 				473C62172DF935A80052DA66 /* Embed Frameworks */,
+				4745EC932DF96C3B002556BB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -742,6 +752,7 @@
 				DEVELOPMENT_TEAM = H64M75WWG3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "microcosm-swift-git/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -776,6 +787,7 @@
 				DEVELOPMENT_TEAM = H64M75WWG3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "microcosm-swift-git/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
