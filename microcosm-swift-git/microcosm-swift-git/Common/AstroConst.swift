@@ -50,7 +50,7 @@ enum EPlanets: Int {
     case OSCU_LILITH = 13 // 小惑星のリリス(1181)と混同しないこと
     case EARTH = 14
     case CHIRON = 15
-    case POLUS = 16
+    case PHOLUS = 16
     case CERES = 17
     case PALLAS = 18
     case JUNO = 19

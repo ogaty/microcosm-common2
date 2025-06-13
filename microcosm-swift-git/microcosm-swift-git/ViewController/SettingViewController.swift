@@ -162,7 +162,7 @@ class SettingViewController: NSViewController {
             break
         }
 
-        switch(settingData[0].progression) {
+        switch(settingData[0].houseCalc) {
         case 1:
             placidus.state = NSControl.StateValue.on
             koch.state = NSControl.StateValue.off
@@ -301,6 +301,13 @@ class SettingViewController: NSViewController {
         compositProgression.state = NSControl.StateValue.off
         settingData[oldIndex].progression = 0
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.progression = 0
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
 
     }
     @IBAction func primaryProgressionClick(_ sender: Any) {
@@ -309,6 +316,13 @@ class SettingViewController: NSViewController {
         compositProgression.state = NSControl.StateValue.off
         settingData[oldIndex].progression = 1
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.progression = 1
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
 
     }
     @IBAction func solarArcProgressionClick(_ sender: Any) {
@@ -317,6 +331,13 @@ class SettingViewController: NSViewController {
         compositProgression.state = NSControl.StateValue.off
         settingData[oldIndex].progression = 2
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.progression = 2
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
 
     }
     @IBAction func compositProgressionClick(_ sender: Any) {
@@ -325,6 +346,13 @@ class SettingViewController: NSViewController {
         solarArcProgression.state = NSControl.StateValue.off
         settingData[oldIndex].progression = 3
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.progression = 3
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     
@@ -333,8 +361,15 @@ class SettingViewController: NSViewController {
         equal.state = NSControl.StateValue.off
         campanus.state = NSControl.StateValue.off
         zeroAries.state = NSControl.StateValue.off
-        settingData[oldIndex].houseCalc = 0
+        settingData[oldIndex].houseCalc = EHouse.PLACIDUS.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.houseCalc = EHouse.PLACIDUS.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func kochClick(_ sender: Any) {
         placidus.state = NSControl.StateValue.off
@@ -343,6 +378,13 @@ class SettingViewController: NSViewController {
         zeroAries.state = NSControl.StateValue.off
         settingData[oldIndex].houseCalc = 1
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.houseCalc = EHouse.KOCH.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func campanusClick(_ sender: Any) {
         placidus.state = NSControl.StateValue.off
@@ -351,378 +393,840 @@ class SettingViewController: NSViewController {
         zeroAries.state = NSControl.StateValue.off
         settingData[oldIndex].houseCalc = 2
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.houseCalc = EHouse.CAMPANUS.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func equalClick(_ sender: Any) {
         placidus.state = NSControl.StateValue.off
         koch.state = NSControl.StateValue.off
         campanus.state = NSControl.StateValue.off
         zeroAries.state = NSControl.StateValue.off
-        settingData[oldIndex].houseCalc = 3
+        settingData[oldIndex].houseCalc = EHouse.EQUAL.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.houseCalc = EHouse.EQUAL.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func zeroAriesClick(_ sender: Any) {
         placidus.state = NSControl.StateValue.off
         koch.state = NSControl.StateValue.off
         campanus.state = NSControl.StateValue.off
         equal.state = NSControl.StateValue.off
-        settingData[oldIndex].houseCalc = 4
+        settingData[oldIndex].houseCalc = EHouse.ZEROARIES.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.houseCalc = EHouse.ZEROARIES.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func sameCuspsOnClick(_ sender: Any) {
         sameCuspsOff.state = NSControl.StateValue.off
         settingData[oldIndex].sameCusps = true
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.sameCusps = true
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func sameCuspsOffClick(_ sender: Any) {
         sameCuspsOn.state = NSControl.StateValue.off
         settingData[oldIndex].sameCusps = false
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.sameCusps = false
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispPlanetSunClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetSun = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetSun = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispPlanetMoonClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetMoon = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetMoon = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetMercuryClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetMercury = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetMercury = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetVenusClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetVenus = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetVenus = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetMarsClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetMars = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetMars = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetJupiterClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetJupiter = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetJupiter = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetSaturnCLick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetSaturn = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetSaturn = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetUranusClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetUranus = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetUranus = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetNeptuneClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetNeptune = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetNeptune = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetPlutoClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetPluto = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetPluto = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetAscClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetAsc = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetAsc = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetMcClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetMc = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetMc = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetChironClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetChiron = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetChiron = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetDragonHClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetDH = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetDH = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetDragonTClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetDT = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetDT = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetLilithClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetLilith = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetLilith = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetEarthClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetEarth = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetEarth = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetCeresClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetCeres = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetCeres = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetPallasClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetPallas = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetPallas = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetJunoClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetJuno = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetJuno = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetVestaClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetVesta = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetVesta = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispPlanetPoFClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetPof = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetPof = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispPlanetPoSClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispPlanetPos = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispPlanetPos = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     @IBAction func dispAspectPlanetSunClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetSun = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetSun = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetMoonClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetMoon = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetMoon = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetMercuryClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetMercury = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetMercury = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetVenusClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetVenus = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetVenus = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetMarsClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetMars = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetMars = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetJupiterClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetJupiter = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetJupiter = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetSaturnClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetSaturn = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetSaturn = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetUranusClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetUranus = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetUranus = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
 
     @IBAction func dispAspectPlanetNeptuneClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetNeptune = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetNeptune = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetPlutoClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetPluto = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetPluto = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetAscClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetAsc = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetAsc = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
   
     @IBAction func dispAspectPlanetMcClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetMc = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetMc = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetChironClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetChiron = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetChiron = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetDHClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetDH = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetDH = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetDTClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetDT = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetDT = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetLilithClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetLilith = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetLilith = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetEarthClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetEarth = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetEarth = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetCeresClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetCeres = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetCeres = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetPallasClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetPallas = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetPallas = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetJunoClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetJuno = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetJuno = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetVestaClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetVesta = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetVesta = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetPofClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetPof = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetPof = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispAspectPlanetPosClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectPlanetPos = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectPlanetPos = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispConjunctionClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispConjunction = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispConjunction = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispOppositionClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispOpposition = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispOpposition = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispTrineClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispTrine = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispTrine = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispSquareClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispSquare = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispSquare = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispSextileClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispSextile = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispSextile = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispInconjunctClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispInconjunct = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispInconjunct = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispSesquiquadrateClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispSesquiQuadrate = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispSesquiQuadrate = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispSemiSquareClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispSemiSquare = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispSemiSquare = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispSemiSextileClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispSemiSextile = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispSemiSextile = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispNovileClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispNovile = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispNovile = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispSeptileClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectSeptile = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectSeptile = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispQuintileClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispQuintile = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispQuintile = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispBiQuintileClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectBiQuintile = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectBiQuintile = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispSemiQuintileClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectSemiQuintile = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispAspectSemiQuintile = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func dispQuindecileClick(_ sender: Any) {
         let btn:NSButton = sender as! NSButton
         settingData[oldIndex].dispAspectQuindecile = btn.state.rawValue
         SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        if (oldIndex == delegate.currentSettingIndex) {
+            delegate.currentSetting.dispQuintile = btn.state.rawValue
+            delegate.viewController?.ReSetCurrentSettingBox()
+            delegate.viewController?.ReCalc()
+            delegate.viewController?.ReRender()
+        }
     }
     
     @IBAction func orbSunMoonSoftChanged(_ sender: Any) {
@@ -730,6 +1234,13 @@ class SettingViewController: NSViewController {
         if let val = Float(txt.stringValue) {
             settingData[oldIndex].orbSunMoon[0] = val
             SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            if (oldIndex == delegate.currentSettingIndex) {
+                delegate.currentSetting.orbSunMoon[0] = val
+                delegate.viewController?.ReSetCurrentSettingBox()
+                delegate.viewController?.ReCalc()
+                delegate.viewController?.ReRender()
+            }
         }
     }
     
@@ -738,6 +1249,13 @@ class SettingViewController: NSViewController {
         if let val = Float(txt.stringValue) {
             settingData[oldIndex].orbSunMoon[1] = val
             SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            if (oldIndex == delegate.currentSettingIndex) {
+                delegate.currentSetting.orbSunMoon[1] = val
+                delegate.viewController?.ReSetCurrentSettingBox()
+                delegate.viewController?.ReCalc()
+                delegate.viewController?.ReRender()
+            }
         }
     }
     
@@ -746,6 +1264,13 @@ class SettingViewController: NSViewController {
         if let val = Float(txt.stringValue) {
             settingData[oldIndex].orb1st[0] = val
             SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            if (oldIndex == delegate.currentSettingIndex) {
+                delegate.currentSetting.orb1st[0] = val
+                delegate.viewController?.ReSetCurrentSettingBox()
+                delegate.viewController?.ReCalc()
+                delegate.viewController?.ReRender()
+            }
         }
     }
     
@@ -754,6 +1279,13 @@ class SettingViewController: NSViewController {
         if let val = Float(txt.stringValue) {
             settingData[oldIndex].orb1st[1] = val
             SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            if (oldIndex == delegate.currentSettingIndex) {
+                delegate.currentSetting.orb1st[1] = val
+                delegate.viewController?.ReSetCurrentSettingBox()
+                delegate.viewController?.ReCalc()
+                delegate.viewController?.ReRender()
+            }
         }
     }
     
@@ -762,6 +1294,13 @@ class SettingViewController: NSViewController {
         if let val = Float(txt.stringValue) {
             settingData[oldIndex].orb2nd[0] = val
             SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            if (oldIndex == delegate.currentSettingIndex) {
+                delegate.currentSetting.orb2nd[0] = val
+                delegate.viewController?.ReSetCurrentSettingBox()
+                delegate.viewController?.ReCalc()
+                delegate.viewController?.ReRender()
+            }
         }
     }
     
@@ -770,6 +1309,13 @@ class SettingViewController: NSViewController {
         if let val = Float(txt.stringValue) {
             settingData[oldIndex].orb2nd[1] = val
             SettingSave.save(setting: settingData[oldIndex], url: FileInitialize.microcosmDirectory(), index: oldIndex)
+            let delegate = NSApplication.shared.delegate as! AppDelegate
+            if (oldIndex == delegate.currentSettingIndex) {
+                delegate.currentSetting.orb2nd[1] = val
+                delegate.viewController?.ReSetCurrentSettingBox()
+                delegate.viewController?.ReCalc()
+                delegate.viewController?.ReRender()
+            }
         }
     }
     

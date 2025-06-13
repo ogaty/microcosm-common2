@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     public var dispNames: [DispName] = []
     public var settingData: [SettingData] = []
     public var currentSetting: SettingData = SettingData()
+    public var currentSettingIndex: Int = 0
     public var config: ConfigData = ConfigData()
     public var chartStyle: ChartStyle = ChartStyle()
     
@@ -43,6 +44,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     public var list1array = [PlanetData]()
     public var list2array = [PlanetData]()
     public var list3array = [PlanetData]()
+    public var house1array: [Double] = []
+    public var house2array: [Double] = []
+    public var house3array: [Double] = []
     
     // リング数
     public var bands = 1

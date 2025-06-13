@@ -33,6 +33,7 @@ public class CommonData
     /// - Returns: フォント文字
     public static func getPlanetSymbol2(n: Int) -> String
     {
+        print(n)
         switch (n) {
         case EPlanets.SUN.rawValue:
             return "A"
@@ -408,6 +409,44 @@ public class CommonData
             return CGColor(red: 30, green: 144, blue: 255, alpha: 1)
         default:
             return CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        }
+    }
+    
+    public static func getSignSymbolJp(absolute_position: Double) -> String
+    {
+        return getSignTextJp(n: (Int)(absolute_position / 30))
+    }
+    
+    public static func getSignTextJp(n: Int) -> String
+    {
+        switch (n)
+        {
+        case ESign.ARIES.rawValue:
+            return "♈"
+        case ESign.TAURUS.rawValue:
+            return "♉"
+        case ESign.GEMINI.rawValue:
+            return "♊"
+        case ESign.CANCER.rawValue:
+            return "♋"
+        case ESign.LEO.rawValue:
+            return "♌"
+        case ESign.VIRGO.rawValue:
+            return "♍"
+        case ESign.LIBRA.rawValue:
+            return "♎"
+        case ESign.SCORPIO.rawValue:
+            return "♏"
+        case ESign.SAGITTARIUS.rawValue:
+            return "♐"
+        case ESign.CAPRICORN.rawValue:
+            return "♑"
+        case ESign.AQUARIUS.rawValue:
+            return "♒"
+        case ESign.PISCES.rawValue:
+            return "♓"
+        default:
+            return ""
         }
     }
     

@@ -61,6 +61,9 @@ class MainViewController: NSViewController {
     @IBOutlet weak var fSide: NSTextField!
     @IBOutlet weak var mSide: NSTextField!
     
+    
+    @IBOutlet weak var currentHouseName: NSTextField!
+    
     @IBOutlet weak var timesetterButton: NSButton!
     
     // 未使用
@@ -129,6 +132,7 @@ class MainViewController: NSViewController {
         }
         settingCombo.selectItem(at: 0)
         delegate.currentSetting = delegate.settingData[0]
+        delegate.currentSettingIndex = 0
         
         swiss.set_ephe_path()
         
@@ -138,7 +142,7 @@ class MainViewController: NSViewController {
         timeSetterCombo.addItem(withTitle: "User2")
         timeSetterCombo.addItem(withTitle: "Event1")
         timeSetterCombo.addItem(withTitle: "Event2")
-        timeSetterCombo.selectItem(at: 0)
+        timeSetterCombo.selectItem(at: 2)
         
         let myDate = MyDate()
         delegate.udata1 = myDate.nowUserData(userData: delegate.udata1)
@@ -147,6 +151,7 @@ class MainViewController: NSViewController {
         delegate.edata2 = myDate.nowUserData(userData: delegate.edata2)
         
         ReCalc()
+        ReSetCurrentSettingBox()
         
         signTable.delegate = self
         signTable.dataSource = self
@@ -446,8 +451,8 @@ class MainViewController: NSViewController {
         d1.setUserData(u: ring1)
         
         let calc = AstroCalc(config: delegate.config, swiss: swiss)
-        delegate.list1 = calc.ReCalc(setting: delegate.currentSetting, date: d1)
-        list1 = delegate.list1
+        list1 = calc.ReCalc(setting: delegate.currentSetting, date: d1)
+        // delegate側のlist1はこの後でasc/mcが入るからまだだめ
         houseList1 = calc.CuspCalc(d: d1, timezone: ring1.birth_timezone, lat: ring1.lat, lng: ring1.lng, houseKind: EHouse(rawValue: delegate.currentSetting.progression) ?? EHouse.PLACIDUS)
         if (delegate.config.sideReal == ESideReal.DRACONIC) {
             if (delegate.config.nodeCalc == ENodeCalc.TRUE) {
@@ -601,6 +606,19 @@ class MainViewController: NSViewController {
         delegate.list1 = list1
         delegate.list2 = list2
         delegate.list3 = list3
+        // list1array〜list3arrayはsignList(左下枠でのみ使う)
+        delegate.list1array = list1.values
+            .filter{$0.isDisp == true}
+            .sorted { $0.no < $1.no }
+        delegate.list2array = list1.values
+            .filter{$0.isDisp == true}
+            .sorted { $0.no < $1.no }
+        delegate.list3array = list1.values
+            .filter{$0.isDisp == true}
+            .sorted { $0.no < $1.no }
+        delegate.house1array = houseList1
+        delegate.house2array = houseList2
+        delegate.house3array = houseList3
         
         let aspectCalc = AspectCalc()
         list1 = aspectCalc.AspectCalcSame(a_setting: delegate.currentSetting, list: list1)
@@ -690,6 +708,33 @@ class MainViewController: NSViewController {
         
     }
     
+    public func ReSetCurrentSettingBox()
+    {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        var houseKind = ""
+        if (delegate.currentSetting.houseCalc == EHouse.PLACIDUS.rawValue) {
+            houseKind = "PLACIDUS"
+        } else if (delegate.currentSetting.houseCalc == EHouse.KOCH.rawValue) {
+            houseKind = "KOCH"
+        } else if (delegate.currentSetting.houseCalc == EHouse.CAMPANUS.rawValue) {
+            houseKind = "CAMPANUS"
+        } else if (delegate.currentSetting.houseCalc == EHouse.EQUAL.rawValue) {
+            houseKind = "EQUAL"
+        } else if (delegate.currentSetting.houseCalc == EHouse.PORPHYRY.rawValue) {
+            houseKind = "PORPHYRY"
+        } else if (delegate.currentSetting.houseCalc == EHouse.REGIOMONTANUS.rawValue) {
+            houseKind = "REGIOMONTANUS"
+        } else if (delegate.currentSetting.houseCalc == EHouse.SOLAR.rawValue) {
+            houseKind = "SOLAR"
+        } else if (delegate.currentSetting.houseCalc == EHouse.SOLARSIGN.rawValue) {
+            houseKind = "SOLARSIGN"
+        } else if (delegate.currentSetting.houseCalc == EHouse.ZEROARIES.rawValue) {
+            houseKind = "ZEROARIES"
+        }
+
+        currentHouseName.stringValue = houseKind
+    }
+    
     /// 使用中のユーザー情報
     /// - Parameter ringIndex: 0〜2
     /// - Returns: UserData
@@ -720,12 +765,15 @@ class MainViewController: NSViewController {
         canvas = ChartView(frame: NSRect(x: 0, y: 0, width: self.box.frame.width, height: self.box.frame.height))
         box.subviews.last?.subviews.removeLast()
         box.addSubview(self.canvas!)
+        setBalance()
     }
     
     @IBAction func settingComboChanged(_ sender: Any) {
         let x = sender as! NSPopUpButton
         let delegate = NSApplication.shared.delegate as! AppDelegate
         delegate.currentSetting = delegate.settingData[x.indexOfSelectedItem]
+        delegate.currentSettingIndex = x.indexOfSelectedItem
+        ReSetCurrentSettingBox()
         ReCalc()
         ReRender()
     }
@@ -1019,17 +1067,65 @@ extension MainViewController: NSTableViewDelegate, NSTableViewDataSource {
         {
             if let unwrapped = tableColumn?.identifier.rawValue {
                 if (tableId == "signTable") {
-                    if (unwrapped == "planet") {
-                        let font = NSFont(name: "microcosm", size: 16.0)
+                    if (unwrapped == "signTitleColumn") {
+                        let font = NSFont(name: "microcosm", size: 18.0)
                         let text = NSTextField(labelWithString: CommonData.getPlanetSymbol2(n: delegate.list1array[row].no))
                         text.font = font
                         view = text
                     } else {
-                        let text = NSTextField(labelWithString: String(delegate.list1array[row].absolute_position))
+                        var signSymbol = ""
+                        var tmp_absolute_position = 0.0
+                        if (unwrapped == "signFirstColumn") {
+                            signSymbol = CommonData.getSignSymbolJp(absolute_position: delegate.list1array[row].absolute_position);
+                            tmp_absolute_position = delegate.list1array[row].absolute_position
+                        } else if (unwrapped == "signSecondColumn") {
+                            signSymbol = CommonData.getSignSymbolJp(absolute_position: delegate.list2array[row].absolute_position);
+                            tmp_absolute_position = delegate.list2array[row].absolute_position
+                        } else if (unwrapped == "signThirdColumn") {
+                            signSymbol = CommonData.getSignSymbolJp(absolute_position: delegate.list3array[row].absolute_position);
+                            tmp_absolute_position = delegate.list3array[row].absolute_position
+                        } else {
+                            signSymbol = CommonData.getSignSymbolJp(absolute_position: delegate.list1array[row].absolute_position);
+                            tmp_absolute_position = delegate.list1array[row].absolute_position
+                        }
+                        
+                        var tmp_int = (Int)(tmp_absolute_position.truncatingRemainder(dividingBy: 30))
+                        var tmp_degree = (String)(format: "%02d", tmp_int)
+                        tmp_degree = signSymbol + tmp_degree + "° "
+                        tmp_int = (Int)(tmp_absolute_position.truncatingRemainder(dividingBy: 1) * 100)
+                        tmp_degree = tmp_degree + (String)(format: "%02d", tmp_int)
+                        tmp_degree = tmp_degree + "'"
+
+                        let text = NSTextField(labelWithString: tmp_degree)
                         view = text
                     }
                 } else {
-                    view = NSTextField(labelWithString: String(row + 1))
+                    if (unwrapped == "houseTitleColumn") {
+                        view = NSTextField(labelWithString: String(row + 1))
+                    } else {
+                        var signSymbol = ""
+                        var tmp_absolute_position = 0.0
+                        if (unwrapped == "houseFirstColumn") {
+                            signSymbol = CommonData.getSignSymbolJp(absolute_position: delegate.house1array[row + 1]);
+                            tmp_absolute_position = delegate.house1array[row + 1]
+                        } else if (unwrapped == "houseSecondColumn") {
+                            signSymbol = CommonData.getSignSymbolJp(absolute_position: delegate.house2array[row + 1]);
+                            tmp_absolute_position = delegate.house2array[row + 1]
+                        } else if (unwrapped == "houseThirdColumn") {
+                            signSymbol = CommonData.getSignSymbolJp(absolute_position: delegate.house3array[row + 1]);
+                            tmp_absolute_position = delegate.house3array[row + 1]
+                        } else {
+                            signSymbol = CommonData.getSignSymbolJp(absolute_position: delegate.house1array[row + 1]);
+                            tmp_absolute_position = delegate.house1array[row + 1]
+                        }
+                        var tmp_int = (Int)(tmp_absolute_position.truncatingRemainder(dividingBy: 30))
+                        var tmp_degree = (String)(format: "%02d", tmp_int)
+                        tmp_degree = signSymbol + tmp_degree + "° "
+                        tmp_int = (Int)(tmp_absolute_position.truncatingRemainder(dividingBy: 1) * 100)
+                        tmp_degree = tmp_degree + (String)(format: "%02d", tmp_int)
+                        tmp_degree = tmp_degree + "'"
+                        view = NSTextField(labelWithString: tmp_degree)
+                    }
                 }
 //                if (unwrapped == "name") {
 //                    view = NSTextField(labelWithString: "aaa")

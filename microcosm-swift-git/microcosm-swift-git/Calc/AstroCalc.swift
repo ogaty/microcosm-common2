@@ -96,7 +96,7 @@ class AstroCalc {
         
         //var subIndex = 0
 
-        for i in 0...21 {
+        for i in 0..<21 {
             var calc: Calc
             if (configData.centric == ECentric.HELIO_CENTRIC) 
             {
@@ -135,6 +135,17 @@ class AstroCalc {
                 }
             }
 
+            // キロン、セレス、パラス、ジュノー、ヴェスタ
+            if (i == 15 || i == 17 || i == 18 || i == 19 || i == 20)
+            {
+                p.sensitive = true
+                p.isDisp = Util.GetDispPlanet(setting: setting, index: i)
+                p.isAspectDisp = Util.GetDispAspectPlanet(setting: setting, index: i)
+                if (p.isDisp) {
+                    listarray.append(p)
+                }
+            }
+
             // ヘリオセントリック太陽
             if (configData.centric == ECentric.HELIO_CENTRIC && i == EPlanets.SUN.rawValue)
             {
@@ -143,7 +154,7 @@ class AstroCalc {
             }
 
             // MEAN NODE
-            if (i == EPlanets.DT_MEAN.rawValue)
+            if (i == EPlanets.DH_MEANNODE.rawValue)
             {
                 p.sensitive = true
                 if (configData.centric == ECentric.HELIO_CENTRIC)
@@ -266,8 +277,8 @@ class AstroCalc {
                 }
             }
             
-            // POLUS(未使用)
-            if (i == EPlanets.POLUS.rawValue)
+            // PHOLUS(未使用)
+            if (i == EPlanets.PHOLUS.rawValue)
             {
                 p.isDisp = false
                 p.isAspectDisp = false

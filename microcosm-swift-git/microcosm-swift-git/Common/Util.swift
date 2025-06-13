@@ -89,7 +89,18 @@ public class Util
             return setting.dispPlanetLilith == 1
         case EPlanets.OSCU_LILITH.rawValue:
             return setting.dispPlanetLilith == 1
-            
+        case EPlanets.CERES.rawValue:
+            return setting.dispPlanetCeres == 1
+        case EPlanets.PALLAS.rawValue:
+            return setting.dispPlanetPallas == 1
+        case EPlanets.JUNO.rawValue:
+            return setting.dispPlanetJuno == 1
+        case EPlanets.VESTA.rawValue:
+            return setting.dispPlanetVesta == 1
+        case EPlanets.EARTH.rawValue:
+            return setting.dispPlanetEarth == 1
+
+
             
             // todo
         default:
