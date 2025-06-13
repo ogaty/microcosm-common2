@@ -603,9 +603,17 @@ class MainViewController: NSViewController {
         mc3.sensitive = true
         list3[EPlanets.MC.rawValue] = mc3
         
+        let aspectCalc = AspectCalc()
+        list1 = aspectCalc.AspectCalcSame(a_setting: delegate.currentSetting, list: list1)
+        list1 = aspectCalc.AspectCalcOther(a_setting: delegate.currentSetting, fromList: list1, toList: list2, listKind: 3)
+        list1 = aspectCalc.AspectCalcOther(a_setting: delegate.currentSetting, fromList: list1, toList: list3, listKind: 4)
+        list2 = aspectCalc.AspectCalcSame(a_setting: delegate.currentSetting, list: list2)
+        list2 = aspectCalc.AspectCalcOther(a_setting: delegate.currentSetting, fromList: list2, toList: list3, listKind: 5)
+        list3 = aspectCalc.AspectCalcSame(a_setting: delegate.currentSetting, list: list3)
         delegate.list1 = list1
         delegate.list2 = list2
         delegate.list3 = list3
+
         // list1array〜list3arrayはsignList(左下枠でのみ使う)
         delegate.list1array = list1.values
             .filter{$0.isDisp == true}
@@ -619,14 +627,6 @@ class MainViewController: NSViewController {
         delegate.house1array = houseList1
         delegate.house2array = houseList2
         delegate.house3array = houseList3
-        
-        let aspectCalc = AspectCalc()
-        list1 = aspectCalc.AspectCalcSame(a_setting: delegate.currentSetting, list: list1)
-        list1 = aspectCalc.AspectCalcOther(a_setting: delegate.currentSetting, fromList: list1, toList: list2, listKind: 3)
-        list1 = aspectCalc.AspectCalcOther(a_setting: delegate.currentSetting, fromList: list1, toList: list3, listKind: 4)
-        list2 = aspectCalc.AspectCalcSame(a_setting: delegate.currentSetting, list: list2)
-        list2 = aspectCalc.AspectCalcOther(a_setting: delegate.currentSetting, fromList: list2, toList: list3, listKind: 5)
-        list3 = aspectCalc.AspectCalcSame(a_setting: delegate.currentSetting, list: list3)
         
         signTable.reloadData()
         houseTable.reloadData()

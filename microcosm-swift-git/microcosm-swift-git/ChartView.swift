@@ -22,6 +22,7 @@ class ChartView: NSView {
         let innerDiameter: Int = Int(dirtyRect.width) - (delegate.chartStyle.margin * 2) - (delegate.chartStyle.innerRingWidth * 2)
         let innerRadius: Int = Int(innerDiameter / 2)
         let centerDiameter = innerDiameter * delegate.chartStyle.centerRingRatio / 100
+        let centerRadius = Int((centerDiameter / 2))
         
         context.setFillColor(NSColor.white.cgColor)
         context.fill(CGRect(x: 0, y: 0, width: dirtyRect.width, height: dirtyRect.height))
@@ -115,23 +116,23 @@ class ChartView: NSView {
         context.addPath(path2)
         context.strokePath()
         
-        let path3 = CGMutablePath()
-        let point31 = CGPoint(x: delegate.chartStyle.margin + diameter / 2, y:0)
-        path3.move(to: point31)
-        let point32 = CGPoint(x: delegate.chartStyle.margin + diameter / 2, y:delegate.chartStyle.margin + diameter)
-        path3.addLine(to: point32)
-        context.setStrokeColor(NSColor.lightGray.cgColor)
-        context.addPath(path3)
-        context.strokePath()
-
-        let path4 = CGMutablePath()
-        let point41 = CGPoint(x: 0, y:delegate.chartStyle.margin + diameter / 2)
-        path4.move(to: point41)
-        let point42 = CGPoint(x: delegate.chartStyle.margin + diameter, y: delegate.chartStyle.margin + diameter / 2)
-        path4.addLine(to: point42)
-        context.setStrokeColor(NSColor.lightGray.cgColor)
-        context.addPath(path4)
-        context.strokePath()
+//        let path3 = CGMutablePath()
+//        let point31 = CGPoint(x: delegate.chartStyle.margin + diameter / 2, y:0)
+//        path3.move(to: point31)
+//        let point32 = CGPoint(x: delegate.chartStyle.margin + diameter / 2, y:delegate.chartStyle.margin + diameter)
+//        path3.addLine(to: point32)
+//        context.setStrokeColor(NSColor.lightGray.cgColor)
+//        context.addPath(path3)
+//        context.strokePath()
+//
+//        let path4 = CGMutablePath()
+//        let point41 = CGPoint(x: 0, y:delegate.chartStyle.margin + diameter / 2)
+//        path4.move(to: point41)
+//        let point42 = CGPoint(x: delegate.chartStyle.margin + diameter, y: delegate.chartStyle.margin + diameter / 2)
+//        path4.addLine(to: point42)
+//        context.setStrokeColor(NSColor.lightGray.cgColor)
+//        context.addPath(path4)
+//        context.strokePath()
 
         // 獣帯に入るサインシンボル
         for i in 0..<12 {
@@ -151,6 +152,8 @@ class ChartView: NSView {
         // 0.5は半径を求めている
         // 10はマージン
         let radius2 = Double(diameter) * 0.5 - 10
+        let xMargin = Double(delegate.chartStyle.margin)
+        let yMargin = Double(delegate.chartStyle.margin)
         delegate.list1.keys.forEach{ key in
             if (!delegate.list1[key]!.isDisp) {
                 return;
@@ -163,8 +166,6 @@ class ChartView: NSView {
             print("index:")
             print(index * 5)
 
-            let xMargin = Double(delegate.chartStyle.margin)
-            let yMargin = Double(delegate.chartStyle.margin)
             let str = NSAttributedString(string: CommonData.getPlanetSymbol2(n: key), attributes: [NSAttributedString.Key.font: NSFont(name: "microcosm", size: 24.0)!])
             let pos = Util.Rotate(x: Double(diameter) * 0.38, y: 0, degree: Double(b.index * 5) - rett[1])
             str.draw(at: NSPoint(
@@ -201,7 +202,112 @@ class ChartView: NSView {
 
         }
         
-    
+        // aspects
+        var aspectPt: Position = Position(x: 0, y: 0)
+        var aspectPtEnd: Position = Position(x: 0, y: 0)
+        let pathAspect = CGMutablePath()
+        // aspectsData[0, 0] => natal-natal
+        delegate.list1.keys.forEach{ key in
+            if (!delegate.list1[key]!.isDisp) {
+                return
+            }
+            // isAspectDispは不要
+            // たぶんそもそも入れていないから？
+            
+            delegate.list1[key]!.aspects.forEach { aspect in
+                print("src:")
+                print(aspect.sourcePlanetNo)
+                print("target:")
+                print(aspect.targetPlanetNo)
+                let positionSrc = Util.Rotate(x: Double(centerRadius), y: 0, degree: Double(aspect.sourceDegree) - rett[1])
+                positionSrc.x = positionSrc.x + xMargin + Double(radius)
+                positionSrc.y = positionSrc.y + yMargin + Double(radius)
+                let positionTarget = Util.Rotate(x: Double(centerRadius), y: 0, degree: Double(aspect.targetDegree) - rett[1])
+                positionTarget.x = positionTarget.x + xMargin + Double(radius)
+                positionTarget.y = positionTarget.y + yMargin + Double(radius)
+
+                pathAspect.move(to: CGPoint(x: positionSrc.x, y: positionSrc.y))
+                pathAspect.addLine(to: CGPoint(x: positionTarget.x, y: positionTarget.y))
+                print("---")
+            }
+        }
+        context.setLineDash(phase: 0, lengths: [])
+        context.addPath(pathAspect)
+        context.strokePath()
+
+        
+//        Position aspectPt;
+//        Position aspectPtEnd;
+//        SKPaint aspectLine = new SKPaint();
+//        aspectLine.Style = SKPaintStyle.Stroke;
+//        aspectLine.StrokeWidth = 1.0F;
+//        SKPaint aspectSymboolText = new SKPaint()
+//        {
+//            TextSize = 24,
+//            Style = SKPaintStyle.Fill
+//        };
+
+//        // aspectsData[0, 0] => natal-natal
+//        if (appDelegate.aspect11disp)
+//        {
+//            foreach (KeyValuePair<int, PlanetData> pData in sortPlanetData)
+//            {
+//                PlanetData planet = pData.Value;
+//                Debug.WriteLine("planet: " + planet.no + "(" + CommonData.getPlanetSymbolText(planet.no) + ")");
+//                Debug.WriteLine("isDisp: " + planet.isDisp);
+//                Debug.WriteLine("display: " + planet.absolute_position);
+//
+//                if (!planet.isDisp)
+//                {
+//                    continue;
+//                }
+//                // isAspectDispは不要
+//
+//                foreach (AspectInfo x in planet.aspects)
+//                {
+//                    if (!list1[x.targetPlanetNo].isDisp)
+//                    {
+//                        continue;
+//                    }
+//
+//                    if (x.softHard == SoftHard.SOFT)
+//                    {
+//                        aspectLine.PathEffect = SKPathEffect.CreateDash(new float[] { 1, 4 }, (float)2.0);
+//                    }
+//                    else
+//                    {
+//                        aspectLine.PathEffect = null;
+//                    }
+//        double calcDegree = x.sourceDegree - houseList1[1];
+//        if (calcDegree < 0)
+//        {
+//            calcDegree += 360;
+//        }
+//        double calcDegree2 = x.targetDegree - houseList1[1];
+//        if (calcDegree2 < 0)
+//        {
+//            calcDegree2 += 360;
+//        }
+//        aspectPt = Util.Rotate(centerDiameter, 0, calcDegree);
+//        aspectPt.x = aspectPt.x + CenterX;
+//        aspectPt.y = -1 * aspectPt.y + CenterY;
+//
+//        aspectPtEnd = Util.Rotate(centerDiameter, 0, calcDegree2);
+//        aspectPtEnd.x = aspectPtEnd.x + CenterX;
+//        aspectPtEnd.y = -1 * aspectPtEnd.y + CenterY;
+//
+//        GetAspectLineAndText(x.aspectKind, ref aspectLine, ref aspectSymboolText);
+//        DrawAspect(cvs, x, aspectPt, aspectPtEnd, aspectLine, aspectSymboolText);
+//    }
+//
+//    /*
+//    aspectSymbolPt = Util.Rotate(diameter - 160, 0, planet.absolute_position - houseList1[1]);
+//    aspectSymbolPt.x = aspectSymbolPt.x + CenterX;
+//    aspectSymbolPt.y = -1 * aspectSymbolPt.y + CenterY + 10;
+//    */
+//}
+//}
+
         //NSBitmapImageRep(cgImage: context.makeImage())
         
 //        let i = context.makeImage()

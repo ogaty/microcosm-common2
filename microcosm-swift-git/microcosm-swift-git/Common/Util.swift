@@ -113,6 +113,24 @@ public class Util
         switch (index) {
         case 0:
             return setting.dispAspectPlanetSun == 1
+        case 1:
+            return setting.dispAspectPlanetMoon == 1
+        case 2:
+            return setting.dispAspectPlanetMercury == 1
+        case 3:
+            return setting.dispAspectPlanetVenus == 1
+        case 4:
+            return setting.dispAspectPlanetMars == 1
+        case 5:
+            return setting.dispAspectPlanetJupiter == 1
+        case 6:
+            return setting.dispAspectPlanetSaturn == 1
+        case 7:
+            return setting.dispAspectPlanetUranus == 1
+        case 8:
+            return setting.dispAspectPlanetNeptune == 1
+        case 9:
+            return setting.dispAspectPlanetPluto == 1
             // todo
         default:
             return false
