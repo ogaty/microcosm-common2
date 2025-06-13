@@ -285,6 +285,7 @@ namespace microcosmMac2.Views
 
             appDelegate.settings[index].dispName = dispName.StringValue;
 
+            // ReloadDataって関数があった
             var DataSource = new SettingDataSource();
             for (var i = 0; i < appDelegate.settings.Length; i++)
             {

@@ -7,9 +7,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>jp.ogatism.microcosm</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.3.0</string>
+	<string>1.3.3</string>
 	<key>CFBundleVersion</key>
-	<string>20</string>
+	<string>26</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>11</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -30,7 +30,7 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.lifestyle</string>
-	<key>Custom Property 1</key>
-	<string></string>
+	<key>App Uses Non-Exempt Encryption</key>
+	<string>NO</string>
 </dict>
 </plist>

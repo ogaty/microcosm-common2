@@ -1,0 +1,8 @@
+{
+  "centric" : 0,
+  "ephePath" : "ephe",
+  "defaultTimeZone": "Asia/Tokyo (+9:00)"
+  "defaultPlace": "東京都",
+  "defaultLat" : "35.68944",
+  "defaultLng" : "139.69167"
+}

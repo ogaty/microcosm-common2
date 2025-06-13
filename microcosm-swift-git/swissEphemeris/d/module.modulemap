@@ -1,0 +1,13 @@
+module d {
+    header "swephexp.h"
+    header "sweph.h"
+    header "wrap_set_ephe_path.h"
+    header "wrap_utc_timezone.h"
+    header "wrap_swe_utc_to_jd.h"
+    header "wrap_swe_calc_ut.h"
+    header "wrap_swe_houses.h"
+    header "wrap_swe_set_sid_mode.h"
+    header "wrap_swe_get_ayanamsa_ex_ut.h"
+    header "wrap_swe_close.h"
+    export *
+}

@@ -40,6 +40,9 @@ namespace microcosmMac2
             SKPaint lineStyle = new SKPaint();
             lineStyle.Style = SKPaintStyle.Stroke;
 
+            // next version
+            //lineStyle.StrokeWidth = 0;
+
             // outer
             cvs.DrawCircle(CenterX, CenterY, diameter / 2, lineStyle);
             // inner

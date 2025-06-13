@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EnableCodeSigning>true</EnableCodeSigning>
+    <EnableCodeSigning>True</EnableCodeSigning>
     <CodeSigningKey>Mac Developer</CodeSigningKey>
     <CreatePackage>false</CreatePackage>
     <EnablePackageSigning>true</EnablePackageSigning>
@@ -40,7 +40,7 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EnableCodeSigning>true</EnableCodeSigning>
+    <EnableCodeSigning>True</EnableCodeSigning>
     <CreatePackage>true</CreatePackage>
     <EnablePackageSigning>false</EnablePackageSigning>
     <IncludeMonoRuntime>true</IncludeMonoRuntime>
@@ -49,8 +49,8 @@
     <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
     <LinkMode>SdkOnly</LinkMode>
     <AOTMode>None</AOTMode>
-    <CodesigningKey>Mac Developer: Created via API (8VD72DF66D)</CodesigningKey>
-    <CodesignProvision></CodesignProvision>
+    <CodesigningKey>3rd Party Mac Developer Application: yuji ogata (H64M75WWG3)</CodesigningKey>
+    <CodesignProvision>Mac Team Store Provisioning Profile: jp.ogatism.microcosm</CodesignProvision>
     <PackageSigningKey>Developer ID Installer</PackageSigningKey>
     <ProductDefinition>/Users/ogata/Projects/microcosm-common/mac/microcosmMac2/Info.plist</ProductDefinition>
     <XamMacArch>x86_64</XamMacArch>
