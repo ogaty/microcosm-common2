@@ -131,6 +131,18 @@ public class Util
             return setting.dispAspectPlanetNeptune == 1
         case 9:
             return setting.dispAspectPlanetPluto == 1
+        case 10:
+            return setting.dispAspectPlanetDH == 1
+        case 11:
+            return setting.dispAspectPlanetDH == 1
+        case 12:
+            return setting.dispAspectPlanetLilith == 1
+        case 13:
+            return setting.dispAspectPlanetLilith == 1
+        case 14:
+            return setting.dispAspectPlanetEarth == 1
+        case 15:
+            return setting.dispAspectPlanetChiron == 1
             // todo
         default:
             return false
