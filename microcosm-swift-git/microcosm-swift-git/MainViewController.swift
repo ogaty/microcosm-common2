@@ -74,9 +74,9 @@ class MainViewController: NSViewController {
         
         //let font = NSFont(descriptor: NSFontDescriptor(name: "microcosm", size: 16.0), size: 16.0)
         
-        for font in NSFontManager.shared.availableFonts {
-            print(font)
-        }
+//        for font in NSFontManager.shared.availableFonts {
+//            print(font)
+//        }
         
         print("done")
     }
@@ -98,7 +98,7 @@ class MainViewController: NSViewController {
     }
     
     override func viewWillAppear() {
-        self.view.window?.minSize = NSSize(width: 960, height: 640)
+        self.view.window?.minSize = NSSize(width: 1020, height: 680)
         self.view.window?.aspectRatio = CGSize(width: 3, height: 2)
         //        let x = text222.resignFirstResponder()
         self.view.window?.makeFirstResponder(self)
@@ -224,7 +224,7 @@ class MainViewController: NSViewController {
     }
     
     override func viewDidAppear() {
-        text111.resignFirstResponder()
+//        text111.resignFirstResponder()
     }
     
     @objc
@@ -232,10 +232,10 @@ class MainViewController: NSViewController {
         print("aa")
     }
     
-//    override func rightMouseUp(with event: NSEvent) {
-//        print("aaaa")
-//    }
-//
+    //    override func rightMouseUp(with event: NSEvent) {
+    //        print("aaaa")
+    //    }
+    //
     override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
@@ -274,7 +274,6 @@ class MainViewController: NSViewController {
             let calc = AstroCalc(config: delegate.config, swiss: swiss)
             let currentDegree = calc.PositionCalcSingle(date: myDate, timezone: udata.birth_timezone, planetId: 0)
             let degree = Util.GetNextIngressDegree(degree: currentDegree)
-            print(list1[0]!.absolute_position)
             let time = eclipse.GetEclipse(begin: myDate, timezone: udata.birth_timezone, planetId: 0, targetDegree: degree, isForward: true, config: delegate.config)
             udata.setDate(date: time)
             setUserData(udata: udata)
@@ -325,7 +324,7 @@ class MainViewController: NSViewController {
             let calc = AstroCalc(config: delegate.config, swiss: swiss)
             let currentDegree = calc.PositionCalcSingle(date: myDate, timezone: udata.birth_timezone, planetId: 0)
             let degree = Util.GetPrevIngressDegree(degree: currentDegree)
-            print(degree)
+//            print(degree)
             let time = eclipse.GetEclipse(begin: myDate, timezone: udata.birth_timezone, planetId: 0, targetDegree: degree, isForward: false, config: delegate.config)
             udata.setDate(date: time)
             setUserData(udata: udata)
@@ -365,7 +364,7 @@ class MainViewController: NSViewController {
         newUserData.birth_hour = myDate.getHour()
         newUserData.birth_minute = myDate.getMinute()
         newUserData.birth_second = myDate.getSecond()
-
+        
         setUserData(udata: newUserData)
         setUserBox()
     }
@@ -499,7 +498,7 @@ class MainViewController: NSViewController {
             // 一重円、二重円の場合ハウスは考慮しない(NPだけのリングは存在しない)
             let d = MyDate()
             d.setUserData(u: ring2)
-            delegate.list2 = calc.ReCalc(setting: delegate.currentSetting, date: d)
+            list2 = calc.ReCalc(setting: delegate.currentSetting, date: d)
         } else {
             if (delegate.secondBand == EBandKind.PROGRESS) {
                 delegate.list2 = calc.ReCalcProgress(config: delegate.config, setting: delegate.currentSetting, natalList: list1, udata: ring1, transitTime: d2, timezone: ring1.birth_timezone)
@@ -613,7 +612,7 @@ class MainViewController: NSViewController {
         delegate.list1 = list1
         delegate.list2 = list2
         delegate.list3 = list3
-
+        
         // list1array〜list3arrayはsignList(左下枠でのみ使う)
         delegate.list1array = list1.values
             .filter{$0.isDisp == true}
@@ -731,7 +730,7 @@ class MainViewController: NSViewController {
         } else if (delegate.currentSetting.houseCalc == EHouse.ZEROARIES.rawValue) {
             houseKind = "ZEROARIES"
         }
-
+        
         currentHouseName.stringValue = houseKind
     }
     
@@ -799,7 +798,7 @@ class MainViewController: NSViewController {
         
         var target: Double
         
-        for i in 1..<11 {
+        for i in 0..<10 {
             target = signList1[i]!.absolute_position - houseList1[1]
             if (target < 0)
             {
@@ -903,8 +902,8 @@ class MainViewController: NSViewController {
         var mutable = 0;
         
         for i in 1..<11 {
-            print(i)
-            print(signList1[i]!.absolute_position)
+//            print(i)
+//            print(signList1[i]!.absolute_position)
             if (
                 (0.0 <= signList1[i]!.absolute_position && signList1[i]!.absolute_position < 30.0) ||
                 (120.0 <= signList1[i]!.absolute_position && signList1[i]!.absolute_position < 150.0) ||
@@ -1002,6 +1001,53 @@ class MainViewController: NSViewController {
         ReCalc()
         ReRender()
     }
+    
+    public func chart2UU()
+    {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        delegate.bands = 2
+        calcTargetUser[0] = ETargetUser.USER1
+        calcTargetUser[1] = ETargetUser.USER2
+
+        ReCalc()
+        ReRender()
+    }
+    
+    public func chart2UE()
+    {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        delegate.bands = 2
+        calcTargetUser[0] = ETargetUser.USER1
+        calcTargetUser[1] = ETargetUser.EVENT1
+
+        ReCalc()
+        ReRender()
+    }
+    
+    public func chart2EE()
+    {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        delegate.bands = 2
+        calcTargetUser[0] = ETargetUser.EVENT1
+        calcTargetUser[1] = ETargetUser.EVENT2
+
+        ReCalc()
+        ReRender()
+    }
+    
+    public func chart3NPT()
+    {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        delegate.bands = 3
+
+        calcTargetUser[0] = ETargetUser.USER1
+        calcTargetUser[1] = ETargetUser.USER1
+        calcTargetUser[2] = ETargetUser.EVENT1
+
+        ReCalc()
+        ReRender()
+    }
+
 }
 
 extension MainViewController: NSWindowDelegate {

@@ -121,6 +121,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="trueNodeClicked:" target="sLm-0o-ntu" id="G99-kP-Ls5"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L9A-V3-gf0">
                                 <rect key="frame" x="18" y="120" width="96" height="18"/>
@@ -129,6 +132,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="meanNodeClicked:" target="sLm-0o-ntu" id="7O6-3p-fnJ"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LYj-nY-HXF">
                                 <rect key="frame" x="18" y="41" width="104" height="18"/>
@@ -137,6 +143,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="trueApogeeClicked:" target="sLm-0o-ntu" id="8zB-Ny-FDq"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mr2-kP-gPx">
                                 <rect key="frame" x="18" y="19" width="110" height="18"/>
@@ -145,6 +154,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="meanApogeeClicked:" target="sLm-0o-ntu" id="7kw-ZF-X85"/>
+                                </connections>
                             </button>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vSb-Yr-J9Z">
                                 <rect key="frame" x="179" y="385" width="89" height="16"/>
@@ -162,6 +174,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="hexDegreeClicked:" target="sLm-0o-ntu" id="4Vo-oT-zKW"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XNX-HM-sNf">
                                 <rect key="frame" x="179" y="338" width="119" height="18"/>
@@ -170,6 +185,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="decimalDegreeClicked:" target="sLm-0o-ntu" id="CiI-WC-ZoS"/>
+                                </connections>
                             </button>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VEj-PO-fOa">
                                 <rect key="frame" x="181" y="294" width="89" height="16"/>
@@ -187,6 +205,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="fullModeClicked:" target="sLm-0o-ntu" id="LmW-9k-uAf"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bnZ-MX-5ey">
                                 <rect key="frame" x="181" y="247" width="75" height="18"/>
@@ -195,6 +216,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="simpleModeClicked:" target="sLm-0o-ntu" id="bbD-28-Yhl"/>
+                                </connections>
                             </button>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YXi-FC-BMX">
                                 <rect key="frame" x="361" y="385" width="137" height="16"/>
@@ -300,11 +324,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Agk-3n-CdB">
-                                                            <rect key="frame" x="8" y="0.0" width="64" height="24"/>
+                                                            <rect key="frame" x="8" y="0.0" width="65" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n6F-8l-Wnm">
-                                                                    <rect key="frame" x="0.0" y="4" width="64" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="4" width="65" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="vxe-Cn-pVm">
                                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -332,7 +356,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="mSs-nC-Jqb">
-                                                            <rect key="frame" x="89.5" y="0.0" width="95" height="24"/>
+                                                            <rect key="frame" x="90" y="0.0" width="95" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FgG-Sj-Caj">
@@ -364,11 +388,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Atz-e8-T2l">
-                                                            <rect key="frame" x="201.5" y="0.0" width="68" height="17"/>
+                                                            <rect key="frame" x="202" y="0.0" width="67" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3Z-Aj-mbZ">
-                                                                    <rect key="frame" x="0.0" y="1" width="68" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="67" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="rpP-6Z-cgz">
                                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -416,10 +440,18 @@
                     </view>
                     <connections>
                         <outlet property="addrTable" destination="9mM-vS-D30" id="vG6-U0-ZXY"/>
+                        <outlet property="decimalMode" destination="XNX-HM-sNf" id="o3a-IT-myD"/>
                         <outlet property="defaultLat" destination="VoQ-P0-za3" id="0GR-fA-STU"/>
                         <outlet property="defaultLng" destination="tYM-zx-rEH" id="vck-0g-4nc"/>
                         <outlet property="defaultPlace" destination="Wlz-2V-QDx" id="V1r-tz-Kk0"/>
+                        <outlet property="fullMode" destination="Fbt-50-Nz2" id="uXm-Xd-DtA"/>
+                        <outlet property="hexMode" destination="Wc9-n7-FXt" id="WNB-A8-TEm"/>
+                        <outlet property="meanApogeeRadio" destination="Mr2-kP-gPx" id="7eW-pa-X3f"/>
+                        <outlet property="meanNodeRadio" destination="L9A-V3-gf0" id="bED-UE-MX3"/>
+                        <outlet property="simpleMode" destination="bnZ-MX-5ey" id="S0W-MR-Ckd"/>
                         <outlet property="timeZoneCombo" destination="qVJ-AI-aGR" id="rUv-UO-82I"/>
+                        <outlet property="trueApogeeRadio" destination="LYj-nY-HXF" id="qwk-Se-z9o"/>
+                        <outlet property="trueNodeRadio" destination="pzp-3R-yJH" id="3hx-AF-ddB"/>
                     </connections>
                 </viewController>
                 <customObject id="2RL-jM-8NX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

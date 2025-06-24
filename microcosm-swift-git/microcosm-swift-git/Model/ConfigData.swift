@@ -13,6 +13,8 @@ struct ConfigData: Codable {
     var sideReal: ESideReal = ESideReal.TROPICAL
     var nodeCalc: ENodeCalc = ENodeCalc.TRUE
     var lilithCalc: ELilithCalc = ELilithCalc.OSCU
+    var decimalDisp: EDecimalDisp = EDecimalDisp.DEGREE
+    var dispPattern: EDispPattern = EDispPattern.FULL
     
     var defaultPlace: String = "東京都"
     var defaultLat: String = "35.68944"
@@ -76,6 +78,20 @@ public class ConfigSave {
                     config.lilithCalc = ELilithCalc.OSCU
                 } else if lilithCalc as! Int64 == 1 {
                     config.lilithCalc = ELilithCalc.MEAN
+                }
+            }
+            if let decimalDisp = jsonObject["decimalDisp"] {
+                if decimalDisp as! Int64 == 0 {
+                    config.decimalDisp = EDecimalDisp.DECIMAL
+                } else if decimalDisp as! Int64 == 1 {
+                    config.decimalDisp = EDecimalDisp.DEGREE
+                }
+            }
+            if let dispPattern = jsonObject["dispPattern"] {
+                if dispPattern as! Int64 == 0 {
+                    config.dispPattern = EDispPattern.FULL
+                } else if dispPattern as! Int64 == 1 {
+                    config.dispPattern = EDispPattern.MINI
                 }
             }
             if let timezone = jsonObject["defaultTimeZone"] {

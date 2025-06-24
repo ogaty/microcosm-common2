@@ -32,10 +32,6 @@ public class ChartRingMaker {
         cgContext.setStrokeColor(NSColor.red.cgColor)
         cgContext.strokeEllipse(in: CGRect(x: 0, y: 0, width: width, height: width))
         
-//        guard let z = cgContext.makeImage() else {
-//            print("bbbb")
-//            return nil
-//        }
     }
     static func MakeInnerRing(cgContext: CGContext, width: Int, height: Int) {
         cgContext.setStrokeColor(NSColor.green.cgColor)

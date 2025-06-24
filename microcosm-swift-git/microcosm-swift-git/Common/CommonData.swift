@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import AppKit
 
 enum ETargetUser: Int {
     case USER1 = 1
@@ -33,7 +34,6 @@ public class CommonData
     /// - Returns: フォント文字
     public static func getPlanetSymbol2(n: Int) -> String
     {
-        print(n)
         switch (n) {
         case EPlanets.SUN.rawValue:
             return "A"
@@ -305,110 +305,110 @@ public class CommonData
         return getAspectSymbol(n: n)
     }
     
-    public static func getPlanetColor(n: Int) -> CGColor
+    public static func getPlanetColor(n: Int) -> NSColor
     {
         switch (n) {
         case EPlanets.SUN.rawValue:
             // SKColors.Olive
-            return CGColor(red: 128, green: 128, blue: 0, alpha: 1)
+            return NSColor(red: 128/255, green: 128/255, blue: 0/255, alpha: 1)
         case EPlanets.MOON.rawValue:
             // SKColors.DarkGoldenrod
-            return CGColor(red: 184, green: 134, blue: 11, alpha: 1)
+            return NSColor(red: 184/255, green: 134/255, blue: 11/255, alpha: 1)
         case EPlanets.MERCURY.rawValue:
             // SKColors.Purple
-            return CGColor(red: 128, green: 0, blue: 128, alpha: 1)
+            return NSColor(red: 128/255, green: 0/255, blue: 128/255, alpha: 1)
         case EPlanets.VENUS.rawValue:
             // SKColors.Green
-            return CGColor(red: 0, green: 80, blue: 0, alpha: 1)
+            return NSColor(red: 0/255, green: 80/255, blue: 0/255, alpha: 1)
         case EPlanets.MARS.rawValue:
             // SKColors.Red
-            return CGColor(red: 255, green: 0, blue: 0, alpha: 1)
+            return NSColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
         case EPlanets.JUPITER.rawValue:
             // SKColors.Maroon
-            return CGColor(red: 128, green: 0, blue: 0, alpha: 1)
+            return NSColor(red: 128/255, green: 0/255, blue: 0/255, alpha: 1)
         case EPlanets.SATURN.rawValue:
             // SKColors.DimGray
-            return CGColor(red: 105, green: 105, blue: 105, alpha: 1)
+            return NSColor(red: 105/255, green: 105/255, blue: 105/255, alpha: 1)
         case EPlanets.URANUS.rawValue:
             // SKColors.DarkTurquoise
-            return CGColor(red: 0, green: 206, blue: 209, alpha: 1)
+            return NSColor(red: 0/255, green: 206/255, blue: 209/255, alpha: 1)
         case EPlanets.NEPTUNE.rawValue:
             // SKColors.DodgerBlue
-            return CGColor(red: 30, green: 144, blue: 255, alpha: 1)
+            return NSColor(red: 30/255, green: 144/255, blue: 255/255, alpha: 1)
         case EPlanets.PLUTO.rawValue:
             // SKColors.DeepPink
-            return CGColor(red: 255, green: 20, blue: 147, alpha: 1)
+            return NSColor(red: 255/255, green: 20/255, blue: 147/255, alpha: 1)
         case EPlanets.EARTH.rawValue:
             // SKColors.SkyBlue
-            return CGColor(red: 135, green: 206, blue: 235, alpha: 1)
+            return NSColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1)
         case EPlanets.CHIRON.rawValue:
             // todo
             // SKColors.SkyBlue
-            return CGColor(red: 135, green: 206, blue: 235, alpha: 1)
+            return NSColor(red: 135/255, green: 206/255, blue: 235/255, alpha: 1)
         case EPlanets.DH_TRUENODE.rawValue:
             // SKColors.DarkCyan
-            return CGColor(red: 0, green: 139, blue: 139, alpha: 1)
+            return NSColor(red: 0/255, green: 139/255, blue: 139/255, alpha: 1)
         case EPlanets.DH_MEANNODE.rawValue:
             // SKColors.DarkCyan
-            return CGColor(red: 0, green: 139, blue: 139, alpha: 1)
+            return NSColor(red: 0/255, green: 139/255, blue: 139/255, alpha: 1)
         case EPlanets.DT_TRUE.rawValue:
             // SKColors.DarkCyan
-            return CGColor(red: 0, green: 139, blue: 139, alpha: 1)
+            return NSColor(red: 0/255, green: 139/255, blue: 139/255, alpha: 1)
         case EPlanets.DT_MEAN.rawValue:
             // SKColors.DarkCyan
-            return CGColor(red: 0, green: 139, blue: 139, alpha: 1)
+            return NSColor(red: 0/255, green: 139/255, blue: 139/255, alpha: 1)
         case EPlanets.MEAN_LILITH.rawValue:
             // SKColors.MediumSeaGreen
-            return CGColor(red: 60, green: 179, blue: 113, alpha: 1)
+            return NSColor(red: 60/255, green: 179/255, blue: 113/255, alpha: 1)
         case EPlanets.OSCU_LILITH.rawValue:
             // SKColors.MediumSeaGreen
-            return CGColor(red: 60, green: 179, blue: 113, alpha: 1)
+            return NSColor(red: 60/255, green: 179/255, blue: 113/255, alpha: 1)
         default:
-            return CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+            return NSColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         }
     }
     
-    public static func getSignColor(n: Int) -> CGColor
+    public static func getSignColor(n: Int) -> NSColor
     {
         switch (n) {
         case ESign.ARIES.rawValue:
             // SKColors.OrangeRed
-            return CGColor(red: 255, green: 69, blue: 0, alpha: 1)
+            return NSColor(red: 255/255, green: 69/255, blue: 0, alpha: 1)
         case ESign.TAURUS.rawValue:
             // SKColors.Goldenrod
-            return CGColor(red: 218, green: 165, blue: 32, alpha: 1)
+            return NSColor(red: 218/255, green: 165/255, blue: 32/255, alpha: 1)
         case ESign.GEMINI.rawValue:
             // SKColors.MediumSeaGreen
-            return CGColor(red: 60, green: 179, blue: 113, alpha: 1)
+            return NSColor(red: 60/255, green: 179/255, blue: 113/255, alpha: 1)
         case ESign.CANCER.rawValue:
             // SKColors.SteelBlue
-            return CGColor(red: 70, green: 130, blue: 180, alpha: 1)
+            return NSColor(red: 70/255, green: 130/255, blue: 180/255, alpha: 1)
         case ESign.LEO.rawValue:
             // SKColors.Crimson
-            return CGColor(red: 220, green: 20, blue: 60, alpha: 1)
+            return NSColor(red: 220/255, green: 20/255, blue: 60/255, alpha: 1)
         case ESign.VIRGO.rawValue:
             // SKColors.Maroon
-            return CGColor(red: 128, green: 0, blue: 0, alpha: 1)
+            return NSColor(red: 128/255, green: 0/255, blue: 0/255, alpha: 1)
         case ESign.LIBRA.rawValue:
             // SKColors.Teal
-            return CGColor(red: 0, green: 128, blue: 128, alpha: 1)
+            return NSColor(red: 0/255, green: 128/255, blue: 128/255, alpha: 1)
         case ESign.SCORPIO.rawValue:
             // SKColors.CornflowerBlue
-            return CGColor(red: 100, green: 149, blue: 237, alpha: 1)
+            return NSColor(red: 100/255, green: 149/255, blue: 237/255, alpha: 1)
         case ESign.SAGITTARIUS.rawValue:
             // SKColors.DeepPink
-            return CGColor(red: 255, green: 20, blue: 147, alpha: 1)
+            return NSColor(red: 255/255, green: 20/255, blue: 147/255, alpha: 1)
         case ESign.CAPRICORN.rawValue:
             // SKColors.SaddleBrown
-            return CGColor(red: 139, green: 69, blue: 19, alpha: 1)
+            return NSColor(red: 139/255, green: 69/255, blue: 19/255, alpha: 1)
         case ESign.AQUARIUS.rawValue:
             // SKColors.CadetBlue
-            return CGColor(red: 95, green: 158, blue: 160, alpha: 1)
+            return NSColor(red: 95/255, green: 158/255, blue: 160/255, alpha: 1)
         case ESign.PISCES.rawValue:
             // SKColors.DodgerBlue
-            return CGColor(red: 30, green: 144, blue: 255, alpha: 1)
+            return NSColor(red: 30/255, green: 144/255, blue: 255/255, alpha: 1)
         default:
-            return CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+            return NSColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         }
     }
     

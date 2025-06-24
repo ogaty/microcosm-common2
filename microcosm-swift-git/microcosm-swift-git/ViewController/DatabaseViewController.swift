@@ -200,14 +200,15 @@ class DatabaseViewController: NSViewController {
             return
         }
 
-        let vc = self.storyboard?.instantiateController(withIdentifier: "user") as! UserEditViewController
-        let myWindow:NSWindow? = NSWindow(contentViewController: vc)
+        let userEditvc = self.storyboard?.instantiateController(withIdentifier: "user") as! UserEditViewController
+        let myWindow:NSWindow? = NSWindow(contentViewController: userEditvc)
         myWindow?.makeKeyAndOrderFront(self)
-        vc.fileName.stringValue = node.getFileNameWithoutExtension()
-        vc.baseURL = node.fullPath.deletingLastPathComponent()
-        vc.isAppend = true
-        vc.parentController = self
-        vc.fileName.isEditable = false
+        userEditvc.fileName.stringValue = node.getFileNameWithoutExtension()
+        userEditvc.baseURL = node.fullPath.deletingLastPathComponent()
+        userEditvc.isAppend = true
+        userEditvc.parentController = self
+        userEditvc.fileName.isEditable = false
+        userEditvc.fileName.textColor = .disabledControlTextColor
         let wc = NSWindowController(window: myWindow)
         wc.showWindow(self)
     }
@@ -301,6 +302,8 @@ class DatabaseViewController: NSViewController {
         + databaseUsers[index].userData.birth_place
         
         delegate.viewController?.setUserBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
     }
     
     @IBAction func user2Clicked(_ sender: Any) {
@@ -311,6 +314,8 @@ class DatabaseViewController: NSViewController {
         + databaseUsers[index].userData.birth_place
         
         delegate.viewController?.setUserBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
     }
     
     @IBAction func event1Clicked(_ sender: Any) {
@@ -321,6 +326,8 @@ class DatabaseViewController: NSViewController {
         + databaseUsers[index].userData.birth_place
         
         delegate.viewController?.setUserBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
     }
     
     @IBAction func event2Clicked(_ sender: Any) {
@@ -331,6 +338,8 @@ class DatabaseViewController: NSViewController {
         + databaseUsers[index].userData.birth_place
         
         delegate.viewController?.setUserBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
     }
     
     
@@ -339,7 +348,7 @@ class DatabaseViewController: NSViewController {
         if (index < 0) {
             return
         }
-        print(index)
+//        print(index)
         
         let content = openFileDialog()
         let myDate = MyDate()
@@ -538,8 +547,6 @@ extension DatabaseViewController: NSOutlineViewDataSource, NSOutlineViewDelegate
             return
         }
         
-        let users = DatabaseUser.load(url: node.fullPath)
-        
         if (directories.selectedRow == 0) {
             editButton.isEnabled = false
             deleteButton.isEnabled = false
@@ -550,14 +557,19 @@ extension DatabaseViewController: NSOutlineViewDataSource, NSOutlineViewDelegate
         
         databaseUsers.removeAll()
         if (!node.isDirectory()) {
+            let users = DatabaseUser.load(url: node.fullPath)
             for user in users {
                 databaseUsers.append(user)
             }
             usersTable.reloadData()
+            if(users.count > 0) {
+                memo.stringValue = users[0].memo
+            }
+        } else {
+            usersTable.reloadData()
+
         }
-        if(users.count > 0) {
-            memo.stringValue = users[0].memo
-        }
+        
         
         usersTable.selectRowIndexes(NSIndexSet(index: 0) as IndexSet, byExtendingSelection: false)
     }

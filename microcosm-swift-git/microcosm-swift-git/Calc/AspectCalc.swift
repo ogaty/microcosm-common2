@@ -31,19 +31,17 @@ public class AspectCalc
                 
                 // 90.0 と　300.0では210度ではなく150度にならなければいけない
                 var aspect_degree = list[key]!.absolute_position - list[key2]!.absolute_position
-                print("key:" + (String)(list[key]!.absolute_position))
-                print("key2:" + (String)(list[key2]!.absolute_position))
                 
                 if (aspect_degree > 180)
                 {
-                    aspect_degree = list[key]!.absolute_position + 360 - list[key2]!.absolute_position
+                    aspect_degree = 360.truncatingRemainder(dividingBy: list[key2]!.absolute_position - list[key]!.absolute_position)
                 }
                 if (aspect_degree < 0)
                 {
                     aspect_degree = abs(aspect_degree);
                 }
                 
-                for i in 0...15 {
+                for i in 1...15 {
                     if (i == EAspect.CONJUNCTION.rawValue && a_setting.dispConjunction == 0) {
                         continue
                     }
@@ -125,7 +123,7 @@ public class AspectCalc
                         if (i == EAspect.CONJUNCTION.rawValue) {
                             asp.aspectKind = EAspect.CONJUNCTION
                         } else if (i == EAspect.OPPOSITION.rawValue) {
-                            asp.aspectKind = EAspect.CONJUNCTION
+                            asp.aspectKind = EAspect.OPPOSITION
                         } else if (i == EAspect.TRINE.rawValue) {
                             asp.aspectKind = EAspect.TRINE
                         } else if (i == EAspect.SQUARE.rawValue) {
@@ -413,35 +411,35 @@ public class AspectCalc
     public func getEAspect(key: Int) -> EAspect
     {
         switch (key) {
-        case 0:
-            return EAspect.CONJUNCTION
         case 1:
-            return EAspect.OPPOSITION
+            return EAspect.CONJUNCTION
         case 2:
-            return EAspect.INCONJUNCT
+            return EAspect.OPPOSITION
         case 3:
-            return EAspect.SESQUIQUADRATE
+            return EAspect.INCONJUNCT
         case 4:
-            return EAspect.TRINE
+            return EAspect.SESQUIQUADRATE
         case 5:
-            return EAspect.SQUARE
+            return EAspect.TRINE
         case 6:
-            return EAspect.SEXTILE
+            return EAspect.SQUARE
         case 7:
-            return EAspect.SEMISEXTILE
+            return EAspect.SEXTILE
         case 8:
-            return EAspect.SEMIQINTILE
+            return EAspect.SEMISEXTILE
         case 9:
-            return EAspect.NOVILE
+            return EAspect.SEMIQINTILE
         case 10:
-            return EAspect.SEMISQUARE
+            return EAspect.NOVILE
         case 11:
-            return EAspect.SEPTILE
+            return EAspect.SEMISQUARE
         case 12:
-            return EAspect.QUINTILE
+            return EAspect.SEPTILE
         case 13:
-            return EAspect.BIQUINTILE
+            return EAspect.QUINTILE
         case 14:
+            return EAspect.BIQUINTILE
+        case 15:
             return EAspect.QUINDECILE
         default:
             return EAspect.CONJUNCTION
@@ -491,9 +489,6 @@ public class AspectCalc
     
     public func IsAspect(aspectDegree: Double, targetDegree: Double, orb: [Float]) -> AspectStatus
     {
-        print("aspectCheck")
-        print("src:" + (String)(aspectDegree))
-        print("target:" + (String)(targetDegree))
         var aspect = AspectStatus()
         if (targetDegree < aspectDegree + Double(orb[1]) &&
             targetDegree > aspectDegree - Double(orb[1]))
@@ -507,13 +502,10 @@ public class AspectCalc
         {
             aspect.aspect = true
             aspect.softHard = SoftHard.SOFT
+        } else {
+            aspect.aspect = false
         }
         
-        if (aspect.aspect) {
-            print("aspect")
-            print("src:" + (String)(aspectDegree))
-            print("target:" + (String)(targetDegree))
-        }
         return aspect
     }
     

@@ -47,19 +47,29 @@ class TimeSetDetailViewController: NSViewController {
             solarReturnRadio.state = NSControl.StateValue.off
             ingressRadio.state = NSControl.StateValue.off
             
+//            print(delegate.viewController?.timesetterButton.title)
             if ((delegate.viewController?.timesetterButton.title.contains("Hour")) == true) {
                 secondRadio.state = NSControl.StateValue.off
+                minuteRadio.state = NSControl.StateValue.off
                 hourRadio.state = NSControl.StateValue.on
+                dayRadio.state = NSControl.StateValue.off
             }
             if ((delegate.viewController?.timesetterButton.title.contains("Minute")) == true) {
                 secondRadio.state = NSControl.StateValue.off
                 minuteRadio.state = NSControl.StateValue.on
+                hourRadio.state = NSControl.StateValue.off
+                dayRadio.state = NSControl.StateValue.off
             }
             if ((delegate.viewController?.timesetterButton.title.contains("Second")) == true) {
                 secondRadio.state = NSControl.StateValue.on
+                minuteRadio.state = NSControl.StateValue.off
+                hourRadio.state = NSControl.StateValue.off
+                dayRadio.state = NSControl.StateValue.off
             }
             if ((delegate.viewController?.timesetterButton.title.contains("Day")) == true) {
-                secondRadio.state = NSControl.StateValue.on
+                secondRadio.state = NSControl.StateValue.off
+                minuteRadio.state = NSControl.StateValue.off
+                hourRadio.state = NSControl.StateValue.off
                 dayRadio.state = NSControl.StateValue.on
             }
         }

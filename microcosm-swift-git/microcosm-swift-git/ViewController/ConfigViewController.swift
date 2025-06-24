@@ -19,6 +19,19 @@ class ConfigViewController: NSViewController {
     @IBOutlet weak var defaultLng: NSTextField!
     @IBOutlet weak var addrTable: NSTableView!
     
+    @IBOutlet weak var trueNodeRadio: NSButton!
+    @IBOutlet weak var meanNodeRadio: NSButton!
+    @IBOutlet weak var trueApogeeRadio: NSButton!
+    @IBOutlet weak var meanApogeeRadio: NSButton!
+    
+    @IBOutlet weak var hexMode: NSButton!
+    
+    @IBOutlet weak var decimalMode: NSButton!
+    
+    @IBOutlet weak var fullMode: NSButton!
+    
+    @IBOutlet weak var simpleMode: NSButton!
+    
     required init?(coder aDecoder: NSCoder) {
         addrs = []
         delegate = NSApplication.shared.delegate as! AppDelegate
@@ -50,6 +63,38 @@ class ConfigViewController: NSViewController {
         defaultPlace.stringValue = delegate.config.defaultPlace
         defaultLat.stringValue = delegate.config.defaultLat
         defaultLng.stringValue = delegate.config.defaultLng
+        
+        if (delegate.config.nodeCalc == ENodeCalc.TRUE) {
+            trueNodeRadio.state = NSControl.StateValue.on
+            meanNodeRadio.state = NSControl.StateValue.off
+        } else {
+            trueNodeRadio.state = NSControl.StateValue.off
+            meanNodeRadio.state = NSControl.StateValue.on
+        }
+
+        if (delegate.config.lilithCalc == ELilithCalc.OSCU) {
+            trueApogeeRadio.state = NSControl.StateValue.on
+            meanApogeeRadio.state = NSControl.StateValue.off
+        } else {
+            trueApogeeRadio.state = NSControl.StateValue.off
+            meanApogeeRadio.state = NSControl.StateValue.on
+        }
+        
+        if (delegate.config.decimalDisp == EDecimalDisp.DECIMAL) {
+            decimalMode.state = NSControl.StateValue.on
+            hexMode.state = NSControl.StateValue.off
+        } else {
+            decimalMode.state = NSControl.StateValue.off
+            hexMode.state = NSControl.StateValue.on
+        }
+
+        if (delegate.config.dispPattern == EDispPattern.FULL) {
+            fullMode.state = NSControl.StateValue.on
+            simpleMode.state = NSControl.StateValue.off
+        } else {
+            fullMode.state = NSControl.StateValue.off
+            simpleMode.state = NSControl.StateValue.on
+        }
 
         // スクリーンチェンジ
         NotificationCenter.default.addObserver(
@@ -71,6 +116,83 @@ class ConfigViewController: NSViewController {
         config.defaultLng = String(addrs[row].lng)
         ConfigSave.save(config: config, url: u)
     }
+    
+    
+    @IBAction func trueNodeClicked(_ sender: Any) {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        trueNodeRadio.state = NSControl.StateValue.on
+        meanNodeRadio.state = NSControl.StateValue.off
+        delegate.config.nodeCalc = ENodeCalc.TRUE
+        delegate.viewController?.ReSetCurrentSettingBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
+    }
+    @IBAction func meanNodeClicked(_ sender: Any) {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        trueNodeRadio.state = NSControl.StateValue.off
+        meanNodeRadio.state = NSControl.StateValue.on
+        delegate.config.nodeCalc = ENodeCalc.MEAN
+        delegate.viewController?.ReSetCurrentSettingBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
+    }
+    @IBAction func trueApogeeClicked(_ sender: Any) {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        trueApogeeRadio.state = NSControl.StateValue.on
+        meanApogeeRadio.state = NSControl.StateValue.off
+        delegate.config.lilithCalc = ELilithCalc.OSCU
+        delegate.viewController?.ReSetCurrentSettingBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
+    }
+    @IBAction func meanApogeeClicked(_ sender: Any) {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        trueApogeeRadio.state = NSControl.StateValue.off
+        meanApogeeRadio.state = NSControl.StateValue.on
+        delegate.config.lilithCalc = ELilithCalc.MEAN
+        delegate.viewController?.ReSetCurrentSettingBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
+    }
+    
+    @IBAction func hexDegreeClicked(_ sender: Any) {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        hexMode.state = NSControl.StateValue.on
+        decimalMode.state = NSControl.StateValue.off
+        delegate.config.decimalDisp = EDecimalDisp.DEGREE
+        delegate.viewController?.ReSetCurrentSettingBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
+    }
+    @IBAction func decimalDegreeClicked(_ sender: Any) {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        hexMode.state = NSControl.StateValue.off
+        delegate.config.lilithCalc = ELilithCalc.MEAN
+        delegate.config.decimalDisp = EDecimalDisp.DECIMAL
+        delegate.viewController?.ReSetCurrentSettingBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
+    }
+    @IBAction func fullModeClicked(_ sender: Any) {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        fullMode.state = NSControl.StateValue.on
+        simpleMode.state = NSControl.StateValue.off
+        delegate.config.dispPattern = EDispPattern.FULL
+        delegate.viewController?.ReSetCurrentSettingBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
+    }
+    @IBAction func simpleModeClicked(_ sender: Any) {
+        let delegate = NSApplication.shared.delegate as! AppDelegate
+        fullMode.state = NSControl.StateValue.off
+        simpleMode.state = NSControl.StateValue.on
+        delegate.config.dispPattern = EDispPattern.MINI
+        delegate.viewController?.ReSetCurrentSettingBox()
+        delegate.viewController?.ReCalc()
+        delegate.viewController?.ReRender()
+    }
+    
+    
 }
 
 func changed(notification : Notification) -> Void {
@@ -127,7 +249,6 @@ extension ConfigViewController: NSTableViewDataSource, NSTableViewDelegate
         if (view == nil)
         {
             if let unwrapped = tableColumn?.identifier.rawValue {
-                print(unwrapped)
                 if (unwrapped == "place") {
                     view = NSTextField(labelWithString: addrs[row].name);
                     view?.identifier = NSUserInterfaceItemIdentifier(rawValue: unwrapped + String(row))

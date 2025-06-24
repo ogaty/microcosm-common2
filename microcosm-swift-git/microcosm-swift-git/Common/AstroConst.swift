@@ -113,12 +113,12 @@ enum ESideReal: Int, Codable {
     case DRACONIC = 2
 }
 
-enum EDecimalDisp: Int {
-    case DECIMAL = 0
-    case DEGREE = 1
+enum EDecimalDisp: Int, Codable {
+    case DECIMAL = 0 // 99
+    case DEGREE = 1 // 59
 }
 
-enum EDispPattern: Int {
+enum EDispPattern: Int, Codable {
     case FULL = 0
     case MINI = 1
 }

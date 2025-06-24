@@ -426,8 +426,6 @@ class EclipseCalc {
                 calcCounter = calcCounter + 1
                 calcDegree = calc.x[0]
                 
-                print(calcDegree)
-                
                 if (calcCounter > 100)
                 {
                     print("100ごえ")

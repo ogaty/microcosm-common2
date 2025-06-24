@@ -111,5 +111,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func chart1E2(_ sender: Any) {
         viewController!.chart1E2()
     }
+    
+    @IBAction func chart2UU(_ sender: Any) {
+        viewController!.chart2UU()
+    }
+    
+    @IBAction func chart2UE(_ sender: Any) {
+        viewController!.chart2UE()
+    }
+    
+    @IBAction func chart2EE(_ sender: Any) {
+        viewController!.chart2EE()
+    }
+    
+    @IBAction func chart3NPT(_ sender: Any) {
+        viewController!.chart3NPT()
+    }
+    
 }
 
