@@ -89,6 +89,12 @@ public class Util
             return setting.dispPlanetLilith == 1
         case EPlanets.OSCU_LILITH.rawValue:
             return setting.dispPlanetLilith == 1
+        case EPlanets.EARTH.rawValue:
+            return setting.dispPlanetEarth == 1
+        case EPlanets.CHIRON.rawValue:
+            return setting.dispPlanetChiron == 1
+        case EPlanets.PHOLUS.rawValue:
+            return false
         case EPlanets.CERES.rawValue:
             return setting.dispPlanetCeres == 1
         case EPlanets.PALLAS.rawValue:
@@ -97,12 +103,18 @@ public class Util
             return setting.dispPlanetJuno == 1
         case EPlanets.VESTA.rawValue:
             return setting.dispPlanetVesta == 1
-        case EPlanets.EARTH.rawValue:
-            return setting.dispPlanetEarth == 1
-
-
-            
-            // todo
+        case EPlanets.ASC.rawValue:
+            return setting.dispPlanetAsc == 1
+        case EPlanets.MC.rawValue:
+            return setting.dispPlanetMc == 1
+        case EPlanets.ERIS.rawValue:
+            return false
+        case EPlanets.SEDNA.rawValue:
+            return false
+        case EPlanets.HAUMEA.rawValue:
+            return false
+        case EPlanets.MAKEMAKE.rawValue:
+            return false
         default:
             return false
         }
@@ -143,7 +155,28 @@ public class Util
             return setting.dispAspectPlanetEarth == 1
         case 15:
             return setting.dispAspectPlanetChiron == 1
-            // todo
+        case 16:
+            return false
+        case 17:
+            return setting.dispAspectPlanetCeres == 1
+        case 18:
+            return setting.dispAspectPlanetPallas == 1
+        case 19:
+            return setting.dispAspectPlanetJuno == 1
+        case 20:
+            return setting.dispAspectPlanetVesta == 1
+        case 10000:
+            return setting.dispAspectPlanetAsc == 1
+        case 10001:
+            return setting.dispAspectPlanetMc == 1
+        case 136199:
+            return false
+        case 90377:
+            return false
+        case 136108:
+            return false
+        case 136472:
+            return false
         default:
             return false
         }
